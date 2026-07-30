@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kaleidoscope — memory for agents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0B0C; --elev:#131315; --elev2:#1B1B1D;
+  --border:#232325; --border2:#2E2E30;
+  --text:#EAE7E0; --body:#C3BFB6; --muted:#8C887F; --faint:#605D57;
+  --brass:#CFA757;
+  --sm:13px; --read:17px; --md:15px; --lg:19px; --xl:26px; --x3l:40px; --mono:9.5px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:400 var(--sm)/1.55 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:0 40px}
+a{color:inherit;text-decoration:none}
+.mono{font:500 var(--mono)/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase}
+
+header{border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;gap:26px;height:58px}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand .host{font:500 12px/1 'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.02em}
+.brand .host b{color:var(--text);font-weight:600}
+nav a.item{font-size:var(--sm);color:var(--muted)}
+nav a.item:hover{color:var(--text)}
+
+/* status strip — honest about where this is */
+.strip{border-bottom:1px solid var(--border);background:var(--elev)}
+.strip .inner{display:flex;align-items:center;gap:12px;height:38px}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--brass)}
+.strip .t{font:500 11px/1 'JetBrains Mono',monospace;color:var(--brass);letter-spacing:.09em;text-transform:uppercase}
+.strip .d{font-size:12px;color:var(--muted)}
+
+.hero{padding:76px 0 54px}
+.eyebrow{color:var(--brass);margin:0 0 26px}
+h1{margin:0 0 10px;font:400 var(--x3l)/1.05 Newsreader,Georgia,serif;letter-spacing:-.02em}
+.sub{margin:0 0 28px;font:400 11px/1 'JetBrains Mono',monospace;color:var(--faint);letter-spacing:.07em}
+.lede{margin:0 0 18px;max-width:56ch;font:400 var(--read)/1.62 Newsreader,Georgia,serif;color:var(--body)}
+.actions{display:flex;gap:16px;align-items:center;margin-top:32px}
+.btn{font-size:var(--sm);font-weight:500;padding:9px 18px;border-radius:2px;border:1px solid var(--brass);color:var(--brass)}
+.btn:hover{background:var(--brass);color:#100D06}
+.btn.ghost{border-color:var(--border2);color:var(--muted)}
+.btn.ghost:hover{background:transparent;color:var(--text);border-color:var(--muted)}
+
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border)}
+.pillar{padding:28px 26px 30px}
+.pillar + .pillar{border-left:1px solid var(--border)}
+.pillar h3{margin:0 0 10px;font:500 var(--md)/1.2 Inter,sans-serif;letter-spacing:.01em}
+.pillar p{margin:0;font-size:var(--sm);line-height:1.62;color:var(--muted);max-width:30ch}
+
+.section{padding:50px 0 0}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin:0 0 20px}
+.sec-head h2{margin:0;font:600 var(--sm)/1 Inter,sans-serif}
+.sec-head span{color:var(--faint)}
+.adapters{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.ad{background:var(--elev);padding:18px 18px 20px}
+.ad .n{font-size:var(--md);font-weight:500;margin:0 0 6px}
+.ad .s{margin:0;font:400 10.5px/1 'JetBrains Mono',monospace;color:var(--faint);letter-spacing:.07em}
+
+/* what it will do — honest roadmap, no dates */
+.build{margin-top:50px;border-top:1px solid var(--border2);padding-top:26px}
+.build h2{margin:0 0 18px;font:600 var(--sm)/1 Inter,sans-serif}
+.build ul{list-style:none;margin:0;padding:0}
+.build li{display:grid;grid-template-columns:16px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:var(--sm);color:var(--body);line-height:1.6}
+.build li .m{color:var(--faint);font:400 11px/1.5 'JetBrains Mono',monospace}
+
+.note{margin:44px 0 0;padding:22px 24px;background:var(--elev);border-left:2px solid var(--brass);font-size:var(--sm);line-height:1.66;color:var(--muted);max-width:66ch}
+.note b{color:var(--text);font-weight:500}
+
+footer{margin-top:54px;border-top:1px solid var(--border);padding:22px 0 60px;display:flex;gap:18px;color:var(--faint)}
+footer .sp{margin-left:auto}
+footer a{color:var(--muted)}
+footer a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+
+<header><div class="wrap"><nav>
+  <a class="brand" href="/">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="color:var(--brass)">
+      <g fill="currentColor">
+        <rect x="12.5" y="3" width="8.5" height="3" rx="1.5"/>
+        <rect x="18" y="12.5" width="3" height="8.5" rx="1.5"/>
+        <rect x="3" y="18" width="8.5" height="3" rx="1.5"/>
+        <rect x="3" y="3" width="3" height="8.5" rx="1.5"/>
+        <circle cx="12" cy="12" r="2"/>
+      </g>
+    </svg>
+    <span class="host"><b>memory</b>.kleosresearch.xyz</span>
+  </a>
+  <a class="item" href="https://kleosresearch.xyz">kleos&nbsp;↗</a>
+</nav></div></header>
+
+<div class="strip"><div class="wrap"><div class="inner">
+  <span class="dot"></span>
+  <span class="t">In development</span>
+  <span class="d">Not yet released. Follow the build, or read the research it comes from.</span>
+</div></div></div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow mono">Memory for agents</div>
+    <h1>Kaleidoscope</h1>
+    <div class="sub">a kleos system · signed native binary</div>
+    <p class="lede">Scattered fragments of work, composed into one bounded view an agent can be handed. Runs on your machine, with adapters for 0xCopilot, Claude Code, Codex and Cursor.</p>
+    <p class="lede">A decision you make in one tool is invisible to the next one. Kaleidoscope is the store that sits underneath all of them, so the work you have already done stops being re-done.</p>
+    <div class="actions">
+      <a class="btn" href="https://github.com/kleos-research">Follow development ↗</a>
+      <a class="btn ghost" href="https://kleosresearch.xyz/research">Read the research ↗</a>
+    </div>
+  </section>
+
+  <div class="pillars">
+    <div class="pillar"><h3>Local</h3><p>The store never leaves the machine.</p></div>
+    <div class="pillar"><h3>Neutral</h3><p>One store, many harnesses, no lock-in.</p></div>
+    <div class="pillar"><h3>Bounded</h3><p>You see exactly what was carried forward.</p></div>
+  </div>
+
+  <section class="section">
+    <div class="sec-head"><h2>Planned adapters</h2><span class="mono">4 harnesses</span></div>
+    <div class="adapters">
+      <div class="ad"><p class="n">0xCopilot</p><p class="s">planned</p></div>
+      <div class="ad"><p class="n">Claude Code</p><p class="s">planned</p></div>
+      <div class="ad"><p class="n">Codex</p><p class="s">planned</p></div>
+      <div class="ad"><p class="n">Cursor</p><p class="s">planned</p></div>
+    </div>
+  </section>
+
+  <section class="build">
+    <h2>What we are building</h2>
+    <ul>
+      <li><span class="m">01</span><span>A local evidence store that captures decisions, corrections and conventions as you work — without shipping any of it off the machine.</span></li>
+      <li><span class="m">02</span><span>A context compiler that chooses what to carry forward before the model is called, and records why it chose it.</span></li>
+      <li><span class="m">03</span><span>Adapters, so the same store serves whichever harness you happen to open.</span></li>
+      <li><span class="m">04</span><span>An inspector, because a memory you cannot audit is a memory you cannot trust.</span></li>
+    </ul>
+  </section>
+
+  <p class="note"><b>On evidence.</b> Kaleidoscope is built on published research, and the benchmark that evaluates it is being built alongside it. We are not claiming performance numbers before that work runs — when there are results, they will appear on the lab site with the method attached.</p>
+
+  <footer>
+    <span class="mono">Kaleidoscope</span>
+    <a class="mono" href="https://kleosresearch.xyz">a kleos system</a>
+    <span class="sp mono">memory.kleosresearch.xyz</span>
+  </footer>
+
+</div>
+</body>
+</html>
