@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kaleidoscope — memory for agents</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0B0C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -124,13 +129,17 @@ footer a:hover{color:var(--text)}
 
 <header><div class="wrap"><nav>
   <a class="brand" href="/">
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="color:var(--brass)">
+    <!-- Kaleidoscope mark: one bar swept four times about the centre, opacity
+         cascading, plus the centre square the Kleos mark also carries. Base cut
+         — inline marks keep the square. Source: kleos-research/kaleidoscope,
+         brand/kaleidoscope/kaleidoscope-mark.svg -->
+    <svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true" style="color:var(--brass)">
       <g fill="currentColor">
-        <rect x="12.5" y="3" width="8.5" height="3" rx="1.5"/>
-        <rect x="18" y="12.5" width="3" height="8.5" rx="1.5"/>
-        <rect x="3" y="18" width="8.5" height="3" rx="1.5"/>
-        <rect x="3" y="3" width="3" height="8.5" rx="1.5"/>
-        <circle cx="12" cy="12" r="2"/>
+        <rect x="4" y="16" width="28" height="7"/>
+        <rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/>
+        <rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/>
+        <rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/>
+        <rect x="28.5" y="28.5" width="7" height="7"/>
       </g>
     </svg>
     <span class="host"><b>memory</b>.kleosresearch.xyz</span>
