@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Concepts and boundaries | Kaleidoscope</title>
+  <meta name="description" content="How Kaleidoscope separates local memory, profiles, harness identity, account identity, and a future hosted service.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/concepts/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Concepts and boundaries | Kaleidoscope">
+  <meta property="og:description" content="How Kaleidoscope separates local memory, profiles, harness identity, account identity, and a future hosted service.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/concepts/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Concepts and boundaries","description":"How Kaleidoscope separates local memory, profiles, harness identity, account identity, and a future hosted service.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/concepts/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/" aria-current="page">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security &amp; privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Concepts and boundaries</h1>
+<p class="lede">The important boundary is not “logged in versus logged out.” It is local memory versus account metadata.</p>
+<h2>Local engine</h2>
+<p>The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Local memory content, queries, results, memory IDs, vault coordinates, and local paths are not account-service fields.</p>
+<h2>Manager and profile</h2>
+<p>The public manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, and manages account credentials through the operating-system credential store. A profile names one local vault identity without revealing those coordinates to agent configuration.</p>
+<h2>Harness identity</h2>
+<p>Codex, Claude, Cursor, OpenCode, framework clients, and generic MCP clients are consumers of the same profile. They do not become separate memory stores merely because their configuration formats differ.</p>
+<h2>Account identity</h2>
+<p>Login links a product account and device. Logout or account unlinking does not delete, relocate, or rewrite the local vault. Account state must not be interpreted as consent to upload memory.</p>
+<h2>Hosted memory</h2>
+<p>A hosted service is a future product requiring its own authorization, tenant-isolation, retention, residency, deletion, sync, billing, and incident-response contract. It is not available and login does not opt a user into it.</p>
+</article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/llms.txt">llms.txt</a><a href="/.well-known/security.txt">security.txt</a><a href="/docs/account/">Account boundary</a></nav>
+</div></footer></body></html>

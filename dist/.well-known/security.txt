@@ -1,0 +1,5 @@
+Contact: https://memory.kleosresearch.xyz/docs/security/
+Canonical: https://memory.kleosresearch.xyz/.well-known/security.txt
+Expires: 2026-09-30T23:59:59Z
+Preferred-Languages: en
+Policy: https://memory.kleosresearch.xyz/docs/security/

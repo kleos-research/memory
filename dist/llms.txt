@@ -1,0 +1,13 @@
+# Kaleidoscope
+
+> Local native memory for agents, exposed through a public manager CLI and persistent stdio MCP. Release status: staging (unreleased).
+
+- [Documentation](https://memory.kleosresearch.xyz/docs/): product and developer overview
+- [Getting started](https://memory.kleosresearch.xyz/docs/getting-started/): profile and reversible host setup
+- [MCP reference](https://memory.kleosresearch.xyz/docs/mcp/): exactly `search` and `remember`
+- [Integrations](https://memory.kleosresearch.xyz/docs/integrations/): Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP
+- [Security and privacy](https://memory.kleosresearch.xyz/docs/security/): local/account/data boundary and release integrity
+- [Account](https://memory.kleosresearch.xyz/docs/account/): login manages account/device state and does not upload local memory
+- [Operations](https://memory.kleosresearch.xyz/docs/operations/): backup, restore, uninstall, update, and exact vault deletion
+
+The engine is proprietary object code. The manager, wrappers, integrations, and public skill are intended to be public after licensing approval. Hosted memory is planned, not available. Public contract SHA-256: not-yet-bound.

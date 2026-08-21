@@ -1,0 +1,26 @@
+name: docs
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  staging-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python build_site.py --output .site
+      - run: python verify_site.py .site --mode staging
+      - name: Production must require immutable release metadata
+        run: |
+          if python build_site.py --output .production-without-release --production; then
+            echo "production build unexpectedly accepted missing release metadata" >&2
+            exit 1
+          fi

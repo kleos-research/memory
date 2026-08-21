@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Migration from historical tool contracts | Kaleidoscope</title>
+  <meta name="description" content="How to migrate historical Kaleidoscope agent integrations to the public search and remember MCP contract.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/migration/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Migration from historical tool contracts | Kaleidoscope">
+  <meta property="og:description" content="How to migrate historical Kaleidoscope agent integrations to the public search and remember MCP contract.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/migration/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Migration from historical tool contracts","description":"How to migrate historical Kaleidoscope agent integrations to the public search and remember MCP contract.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/migration/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security &amp; privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/" aria-current="page">Migration</a></li></ul></nav>
+  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Migration from historical tool contracts</h1>
+<p class="lede">Current agents discover exactly <code>search</code> and <code>remember</code>. Historical tool names are not aliases and must be removed from host allowlists and prompts.</p>
+<h2>Retrieval</h2><p>Replace <code>recall</code>, <code>compile</code>, and <code>read_memory</code> with <code>search</code>. Send <code>query</code> for ranked retrieval and <code>memory_id</code> for an addressed read. Ranked results are under <code>selected_hits</code>. Use <code>top_k</code>, not <code>limit</code>.</p>
+<h2>Writing</h2><p>Replace prose-inference or <code>ingest_memory</code> paths with explicit <code>remember</code> semantic deltas. The runtime does not infer entities, facts, relationships, or dates from prose.</p>
+<h2>Operator feedback</h2><p><code>feedback</code> remains an authenticated controller/operator command because its decision token does not reach a model. Do not advertise it as an MCP tool.</p>
+</article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/llms.txt">llms.txt</a><a href="/.well-known/security.txt">security.txt</a><a href="/docs/account/">Account boundary</a></nav>
+</div></footer></body></html>

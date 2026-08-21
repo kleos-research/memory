@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Agent and framework integrations | Kaleidoscope</title>
+  <meta name="description" content="How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/integrations/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Agent and framework integrations | Kaleidoscope">
+  <meta property="og:description" content="How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/integrations/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Agent and framework integrations","description":"How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/integrations/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/" aria-current="page">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/" aria-current="page">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security &amp; privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Agent and framework integrations</h1>
+<p class="lede">Every integration consumes the same validated launch descriptor and persistent stdio MCP contract; none reimplements the memory algorithm.</p>
+<table><thead><tr><th>Integration</th><th>Candidate path</th><th>Release status</th></tr></thead><tbody>
+<tr><td>Codex</td><td>User or trusted-project MCP configuration with an exact <code>search</code>/<code>remember</code> allowlist.</td><td>Under conformance</td></tr>
+<tr><td>Claude Code / Agent SDK</td><td>Managed <code>.mcp.json</code> or SDK MCP server configuration.</td><td>Under conformance</td></tr>
+<tr><td>Cursor</td><td>User or project <code>mcp.json</code> plus an owner-marked rule.</td><td>Under conformance</td></tr>
+<tr><td>OpenCode</td><td>Stable direct <code>mcp.&lt;name&gt;</code> by default; explicit beta-v2 support without silent migration.</td><td>Under conformance</td></tr>
+<tr><td>LangChain / LangGraph</td><td>Python persistent MCP client and framework-native tool binding.</td><td>Under conformance</td></tr>
+<tr><td>OpenAI Agents SDK</td><td>TypeScript or Python MCP stdio server integration.</td><td>Under conformance</td></tr>
+<tr><td>CrewAI</td><td>Python MCP adapter using the same long-lived session.</td><td>Under conformance</td></tr>
+<tr><td>Generic MCP</td><td>Standards-conforming stdio initialization and tool calls.</td><td>Under conformance</td></tr>
+</tbody></table>
+<div class="callout"><strong>No support claim yet.</strong> A row changes from “under conformance” only when its pinned version passes the packaged release matrix. Cross-compilation or a configuration snapshot is not sufficient.</div>
+</article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/llms.txt">llms.txt</a><a href="/.well-known/security.txt">security.txt</a><a href="/docs/account/">Account boundary</a></nav>
+</div></footer></body></html>

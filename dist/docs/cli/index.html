@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CLI reference | Kaleidoscope</title>
+  <meta name="description" content="Generated-reference boundary for the public Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/cli/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="CLI reference | Kaleidoscope">
+  <meta property="og:description" content="Generated-reference boundary for the public Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/cli/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"CLI reference","description":"Generated-reference boundary for the public Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/cli/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/" aria-current="page">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security &amp; privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>CLI reference</h1>
+<p class="lede">The supported public CLI is <code>kaleidoscope</code>. Direct <code>kscope</code> operator commands are an engine/operator surface and are not a replacement for the manager quickstart.</p>
+<div class="callout"><strong>Generation pending release binding.</strong> The final command table is generated from the immutable manager artifact and signed public contract. This staging page intentionally does not invent flags that the candidate has not exposed.</div>
+<h2>Public command groups</h2>
+<table><thead><tr><th>Group</th><th>Purpose</th><th>Network</th></tr></thead><tbody>
+<tr><td><code>init</code> / profile</td><td>Create or import one validated local profile.</td><td>None</td></tr>
+<tr><td><code>connect</code> / <code>disconnect</code></td><td>Preview and apply reversible owner-marked host configuration.</td><td>None</td></tr>
+<tr><td><code>doctor</code></td><td>Validate package, descriptor, profile, host configuration, and local MCP startup without printing secrets.</td><td>None</td></tr>
+<tr><td>instructions</td><td>Install or remove the public skill and compact AGENTS/CLAUDE/Cursor guidance.</td><td>None</td></tr>
+<tr><td>account</td><td>Login, status, logout, link, revoke, and device management.</td><td>Account endpoints only</td></tr>
+</tbody></table>
+<h2>Safety invariants</h2>
+<ul><li>Mutating host commands support a dry run and explicit confirmation.</li><li>Unknown, conflicting, symlinked, or concurrently changed targets fail closed.</li><li>Backups are bounded and owner receipts make removal idempotent.</li><li>Agent launch configuration contains no tokens, provider keys, or raw vault coordinates.</li></ul>
+</article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/llms.txt">llms.txt</a><a href="/.well-known/security.txt">security.txt</a><a href="/docs/account/">Account boundary</a></nav>
+</div></footer></body></html>

@@ -1,0 +1,424 @@
+# Kaleidoscope
+
+> Local native memory for agents, exposed through a public manager CLI and persistent stdio MCP. Release status: staging (unreleased).
+
+- [Documentation](https://memory.kleosresearch.xyz/docs/): product and developer overview
+- [Getting started](https://memory.kleosresearch.xyz/docs/getting-started/): profile and reversible host setup
+- [MCP reference](https://memory.kleosresearch.xyz/docs/mcp/): exactly `search` and `remember`
+- [Integrations](https://memory.kleosresearch.xyz/docs/integrations/): Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP
+- [Security and privacy](https://memory.kleosresearch.xyz/docs/security/): local/account/data boundary and release integrity
+- [Account](https://memory.kleosresearch.xyz/docs/account/): login manages account/device state and does not upload local memory
+- [Operations](https://memory.kleosresearch.xyz/docs/operations/): backup, restore, uninstall, update, and exact vault deletion
+
+The engine is proprietary object code. The manager, wrappers, integrations, and public skill are intended to be public after licensing approval. Hosted memory is planned, not available. Public contract SHA-256: not-yet-bound.
+
+---
+
+# Kaleidoscope documentation
+
+URL: https://memory.kleosresearch.xyz/docs/
+Release: unreleased
+Updated: 2026-08-22
+
+Kaleidoscope is local memory for agents: a native CLI and persistent stdio MCP server with one profile shared across supported harnesses.
+
+Release status. This documentation is a staging candidate. Installation artifacts and production login are not public until the signed release and protected promotion gates pass.
+
+Start locally (/docs/getting-started/)
+
+Install, initialize one profile, connect a harness, and verify the two agent tools.
+
+Use MCP (/docs/mcp/)
+
+Discover exactly search and remember over one long-lived stdio process.
+
+Understand the boundary (/docs/security/)
+
+Memory and vault coordinates stay on the device; account login is a separate control-plane concern.
+
+Choose a path
+
+- Agent user: follow Getting started (/docs/getting-started/) and let the manager make a reversible host configuration.
+
+- Application developer: begin with Integrations (/docs/integrations/) and the persistent MCP client contract.
+
+- Operator: use Operations (/docs/operations/) for backup, restore, uninstall, and exact vault deletion.
+
+- Security reviewer: read Security & privacy (/docs/security/) and verify the signed public contract, SBOM, and package provenance.
+
+---
+
+# Getting started
+
+URL: https://memory.kleosresearch.xyz/docs/getting-started/
+Release: unreleased
+Updated: 2026-08-22
+
+One manager command creates or imports a local profile. A second command previews and applies an owner-marked, reversible host configuration.
+
+Not installable yet. The commands below describe the SDK-BOOT release-candidate interface. This page becomes a public copy/paste quickstart only after it passes against the exact signed package.
+
+1. Install the signed package
+
+Use one supported package channel. The final installer contains the public manager and proprietary engine object code, plus the composite license, notices, aggregate SBOM, and signed public contract. It does not contain the private engine source.
+
+2. Initialize a profile
+
+kaleidoscope init
+
+The interactive path chooses an existing vault or creates one explicitly. A profile is a non-secret local pointer; it never embeds account credentials in agent configuration.
+
+3. Preview and connect a host
+
+kaleidoscope connect codex --dry-run
+kaleidoscope connect codex
+kaleidoscope doctor
+
+Use claude, cursor, or opencode only when the compatibility page (/docs/compatibility/) marks that exact version supported. Existing unrelated configuration is preserved. Ambiguous or concurrently edited files are refused.
+
+4. Verify the contract
+
+Restart the host and confirm it discovers exactly two agent tools: search and remember. A ranked search returns hits under selected_hits; an addressed search with memory_id returns the selected memory at top level.
+
+5. Disconnect safely
+
+kaleidoscope disconnect codex --dry-run
+kaleidoscope disconnect codex
+
+Disconnect removes only Kaleidoscope-owned material and leaves other host settings and vault bytes unchanged.
+
+---
+
+# Concepts and boundaries
+
+URL: https://memory.kleosresearch.xyz/docs/concepts/
+Release: unreleased
+Updated: 2026-08-22
+
+The important boundary is not “logged in versus logged out.” It is local memory versus account metadata.
+
+Local engine
+
+The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Local memory content, queries, results, memory IDs, vault coordinates, and local paths are not account-service fields.
+
+Manager and profile
+
+The public manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, and manages account credentials through the operating-system credential store. A profile names one local vault identity without revealing those coordinates to agent configuration.
+
+Harness identity
+
+Codex, Claude, Cursor, OpenCode, framework clients, and generic MCP clients are consumers of the same profile. They do not become separate memory stores merely because their configuration formats differ.
+
+Account identity
+
+Login links a product account and device. Logout or account unlinking does not delete, relocate, or rewrite the local vault. Account state must not be interpreted as consent to upload memory.
+
+Hosted memory
+
+A hosted service is a future product requiring its own authorization, tenant-isolation, retention, residency, deletion, sync, billing, and incident-response contract. It is not available and login does not opt a user into it.
+
+---
+
+# CLI reference
+
+URL: https://memory.kleosresearch.xyz/docs/cli/
+Release: unreleased
+Updated: 2026-08-22
+
+The supported public CLI is kaleidoscope. Direct kscope operator commands are an engine/operator surface and are not a replacement for the manager quickstart.
+
+Generation pending release binding. The final command table is generated from the immutable manager artifact and signed public contract. This staging page intentionally does not invent flags that the candidate has not exposed.
+
+Public command groups
+
+GroupPurposeNetwork
+
+init / profileCreate or import one validated local profile.None
+
+connect / disconnectPreview and apply reversible owner-marked host configuration.None
+
+doctorValidate package, descriptor, profile, host configuration, and local MCP startup without printing secrets.None
+
+instructionsInstall or remove the public skill and compact AGENTS/CLAUDE/Cursor guidance.None
+
+accountLogin, status, logout, link, revoke, and device management.Account endpoints only
+
+Safety invariants
+
+- Mutating host commands support a dry run and explicit confirmation.
+
+- Unknown, conflicting, symlinked, or concurrently changed targets fail closed.
+
+- Backups are bounded and owner receipts make removal idempotent.
+
+- Agent launch configuration contains no tokens, provider keys, or raw vault coordinates.
+
+---
+
+# MCP reference
+
+URL: https://memory.kleosresearch.xyz/docs/mcp/
+Release: unreleased
+Updated: 2026-08-22
+
+Kaleidoscope publishes exactly two model-callable MCP tools. Everything else is an operator command outside the agent tool list.
+
+search
+
+Use a query for ranked retrieval or memory_id for an addressed read. Ranked results appear under selected_hits. The ranking knobs are top_k, candidate_pool, bfs_depth, and max_facts; clients should omit defaults rather than hand-copy them.
+
+{"query":"What constraints govern the release?","top_k":5,"ledger":true}
+
+remember
+
+Create, update, or logically delete a durable semantic delta. A create or update includes Markdown beginning with an H1 plus declared entities and subject–predicate–object facts. Every fact endpoint must be declared with n, kind, and a required is gloss. Predicates are snake_case.
+
+Lifecycle
+
+Clients should keep one stdio process alive across calls, negotiate MCP once, enforce a startup deadline, cancel cleanly, bound stderr, and tear down without leaving an orphan or locked update target. Model-facing integrations do not run a second hidden retrieval.
+
+Not agent tools
+
+Feedback, lifecycle/import, maintenance, ontology, and doctor operations are controller/operator commands. Historical tool names and shapes are documented only on the migration page (/docs/migration/); they must not appear in a model tool list.
+
+---
+
+# Agent and framework integrations
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/
+Release: unreleased
+Updated: 2026-08-22
+
+Every integration consumes the same validated launch descriptor and persistent stdio MCP contract; none reimplements the memory algorithm.
+
+IntegrationCandidate pathRelease status
+
+CodexUser or trusted-project MCP configuration with an exact search/remember allowlist.Under conformance
+
+Claude Code / Agent SDKManaged .mcp.json or SDK MCP server configuration.Under conformance
+
+CursorUser or project mcp.json plus an owner-marked rule.Under conformance
+
+OpenCodeStable direct mcp.<name> by default; explicit beta-v2 support without silent migration.Under conformance
+
+LangChain / LangGraphPython persistent MCP client and framework-native tool binding.Under conformance
+
+OpenAI Agents SDKTypeScript or Python MCP stdio server integration.Under conformance
+
+CrewAIPython MCP adapter using the same long-lived session.Under conformance
+
+Generic MCPStandards-conforming stdio initialization and tool calls.Under conformance
+
+No support claim yet. A row changes from “under conformance” only when its pinned version passes the packaged release matrix. Cross-compilation or a configuration snapshot is not sufficient.
+
+---
+
+# Local operations
+
+URL: https://memory.kleosresearch.xyz/docs/operations/
+Release: unreleased
+Updated: 2026-08-22
+
+Configuration, account credentials, installed executables, and canonical vault data have separate lifecycles.
+
+Locate before changing
+
+Use the manager profile and doctor views to identify the active package and profile without printing tokens or raw memory content. Never assume a worktree carries gitignored vault data.
+
+Back up and restore
+
+Back up the canonical vault from the main checkout or another explicit data location, not a disposable worktree. Restore only through the verified export/import path for the same supported vault format.
+
+Disconnect and uninstall
+
+Disconnect removes only manager-owned host configuration. Uninstall removes package artifacts and account credentials according to the selected scope. Neither operation implicitly deletes a vault.
+
+Delete a vault
+
+Vault deletion is a separate preview-and-confirm operation tied to one exact resolved root. Logical memory deletion and physical vault deletion are different operations. A broad path, unresolved variable, or ambiguous target must be refused.
+
+Update and rollback
+
+The installer stages, verifies, atomically activates, health-checks, and finalizes a signed package. A failed update returns to the exact prior manifest. Update and rollback do not migrate or alter canonical memory implicitly.
+
+---
+
+# Security and privacy
+
+URL: https://memory.kleosresearch.xyz/docs/security/
+Release: unreleased
+Updated: 2026-08-22
+
+Kaleidoscope protects source distribution and establishes verifiable package boundaries. It does not claim that a native executable is impossible to inspect or reverse engineer.
+
+Local data boundary
+
+The engine is local and makes no account-service request. Login traffic is limited to allowlisted account and device fields. Memory content, queries, results, memory IDs, vault coordinates, local paths, workspace/principal/journal identity, and provider credentials are excluded.
+
+Package integrity
+
+A release binds the manager and engine digests, source commits, bundled model, aggregate CycloneDX SBOM, public contract, licenses, target, channel, compatibility, and rollback identity. Installers start from an embedded rotating trust root and refuse altered, expired, replayed, downgraded, wrong-target, or cross-channel metadata.
+
+Environment and logs
+
+The engine receives a closed non-secret bootstrap environment rather than the full ambient process environment. Diagnostics and receipts are bounded and redacted. Release conformance scans argv, environment, profiles, logs, crash data, MCP traffic, and public artifacts with canary values.
+
+Telemetry
+
+The staging candidate makes no telemetry claim beyond the tested release evidence. The production page must enumerate every network destination and field before login is enabled.
+
+Report a vulnerability
+
+Do not publish an exploit or sensitive report in a public issue. The production security contact and supported-version policy are release blockers and will be published here and in /.well-known/security.txt before promotion.
+
+---
+
+# Account and devices
+
+URL: https://memory.kleosresearch.xyz/docs/account/
+Release: unreleased
+Updated: 2026-08-22
+
+Login is for product account and device workflows. It is not a hosted-memory connection.
+
+Authentication flows
+
+The native manager uses authorization code with PKCE and a loopback callback where available, with a device authorization flow for headless environments. Tokens are stored in the operating-system credential store, never in agent configuration or a profile.
+
+Account commands
+
+The release-candidate surface covers login, status, logout, link, revoke, and device listing/revocation. Refresh tokens rotate by family; reuse revokes the family. Denied, expired, cancelled, offline, and credential-store-failure states are explicit.
+
+What logout changes
+
+Logout removes or revokes account credentials according to the requested scope. It does not change the local principal, workspace, journal, or vault bytes. Vault deletion remains a separate local operation.
+
+Control plane boundary
+
+The private control plane is account-only. It has no memory/profile routes and stores no memory content or local vault identity. Production identity-provider metadata, keys, domains, privacy terms, and recovery procedures remain gated until launch.
+
+---
+
+# Compatibility
+
+URL: https://memory.kleosresearch.xyz/docs/compatibility/
+Release: unreleased
+Updated: 2026-08-22
+
+A platform or harness is supported only after the packaged artifact passes the canonical end-to-end proof on the named native runner and pinned host version.
+
+SurfaceCandidate targetCurrent public claim
+
+macOSarm64, x64Not released
+
+Linuxx86_64, arm64; libc policy must be explicitNot released
+
+Windowsx86_64, arm64Not released
+
+Agent hostsCodex, Claude Code, Cursor, OpenCodeUnder conformance
+
+FrameworksClaude Agent SDK, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, generic MCPUnder conformance
+
+Cross-compiling, extracting a foreign package, or parsing a configuration file is useful evidence but never a native support claim. Any matrix cell that does not pass is removed from the release before promotion.
+
+---
+
+# Benchmarks and evidence
+
+URL: https://memory.kleosresearch.xyz/docs/benchmarks/
+Release: unreleased
+Updated: 2026-08-22
+
+Benchmark results are useful only when the evaluated candidate, public contract, dataset, evaluator, and retrieval path are immutable and auditable.
+
+Candidate binding
+
+A public run names the signed engine candidate, package digest, public-contract digest, dataset and evaluator versions. Missing or mismatched inputs fail before acquisition. A local unsigned binary cannot be relabelled as release evidence.
+
+One retrieval path
+
+The harness performs one model-facing search. It does not hide a second acquisition search or depend on a legacy acquisition command.
+
+Runtime vocabulary
+
+Accepted memory types and relationship vocabulary come from the runtime contract, not a hand-copied list in benchmark code or prompts.
+
+Published evidence
+
+Reports include protocol persistence, restart behavior, exact candidate and contract digests, raw aggregate metrics, limitations, evaluator procedure, and proof that public configuration contains no private repository or vault coordinates.
+
+---
+
+# Release notes
+
+URL: https://memory.kleosresearch.xyz/docs/release-notes/
+Release: unreleased
+Updated: 2026-08-22
+
+Release notes become authoritative only when they name the exact signed package and public-contract digest.
+
+Unreleased
+
+The local manager, account boundary, confidential bundle, integrations, documentation, benchmark cleanup, and cross-platform conformance are being staged as separately reviewable changes. No production package or login endpoint is public.
+
+Promotion rule
+
+A release entry records availability, supported targets and pinned host versions, known limitations, migration requirements, security fixes, checksums, SBOM and provenance links, and exact rollback identity. Publication and documentation promotion remain a separate protected action.
+
+---
+
+# Troubleshooting
+
+URL: https://memory.kleosresearch.xyz/docs/troubleshooting/
+Release: unreleased
+Updated: 2026-08-22
+
+Start with kaleidoscope doctor. Its output is designed to identify the failing boundary without printing secrets or memory content.
+
+The host cannot find the tools
+
+- Confirm the active profile and signed package are valid.
+
+- Preview the host connection and inspect only the manager-owned block.
+
+- Restart the host after a successful connect.
+
+- Confirm the discovered tools are exactly search and remember.
+
+OpenCode configuration is refused
+
+Stable and beta-v2 shapes differ. The manager adopts an unambiguous existing shape or an explicit version selection; it never silently migrates stable configuration to beta. Remove conflicting duplicate Kaleidoscope entries and retry the dry run.
+
+A profile points to the wrong place
+
+Do not edit the profile by hand. Import the intended existing vault or initialize an explicit new root. A missing or invalid root is refused rather than created implicitly.
+
+Login fails but memory still works
+
+That separation is intentional for documented offline-existing-user paths. Account status and the local vault are separate. Do not delete or recreate the vault to repair an account problem.
+
+Before sharing diagnostics
+
+Remove local paths, account identifiers, provider keys, tokens, memory content, queries, results, and vault coordinates. Use the redacted doctor artifact intended for support.
+
+---
+
+# Migration from historical tool contracts
+
+URL: https://memory.kleosresearch.xyz/docs/migration/
+Release: unreleased
+Updated: 2026-08-22
+
+Current agents discover exactly search and remember. Historical tool names are not aliases and must be removed from host allowlists and prompts.
+
+Retrieval
+
+Replace recall, compile, and read_memory with search. Send query for ranked retrieval and memory_id for an addressed read. Ranked results are under selected_hits. Use top_k, not limit.
+
+Writing
+
+Replace prose-inference or ingest_memory paths with explicit remember semantic deltas. The runtime does not infer entities, facts, relationships, or dates from prose.
+
+Operator feedback
+
+feedback remains an authenticated controller/operator command because its decision token does not reach a model. Do not advertise it as an MCP tool.

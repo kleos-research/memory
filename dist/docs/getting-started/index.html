@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Getting started | Kaleidoscope</title>
+  <meta name="description" content="The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/getting-started/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Getting started | Kaleidoscope">
+  <meta property="og:description" content="The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/getting-started/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Getting started","description":"The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/getting-started/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/" aria-current="page">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security &amp; privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Getting started</h1>
+<p class="lede">One manager command creates or imports a local profile. A second command previews and applies an owner-marked, reversible host configuration.</p>
+<div class="callout"><strong>Not installable yet.</strong> The commands below describe the SDK-BOOT release-candidate interface. This page becomes a public copy/paste quickstart only after it passes against the exact signed package.</div>
+<h2>1. Install the signed package</h2>
+<p>Use one supported package channel. The final installer contains the public manager and proprietary engine object code, plus the composite license, notices, aggregate SBOM, and signed public contract. It does not contain the private engine source.</p>
+<h2>2. Initialize a profile</h2>
+<pre><code>kaleidoscope init</code></pre>
+<p>The interactive path chooses an existing vault or creates one explicitly. A profile is a non-secret local pointer; it never embeds account credentials in agent configuration.</p>
+<h2>3. Preview and connect a host</h2>
+<pre><code>kaleidoscope connect codex --dry-run
+kaleidoscope connect codex
+kaleidoscope doctor</code></pre>
+<p>Use <code>claude</code>, <code>cursor</code>, or <code>opencode</code> only when the <a href="/docs/compatibility/">compatibility page</a> marks that exact version supported. Existing unrelated configuration is preserved. Ambiguous or concurrently edited files are refused.</p>
+<h2>4. Verify the contract</h2>
+<p>Restart the host and confirm it discovers exactly two agent tools: <code>search</code> and <code>remember</code>. A ranked search returns hits under <code>selected_hits</code>; an addressed search with <code>memory_id</code> returns the selected memory at top level.</p>
+<h2>5. Disconnect safely</h2>
+<pre><code>kaleidoscope disconnect codex --dry-run
+kaleidoscope disconnect codex</code></pre>
+<p>Disconnect removes only Kaleidoscope-owned material and leaves other host settings and vault bytes unchanged.</p>
+</article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/llms.txt">llms.txt</a><a href="/.well-known/security.txt">security.txt</a><a href="/docs/account/">Account boundary</a></nav>
+</div></footer></body></html>

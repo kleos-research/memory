@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Account and devices | Kaleidoscope</title>
+  <meta name="description" content="What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/account/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Account and devices | Kaleidoscope">
+  <meta property="og:description" content="What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/account/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Account and devices","description":"What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/account/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security &amp; privacy</a></li><li><a href="/docs/account/" aria-current="page">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Account and devices</h1>
+<p class="lede">Login is for product account and device workflows. It is not a hosted-memory connection.</p>
+<h2>Authentication flows</h2><p>The native manager uses authorization code with PKCE and a loopback callback where available, with a device authorization flow for headless environments. Tokens are stored in the operating-system credential store, never in agent configuration or a profile.</p>
+<h2>Account commands</h2><p>The release-candidate surface covers login, status, logout, link, revoke, and device listing/revocation. Refresh tokens rotate by family; reuse revokes the family. Denied, expired, cancelled, offline, and credential-store-failure states are explicit.</p>
+<h2>What logout changes</h2><p>Logout removes or revokes account credentials according to the requested scope. It does not change the local principal, workspace, journal, or vault bytes. Vault deletion remains a separate local operation.</p>
+<h2>Control plane boundary</h2><p>The private control plane is account-only. It has no memory/profile routes and stores no memory content or local vault identity. Production identity-provider metadata, keys, domains, privacy terms, and recovery procedures remain gated until launch.</p>
+</article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/llms.txt">llms.txt</a><a href="/.well-known/security.txt">security.txt</a><a href="/docs/account/">Account boundary</a></nav>
+</div></footer></body></html>

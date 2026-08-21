@@ -1,0 +1,179 @@
+{
+  "files": [
+    {
+      "path": ".nojekyll",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": ".well-known/security.txt",
+      "sha256": "ecf5e4effd974221b343a6ab0a404a45d1cd57e83e58be0de5de43194b16e2db",
+      "size_bytes": 236
+    },
+    {
+      "path": "404.html",
+      "sha256": "81648df51e2d0af191e5bf359c33f91fc39249d39b6f17fa47f754572c492c44",
+      "size_bytes": 3046
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad",
+      "size_bytes": 4136
+    },
+    {
+      "path": "agent-instructions.md",
+      "sha256": "da121753cd2dd03230f98f0e7705c15de0aaef2cff9c0742a3ef97a8b19d128c",
+      "size_bytes": 872
+    },
+    {
+      "path": "apple-touch-icon.png",
+      "sha256": "320828c176d880ebb0f2e80e050e3f403c2e33848302f7cac665d11ef979b73e",
+      "size_bytes": 2333
+    },
+    {
+      "path": "assets/site.css",
+      "sha256": "00a1407b232b51b65c381db26d91d5b0fc18c1f717db2022a5de741f41a8961f",
+      "size_bytes": 5860
+    },
+    {
+      "path": "docs/account/index.html",
+      "sha256": "c7e5f47671e090790c9d03c2322a0834a335236db6f75b54a682b1089d746630",
+      "size_bytes": 4829
+    },
+    {
+      "path": "docs/benchmarks/index.html",
+      "sha256": "287249f922bc050a2f13d24533e4c0beec4f0df73c28ae586bf77e65c1b49ebe",
+      "size_bytes": 4718
+    },
+    {
+      "path": "docs/cli/index.html",
+      "sha256": "e3e4bf94782de4a41fe6d2dbb6e1178ece72a4a966def67cc959bfe75db22aa2",
+      "size_bytes": 5267
+    },
+    {
+      "path": "docs/compatibility/index.html",
+      "sha256": "8920e5eba9c21c7c2087d7e962d544ada14de888735fac0c7307237359f3a1d1",
+      "size_bytes": 4633
+    },
+    {
+      "path": "docs/concepts/index.html",
+      "sha256": "f6fe3838f9fd484e270c0112777b94fae5cc7a3932266271d8f91faa8919b66b",
+      "size_bytes": 5084
+    },
+    {
+      "path": "docs/getting-started/index.html",
+      "sha256": "7eedeaf6763fe2ef42f51a86d7da93bb90a4858a57cc357abd14e751f9e12e95",
+      "size_bytes": 5591
+    },
+    {
+      "path": "docs/index.html",
+      "sha256": "41b833ac1ec9c2dee8fb4a4f6d9355d1d434010ab433f6436f2748a199721c6c",
+      "size_bytes": 5227
+    },
+    {
+      "path": "docs/integrations/index.html",
+      "sha256": "bde7d7c75dca1bbac6239e6a61122d905055ad184191c566f32417d4d91742f1",
+      "size_bytes": 5345
+    },
+    {
+      "path": "docs/mcp/index.html",
+      "sha256": "ab811129291e562997b61ad27b44e3584c68addb91d2a0aed4aa30311e298098",
+      "size_bytes": 5149
+    },
+    {
+      "path": "docs/migration/index.html",
+      "sha256": "f4c52b72a78c1538356c9ee60375fbf499ca011119daf36ff074572a447e0599",
+      "size_bytes": 4586
+    },
+    {
+      "path": "docs/operations/index.html",
+      "sha256": "cb232b3b6e1976f8f8046207445d65279f3badea2d97eed73e29d6b360820c1f",
+      "size_bytes": 4969
+    },
+    {
+      "path": "docs/release-notes/index.html",
+      "sha256": "4bb7e1c0d97bf761cdebf260d98032da1754d6a84192e4c15287b8bd82145972",
+      "size_bytes": 4229
+    },
+    {
+      "path": "docs/security/index.html",
+      "sha256": "f753c1447ede1177e93e4e5be5bfc515d9a39aa420a6c833cd67f8cb99e12638",
+      "size_bytes": 5375
+    },
+    {
+      "path": "docs/troubleshooting/index.html",
+      "sha256": "b478f9f496ec9a2c248aea8f9acaf09be69a116899c169ead5aacb5bae7db65f",
+      "size_bytes": 5167
+    },
+    {
+      "path": "favicon-32.png",
+      "sha256": "ecd861db7d63d8cb1111f0baa534ba6ccc4b2d811ed968aab64fd98826622752",
+      "size_bytes": 553
+    },
+    {
+      "path": "favicon.ico",
+      "sha256": "6ec9d6c20ff9df75a8cf0975ee27159d72768b6cff32a88876312f033e4a89fb",
+      "size_bytes": 5430
+    },
+    {
+      "path": "favicon.svg",
+      "sha256": "0d346d7b00661036e366e417484263a24eb46750e9be6696a4af06c4083a460f",
+      "size_bytes": 682
+    },
+    {
+      "path": "index.html",
+      "sha256": "ecd11e86ec109a012f730b15d7817bb5adbcde774311bfbfa98a92ec5f78bce9",
+      "size_bytes": 4247
+    },
+    {
+      "path": "llms-full.txt",
+      "sha256": "8b57fd2e2c7a8bb2895b1fe7e65d659118772e1a2eefd04d3d32d51c61f32dd9",
+      "size_bytes": 19154
+    },
+    {
+      "path": "llms.txt",
+      "sha256": "d2280070704750e70bd2ad15b91a8416fa421a033599b58412e34f868b6e8ff7",
+      "size_bytes": 1226
+    },
+    {
+      "path": "robots.txt",
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+      "size_bytes": 26
+    },
+    {
+      "path": "sitemap.xml",
+      "sha256": "989e1469de6acec40b2b806ea62dd03b0f2d5981c51d8a87db94a28a95e8eef7",
+      "size_bytes": 1624
+    },
+    {
+      "path": "snippets/AGENTS.md",
+      "sha256": "86134dc05ebbcf60b4cafb9f884daa1b75d18e7ff67d1060ed8b1856052e9814",
+      "size_bytes": 610
+    },
+    {
+      "path": "snippets/CLAUDE.md",
+      "sha256": "1200d1fa27bf830a26c7115ef135514badc4bd040963e1e30684699dc3ed1207",
+      "size_bytes": 610
+    },
+    {
+      "path": "snippets/cursor-kaleidoscope.mdc",
+      "sha256": "26a965c079a6183628f70a06c350f6f24f101376ced8876bd8cb2081e6c5c645",
+      "size_bytes": 675
+    }
+  ],
+  "mode": "staging",
+  "public_source_sha256": {
+    "SKILL.md": "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad",
+    "agent-instructions.md": "da121753cd2dd03230f98f0e7705c15de0aaef2cff9c0742a3ef97a8b19d128c",
+    "snippets/AGENTS.md": "86134dc05ebbcf60b4cafb9f884daa1b75d18e7ff67d1060ed8b1856052e9814",
+    "snippets/CLAUDE.md": "1200d1fa27bf830a26c7115ef135514badc4bd040963e1e30684699dc3ed1207",
+    "snippets/cursor-kaleidoscope.mdc": "26a965c079a6183628f70a06c350f6f24f101376ced8876bd8cb2081e6c5c645"
+  },
+  "release": {
+    "availability": "staging",
+    "public_contract_sha256": "not-yet-bound",
+    "release_version": "unreleased",
+    "updated_at": "2026-08-22"
+  },
+  "schema_version": "kaleidoscope.docs-artifact.v1"
+}
