@@ -1,0 +1,41 @@
+{
+  "claim_boundary": [
+    "cross-target type-check only",
+    "no foreign runtime execution",
+    "no native installer or package evidence",
+    "no native credential-store, GUI, IDE, or live-provider evidence"
+  ],
+  "command_template": "CARGO_BUILD_JOBS=1 cargo check --locked --target TARGET -p kaleidoscope-service --bin kscope",
+  "evidence_sha256": "67ec1ad295ce912799c883b661e3f2f0ad6e19139a887ea190613ef4a806c55f",
+  "host_environment": "macOS arm64",
+  "rust_toolchain": "1.97.1",
+  "schema_version": "kaleidoscope.docs-cross-target-compile.v1",
+  "source_commit": "be5112911125a31bcf2efa766791d044cadab5ed",
+  "status": "compile_only",
+  "targets": [
+    {
+      "architecture": "x86_64",
+      "platform": "Linux",
+      "status": "passed",
+      "triple": "x86_64-unknown-linux-gnu"
+    },
+    {
+      "architecture": "arm64",
+      "platform": "Linux",
+      "status": "passed",
+      "triple": "aarch64-unknown-linux-gnu"
+    },
+    {
+      "architecture": "x86_64",
+      "platform": "Windows",
+      "status": "passed",
+      "triple": "x86_64-pc-windows-gnu"
+    },
+    {
+      "architecture": "x86_64",
+      "platform": "macOS",
+      "status": "passed",
+      "triple": "x86_64-apple-darwin"
+    }
+  ]
+}

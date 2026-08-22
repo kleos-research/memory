@@ -46,6 +46,11 @@
       "size_bytes": 5860
     },
     {
+      "path": "cross-target-checks.json",
+      "sha256": "7ce5148e6434ac1564ff85998b11fad6d5e075846772ee0a9a7fc942533229a1",
+      "size_bytes": 1226
+    },
+    {
       "path": "docs/account/index.html",
       "sha256": "c93ae08ffd1ba5a208f6b9aea87cc8530a4bec91c93eb3708eae4de10e8ba184",
       "size_bytes": 7460
@@ -62,8 +67,8 @@
     },
     {
       "path": "docs/compatibility/index.html",
-      "sha256": "1e927708ecc566a30292654cf12d9dc86423d735bd09b628de797099e86daabf",
-      "size_bytes": 7315
+      "sha256": "1002ea3e5e9ce41d4b1c9d90e7d955d3d864178ae4ab88366babe445c24270d4",
+      "size_bytes": 7761
     },
     {
       "path": "docs/concepts/index.html",
@@ -72,8 +77,8 @@
     },
     {
       "path": "docs/evidence/index.html",
-      "sha256": "3392e314c8bad0173e458d11f93b7839efb945f55f027440e94ce327554856ee",
-      "size_bytes": 11055
+      "sha256": "a9f28fef0b7b4e5ab91e22886e7da6f96914511ba47f0d2848497bb9c5588bb1",
+      "size_bytes": 11750
     },
     {
       "path": "docs/getting-started/index.html",
@@ -182,13 +187,13 @@
     },
     {
       "path": "docs/operations/index.html",
-      "sha256": "36d934387b8718ecb4e332998d23af0f47f0336cb304ab86f9566d6c888e4f0c",
-      "size_bytes": 7001
+      "sha256": "a44e0a31c51e6befc7b2ac73801dd65b9088961047ea6f62fb90bf3966837133",
+      "size_bytes": 7061
     },
     {
       "path": "docs/packages/index.html",
-      "sha256": "947a8d2140c2a89bbd436ee0c4168751012221e921da4f77e12866101c2adf18",
-      "size_bytes": 9160
+      "sha256": "bf248bbfa48bb5a151542e4d6ac2bbb841da3a8e29f4177b2c9bfd109e0cb6d5",
+      "size_bytes": 9217
     },
     {
       "path": "docs/privacy/index.html",
@@ -262,13 +267,13 @@
     },
     {
       "path": "llms-full.txt",
-      "sha256": "55d77e249767271452681c0a5e0b4c320ddd7e4e5e517db84b7bcb3ca14f3df9",
-      "size_bytes": 106909
+      "sha256": "9a44f61cd02774298d11a59a502d43f04bf1e927f4520f3a678b2c68f488a94d",
+      "size_bytes": 110955
     },
     {
       "path": "llms.txt",
-      "sha256": "d3b7f471021d1c01861096c2aca1b2bda4646c0bebf862d8425abbdfc91b982c",
-      "size_bytes": 5996
+      "sha256": "cdcd849f5351e0d6218ccb468b7fc01311a5e9f13e2ecfd43c1ff6fbf3e7ee8e",
+      "size_bytes": 6367
     },
     {
       "path": "reference/kaleidoscope-cli.candidate.txt",
@@ -307,8 +312,8 @@
     },
     {
       "path": "staging-evidence.json",
-      "sha256": "6920728cc4091918e6b3f6eace0c2cd052fe01c3bdc6a90f971de08e6c9e7528",
-      "size_bytes": 7858
+      "sha256": "f75c8ea82e3f86fdb4fd3e4126a9760c8eedceddd230f2408ddad7a4933144ab",
+      "size_bytes": 9191
     }
   ],
   "mode": "public_docs",
