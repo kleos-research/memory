@@ -93,7 +93,12 @@
     "version": "0.1.0-rc.1"
   },
   "local_host_cli_conformance": {
-    "candidate": "model-absent development binary",
+    "candidate": "private verified bundled engine candidate",
+    "candidate_model_status": "bundled",
+    "candidate_sha256": "988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825",
+    "candidate_size_bytes": 21122544,
+    "candidate_source_binding": "private_verified_snapshot",
+    "candidate_version": "0.0.0-proposal",
     "claim_boundary": [
       "configuration, connection, and local stdio discovery only",
       "no credentialed model turn",
@@ -104,18 +109,21 @@
     "commit": "52ad4d243966c5a5c9f65b35909d8f029ae74afd",
     "hosts": [
       {
+        "host_executable_sha256": "134063e133f0b4244fa3b251acf973d4fe4b4aeeacbdc135211bf480f59f1477",
         "name": "Codex",
         "scope": "isolated add/list/get/remove and exact rollback; native connection is not exposed by the management CLI",
         "status": "configuration_verified",
         "version": "0.149.0"
       },
       {
+        "host_executable_sha256": "2b4f7aafdaa65bcc2335f56a4b276317837203f2c5587b1f2a17ca78ad14e36f",
         "name": "Claude Code",
         "scope": "local host wiring and MCP discovery",
         "status": "connected",
         "version": "2.1.239"
       },
       {
+        "host_executable_sha256": "8c783005340f8dfc5e7d168478dd0dd2bd1faead531cb34270de2a9689d9f135",
         "name": "OpenCode",
         "scope": "local host wiring and MCP discovery",
         "status": "connected",
@@ -127,7 +135,7 @@
       "search"
     ],
     "platform": "macOS arm64",
-    "status": "verified_local_development_binary"
+    "status": "verified_local_bundled_candidate"
   },
   "manager": {
     "candidate_sha256": "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1",
@@ -176,7 +184,7 @@
       "id": "DX-10B",
       "scope": "fresh npm and Python facade invocation plus pinned Codex, Claude Code, and OpenCode CLI wiring on macOS arm64",
       "status": "verified_local_package_facades_and_host_wiring",
-      "verification": "final package evidence SHA-256 7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c; host-wiring harness commit 52ad4d243966c5a5c9f65b35909d8f029ae74afd; model-absent development binary only"
+      "verification": "final package evidence SHA-256 7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c; host-wiring harness commit 52ad4d243966c5a5c9f65b35909d8f029ae74afd; bundled private candidate SHA-256 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825"
     },
     {
       "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",

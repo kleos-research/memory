@@ -83,6 +83,10 @@ class DocumentationArtifactTest(unittest.TestCase):
             build_site.STAGING_EVIDENCE["local_host_cli_conformance"]["mcp_tools"],
             ["remember", "search"],
         )
+        host_conformance = build_site.STAGING_EVIDENCE["local_host_cli_conformance"]
+        self.assertEqual(host_conformance["status"], "verified_local_bundled_candidate")
+        self.assertEqual(host_conformance["candidate_model_status"], "bundled")
+        self.assertEqual(host_conformance["candidate_sha256"], build_site.ENGINE_CANDIDATE_SHA256)
         self.assertEqual(
             build_site.STAGING_EVIDENCE["cross_target_compile"]["evidence_sha256"],
             build_site.CROSS_TARGET_COMPILE_EVIDENCE_SHA256,
