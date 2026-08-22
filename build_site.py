@@ -71,6 +71,7 @@ DX10A_EVIDENCE_SHA256 = (
     "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
 )
 SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
+PLATFORM_HARNESS_COMMIT = "52ad4d243966c5a5c9f65b35909d8f029ae74afd"
 PACKAGE_PROOF_SHA256 = "62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7"
 NPM_FACADE_SHA256 = "0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd"
 NPM_NATIVE_SHA256 = "ec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b"
@@ -102,6 +103,41 @@ LOCAL_PROVENANCE_SHA256 = (
 LOCAL_TEST_SIGNATURE_SHA256 = (
     "9bce859379b24683cff7e6069835aa9f8d8ac4f1d07ff353f050ea1b9df60e0c"
 )
+
+LOCAL_HOST_CLI_CONFORMANCE = {
+    "status": "verified_local_development_binary",
+    "commit": PLATFORM_HARNESS_COMMIT,
+    "platform": "macOS arm64",
+    "candidate": "model-absent development binary",
+    "hosts": [
+        {
+            "name": "Codex",
+            "version": "0.149.0",
+            "status": "configuration_verified",
+            "scope": "isolated add/list/get/remove and exact rollback; native connection is not exposed by the management CLI",
+        },
+        {
+            "name": "Claude Code",
+            "version": "2.1.239",
+            "status": "connected",
+            "scope": "local host wiring and MCP discovery",
+        },
+        {
+            "name": "OpenCode",
+            "version": "1.18.21",
+            "status": "connected",
+            "scope": "local host wiring and MCP discovery",
+        },
+    ],
+    "mcp_tools": ["remember", "search"],
+    "claim_boundary": [
+        "configuration, connection, and local stdio discovery only",
+        "no credentialed model turn",
+        "no GUI or IDE acceptance",
+        "no Cursor host run",
+        "no published package or production OIDC",
+    ],
+}
 
 MANAGER_HELP = """Kaleidoscope public local manager
 
@@ -196,6 +232,8 @@ MCP_REFERENCE = {
     "local_conformance": {
         "dx10a_evidence_sha256": DX10A_EVIDENCE_SHA256,
         "final_package_evidence_sha256": FINAL_PACKAGE_EVIDENCE_SHA256,
+        "platform_harness_commit": PLATFORM_HARNESS_COMMIT,
+        "local_host_cli_conformance": LOCAL_HOST_CLI_CONFORMANCE,
         "historical_codex_host_evidence": {
             "commit": SDK_HOST_CONFORMANCE_COMMIT,
             "sha256": DX10B_HOST_EVIDENCE_SHA256,
@@ -306,9 +344,9 @@ STAGING_EVIDENCE = {
         {
             "id": "DX-10B",
             "commit": FINAL_EVIDENCE_COMMIT,
-            "status": "verified_local_package_facades",
-            "scope": "fresh npm and Python facade invocation: init, doctor, Codex dry-run configuration, and stdio MCP discovery",
-            "verification": f"final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; no real host acceptance claim",
+            "status": "verified_local_package_facades_and_host_wiring",
+            "scope": "fresh npm and Python facade invocation plus pinned Codex, Claude Code, and OpenCode CLI wiring on macOS arm64",
+            "verification": f"final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; host-wiring harness commit {PLATFORM_HARNESS_COMMIT}; model-absent development binary only",
         },
         {
             "id": "DX-10A",
@@ -324,6 +362,7 @@ STAGING_EVIDENCE = {
         "scope": "isolated real Codex CLI configuration and generic stdio MCP",
         "status": "pre-final manager candidate only; not final package acceptance",
     },
+    "local_host_cli_conformance": LOCAL_HOST_CLI_CONFORMANCE,
     "release_holds": {
         "production_oidc_issuer": None,
         "production_signing_identity": None,
@@ -335,6 +374,7 @@ STAGING_EVIDENCE = {
         "registry_publication_authorized": False,
         "pages_promotion_authorized": False,
         "non_macos_arm64_native_support_verified": False,
+        "local_host_cli_configuration_verified": True,
         "claude_cursor_opencode_live_host_verified": False,
         "live_model_or_ide_acceptance_verified": False,
     },
@@ -434,7 +474,7 @@ kaleidoscope config --profile default --json</code></pre>
 <pre><code>kaleidoscope connect codex --profile default --project "$PWD" --dry-run
 kaleidoscope connect codex --profile default --project "$PWD"
 kaleidoscope doctor --project "$PWD"</code></pre>
-<p>Local tests cover <code>codex</code>, <code>claude</code>, <code>cursor</code>, and <code>opencode</code> transforms. That is configuration evidence, not live acceptance by a released host version. Existing unrelated configuration is preserved; ambiguous, symlinked, tampered, or concurrently edited files are refused.</p>
+<p>Local tests cover <code>codex</code>, <code>claude</code>, <code>cursor</code>, and <code>opencode</code> transforms. In addition, platform-harness commit <code>52ad4d2…</code> exercised pinned Codex <code>0.149.0</code>, Claude Code <code>2.1.239</code>, and OpenCode <code>1.18.21</code> CLI wiring on macOS arm64 against a model-absent development binary; it verified local connection and stdio discovery of exactly <code>search</code> and <code>remember</code>. This is not released-package, credentialed-model, GUI/IDE, Cursor, or production acceptance. Existing unrelated configuration is preserved; ambiguous, symlinked, tampered, or concurrently edited files are refused.</p>
 <h2>4. Verify the contract</h2>
 <p>The local candidate contract is bound to engine SHA-256 <code>988192ac9677…</code> and public-contract SHA-256 <code>a2357ed6c00e…</code>. It publishes exactly <code>remember</code> and <code>search</code>; the launch descriptor presents the agent-facing order <code>search</code>, <code>remember</code>. Ranked search returns <code>selected_hits</code>; addressed search returns the memory at top level.</p>
 <h2>5. Disconnect safely</h2>
@@ -555,20 +595,20 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         route="/docs/integrations/",
         title="Agent and framework integrations",
         description="How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.",
-        body="""
+        body=f"""
 <p class="lede">Every integration consumes the same closed profile-first launch descriptor and persistent stdio MCP contract. The wrapper candidates do not contain or reimplement the proprietary memory algorithm.</p>
 <table><thead><tr><th>Integration</th><th>Pinned local evidence</th><th>Public status</th></tr></thead><tbody>
-<tr><td><a href="/docs/integrations/codex/">Codex</a></td><td>Real <code>codex-cli 0.149.0-alpha.4</code> add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.</td><td>Verified local CLI configuration; model/TUI acceptance held</td></tr>
-<tr><td><a href="/docs/integrations/claude-code/">Claude Code</a></td><td>Managed <code>.mcp.json</code> render, dry run, idempotence, and exact rollback passed.</td><td>Not live-host accepted</td></tr>
-<tr><td><a href="/docs/integrations/cursor/">Cursor</a></td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Not live-host accepted</td></tr>
-<tr><td><a href="/docs/integrations/opencode/">OpenCode</a></td><td>Stable v1 direct entry is default; beta v2 is explicit and never silently selected.</td><td>Not live-host accepted</td></tr>
+<tr><td><a href="/docs/integrations/codex/">Codex</a></td><td>Real pinned <code>codex 0.149.0</code> add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.</td><td>Verified local CLI wiring; model/TUI acceptance held</td></tr>
+<tr><td><a href="/docs/integrations/claude-code/">Claude Code</a></td><td>Pinned <code>2.1.239</code> local host wiring and MCP discovery passed against a model-absent development binary; managed <code>.mcp.json</code> render, idempotence, and rollback also passed.</td><td>Local wiring verified; released package/provider held</td></tr>
+<tr><td><a href="/docs/integrations/cursor/">Cursor</a></td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Host run not exercised</td></tr>
+<tr><td><a href="/docs/integrations/opencode/">OpenCode</a></td><td>Pinned <code>1.18.21</code> local host wiring and MCP discovery passed against a model-absent development binary; stable v1 is default and beta v2 is explicit.</td><td>Local wiring verified; released package/provider held</td></tr>
 <tr><td><a href="/docs/integrations/generic-mcp/">Python and TypeScript generic MCP</a></td><td><code>mcp==1.29.0</code>, <code>mcp==2.0.0</code>, and <code>@modelcontextprotocol/client==2.0.0</code>; persistent and real-profile lanes passed.</td><td>Verified local, unpublished</td></tr>
 <tr><td><a href="/docs/integrations/langchain/">LangChain</a> / <a href="/docs/integrations/langgraph/">LangGraph</a></td><td><code>langchain==1.3.16</code>, <code>langgraph==1.2.11</code>; one persistent session and no shadow store.</td><td>Verified with fake provider</td></tr>
 <tr><td><a href="/docs/integrations/claude-agent-sdk/">Claude Agent SDK</a></td><td><code>claude-agent-sdk==0.2.143</code>; strict MCP names and lifecycle passed.</td><td>Verified without live provider</td></tr>
 <tr><td><a href="/docs/integrations/openai-agents-sdk/">OpenAI Agents SDK</a></td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
 <tr><td><a href="/docs/integrations/crewai/">CrewAI</a></td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
-<div class="callout"><strong>What DX-07 and final package evidence prove.</strong> SDK commit <code>9ed39bd…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Final evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256[:10]}…</code> proves fresh npm/Python facade <code>init</code>, <code>doctor</code>, <code>connect codex --dry-run</code>, and stdio MCP discovery. Historic commit <code>9cd4b58…</code> covered real Codex CLI configuration for a pre-final manager candidate only. Claude Code, Cursor, and OpenCode live acceptance remains unverified; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
+<div class="callout"><strong>What DX-07, DX-10B, and the host harness prove.</strong> SDK commit <code>9ed39bd…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Final package evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256[:10]}…</code> proves fresh npm/Python facade <code>init</code>, <code>doctor</code>, <code>connect codex --dry-run</code>, and stdio MCP discovery. Platform-harness commit <code>{PLATFORM_HARNESS_COMMIT[:7]}…</code> additionally exercised pinned Codex <code>0.149.0</code>, Claude Code <code>2.1.239</code>, and OpenCode <code>1.18.21</code> CLI wiring on macOS arm64 against a model-absent development binary. That proves local configuration/connection and MCP discovery only; Cursor, credentialed model turns, GUI/IDE, released-package, publication, production OIDC, and support acceptance remain unverified.</div>
 <h2>Agent guidance</h2>
 <p>Install the <a href="/SKILL.md">public skill</a>, then add only the compact owner-marked pointer appropriate to <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or <a href="/snippets/cursor-kaleidoscope.mdc">Cursor</a>. Use the manager so dry runs, backups, receipts, tamper checks, and exact removal remain intact.</p>
 """,
@@ -652,7 +692,8 @@ kaleidoscope profile account unbind [NAME]</code></pre>
 <tr><td>Linux x86_64/arm64</td><td>Source implementation and target metadata only; libc policy not frozen.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
 <tr><td>Windows x86_64/arm64</td><td>Source implementation and target metadata only.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
 <tr><td>Codex</td><td>Config transforms plus real pinned CLI add/list/get/remove and exact isolated rollback.</td><td>Model/TUI acceptance and a protected published install.</td></tr>
-<tr><td>Claude Code / Cursor / OpenCode</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Installed CLIs/IDE and pinned live-host acceptance.</td></tr>
+<tr><td>Claude Code / OpenCode</td><td>Pinned local CLI wiring and MCP discovery on macOS arm64 against a model-absent development binary; config render, dry run, idempotence, and exact rollback.</td><td>Released package, credentialed model, GUI/IDE, and production support acceptance.</td></tr>
+<tr><td>Cursor</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Host run, installed package, and pinned live-host acceptance.</td></tr>
 <tr><td>Framework clients</td><td>Generic MCP and adapter lifecycle suites passed with pinned versions and final-candidate non-auth conformance.</td><td>Live-provider lanes where required and protected published packages.</td></tr>
 </tbody></table>
 <p>Cross-compiling, extracting a foreign package, parsing configuration, or running a fake provider is useful evidence but not native support. Nothing in this table is a public availability claim.</p>
@@ -687,7 +728,7 @@ kaleidoscope profile account unbind [NAME]</code></pre>
 <tr><td>DX-07</td><td><code>{SDK_FACADE_COMMIT}</code></td><td>Full Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; Apache-2.0 licensing is source-staged and no public remote is configured.</td></tr>
 <tr><td>DX-09</td><td><code>{BENCHMARK_COMMIT}</code>, merged PRs 5/6; evidence <code>{DX09_FIXTURE_EVIDENCE_SHA256}</code></td><td>Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.</td></tr>
 <tr><td>DX-10A</td><td><code>{DX10A_EVIDENCE_SHA256}</code></td><td>Final local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.</td></tr>
-<tr><td>DX-10B</td><td><code>{FINAL_EVIDENCE_COMMIT}</code>, evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256}</code></td><td>Fresh npm/Python facade <code>init</code>, <code>doctor</code>, Codex dry-run configuration, and MCP discovery passed. This is not real Codex/Claude/Cursor/OpenCode host acceptance.</td></tr>
+<tr><td>DX-10B</td><td><code>{FINAL_EVIDENCE_COMMIT}</code>, package evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256}</code>, host harness <code>{PLATFORM_HARNESS_COMMIT}</code></td><td>Fresh npm/Python facade <code>init</code>, <code>doctor</code>, Codex dry-run configuration, MCP discovery, and pinned local Codex/Claude Code/OpenCode CLI wiring passed on macOS arm64 against a model-absent development binary. No credentialed model, GUI/IDE, Cursor, released-package, or production acceptance claim.</td></tr>
 </tbody></table>
 <h2>Converged RC package proof</h2><p>The local archive <code>{LOCAL_ARCHIVE_SHA256}</code>, manifest <code>{LOCAL_MANIFEST_SHA256}</code>, build proof <code>{FINAL_BUILD_PROOF_SHA256}</code>, and combined package proof <code>{PACKAGE_PROOF_SHA256}</code> bind the full npm/Python SDK facades to their exact macOS arm64 native companions. The facades carry public client code, installed-payload resolution and both launchers; the companions carry manager <code>{MANAGER_SHA256}</code> and engine <code>{ENGINE_CANDIDATE_SHA256}</code> plus contract <code>{PUBLIC_CONTRACT_SHA256}</code>. The SBOM <code>{LOCAL_SBOM_SHA256}</code>, provenance <code>{LOCAL_PROVENANCE_SHA256}</code>, and signature envelope <code>{LOCAL_TEST_SIGNATURE_SHA256}</code> are all test-only local evidence. This closes local package-shape convergence, not protected production gates.</p>
 <h2>Approval and credential gates</h2><ul><li>Apache-2.0 for the public manager, wrappers, integrations, and skill and CC BY 4.0 for original documentation are product-authorized and source-staged.</li><li>The engine object-code EULA, privacy, security, and support policies remain review drafts pending exact entity, jurisdiction, contacts, operational commitments, and external legal review.</li><li>Staging/production OIDC configuration and private control-plane deployment evidence.</li><li>Production signing/notarization identities, registry/CDN credentials, and native platform runners.</li><li>Package publication and production login remain separate deferred approvals.</li></ul>
@@ -699,7 +740,7 @@ kaleidoscope profile account unbind [NAME]</code></pre>
         description="Versioned Kaleidoscope release notes bound to immutable package and public-contract digests.",
         body="""
 <p class="lede">Release notes become authoritative only when they name the exact signed package, final manager, engine, and public-contract digests.</p>
-<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>a1eb37ab61f8…</code>.</li><li>SDK commit <code>9ed39bd…</code> places the full public TypeScript/Python clients, installed-payload resolvers, account identity lifecycle, profile-account binding, Apache-2.0 metadata, and both launchers in the facade packages.</li><li>Distribution assembler <code>af892d1…</code> pairs those facades with macOS arm64 native companions containing the manager, proprietary object-code engine, and EULA review draft; the exact package proof is <code>62afa571…</code>.</li><li>DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.</li><li>DX-10A historic local macOS arm64 lifecycle evidence remains recorded for its then-current candidate.</li><li>Final DX-10B package evidence passed fresh npm/Python facade init, doctor, Codex dry-run configuration, and stdio MCP discovery; other platforms and live host/model/IDE acceptance remain held.</li></ul>
+<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>a1eb37ab61f8…</code>.</li><li>SDK commit <code>9ed39bd…</code> places the full public TypeScript/Python clients, installed-payload resolvers, account identity lifecycle, profile-account binding, Apache-2.0 metadata, and both launchers in the facade packages.</li><li>Distribution assembler <code>af892d1…</code> pairs those facades with macOS arm64 native companions containing the manager, proprietary object-code engine, and EULA review draft; the exact package proof is <code>62afa571…</code>.</li><li>DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.</li><li>DX-10A historic local macOS arm64 lifecycle evidence remains recorded for its then-current candidate.</li><li>Final DX-10B package evidence passed fresh npm/Python facade init, doctor, Codex dry-run configuration, and stdio MCP discovery. Platform-harness commit <code>52ad4d2…</code> also passed pinned local Codex, Claude Code, and OpenCode CLI wiring and MCP discovery against a model-absent development binary; credentialed models, Cursor, GUI/IDE, released-package, other-platform, and production acceptance remain held.</li></ul>
 <h2>Promotion rule</h2><p>A release entry must record public availability, supported targets and pinned host versions, known limitations, migration requirements, security fixes, all package checksums, SBOM/provenance, exact rollback identity, license/EULA links, and production account/privacy terms. Publication and documentation promotion are separate protected actions.</p>
 """,
     ),
@@ -756,7 +797,7 @@ kaleidoscope instructions install agents --project "$PWD"</code></pre>
 kaleidoscope connect claude --profile default --project "$PWD"
 kaleidoscope instructions install claude --project "$PWD"</code></pre>
 <p>The manager writes only its owned entry in <code>.mcp.json</code>, retains unrelated configuration, and refuses ambiguous or modified ownership boundaries. The descriptor publishes only <code>search</code> and <code>remember</code>.</p>
-<h2>Evidence boundary</h2><p>Renderer, dry-run, idempotence, and rollback tests passed locally. Live Claude Code acceptance remains held until an installed, pinned host lane is run against a released package.</p>
+<h2>Evidence boundary</h2><p>Renderer, dry-run, idempotence, rollback, and pinned Claude Code <code>2.1.239</code> host wiring passed locally on macOS arm64 against a model-absent development binary. This verifies local connection and MCP discovery only; credentialed model turns, a released package, and production support acceptance remain held.</p>
 """,
     ),
     Page(
@@ -794,7 +835,7 @@ kaleidoscope instructions install cursor --project "$PWD"</code></pre>
 kaleidoscope connect opencode --profile default --project "$PWD"</code></pre>
 <h2>Explicit beta v2</h2><pre><code>kaleidoscope connect opencode --profile default --project "$PWD" --opencode-version beta-v2 --dry-run</code></pre>
 <p>The stable entry is a direct local command; beta v2 uses the explicit server shape with code mode disabled so <code>search</code> and <code>remember</code> remain visible. Ambiguous dual shapes are refused.</p>
-<h2>Evidence boundary</h2><p>Both renderers and safe mutation paths passed locally. Installed OpenCode acceptance remains held.</p>
+<h2>Evidence boundary</h2><p>Both renderers and safe mutation paths plus pinned OpenCode <code>1.18.21</code> host wiring passed locally on macOS arm64 against a model-absent development binary. This verifies local connection and MCP discovery only; credentialed model turns, a released package, and production support acceptance remain held.</p>
 """,
     ),
     Page(
@@ -1341,7 +1382,7 @@ Policy: {DOMAIN}/docs/security/
 - [Candidate CLI help]({DOMAIN}/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference]({DOMAIN}/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {SDK_FACADE_COMMIT} puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit {DISTRIBUTION_ASSEMBLER_COMMIT} pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit {FINAL_EVIDENCE_COMMIT} freezes the result. Exact hashes: release archive {LOCAL_ARCHIVE_SHA256}; manifest {LOCAL_MANIFEST_SHA256}; build proof {FINAL_BUILD_PROOF_SHA256}; package proof {PACKAGE_PROOF_SHA256}; npm facade {NPM_FACADE_SHA256}; npm native companion {NPM_NATIVE_SHA256}; Python facade {PYTHON_FACADE_SHA256}; Python native companion {PYTHON_NATIVE_SHA256}; SBOM {LOCAL_SBOM_SHA256}; provenance {LOCAL_PROVENANCE_SHA256}; test-only signature envelope {LOCAL_TEST_SIGNATURE_SHA256}. The engine source is not in any public surface. Manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; DX-09 fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; historic DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; historic pre-final Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. Final package evidence proves fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery—not real host/IDE acceptance. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Apache-2.0 and CC BY 4.0 source licensing and review-draft product terms are staged; production signing, final legal review, registry publication, and login remain separately gated.
+The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {SDK_FACADE_COMMIT} puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit {DISTRIBUTION_ASSEMBLER_COMMIT} pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit {FINAL_EVIDENCE_COMMIT} freezes the result. Exact hashes: release archive {LOCAL_ARCHIVE_SHA256}; manifest {LOCAL_MANIFEST_SHA256}; build proof {FINAL_BUILD_PROOF_SHA256}; package proof {PACKAGE_PROOF_SHA256}; npm facade {NPM_FACADE_SHA256}; npm native companion {NPM_NATIVE_SHA256}; Python facade {PYTHON_FACADE_SHA256}; Python native companion {PYTHON_NATIVE_SHA256}; SBOM {LOCAL_SBOM_SHA256}; provenance {LOCAL_PROVENANCE_SHA256}; test-only signature envelope {LOCAL_TEST_SIGNATURE_SHA256}. The engine source is not in any public surface. Manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; DX-09 fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; historic DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; historic pre-final Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}; local host-wiring harness commit {PLATFORM_HARNESS_COMMIT}. Final package evidence proves fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery. The host harness additionally proves pinned local Codex, Claude Code, and OpenCode CLI wiring and MCP discovery against a model-absent development binary; it does not prove a credentialed model turn, GUI/IDE, Cursor, released package, or production support. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Apache-2.0 and CC BY 4.0 source licensing and review-draft product terms are staged; production signing, final legal review, registry publication, and login remain separately gated.
 """
     write_text(output / "llms.txt", llms)
 

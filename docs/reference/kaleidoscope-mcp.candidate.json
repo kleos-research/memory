@@ -12,7 +12,45 @@
       "applies_to": "pre-final manager candidate only",
       "commit": "9cd4b5837e887a0bb3dcc13209134c002aad08f5",
       "sha256": "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
-    }
+    },
+    "local_host_cli_conformance": {
+      "candidate": "model-absent development binary",
+      "claim_boundary": [
+        "configuration, connection, and local stdio discovery only",
+        "no credentialed model turn",
+        "no GUI or IDE acceptance",
+        "no Cursor host run",
+        "no published package or production OIDC"
+      ],
+      "commit": "52ad4d243966c5a5c9f65b35909d8f029ae74afd",
+      "hosts": [
+        {
+          "name": "Codex",
+          "scope": "isolated add/list/get/remove and exact rollback; native connection is not exposed by the management CLI",
+          "status": "configuration_verified",
+          "version": "0.149.0"
+        },
+        {
+          "name": "Claude Code",
+          "scope": "local host wiring and MCP discovery",
+          "status": "connected",
+          "version": "2.1.239"
+        },
+        {
+          "name": "OpenCode",
+          "scope": "local host wiring and MCP discovery",
+          "status": "connected",
+          "version": "1.18.21"
+        }
+      ],
+      "mcp_tools": [
+        "remember",
+        "search"
+      ],
+      "platform": "macOS arm64",
+      "status": "verified_local_development_binary"
+    },
+    "platform_harness_commit": "52ad4d243966c5a5c9f65b35909d8f029ae74afd"
   },
   "manager": {
     "sha256": "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1",

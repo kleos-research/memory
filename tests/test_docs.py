@@ -75,6 +75,14 @@ class DocumentationArtifactTest(unittest.TestCase):
             {tool["name"] for tool in build_site.MCP_REFERENCE["model_tools"]},
             {"search", "remember"},
         )
+        self.assertEqual(
+            build_site.MCP_REFERENCE["local_conformance"]["platform_harness_commit"],
+            build_site.PLATFORM_HARNESS_COMMIT,
+        )
+        self.assertEqual(
+            build_site.STAGING_EVIDENCE["local_host_cli_conformance"]["mcp_tools"],
+            ["remember", "search"],
+        )
 
     def test_public_machine_records_have_no_private_coordinates(self) -> None:
         values = "\n".join(
@@ -122,6 +130,7 @@ class DocumentationArtifactTest(unittest.TestCase):
         self.assertFalse(holds["external_legal_review_complete"])
         self.assertFalse(holds["non_macos_arm64_native_support_verified"])
         self.assertFalse(holds["claude_cursor_opencode_live_host_verified"])
+        self.assertTrue(holds["local_host_cli_configuration_verified"])
         self.assertFalse(build_site.STAGING_EVIDENCE["production_release"])
         self.assertFalse(build_site.STAGING_EVIDENCE["public_availability"])
 
