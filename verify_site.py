@@ -37,6 +37,10 @@ SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
 DX10B_HOST_EVIDENCE_SHA256 = (
     "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
 )
+BENCHMARK_COMMIT = "ef89d05f09435afc9790fcdf5df3e01d34c7115b"
+DX09_FIXTURE_EVIDENCE_SHA256 = (
+    "f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
+)
 PRIVATE_MARKERS = (
     "/Users/",
     "\\Users\\",
@@ -97,7 +101,7 @@ EXPECTED_MILESTONES = {
     "DX-05B": MANAGER_SOURCE_COMMIT,
     "DX-06A/B": DISTRIBUTION_COMMIT,
     "DX-07": "fd0b1877f70b1bb57e1b67c4c559e8b2e1d44290",
-    "DX-09": "ceac8311f819437ace54813d2b4ba0731a5981a1",
+    "DX-09": BENCHMARK_COMMIT,
     "DX-10A": DISTRIBUTION_COMMIT,
     "DX-10B": SDK_HOST_CONFORMANCE_COMMIT,
 }
@@ -279,6 +283,10 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                     "verification", ""
                 ):
                     failures.append("staging evidence has wrong DX-10A digest")
+                if DX09_FIXTURE_EVIDENCE_SHA256 not in milestones["DX-09"].get(
+                    "verification", ""
+                ):
+                    failures.append("staging evidence has wrong DX-09 digest")
                 if DX10B_HOST_EVIDENCE_SHA256 not in milestones["DX-10B"].get(
                     "verification", ""
                 ):
@@ -462,6 +470,7 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         PUBLIC_CONTRACT_SHA256,
         MANAGER_SHA256,
         DX06_VERIFICATION_SHA256,
+        DX09_FIXTURE_EVIDENCE_SHA256,
         DX10A_EVIDENCE_SHA256,
         DX10B_HOST_EVIDENCE_SHA256,
     ):

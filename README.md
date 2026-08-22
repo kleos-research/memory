@@ -34,6 +34,8 @@ The final local rebind uses distribution commit
 SHA-256 `98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed`,
 DX-10A evidence SHA-256
 `cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e`,
+DX-09 deterministic fixture evidence SHA-256
+`f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504`,
 and DX-10B real-Codex host evidence SHA-256
 `74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840`.
 All remain local and unpublished. Production signing, live OIDC, additional

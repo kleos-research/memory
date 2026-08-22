@@ -59,6 +59,10 @@ SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
 DX10B_HOST_EVIDENCE_SHA256 = (
     "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
 )
+BENCHMARK_COMMIT = "ef89d05f09435afc9790fcdf5df3e01d34c7115b"
+DX09_FIXTURE_EVIDENCE_SHA256 = (
+    "f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
+)
 LOCAL_ARCHIVE_SHA256 = (
     "48e34b1126d4b29b103cb913ddd71ffe2fd39ad141228346afccb8eaa504c658"
 )
@@ -226,10 +230,10 @@ STAGING_EVIDENCE = {
         },
         {
             "id": "DX-09",
-            "commit": "ceac8311f819437ace54813d2b4ba0731a5981a1",
-            "status": "merged_functional_smoke_only",
-            "scope": "candidate-bound benchmark contract and opt-in native smoke; no benchmark score",
-            "verification": "20 ordinary tests passed with 1 live skip; opt-in exact-candidate smoke passed 1 of 1",
+            "commit": BENCHMARK_COMMIT,
+            "status": "merged_deterministic_fixture_only",
+            "scope": "candidate-bound native smoke and credential-free deterministic fixture pipeline; no benchmark score",
+            "verification": f"24 tests passed with 1 live skip; stable fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}",
         },
         {
             "id": "DX-10B",
@@ -535,7 +539,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <tr><td>DX-04 / DX-05B</td><td><code>{MANAGER_SOURCE_COMMIT}</code>, manager <code>{MANAGER_SHA256}</code></td><td>Consolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.</td></tr>
 <tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_COMMIT}</code>, summary <code>{DX06_VERIFICATION_SHA256}</code></td><td>18 tests passed over source-only tooling and final object-code package shapes with a test-only signature; no publication.</td></tr>
 <tr><td>DX-07</td><td><code>fd0b187…</code></td><td>Pinned Python/TypeScript client and integration matrices passed locally; no license or remote.</td></tr>
-<tr><td>DX-09</td><td><code>ceac831…</code>, merged PRs 3/4</td><td>Clean contract tests and native smoke passed; no score or signed release evidence.</td></tr>
+<tr><td>DX-09</td><td><code>{BENCHMARK_COMMIT}</code>, merged PRs 5/6; evidence <code>{DX09_FIXTURE_EVIDENCE_SHA256}</code></td><td>Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.</td></tr>
 <tr><td>DX-10A</td><td><code>{DX10A_EVIDENCE_SHA256}</code></td><td>Final local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.</td></tr>
 <tr><td>DX-10B</td><td><code>{SDK_HOST_CONFORMANCE_COMMIT}</code>, evidence <code>{DX10B_HOST_EVIDENCE_SHA256}</code></td><td>Real isolated Codex CLI configuration and generic MCP passed; model/TUI/IDE and absent-host cells held.</td></tr>
 </tbody></table>
@@ -549,7 +553,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         description="Versioned Kaleidoscope release notes bound to immutable package and public-contract digests.",
         body="""
 <p class="lede">Release notes become authoritative only when they name the exact signed package, final manager, engine, and public-contract digests.</p>
-<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>4fecd84584ed…</code>.</li><li>DX-06 object-code archive, npm/wheel shapes, SBOM/provenance, and lifecycle rehearsal passed with a test-only signature and final local manager.</li><li>DX-07 Python/TypeScript and harness integration matrices passed locally.</li><li>DX-09 candidate-bound benchmark cleanup and native smoke merged; no benchmark score was produced.</li><li>DX-10A final local macOS arm64 clean install, MCP, offline account refusal, update/rollback/uninstall, and vault-canary lane passed.</li><li>DX-10B isolated real Codex CLI configuration and generic stdio MCP passed; other hosts and model/IDE acceptance remain held.</li></ul>
+<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>4fecd84584ed…</code>.</li><li>DX-06 object-code archive, npm/wheel shapes, SBOM/provenance, and lifecycle rehearsal passed with a test-only signature and final local manager.</li><li>DX-07 Python/TypeScript and harness integration matrices passed locally.</li><li>DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.</li><li>DX-10A final local macOS arm64 clean install, MCP, offline account refusal, update/rollback/uninstall, and vault-canary lane passed.</li><li>DX-10B isolated real Codex CLI configuration and generic stdio MCP passed; other hosts and model/IDE acceptance remain held.</li></ul>
 <h2>Promotion rule</h2><p>A release entry must record public availability, supported targets and pinned host versions, known limitations, migration requirements, security fixes, all package checksums, SBOM/provenance, exact rollback identity, license/EULA links, and production account/privacy terms. Publication and documentation promotion are separate protected actions.</p>
 """,
     ),
@@ -910,7 +914,7 @@ Policy: {DOMAIN}/docs/security/
 - [Candidate CLI help]({DOMAIN}/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference]({DOMAIN}/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. Exact locally verified bindings: manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; DX-06 summary SHA-256 {DX06_VERIFICATION_SHA256}; DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; DX-10B Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. The local distribution is test-signed only and supports no production-release claim. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
+The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. Exact locally verified bindings: manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; DX-06 summary SHA-256 {DX06_VERIFICATION_SHA256}; DX-09 deterministic fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; DX-10B Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. The local distribution is test-signed only and supports no production-release claim. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
 """
     write_text(output / "llms.txt", llms)
 
