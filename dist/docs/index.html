@@ -32,22 +32,17 @@
 </div></header>
 <div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
 <main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/" aria-current="page">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security &amp; privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/" aria-current="page">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
   <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Kaleidoscope documentation</h1>
-<p class="lede">Kaleidoscope is local memory for agents: a native CLI and persistent stdio MCP server with one profile shared across supported harnesses.</p>
-<div class="callout"><strong>Release status.</strong> This documentation is a staging candidate. Installation artifacts and production login are not public until the signed release and protected promotion gates pass.</div>
+<p class="lede">Kaleidoscope is local memory for agents: a native CLI and persistent stdio MCP server with one profile shared across configured harnesses.</p>
+<div class="callout"><strong>Release status.</strong> This is a non-indexable documentation staging build. Local implementation and conformance evidence exists, but no package, registry, production login, public SDK repository, or Pages promotion is authorized.</div>
 <div class="grid">
-  <article class="card"><h2><a href="/docs/getting-started/">Start locally</a></h2><p>Install, initialize one profile, connect a harness, and verify the two agent tools.</p></article>
-  <article class="card"><h2><a href="/docs/mcp/">Use MCP</a></h2><p>Discover exactly <code>search</code> and <code>remember</code> over one long-lived stdio process.</p></article>
-  <article class="card"><h2><a href="/docs/security/">Understand the boundary</a></h2><p>Memory and vault coordinates stay on the device; account login is a separate control-plane concern.</p></article>
+  <article class="card"><h2><a href="/docs/getting-started/">Preview the workflow</a></h2><p>Inspect the verified manager interface for one profile, reversible host setup, and local diagnostics.</p></article>
+  <article class="card"><h2><a href="/docs/mcp/">Build against MCP</a></h2><p>Use the candidate-bound two-tool contract over one long-lived stdio process.</p></article>
+  <article class="card"><h2><a href="/docs/evidence/">Check what passed</a></h2><p>Separate locally verified milestones from platform holds and protected production gates.</p></article>
 </div>
 <h2>Choose a path</h2>
-<ul>
-  <li>Agent user: follow <a href="/docs/getting-started/">Getting started</a> and let the manager make a reversible host configuration.</li>
-  <li>Application developer: begin with <a href="/docs/integrations/">Integrations</a> and the persistent MCP client contract.</li>
-  <li>Operator: use <a href="/docs/operations/">Operations</a> for backup, restore, uninstall, and exact vault deletion.</li>
-  <li>Security reviewer: read <a href="/docs/security/">Security &amp; privacy</a> and verify the signed public contract, SBOM, and package provenance.</li>
-</ul>
+<ul><li>Agent user: read <a href="/docs/getting-started/">Getting started</a>; the commands are an interface preview until a protected release is approved.</li><li>Application developer: begin with <a href="/docs/integrations/">Integrations</a>, then use the persistent <a href="/docs/mcp/">MCP contract</a>.</li><li>Operator: use <a href="/docs/operations/">Operations</a> for separate configuration, credential, package, and vault lifecycles.</li><li>Security or privacy reviewer: read <a href="/docs/security/">Security</a>, <a href="/docs/privacy/">Privacy</a>, and the machine-readable <a href="/staging-evidence.json">staging evidence</a>.</li><li>Agent crawler: start at <a href="/llms.txt">llms.txt</a> or the expanded <a href="/llms-full.txt">llms-full.txt</a>.</li></ul>
 </article>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>

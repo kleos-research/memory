@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Local evidence and production gates | Kaleidoscope</title>
+  <meta name="description" content="Exact Kaleidoscope candidate digests, verified local DX milestones, remaining platform holds, and protected release approvals.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/evidence/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Local evidence and production gates | Kaleidoscope">
+  <meta property="og:description" content="Exact Kaleidoscope candidate digests, verified local DX milestones, remaining platform holds, and protected release approvals.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/evidence/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Local evidence and production gates","description":"Exact Kaleidoscope candidate digests, verified local DX milestones, remaining platform holds, and protected release approvals.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/evidence/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/" aria-current="page">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Local evidence and production gates</h1>
+<p class="lede">Evidence is split into local functional proof, package/signature proof, native platform support, and protected production promotion. Passing one does not imply the others.</p>
+<div class="callout"><strong>Machine-readable record.</strong> <a href="/staging-evidence.json">staging-evidence.json</a> carries the same public, source-free status. It contains no local paths, credentials, vault coordinates, or private engine source.</div>
+<h2>Exact local candidate</h2>
+<table><tbody><tr><th>Engine source commit</th><td><code>d96355632cc52816472106d0776ce63d73631fef</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825</code></td></tr><tr><th>Public contract SHA-256</th><td><code>a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e</code></td></tr><tr><th>Native target tested</th><td>macOS arm64</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
+<h2>Milestones</h2>
+<table><thead><tr><th>Slice</th><th>Exact evidence</th><th>What is true now</th></tr></thead><tbody>
+<tr><td>DX-04</td><td><code>3b1ec66…</code></td><td>Friendly manager, profiles, safe config, doctor, skill and instruction installation passed locally.</td></tr>
+<tr><td>DX-05B</td><td><code>048bf908…</code></td><td>Auth/device manager passed local tests; production provider is unconfigured.</td></tr>
+<tr><td>DX-06A/B</td><td><code>4a195d5</code>, 14 tests</td><td>Source-only tooling built object-code package shapes with a test-only signature; no publication.</td></tr>
+<tr><td>DX-07</td><td><code>fd0b187…</code></td><td>Pinned Python/TypeScript client and integration matrices passed locally; no license or remote.</td></tr>
+<tr><td>DX-09</td><td><code>ceac831…</code>, merged PRs 3/4</td><td>Clean contract tests and native smoke passed; no score or signed release evidence.</td></tr>
+<tr><td>DX-10B</td><td><code>ee01e26…</code></td><td>Local macOS arm64 non-auth conformance passed; cross-platform/live-host/auth cells held.</td></tr>
+</tbody></table>
+<h2>Required rebind</h2><p>The current DX-06 archive packages the pre-auth DX-04 manager. The DX-07 and DX-10B reference artifacts also predate the final release rebind. Before any release candidate is promotable, the auth-merged manager needs an immutable binary hash; DX-06 must rebuild packages, signatures, SBOM/provenance, and lifecycle evidence; DX-10 must rerun against those exact artifacts; every public quickstart must then be replayed.</p>
+<h2>Approval and credential gates</h2><ul><li>Approval of a license for the public manager, wrappers, integrations, and skill.</li><li>Approval of terms for original documentation and an engine object-code EULA.</li><li>Staging/production OIDC configuration and private control-plane deployment evidence.</li><li>Production signing/notarization identities, registry/CDN credentials, and native platform runners.</li><li>A separate final approval for package publication, production login, and Pages promotion.</li></ul>
+</article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/llms.txt">llms.txt</a><a href="/.well-known/security.txt">security.txt</a><a href="/docs/account/">Account boundary</a></nav>
+</div></footer></body></html>

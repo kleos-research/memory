@@ -32,20 +32,24 @@
 </div></header>
 <div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
 <main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/" aria-current="page">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security &amp; privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/" aria-current="page">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
   <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Agent and framework integrations</h1>
-<p class="lede">Every integration consumes the same validated launch descriptor and persistent stdio MCP contract; none reimplements the memory algorithm.</p>
-<table><thead><tr><th>Integration</th><th>Candidate path</th><th>Release status</th></tr></thead><tbody>
-<tr><td>Codex</td><td>User or trusted-project MCP configuration with an exact <code>search</code>/<code>remember</code> allowlist.</td><td>Under conformance</td></tr>
-<tr><td>Claude Code / Agent SDK</td><td>Managed <code>.mcp.json</code> or SDK MCP server configuration.</td><td>Under conformance</td></tr>
-<tr><td>Cursor</td><td>User or project <code>mcp.json</code> plus an owner-marked rule.</td><td>Under conformance</td></tr>
-<tr><td>OpenCode</td><td>Stable direct <code>mcp.&lt;name&gt;</code> by default; explicit beta-v2 support without silent migration.</td><td>Under conformance</td></tr>
-<tr><td>LangChain / LangGraph</td><td>Python persistent MCP client and framework-native tool binding.</td><td>Under conformance</td></tr>
-<tr><td>OpenAI Agents SDK</td><td>TypeScript or Python MCP stdio server integration.</td><td>Under conformance</td></tr>
-<tr><td>CrewAI</td><td>Python MCP adapter using the same long-lived session.</td><td>Under conformance</td></tr>
-<tr><td>Generic MCP</td><td>Standards-conforming stdio initialization and tool calls.</td><td>Under conformance</td></tr>
+<p class="lede">Every integration consumes the same closed profile-first launch descriptor and persistent stdio MCP contract. The wrapper candidates do not contain or reimplement the proprietary memory algorithm.</p>
+<table><thead><tr><th>Integration</th><th>Pinned local evidence</th><th>Public status</th></tr></thead><tbody>
+<tr><td>Codex</td><td>Manager render, dry run, idempotence, exact rollback, and two-tool allowlist passed.</td><td>Not live-host accepted</td></tr>
+<tr><td>Claude Code</td><td>Managed <code>.mcp.json</code> render, dry run, idempotence, and exact rollback passed.</td><td>Not live-host accepted</td></tr>
+<tr><td>Cursor</td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Not live-host accepted</td></tr>
+<tr><td>OpenCode</td><td>Stable v1 direct entry is default; beta v2 is explicit and never silently selected.</td><td>Not live-host accepted</td></tr>
+<tr><td>Python generic MCP</td><td><code>mcp==1.29.0</code> and <code>mcp==2.0.0</code>; persistent and real-profile lanes passed.</td><td>Verified local, unpublished</td></tr>
+<tr><td>TypeScript generic MCP</td><td><code>@modelcontextprotocol/client==2.0.0</code>; explicit revision negotiation and real-profile lane passed.</td><td>Verified local, unpublished</td></tr>
+<tr><td>LangChain / LangGraph</td><td><code>langchain==1.3.16</code>, <code>langgraph==1.2.11</code>; one persistent session and no shadow store.</td><td>Verified with fake provider</td></tr>
+<tr><td>Claude Agent SDK</td><td><code>claude-agent-sdk==0.2.143</code>; strict MCP names and lifecycle passed.</td><td>Verified without live provider</td></tr>
+<tr><td>OpenAI Agents SDK</td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
+<tr><td>CrewAI</td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
-<div class="callout"><strong>No support claim yet.</strong> A row changes from “under conformance” only when its pinned version passes the packaged release matrix. Cross-compilation or a configuration snapshot is not sufficient.</div>
+<div class="callout"><strong>What DX-07 proves.</strong> Local commit <code>fd0b1877…</code> passed the Python dependency matrices, TypeScript typecheck/build/tests, real-profile lanes, and source poison scan. It has no remote, license, package publication, or live provider claim. The final package must rebind these clients to the final auth-merged manager and exact release contract.</div>
+<h2>Agent guidance</h2>
+<p>Install the <a href="/SKILL.md">public skill</a>, then add only the compact owner-marked pointer appropriate to <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or <a href="/snippets/cursor-kaleidoscope.mdc">Cursor</a>. Use the manager so dry runs, backups, receipts, tamper checks, and exact removal remain intact.</p>
 </article>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Security and privacy | Kaleidoscope</title>
-  <meta name="description" content="Kaleidoscope security model, local data boundary, package integrity, telemetry status, vulnerability reporting, and native-binary limits.">
+  <title>Security | Kaleidoscope</title>
+  <meta name="description" content="Kaleidoscope security model, package integrity, account isolation, vulnerability reporting, and native-binary limits.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/security/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -14,11 +14,11 @@
   <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
-  <meta property="og:title" content="Security and privacy | Kaleidoscope">
-  <meta property="og:description" content="Kaleidoscope security model, local data boundary, package integrity, telemetry status, vulnerability reporting, and native-binary limits.">
+  <meta property="og:title" content="Security | Kaleidoscope">
+  <meta property="og:description" content="Kaleidoscope security model, package integrity, account isolation, vulnerability reporting, and native-binary limits.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/security/">
   <meta name="twitter:card" content="summary">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Security and privacy","description":"Kaleidoscope security model, local data boundary, package integrity, telemetry status, vulnerability reporting, and native-binary limits.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/security/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Security","description":"Kaleidoscope security model, package integrity, account isolation, vulnerability reporting, and native-binary limits.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/security/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
@@ -32,13 +32,13 @@
 </div></header>
 <div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
 <main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/" aria-current="page">Security &amp; privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
-  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Security and privacy</h1>
-<p class="lede">Kaleidoscope protects source distribution and establishes verifiable package boundaries. It does not claim that a native executable is impossible to inspect or reverse engineer.</p>
-<h2>Local data boundary</h2><p>The engine is local and makes no account-service request. Login traffic is limited to allowlisted account and device fields. Memory content, queries, results, memory IDs, vault coordinates, local paths, workspace/principal/journal identity, and provider credentials are excluded.</p>
-<h2>Package integrity</h2><p>A release binds the manager and engine digests, source commits, bundled model, aggregate CycloneDX SBOM, public contract, licenses, target, channel, compatibility, and rollback identity. Installers start from an embedded rotating trust root and refuse altered, expired, replayed, downgraded, wrong-target, or cross-channel metadata.</p>
-<h2>Environment and logs</h2><p>The engine receives a closed non-secret bootstrap environment rather than the full ambient process environment. Diagnostics and receipts are bounded and redacted. Release conformance scans argv, environment, profiles, logs, crash data, MCP traffic, and public artifacts with canary values.</p>
-<h2>Telemetry</h2><p>The staging candidate makes no telemetry claim beyond the tested release evidence. The production page must enumerate every network destination and field before login is enabled.</p>
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/" aria-current="page">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Security</h1>
+<p class="lede">Kaleidoscope protects source distribution and establishes verifiable boundaries. A native binary remains inspectable and may be reverse engineered; object-code distribution is not a claim of impossibility.</p>
+<h2>Local engine boundary</h2><p>The generated candidate contract declares a local vault, stdio MCP, no required network, and no external model calls. The manager launches the engine with a closed non-secret environment instead of inheriting provider keys, account tokens, cloud credentials, or direct vault-coordinate variables.</p>
+<h2>Account boundary</h2><p>The DX-05B manager constructs only 11 declared account routes. Its request privacy guard rejects memory/profile field families and absolute local paths before transport. The provider remains unconfigured and no production account endpoint is available.</p>
+<h2>Package integrity</h2><p>DX-06 binds object-code digests, source commits, bundled model, CycloneDX SBOM, provenance, candidate public contract, target, and prior-manifest rollback identity. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Production trust roots, role keys, Apple signing/notarization, EULA, notices, and approved licenses are absent.</p>
+<h2>Verified privacy checks</h2><p>The candidate contains no bounded private builder-path hits and no Mach-O debug sections. Local conformance used canary values for environment, outputs, profiles, host configuration, and MCP traffic. These are scoped test results, not a universal absence claim.</p>
 <h2>Report a vulnerability</h2><p>Do not publish an exploit or sensitive report in a public issue. The production security contact and supported-version policy are release blockers and will be published here and in <code>/.well-known/security.txt</code> before promotion.</p>
 </article>
 </main><footer class="site-footer"><div class="shell">

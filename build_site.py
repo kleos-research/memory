@@ -34,6 +34,169 @@ PUBLIC_FILES = {
     / "cursor-kaleidoscope.mdc",
 }
 
+ENGINE_SOURCE_COMMIT = "d96355632cc52816472106d0776ce63d73631fef"
+ENGINE_CANDIDATE_SHA256 = (
+    "988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825"
+)
+PUBLIC_CONTRACT_SHA256 = (
+    "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e"
+)
+PUBLIC_SKILL_SHA256 = (
+    "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad"
+)
+
+MANAGER_HELP = """Kaleidoscope public local manager
+
+Usage:
+  kaleidoscope [--engine PATH] init [--root PATH] [--profile NAME]
+                                      [--durability process-local|durable-local]
+  kaleidoscope [--engine PATH] profile list
+  kaleidoscope [--engine PATH] profile show NAME
+  kaleidoscope [--engine PATH] profile use NAME
+  kaleidoscope [--engine PATH] profile remove NAME
+  kaleidoscope [--engine PATH] config [--profile NAME] [--json]
+  kaleidoscope [--engine PATH] connect HOST [--scope user|project]
+                                      [--profile NAME] [--project PATH]
+                                      [--opencode-version stable-v1|beta-v2]
+                                      [--dry-run] [--yes]
+  kaleidoscope [--engine PATH] disconnect HOST [--scope user|project]
+                                      [--project PATH] [--dry-run] [--yes]
+  kaleidoscope instructions install TARGET [--project PATH] [--dry-run] [--yes]
+  kaleidoscope instructions remove TARGET [--project PATH] [--dry-run] [--yes]
+  kaleidoscope [--engine PATH] doctor [--project PATH]
+  kaleidoscope login [--device]
+  kaleidoscope status [--json]
+  kaleidoscope logout [--all-devices] [--local-only]
+  kaleidoscope account link PROVIDER
+  kaleidoscope account unlink EXTERNAL_IDENTITY_UUID
+  kaleidoscope account revoke
+  kaleidoscope devices list
+  kaleidoscope devices revoke DEVICE_UUID
+  kaleidoscope --version
+
+Instruction TARGET is skill, agents, claude, or cursor.
+The manager edits host configuration only after preview and confirmation.
+Project scope is the default. Use --dry-run for an effect-free plan.
+"""
+
+MCP_REFERENCE = {
+    "schema_version": "kaleidoscope.docs-mcp-reference.v1",
+    "status": "verified_local_candidate_only",
+    "engine": {
+        "source_commit": ENGINE_SOURCE_COMMIT,
+        "sha256": ENGINE_CANDIDATE_SHA256,
+        "target": "aarch64-apple-darwin",
+        "version": "0.0.0-proposal",
+    },
+    "public_contract_sha256": PUBLIC_CONTRACT_SHA256,
+    "protocol_revision": "2025-11-25",
+    "model_tools": [
+        {
+            "name": "remember",
+            "required": ["mode"],
+            "fields": [
+                "content_md",
+                "expected_version_id",
+                "items",
+                "memory_id",
+                "mode",
+                "semantic_delta",
+            ],
+            "modes": ["create", "update", "delete"],
+            "maximum_batch_items": 20,
+        },
+        {
+            "name": "search",
+            "required": [],
+            "fields": [
+                "as_of",
+                "bfs_depth",
+                "candidate_pool",
+                "channels",
+                "ledger",
+                "max_facts",
+                "maximum_context_bytes",
+                "memory_id",
+                "query",
+                "scope",
+                "top_k",
+            ],
+            "addressing": "exactly_one_of_query_or_memory_id",
+            "ledger_values": [True],
+        },
+    ],
+    "operator_commands_are_model_tools": False,
+    "release_readiness_claimed": False,
+}
+
+STAGING_EVIDENCE = {
+    "schema_version": "kaleidoscope.docs-staging-evidence.v1",
+    "as_of": TODAY.isoformat(),
+    "status": "local_staging_only",
+    "engine": {
+        "source_commit": ENGINE_SOURCE_COMMIT,
+        "candidate_sha256": ENGINE_CANDIDATE_SHA256,
+        "public_contract_sha256": PUBLIC_CONTRACT_SHA256,
+        "production_signature_verified": False,
+    },
+    "milestones": [
+        {
+            "id": "DX-04",
+            "commit": "3b1ec66d4fc96ff2e77bf7c382b107502ccc7b8d",
+            "status": "verified_local",
+            "scope": "manager init, profiles, reversible host configuration, doctor, instructions",
+            "verification": "27 ordinary tests plus exact-candidate live contract passed",
+        },
+        {
+            "id": "DX-05B",
+            "commit": "048bf90854a1e38a1b88d14de88b681a206e5790",
+            "status": "verified_local_provider_unconfigured",
+            "scope": "manager OIDC, device login, credential storage, account and device commands",
+            "verification": "40 library tests, 5 CLI tests, and exact-candidate live contract passed on macOS arm64",
+        },
+        {
+            "id": "DX-06A/B",
+            "commit": "4a195d548036aa5bccd61d1bc0025d126a4d71ad",
+            "status": "verified_local_test_signature_only",
+            "scope": "source-only distribution tooling, object-code bundle, npm and wheel shapes, lifecycle rehearsal",
+            "verification": "14 local distribution and lifecycle tests passed",
+        },
+        {
+            "id": "DX-07",
+            "commit": "fd0b1877f70b1bb57e1b67c4c559e8b2e1d44290",
+            "status": "verified_local",
+            "scope": "Python and TypeScript clients plus agent and framework integrations",
+            "verification": "Python dependency matrices, TypeScript 32-pass/1-skip and 33-of-33 real-profile lanes, and poison scan passed",
+        },
+        {
+            "id": "DX-09",
+            "commit": "ceac8311f819437ace54813d2b4ba0731a5981a1",
+            "status": "merged_functional_smoke_only",
+            "scope": "candidate-bound benchmark contract and opt-in native smoke; no benchmark score",
+            "verification": "20 ordinary tests passed with 1 live skip; opt-in exact-candidate smoke passed 1 of 1",
+        },
+        {
+            "id": "DX-10B",
+            "commit": "ee01e26baaa0df28331795b918c7f1633dafc6f8",
+            "status": "verified_local_non_auth",
+            "scope": "macOS arm64 manager, host transforms, Python and TypeScript persistent MCP conformance",
+            "verification": "source-free conformance evidence SHA-256 052e898fafdc129f8865dd51ebd615cdcba253edbe417cde83bed1628d32b694",
+        },
+    ],
+    "release_holds": {
+        "final_auth_merged_manager_sha256": None,
+        "final_auth_merged_distribution_sha256": None,
+        "production_oidc_issuer": None,
+        "production_signing_identity": None,
+        "public_manager_license_approved": False,
+        "original_documentation_license_approved": False,
+        "registry_publication_authorized": False,
+        "pages_promotion_authorized": False,
+    },
+    "production_release": False,
+    "public_availability": False,
+}
+
 
 @dataclass(frozen=True)
 class Page:
@@ -52,10 +215,12 @@ DOC_NAV = (
     ("/docs/mcp/", "MCP"),
     ("/docs/integrations/", "Integrations"),
     ("/docs/operations/", "Operations"),
-    ("/docs/security/", "Security & privacy"),
+    ("/docs/security/", "Security"),
+    ("/docs/privacy/", "Privacy"),
     ("/docs/account/", "Account"),
     ("/docs/compatibility/", "Compatibility"),
     ("/docs/benchmarks/", "Benchmarks"),
+    ("/docs/evidence/", "Release evidence"),
     ("/docs/release-notes/", "Release notes"),
     ("/docs/troubleshooting/", "Troubleshooting"),
     ("/docs/migration/", "Migration"),
@@ -68,20 +233,15 @@ PAGES = (
         title="Kaleidoscope documentation",
         description="Developer documentation for the local Kaleidoscope CLI, stdio MCP server, profiles, integrations, security, and account boundary.",
         body="""
-<p class="lede">Kaleidoscope is local memory for agents: a native CLI and persistent stdio MCP server with one profile shared across supported harnesses.</p>
-<div class="callout"><strong>Release status.</strong> This documentation is a staging candidate. Installation artifacts and production login are not public until the signed release and protected promotion gates pass.</div>
+<p class="lede">Kaleidoscope is local memory for agents: a native CLI and persistent stdio MCP server with one profile shared across configured harnesses.</p>
+<div class="callout"><strong>Release status.</strong> This is a non-indexable documentation staging build. Local implementation and conformance evidence exists, but no package, registry, production login, public SDK repository, or Pages promotion is authorized.</div>
 <div class="grid">
-  <article class="card"><h2><a href="/docs/getting-started/">Start locally</a></h2><p>Install, initialize one profile, connect a harness, and verify the two agent tools.</p></article>
-  <article class="card"><h2><a href="/docs/mcp/">Use MCP</a></h2><p>Discover exactly <code>search</code> and <code>remember</code> over one long-lived stdio process.</p></article>
-  <article class="card"><h2><a href="/docs/security/">Understand the boundary</a></h2><p>Memory and vault coordinates stay on the device; account login is a separate control-plane concern.</p></article>
+  <article class="card"><h2><a href="/docs/getting-started/">Preview the workflow</a></h2><p>Inspect the verified manager interface for one profile, reversible host setup, and local diagnostics.</p></article>
+  <article class="card"><h2><a href="/docs/mcp/">Build against MCP</a></h2><p>Use the candidate-bound two-tool contract over one long-lived stdio process.</p></article>
+  <article class="card"><h2><a href="/docs/evidence/">Check what passed</a></h2><p>Separate locally verified milestones from platform holds and protected production gates.</p></article>
 </div>
 <h2>Choose a path</h2>
-<ul>
-  <li>Agent user: follow <a href="/docs/getting-started/">Getting started</a> and let the manager make a reversible host configuration.</li>
-  <li>Application developer: begin with <a href="/docs/integrations/">Integrations</a> and the persistent MCP client contract.</li>
-  <li>Operator: use <a href="/docs/operations/">Operations</a> for backup, restore, uninstall, and exact vault deletion.</li>
-  <li>Security reviewer: read <a href="/docs/security/">Security &amp; privacy</a> and verify the signed public contract, SBOM, and package provenance.</li>
-</ul>
+<ul><li>Agent user: read <a href="/docs/getting-started/">Getting started</a>; the commands are an interface preview until a protected release is approved.</li><li>Application developer: begin with <a href="/docs/integrations/">Integrations</a>, then use the persistent <a href="/docs/mcp/">MCP contract</a>.</li><li>Operator: use <a href="/docs/operations/">Operations</a> for separate configuration, credential, package, and vault lifecycles.</li><li>Security or privacy reviewer: read <a href="/docs/security/">Security</a>, <a href="/docs/privacy/">Privacy</a>, and the machine-readable <a href="/staging-evidence.json">staging evidence</a>.</li><li>Agent crawler: start at <a href="/llms.txt">llms.txt</a> or the expanded <a href="/llms-full.txt">llms-full.txt</a>.</li></ul>
 """,
     ),
     Page(
@@ -89,23 +249,26 @@ PAGES = (
         title="Getting started",
         description="The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.",
         body="""
-<p class="lede">One manager command creates or imports a local profile. A second command previews and applies an owner-marked, reversible host configuration.</p>
-<div class="callout"><strong>Not installable yet.</strong> The commands below describe the SDK-BOOT release-candidate interface. This page becomes a public copy/paste quickstart only after it passes against the exact signed package.</div>
-<h2>1. Install the signed package</h2>
-<p>Use one supported package channel. The final installer contains the public manager and proprietary engine object code, plus the composite license, notices, aggregate SBOM, and signed public contract. It does not contain the private engine source.</p>
+<p class="lede">The verified manager creates or imports one local profile, previews an owner-marked host change, applies it with confirmation, and can remove exactly what it owns.</p>
+<div class="callout"><strong>Interface preview, not an install command.</strong> No package is public. The local DX-06 archive uses a test-only signature and a pre-auth manager, so it must be regenerated and reverified after the final auth-merged manager hash exists.</div>
+<h2>1. Install after protected promotion</h2>
+<p>The intended package contains the public manager and proprietary engine object code without engine source. License grants, an engine EULA, production signing, registry credentials, supported-target evidence, and a separate publication approval are still required.</p>
 <h2>2. Initialize a profile</h2>
-<pre><code>kaleidoscope init</code></pre>
-<p>The interactive path chooses an existing vault or creates one explicitly. A profile is a non-secret local pointer; it never embeds account credentials in agent configuration.</p>
+<pre><code>kaleidoscope --engine /absolute/path/to/kscope init \
+  --profile default \
+  --root /absolute/path/to/user-owned/kaleidoscope-memory
+kaleidoscope --engine /absolute/path/to/kscope config --json</code></pre>
+<p>The no-argument friendly path is also implemented locally. A profile is selected through the manager and native profile registry; agent configuration receives <code>mcp --profile NAME</code>, not credentials or raw vault coordinates.</p>
 <h2>3. Preview and connect a host</h2>
-<pre><code>kaleidoscope connect codex --dry-run
-kaleidoscope connect codex
-kaleidoscope doctor</code></pre>
-<p>Use <code>claude</code>, <code>cursor</code>, or <code>opencode</code> only when the <a href="/docs/compatibility/">compatibility page</a> marks that exact version supported. Existing unrelated configuration is preserved. Ambiguous or concurrently edited files are refused.</p>
+<pre><code>kaleidoscope connect codex --profile default --project "$PWD" --dry-run
+kaleidoscope connect codex --profile default --project "$PWD"
+kaleidoscope --engine /absolute/path/to/kscope doctor --project "$PWD"</code></pre>
+<p>Local tests cover <code>codex</code>, <code>claude</code>, <code>cursor</code>, and <code>opencode</code> transforms. That is configuration evidence, not live acceptance by a released host version. Existing unrelated configuration is preserved; ambiguous, symlinked, tampered, or concurrently edited files are refused.</p>
 <h2>4. Verify the contract</h2>
-<p>Restart the host and confirm it discovers exactly two agent tools: <code>search</code> and <code>remember</code>. A ranked search returns hits under <code>selected_hits</code>; an addressed search with <code>memory_id</code> returns the selected memory at top level.</p>
+<p>The local candidate contract is bound to engine SHA-256 <code>988192ac9677…</code> and public-contract SHA-256 <code>a2357ed6c00e…</code>. It publishes exactly <code>remember</code> and <code>search</code>; the launch descriptor presents the agent-facing order <code>search</code>, <code>remember</code>. Ranked search returns <code>selected_hits</code>; addressed search returns the memory at top level.</p>
 <h2>5. Disconnect safely</h2>
-<pre><code>kaleidoscope disconnect codex --dry-run
-kaleidoscope disconnect codex</code></pre>
+<pre><code>kaleidoscope disconnect codex --project "$PWD" --dry-run
+kaleidoscope disconnect codex --project "$PWD"</code></pre>
 <p>Disconnect removes only Kaleidoscope-owned material and leaves other host settings and vault bytes unchanged.</p>
 """,
     ),
@@ -114,36 +277,47 @@ kaleidoscope disconnect codex</code></pre>
         title="Concepts and boundaries",
         description="How Kaleidoscope separates local memory, profiles, harness identity, account identity, and a future hosted service.",
         body="""
-<p class="lede">The important boundary is not “logged in versus logged out.” It is local memory versus account metadata.</p>
+<p class="lede">The important boundary is local memory versus account metadata—not merely “logged in versus logged out.”</p>
 <h2>Local engine</h2>
-<p>The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Local memory content, queries, results, memory IDs, vault coordinates, and local paths are not account-service fields.</p>
+<p>The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Its source is not part of the public manager, client, integration, or skill surfaces.</p>
 <h2>Manager and profile</h2>
-<p>The public manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, and manages account credentials through the operating-system credential store. A profile names one local vault identity without revealing those coordinates to agent configuration.</p>
+<p>The manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, and installs agent guidance. The separate DX-05B candidate adds account commands and native credential storage, but it has not yet been rebound into a final distribution.</p>
 <h2>Harness identity</h2>
 <p>Codex, Claude, Cursor, OpenCode, framework clients, and generic MCP clients are consumers of the same profile. They do not become separate memory stores merely because their configuration formats differ.</p>
 <h2>Account identity</h2>
-<p>Login links a product account and device. Logout or account unlinking does not delete, relocate, or rewrite the local vault. Account state must not be interpreted as consent to upload memory.</p>
+<p>Login is designed to link a product account and device. The account protocol rejects memory fields and absolute local paths before transport. Logout or unlinking is not a vault operation and must not be interpreted as consent to upload memory.</p>
 <h2>Hosted memory</h2>
-<p>A hosted service is a future product requiring its own authorization, tenant-isolation, retention, residency, deletion, sync, billing, and incident-response contract. It is not available and login does not opt a user into it.</p>
+<p>A hosted service is a later product requiring separate authorization, tenant isolation, retention, residency, deletion, sync, billing, and incident-response contracts. It is not available; login does not opt a user into it.</p>
 """,
     ),
     Page(
         route="/docs/cli/",
         title="CLI reference",
-        description="Generated-reference boundary for the public Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.",
+        description="Candidate-generated reference for the Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.",
         body="""
-<p class="lede">The supported public CLI is <code>kaleidoscope</code>. Direct <code>kscope</code> operator commands are an engine/operator surface and are not a replacement for the manager quickstart.</p>
-<div class="callout"><strong>Generation pending release binding.</strong> The final command table is generated from the immutable manager artifact and signed public contract. This staging page intentionally does not invent flags that the candidate has not exposed.</div>
-<h2>Public command groups</h2>
-<table><thead><tr><th>Group</th><th>Purpose</th><th>Network</th></tr></thead><tbody>
-<tr><td><code>init</code> / profile</td><td>Create or import one validated local profile.</td><td>None</td></tr>
-<tr><td><code>connect</code> / <code>disconnect</code></td><td>Preview and apply reversible owner-marked host configuration.</td><td>None</td></tr>
-<tr><td><code>doctor</code></td><td>Validate package, descriptor, profile, host configuration, and local MCP startup without printing secrets.</td><td>None</td></tr>
-<tr><td>instructions</td><td>Install or remove the public skill and compact AGENTS/CLAUDE/Cursor guidance.</td><td>None</td></tr>
-<tr><td>account</td><td>Login, status, logout, link, revoke, and device management.</td><td>Account endpoints only</td></tr>
-</tbody></table>
+<p class="lede">The developer-facing CLI is <code>kaleidoscope</code>. The engine executable <code>kscope</code> remains a native runtime/operator surface and is not the manager quickstart.</p>
+<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from local auth-manager commit <code>048bf908…</code>. It is not a public-installation claim and will be regenerated from the final packaged manager before promotion.</div>
+<p><a href="/reference/kaleidoscope-cli.candidate.txt">Download the exact candidate help text</a>.</p>
+<h2>Local memory and host commands</h2>
+<pre><code>kaleidoscope [--engine PATH] init [--root PATH] [--profile NAME] [--durability process-local|durable-local]
+kaleidoscope [--engine PATH] profile list|show|use|remove
+kaleidoscope [--engine PATH] config [--profile NAME] [--json]
+kaleidoscope [--engine PATH] connect HOST [--scope user|project] [--profile NAME] [--project PATH] [--opencode-version stable-v1|beta-v2] [--dry-run] [--yes]
+kaleidoscope [--engine PATH] disconnect HOST [--scope user|project] [--project PATH] [--dry-run] [--yes]
+kaleidoscope instructions install|remove skill|agents|claude|cursor [--project PATH] [--dry-run] [--yes]
+kaleidoscope [--engine PATH] doctor [--project PATH]</code></pre>
+<h2>Account and device commands</h2>
+<pre><code>kaleidoscope login [--device]
+kaleidoscope status [--json]
+kaleidoscope logout [--all-devices] [--local-only]
+kaleidoscope account link PROVIDER
+kaleidoscope account unlink EXTERNAL_IDENTITY_UUID
+kaleidoscope account revoke
+kaleidoscope devices list
+kaleidoscope devices revoke DEVICE_UUID</code></pre>
+<p>These account commands are locally implemented and tested but intentionally fail with <code>provider not configured</code> without approved issuer, audience, client, and account-origin configuration. No production issuer is published.</p>
 <h2>Safety invariants</h2>
-<ul><li>Mutating host commands support a dry run and explicit confirmation.</li><li>Unknown, conflicting, symlinked, or concurrently changed targets fail closed.</li><li>Backups are bounded and owner receipts make removal idempotent.</li><li>Agent launch configuration contains no tokens, provider keys, or raw vault coordinates.</li></ul>
+<ul><li>Mutating host and instruction commands support an effect-free dry run and explicit confirmation.</li><li>Unknown, conflicting, symlinked, tampered, or concurrently changed targets fail closed.</li><li>Backups are bounded and owner receipts make removal idempotent.</li><li>Agent launch configuration contains no tokens, provider keys, or raw vault coordinates.</li><li>Account traffic is closed to an exact account-only route inventory; it is separate from engine MCP traffic.</li></ul>
 """,
     ),
     Page(
@@ -151,16 +325,18 @@ kaleidoscope disconnect codex</code></pre>
         title="MCP reference",
         description="The Kaleidoscope stdio MCP contract: exactly search and remember for agents, with persistent sessions and operator-tool exclusion.",
         body="""
-<p class="lede">Kaleidoscope publishes exactly two model-callable MCP tools. Everything else is an operator command outside the agent tool list.</p>
+<p class="lede">The candidate public contract publishes exactly two model-callable MCP tools over stdio revision <code>2025-11-25</code>. Everything else remains outside the agent tool list.</p>
+<div class="callout"><strong>Exact local binding.</strong> Engine <code>988192ac9677…</code>, public contract <code>a2357ed6c00e…</code>, macOS arm64 only. This is contract and functional evidence, not a production signature or availability claim.</div>
+<p><a href="/reference/kaleidoscope-mcp.candidate.json">Download the machine-readable candidate MCP reference</a>.</p>
 <h2><code>search</code></h2>
-<p>Use a query for ranked retrieval or <code>memory_id</code> for an addressed read. Ranked results appear under <code>selected_hits</code>. The ranking knobs are <code>top_k</code>, <code>candidate_pool</code>, <code>bfs_depth</code>, and <code>max_facts</code>; clients should omit defaults rather than hand-copy them.</p>
+<p>Supply exactly one of <code>query</code> or <code>memory_id</code>. A query performs ranked retrieval and records an exposure; <code>ledger</code> accepts only <code>true</code>. Use a small protocol-defining <code>top_k</code> (normally about 5) and a bounded <code>maximum_context_bytes</code>. Ranked results appear under <code>selected_hits</code>. An addressed read returns the memory at top level and refuses ranking controls.</p>
 <pre><code>{"query":"What constraints govern the release?","top_k":5,"ledger":true}</code></pre>
 <h2><code>remember</code></h2>
-<p>Create, update, or logically delete a durable semantic delta. A create or update includes Markdown beginning with an H1 plus declared entities and subject–predicate–object facts. Every fact endpoint must be declared with <code>n</code>, <code>kind</code>, and a required <code>is</code> gloss. Predicates are snake_case.</p>
+<p><code>mode</code> is required and is <code>create</code>, <code>update</code>, or <code>delete</code>. Create/update content begins with an H1 and carries a semantic delta with a required title and at least one fact. Every fact endpoint is declared with <code>n</code>, <code>kind</code>, and the required <code>is</code> gloss. Predicates are snake_case. Update/delete use <code>memory_id</code> and <code>expected_version_id</code>. Batching accepts at most 20 creates and does not share semantic fields between items.</p>
 <h2>Lifecycle</h2>
-<p>Clients should keep one stdio process alive across calls, negotiate MCP once, enforce a startup deadline, cancel cleanly, bound stderr, and tear down without leaving an orphan or locked update target. Model-facing integrations do not run a second hidden retrieval.</p>
+<p>Clients keep one stdio process alive across calls, negotiate MCP once, enforce a startup deadline, cancel cleanly, bound stderr, and tear down without an orphan. DX-07 locally verifies persistent Python and TypeScript sessions; framework integrations do not run a second hidden retrieval.</p>
 <h2>Not agent tools</h2>
-<p>Feedback, lifecycle/import, maintenance, ontology, and doctor operations are controller/operator commands. Historical tool names and shapes are documented only on the <a href="/docs/migration/">migration page</a>; they must not appear in a model tool list.</p>
+<p>Feedback, lifecycle/import, maintenance, ontology, and diagnostics are controller/operator operations. Public search does not return the handle required for feedback, so there is no supported public agent-attribution path. Historical names are documented only on the <a href="/docs/migration/">migration page</a>.</p>
 """,
     ),
     Page(
@@ -168,18 +344,22 @@ kaleidoscope disconnect codex</code></pre>
         title="Agent and framework integrations",
         description="How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.",
         body="""
-<p class="lede">Every integration consumes the same validated launch descriptor and persistent stdio MCP contract; none reimplements the memory algorithm.</p>
-<table><thead><tr><th>Integration</th><th>Candidate path</th><th>Release status</th></tr></thead><tbody>
-<tr><td>Codex</td><td>User or trusted-project MCP configuration with an exact <code>search</code>/<code>remember</code> allowlist.</td><td>Under conformance</td></tr>
-<tr><td>Claude Code / Agent SDK</td><td>Managed <code>.mcp.json</code> or SDK MCP server configuration.</td><td>Under conformance</td></tr>
-<tr><td>Cursor</td><td>User or project <code>mcp.json</code> plus an owner-marked rule.</td><td>Under conformance</td></tr>
-<tr><td>OpenCode</td><td>Stable direct <code>mcp.&lt;name&gt;</code> by default; explicit beta-v2 support without silent migration.</td><td>Under conformance</td></tr>
-<tr><td>LangChain / LangGraph</td><td>Python persistent MCP client and framework-native tool binding.</td><td>Under conformance</td></tr>
-<tr><td>OpenAI Agents SDK</td><td>TypeScript or Python MCP stdio server integration.</td><td>Under conformance</td></tr>
-<tr><td>CrewAI</td><td>Python MCP adapter using the same long-lived session.</td><td>Under conformance</td></tr>
-<tr><td>Generic MCP</td><td>Standards-conforming stdio initialization and tool calls.</td><td>Under conformance</td></tr>
+<p class="lede">Every integration consumes the same closed profile-first launch descriptor and persistent stdio MCP contract. The wrapper candidates do not contain or reimplement the proprietary memory algorithm.</p>
+<table><thead><tr><th>Integration</th><th>Pinned local evidence</th><th>Public status</th></tr></thead><tbody>
+<tr><td>Codex</td><td>Manager render, dry run, idempotence, exact rollback, and two-tool allowlist passed.</td><td>Not live-host accepted</td></tr>
+<tr><td>Claude Code</td><td>Managed <code>.mcp.json</code> render, dry run, idempotence, and exact rollback passed.</td><td>Not live-host accepted</td></tr>
+<tr><td>Cursor</td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Not live-host accepted</td></tr>
+<tr><td>OpenCode</td><td>Stable v1 direct entry is default; beta v2 is explicit and never silently selected.</td><td>Not live-host accepted</td></tr>
+<tr><td>Python generic MCP</td><td><code>mcp==1.29.0</code> and <code>mcp==2.0.0</code>; persistent and real-profile lanes passed.</td><td>Verified local, unpublished</td></tr>
+<tr><td>TypeScript generic MCP</td><td><code>@modelcontextprotocol/client==2.0.0</code>; explicit revision negotiation and real-profile lane passed.</td><td>Verified local, unpublished</td></tr>
+<tr><td>LangChain / LangGraph</td><td><code>langchain==1.3.16</code>, <code>langgraph==1.2.11</code>; one persistent session and no shadow store.</td><td>Verified with fake provider</td></tr>
+<tr><td>Claude Agent SDK</td><td><code>claude-agent-sdk==0.2.143</code>; strict MCP names and lifecycle passed.</td><td>Verified without live provider</td></tr>
+<tr><td>OpenAI Agents SDK</td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
+<tr><td>CrewAI</td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
-<div class="callout"><strong>No support claim yet.</strong> A row changes from “under conformance” only when its pinned version passes the packaged release matrix. Cross-compilation or a configuration snapshot is not sufficient.</div>
+<div class="callout"><strong>What DX-07 proves.</strong> Local commit <code>fd0b1877…</code> passed the Python dependency matrices, TypeScript typecheck/build/tests, real-profile lanes, and source poison scan. It has no remote, license, package publication, or live provider claim. The final package must rebind these clients to the final auth-merged manager and exact release contract.</div>
+<h2>Agent guidance</h2>
+<p>Install the <a href="/SKILL.md">public skill</a>, then add only the compact owner-marked pointer appropriate to <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or <a href="/snippets/cursor-kaleidoscope.mdc">Cursor</a>. Use the manager so dry runs, backups, receipts, tamper checks, and exact removal remain intact.</p>
 """,
     ),
     Page(
@@ -187,25 +367,39 @@ kaleidoscope disconnect codex</code></pre>
         title="Local operations",
         description="Operate Kaleidoscope safely: locations, backup and restore, migration, disconnect, uninstall, and exact vault deletion.",
         body="""
-<p class="lede">Configuration, account credentials, installed executables, and canonical vault data have separate lifecycles.</p>
+<p class="lede">Configuration, agent instructions, account credentials, installed executables, and canonical vault data have separate lifecycles.</p>
 <h2>Locate before changing</h2><p>Use the manager profile and doctor views to identify the active package and profile without printing tokens or raw memory content. Never assume a worktree carries gitignored vault data.</p>
 <h2>Back up and restore</h2><p>Back up the canonical vault from the main checkout or another explicit data location, not a disposable worktree. Restore only through the verified export/import path for the same supported vault format.</p>
-<h2>Disconnect and uninstall</h2><p>Disconnect removes only manager-owned host configuration. Uninstall removes package artifacts and account credentials according to the selected scope. Neither operation implicitly deletes a vault.</p>
+<h2>Disconnect and uninstall</h2><p>Disconnect removes only manager-owned host configuration. Instruction removal is separate. A future installer uninstall removes package artifacts according to its scope; account logout/revocation is also separate. None of these operations implicitly deletes a vault.</p>
 <h2>Delete a vault</h2><p>Vault deletion is a separate preview-and-confirm operation tied to one exact resolved root. Logical memory deletion and physical vault deletion are different operations. A broad path, unresolved variable, or ambiguous target must be refused.</p>
-<h2>Update and rollback</h2><p>The installer stages, verifies, atomically activates, health-checks, and finalizes a signed package. A failed update returns to the exact prior manifest. Update and rollback do not migrate or alter canonical memory implicitly.</p>
+<h2>Update and rollback</h2><p>DX-06 locally rehearsed install, update, rollback, and uninstall under an explicitly marked staging root. It verified a test-only Ed25519 signature and a simulated update that reused the same binaries. This is not a production installer, notarization result, or supported update channel. The external vault canary remained byte-identical.</p>
+<h2>Package shapes</h2><p>Local macOS arm64 staging produced an object-code archive, npm meta/platform tarballs, and Python facade/native wheels, plus aggregate SBOM and provenance. Nothing was published; other platform entries are refusal-only scaffolds.</p>
 """,
     ),
     Page(
         route="/docs/security/",
-        title="Security and privacy",
-        description="Kaleidoscope security model, local data boundary, package integrity, telemetry status, vulnerability reporting, and native-binary limits.",
+        title="Security",
+        description="Kaleidoscope security model, package integrity, account isolation, vulnerability reporting, and native-binary limits.",
         body="""
-<p class="lede">Kaleidoscope protects source distribution and establishes verifiable package boundaries. It does not claim that a native executable is impossible to inspect or reverse engineer.</p>
-<h2>Local data boundary</h2><p>The engine is local and makes no account-service request. Login traffic is limited to allowlisted account and device fields. Memory content, queries, results, memory IDs, vault coordinates, local paths, workspace/principal/journal identity, and provider credentials are excluded.</p>
-<h2>Package integrity</h2><p>A release binds the manager and engine digests, source commits, bundled model, aggregate CycloneDX SBOM, public contract, licenses, target, channel, compatibility, and rollback identity. Installers start from an embedded rotating trust root and refuse altered, expired, replayed, downgraded, wrong-target, or cross-channel metadata.</p>
-<h2>Environment and logs</h2><p>The engine receives a closed non-secret bootstrap environment rather than the full ambient process environment. Diagnostics and receipts are bounded and redacted. Release conformance scans argv, environment, profiles, logs, crash data, MCP traffic, and public artifacts with canary values.</p>
-<h2>Telemetry</h2><p>The staging candidate makes no telemetry claim beyond the tested release evidence. The production page must enumerate every network destination and field before login is enabled.</p>
+<p class="lede">Kaleidoscope protects source distribution and establishes verifiable boundaries. A native binary remains inspectable and may be reverse engineered; object-code distribution is not a claim of impossibility.</p>
+<h2>Local engine boundary</h2><p>The generated candidate contract declares a local vault, stdio MCP, no required network, and no external model calls. The manager launches the engine with a closed non-secret environment instead of inheriting provider keys, account tokens, cloud credentials, or direct vault-coordinate variables.</p>
+<h2>Account boundary</h2><p>The DX-05B manager constructs only 11 declared account routes. Its request privacy guard rejects memory/profile field families and absolute local paths before transport. The provider remains unconfigured and no production account endpoint is available.</p>
+<h2>Package integrity</h2><p>DX-06 binds object-code digests, source commits, bundled model, CycloneDX SBOM, provenance, candidate public contract, target, and prior-manifest rollback identity. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Production trust roots, role keys, Apple signing/notarization, EULA, notices, and approved licenses are absent.</p>
+<h2>Verified privacy checks</h2><p>The candidate contains no bounded private builder-path hits and no Mach-O debug sections. Local conformance used canary values for environment, outputs, profiles, host configuration, and MCP traffic. These are scoped test results, not a universal absence claim.</p>
 <h2>Report a vulnerability</h2><p>Do not publish an exploit or sensitive report in a public issue. The production security contact and supported-version policy are release blockers and will be published here and in <code>/.well-known/security.txt</code> before promotion.</p>
+""",
+    ),
+    Page(
+        route="/docs/privacy/",
+        title="Privacy and data boundary",
+        description="What Kaleidoscope keeps local, what the account manager may send, credential storage, telemetry status, and hosted-memory separation.",
+        body="""
+<p class="lede">Local memory and account identity are separate systems. Logging in does not authorize memory upload, sync, analysis, training, or deletion.</p>
+<h2>Local memory data</h2><p>Memory content, queries, selected results, memory IDs, graph data, local paths, vault coordinates, workspace/principal/journal identity, and local provider credentials remain engine-side fields. They are excluded from the account protocol.</p>
+<h2>Account data</h2><p>The local auth candidate sends bounded account and device fields needed for OIDC login, refresh, account status, external-identity linking, logout/revocation, and device management. Device display fields reject absolute-path forms. The exact production provider, policy, retention, recovery, and account-deletion terms are not configured.</p>
+<h2>Credential storage</h2><p>The native implementation uses macOS Keychain on the only natively tested platform. Windows Credential Manager and Linux Secret Service implementations exist but still need native runners. There is no plaintext credential fallback. Agent configuration and profiles do not contain refresh tokens.</p>
+<h2>Network and telemetry</h2><p>The local engine contract declares no required network and no external model calls. Non-auth manager operations are offline. Account commands are the only planned account-network surface. No production telemetry inventory, destination list, consent policy, or privacy terms have been approved, so production login remains disabled.</p>
+<h2>Hosted service</h2><p>Hosted memory is a future, separately authorized product. It requires explicit contracts for tenant isolation, retention, residency, deletion, sync, training use, billing, and incidents. It is not implied by these local docs.</p>
 """,
     ),
     Page(
@@ -213,11 +407,22 @@ kaleidoscope disconnect codex</code></pre>
         title="Account and devices",
         description="What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.",
         body="""
-<p class="lede">Login is for product account and device workflows. It is not a hosted-memory connection.</p>
-<h2>Authentication flows</h2><p>The native manager uses authorization code with PKCE and a loopback callback where available, with a device authorization flow for headless environments. Tokens are stored in the operating-system credential store, never in agent configuration or a profile.</p>
-<h2>Account commands</h2><p>The release-candidate surface covers login, status, logout, link, revoke, and device listing/revocation. Refresh tokens rotate by family; reuse revokes the family. Denied, expired, cancelled, offline, and credential-store-failure states are explicit.</p>
-<h2>What logout changes</h2><p>Logout removes or revokes account credentials according to the requested scope. It does not change the local principal, workspace, journal, or vault bytes. Vault deletion remains a separate local operation.</p>
-<h2>Control plane boundary</h2><p>The private control plane is account-only. It has no memory/profile routes and stores no memory content or local vault identity. Production identity-provider metadata, keys, domains, privacy terms, and recovery procedures remain gated until launch.</p>
+<p class="lede">Login is intended for product-account and device workflows. It is not a hosted-memory connection and is not usable against a production issuer today.</p>
+<h2>Locally verified manager flows</h2><p>DX-05B commit <code>048bf908…</code> implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse.</p>
+<h2>Commands</h2><pre><code>kaleidoscope login
+kaleidoscope login --device
+kaleidoscope status --json
+kaleidoscope logout
+kaleidoscope logout --all-devices
+kaleidoscope logout --local-only
+kaleidoscope account link PROVIDER
+kaleidoscope account unlink EXTERNAL_IDENTITY_UUID
+kaleidoscope account revoke
+kaleidoscope devices list
+kaleidoscope devices revoke DEVICE_UUID</code></pre>
+<p><code>--local-only</code> deliberately warns that it does not revoke the remote session. Without approved provider configuration, account commands return <code>provider not configured</code>; the docs do not provide substitute endpoints.</p>
+<h2>What logout changes</h2><p>Logout removes or revokes account credentials according to scope. It does not change local profile identity or vault bytes. Vault deletion is a separate explicit local operation.</p>
+<h2>Control plane status</h2><p>The client contract is closed and account-only, but production identity-provider metadata, service deployment, credentials, domains, privacy terms, recovery, and deletion procedures remain gated. No production-login claim is made.</p>
 """,
     ),
     Page(
@@ -226,11 +431,15 @@ kaleidoscope disconnect codex</code></pre>
         description="Kaleidoscope platform and harness compatibility policy, including the difference between build evidence and native release support.",
         body="""
 <p class="lede">A platform or harness is supported only after the packaged artifact passes the canonical end-to-end proof on the named native runner and pinned host version.</p>
-<table><thead><tr><th>Surface</th><th>Candidate target</th><th>Current public claim</th></tr></thead><tbody>
-<tr><td>macOS</td><td>arm64, x64</td><td>Not released</td></tr><tr><td>Linux</td><td>x86_64, arm64; libc policy must be explicit</td><td>Not released</td></tr><tr><td>Windows</td><td>x86_64, arm64</td><td>Not released</td></tr>
-<tr><td>Agent hosts</td><td>Codex, Claude Code, Cursor, OpenCode</td><td>Under conformance</td></tr><tr><td>Frameworks</td><td>Claude Agent SDK, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, generic MCP</td><td>Under conformance</td></tr>
+<table><thead><tr><th>Surface</th><th>Verified local evidence</th><th>Held before support</th></tr></thead><tbody>
+<tr><td>macOS arm64</td><td>Engine candidate, manager, object-code packaging, Python/TypeScript MCP, lifecycle rehearsal.</td><td>Final auth-merged package, production signature/notarization, clean native release runner.</td></tr>
+<tr><td>macOS x64</td><td>Target metadata/refusal only.</td><td>Native binaries, package, runner, signing/notarization.</td></tr>
+<tr><td>Linux x86_64/arm64</td><td>Source implementation and target metadata only; libc policy not frozen.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
+<tr><td>Windows x86_64/arm64</td><td>Source implementation and target metadata only.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
+<tr><td>Codex / Claude Code / Cursor / OpenCode</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Pinned live-host acceptance after packaged installation.</td></tr>
+<tr><td>Framework clients</td><td>Generic MCP and adapter lifecycle suites passed with pinned versions.</td><td>Live-provider lanes where required and final packaged-client rebind.</td></tr>
 </tbody></table>
-<p>Cross-compiling, extracting a foreign package, or parsing a configuration file is useful evidence but never a native support claim. Any matrix cell that does not pass is removed from the release before promotion.</p>
+<p>Cross-compiling, extracting a foreign package, parsing configuration, or running a fake provider is useful evidence but not native support. Nothing in this table is a public availability claim.</p>
 """,
     ),
     Page(
@@ -238,11 +447,34 @@ kaleidoscope disconnect codex</code></pre>
         title="Benchmarks and evidence",
         description="How Kaleidoscope publishes clean, reproducible memory benchmarks without private-source dependencies or stale tool contracts.",
         body="""
-<p class="lede">Benchmark results are useful only when the evaluated candidate, public contract, dataset, evaluator, and retrieval path are immutable and auditable.</p>
-<h2>Candidate binding</h2><p>A public run names the signed engine candidate, package digest, public-contract digest, dataset and evaluator versions. Missing or mismatched inputs fail before acquisition. A local unsigned binary cannot be relabelled as release evidence.</p>
-<h2>One retrieval path</h2><p>The harness performs one model-facing <code>search</code>. It does not hide a second acquisition search or depend on a legacy acquisition command.</p>
-<h2>Runtime vocabulary</h2><p>Accepted memory types and relationship vocabulary come from the runtime contract, not a hand-copied list in benchmark code or prompts.</p>
-<h2>Published evidence</h2><p>Reports include protocol persistence, restart behavior, exact candidate and contract digests, raw aggregate metrics, limitations, evaluator procedure, and proof that public configuration contains no private repository or vault coordinates.</p>
+<p class="lede">Benchmark results are meaningful only when the candidate, public contract, dataset, evaluator, and retrieval path are immutable and auditable.</p>
+<div class="callout"><strong>Current result: functional smoke, no score.</strong> Benchmark PRs 3 and 4 are merged. The ordinary suite passed 20 tests with the live lane skipped; the opt-in macOS arm64 lane then passed against engine <code>988192ac9677…</code> and contract <code>a2357ed6c00e…</code>. It deliberately records <code>signature_verified: false</code>.</div>
+<h2>What the live smoke proves</h2><p>Before vault work it checks both digests, loads the bundled model contract, creates a fresh isolated profile and vault, discovers runtime memory types, writes one explicit semantic delta, performs ranked and addressed search, and validates the closed launch descriptor.</p>
+<h2>What it does not prove</h2><p>It records no BEAM score, runs no LLM evaluator, verifies no production signature, and makes no release-readiness claim. Full ingest, answer, judge, and report phases still require the dataset, evaluator credentials, preregistered procedure, and a signed packaged candidate.</p>
+<h2>Protocol rules</h2><p>The harness performs one model-facing <code>search</code>, records explicit <code>top_k</code> and <code>maximum_context_bytes</code>, obtains vocabulary from the runtime, isolates conversations and candidate-bound caches, and refuses stale cross-candidate phase artifacts.</p>
+<h2>Public repository</h2><p>The benchmark harness is the only milestone here already merged into its public repository. That does not make the private engine, unpublished clients, staged packages, or these docs public.</p>
+""",
+    ),
+    Page(
+        route="/docs/evidence/",
+        title="Local evidence and production gates",
+        description="Exact Kaleidoscope candidate digests, verified local DX milestones, remaining platform holds, and protected release approvals.",
+        body=f"""
+<p class="lede">Evidence is split into local functional proof, package/signature proof, native platform support, and protected production promotion. Passing one does not imply the others.</p>
+<div class="callout"><strong>Machine-readable record.</strong> <a href="/staging-evidence.json">staging-evidence.json</a> carries the same public, source-free status. It contains no local paths, credentials, vault coordinates, or private engine source.</div>
+<h2>Exact local candidate</h2>
+<table><tbody><tr><th>Engine source commit</th><td><code>{ENGINE_SOURCE_COMMIT}</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>{ENGINE_CANDIDATE_SHA256}</code></td></tr><tr><th>Public contract SHA-256</th><td><code>{PUBLIC_CONTRACT_SHA256}</code></td></tr><tr><th>Native target tested</th><td>macOS arm64</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
+<h2>Milestones</h2>
+<table><thead><tr><th>Slice</th><th>Exact evidence</th><th>What is true now</th></tr></thead><tbody>
+<tr><td>DX-04</td><td><code>3b1ec66…</code></td><td>Friendly manager, profiles, safe config, doctor, skill and instruction installation passed locally.</td></tr>
+<tr><td>DX-05B</td><td><code>048bf908…</code></td><td>Auth/device manager passed local tests; production provider is unconfigured.</td></tr>
+<tr><td>DX-06A/B</td><td><code>4a195d5</code>, 14 tests</td><td>Source-only tooling built object-code package shapes with a test-only signature; no publication.</td></tr>
+<tr><td>DX-07</td><td><code>fd0b187…</code></td><td>Pinned Python/TypeScript client and integration matrices passed locally; no license or remote.</td></tr>
+<tr><td>DX-09</td><td><code>ceac831…</code>, merged PRs 3/4</td><td>Clean contract tests and native smoke passed; no score or signed release evidence.</td></tr>
+<tr><td>DX-10B</td><td><code>ee01e26…</code></td><td>Local macOS arm64 non-auth conformance passed; cross-platform/live-host/auth cells held.</td></tr>
+</tbody></table>
+<h2>Required rebind</h2><p>The current DX-06 archive packages the pre-auth DX-04 manager. The DX-07 and DX-10B reference artifacts also predate the final release rebind. Before any release candidate is promotable, the auth-merged manager needs an immutable binary hash; DX-06 must rebuild packages, signatures, SBOM/provenance, and lifecycle evidence; DX-10 must rerun against those exact artifacts; every public quickstart must then be replayed.</p>
+<h2>Approval and credential gates</h2><ul><li>Approval of a license for the public manager, wrappers, integrations, and skill.</li><li>Approval of terms for original documentation and an engine object-code EULA.</li><li>Staging/production OIDC configuration and private control-plane deployment evidence.</li><li>Production signing/notarization identities, registry/CDN credentials, and native platform runners.</li><li>A separate final approval for package publication, production login, and Pages promotion.</li></ul>
 """,
     ),
     Page(
@@ -250,9 +482,9 @@ kaleidoscope disconnect codex</code></pre>
         title="Release notes",
         description="Versioned Kaleidoscope release notes bound to immutable package and public-contract digests.",
         body="""
-<p class="lede">Release notes become authoritative only when they name the exact signed package and public-contract digest.</p>
-<h2>Unreleased</h2><p>The local manager, account boundary, confidential bundle, integrations, documentation, benchmark cleanup, and cross-platform conformance are being staged as separately reviewable changes. No production package or login endpoint is public.</p>
-<h2>Promotion rule</h2><p>A release entry records availability, supported targets and pinned host versions, known limitations, migration requirements, security fixes, checksums, SBOM and provenance links, and exact rollback identity. Publication and documentation promotion remain a separate protected action.</p>
+<p class="lede">Release notes become authoritative only when they name the exact signed package, final manager, engine, and public-contract digests.</p>
+<h2>Unreleased local staging — 2026-08-22</h2><ul><li>DX-04 manager interface is locally verified.</li><li>DX-05B account/device client is locally verified without a configured production provider.</li><li>DX-06 object-code archive, npm/wheel shapes, SBOM/provenance, and lifecycle rehearsal passed with a test-only signature and pre-auth manager.</li><li>DX-07 Python/TypeScript and harness integration matrices passed locally.</li><li>DX-09 candidate-bound benchmark cleanup and native smoke merged; no benchmark score was produced.</li><li>DX-10B local macOS arm64 non-auth conformance passed.</li></ul>
+<h2>Promotion rule</h2><p>A release entry must record public availability, supported targets and pinned host versions, known limitations, migration requirements, security fixes, all package checksums, SBOM/provenance, exact rollback identity, license/EULA links, and production account/privacy terms. Publication and documentation promotion are separate protected actions.</p>
 """,
     ),
     Page(
@@ -260,11 +492,12 @@ kaleidoscope disconnect codex</code></pre>
         title="Troubleshooting",
         description="Diagnose Kaleidoscope profile, descriptor, host-configuration, MCP startup, and account problems without leaking local memory or credentials.",
         body="""
-<p class="lede">Start with <code>kaleidoscope doctor</code>. Its output is designed to identify the failing boundary without printing secrets or memory content.</p>
-<h2>The host cannot find the tools</h2><ol><li>Confirm the active profile and signed package are valid.</li><li>Preview the host connection and inspect only the manager-owned block.</li><li>Restart the host after a successful connect.</li><li>Confirm the discovered tools are exactly <code>search</code> and <code>remember</code>.</li></ol>
+<p class="lede">Start with <code>kaleidoscope doctor</code> for local profile/engine/host issues. Account commands have a separate error boundary.</p>
+<h2>The host cannot find the tools</h2><ol><li>Confirm the active profile and exact candidate/package digest are valid.</li><li>Preview the host connection and inspect only the manager-owned block.</li><li>Restart the host after a successful connect.</li><li>Confirm the discovered tools are exactly <code>search</code> and <code>remember</code>.</li></ol>
 <h2>OpenCode configuration is refused</h2><p>Stable and beta-v2 shapes differ. The manager adopts an unambiguous existing shape or an explicit version selection; it never silently migrates stable configuration to beta. Remove conflicting duplicate Kaleidoscope entries and retry the dry run.</p>
 <h2>A profile points to the wrong place</h2><p>Do not edit the profile by hand. Import the intended existing vault or initialize an explicit new root. A missing or invalid root is refused rather than created implicitly.</p>
-<h2>Login fails but memory still works</h2><p>That separation is intentional for documented offline-existing-user paths. Account status and the local vault are separate. Do not delete or recreate the vault to repair an account problem.</p>
+<h2>Login says provider not configured</h2><p>That is the expected staging result: no production account origin, issuer, audience, or client ID is published. Do not invent endpoints or delete/recreate the local vault. Account status and local memory are separate.</p>
+<h2>I cannot install the package</h2><p>No public installation channel exists. The local archive, npm tarballs, and wheels are evidence artifacts created with a test-only signature, not downloadable releases.</p>
 <h2>Before sharing diagnostics</h2><p>Remove local paths, account identifiers, provider keys, tokens, memory content, queries, results, and vault coordinates. Use the redacted doctor artifact intended for support.</p>
 """,
     ),
@@ -273,10 +506,11 @@ kaleidoscope disconnect codex</code></pre>
         title="Migration from historical tool contracts",
         description="How to migrate historical Kaleidoscope agent integrations to the public search and remember MCP contract.",
         body="""
-<p class="lede">Current agents discover exactly <code>search</code> and <code>remember</code>. Historical tool names are not aliases and must be removed from host allowlists and prompts.</p>
+<p class="lede">Current agents discover exactly <code>search</code> and <code>remember</code>. Historical names are not aliases and must be removed from host allowlists and prompts.</p>
 <h2>Retrieval</h2><p>Replace <code>recall</code>, <code>compile</code>, and <code>read_memory</code> with <code>search</code>. Send <code>query</code> for ranked retrieval and <code>memory_id</code> for an addressed read. Ranked results are under <code>selected_hits</code>. Use <code>top_k</code>, not <code>limit</code>.</p>
-<h2>Writing</h2><p>Replace prose-inference or <code>ingest_memory</code> paths with explicit <code>remember</code> semantic deltas. The runtime does not infer entities, facts, relationships, or dates from prose.</p>
-<h2>Operator feedback</h2><p><code>feedback</code> remains an authenticated controller/operator command because its decision token does not reach a model. Do not advertise it as an MCP tool.</p>
+<h2>Writing</h2><p>Replace <code>ingest_memory</code> or prose-inference paths with explicit <code>remember</code> semantic deltas. The runtime does not infer entities, facts, relationships, or dates from prose.</p>
+<h2>Other retired names</h2><p>Remove <code>merge_verdict</code>, <code>ontology_proposal</code>, <code>policy</code>, <code>policy_patch</code>, <code>ope</code>, and <code>replay</code> from agent definitions. The generated candidate contract marks them retired.</p>
+<h2>Operator feedback</h2><p><code>feedback</code> is an operator command, not an MCP tool. Public search does not return its required decision handle, so a model has no supported public path to call it. Do not reconstruct private state or advertise a fake attribution workflow.</p>
 """,
     ),
 )
@@ -372,8 +606,9 @@ def structured_data(page: Page | None, canonical: str) -> str:
                     "@id": f"{DOMAIN}/#software",
                     "name": "Kaleidoscope",
                     "applicationCategory": "DeveloperApplication",
-                    "operatingSystem": "macOS, Linux, Windows",
-                    "description": "Local native memory for AI agents, exposed through a CLI and stdio MCP.",
+                    "operatingSystem": "macOS",
+                    "softwareVersion": "unreleased",
+                    "description": "Local native memory for AI agents, exposed through a staged manager CLI and stdio MCP contract.",
                     "publisher": {"@id": f"{DOMAIN}/#organization"},
                     "url": DOMAIN,
                 },
@@ -459,13 +694,13 @@ def render_home(metadata: dict[str, str], production: bool) -> str:
   <section class="hero shell">
     <p class="eyebrow">Local memory for agents</p>
     <h1>Carry the work forward.</h1>
-    <p class="lede">Kaleidoscope gives agents one local memory across harnesses. The native engine stays on your machine; the public manager connects it safely through a CLI and exactly two MCP tools.</p>
-    <div class="actions"><a class="button" href="/docs/getting-started/">Read the quickstart</a><a class="button secondary" href="/docs/security/">Inspect the boundary</a></div>
+    <p class="lede">Kaleidoscope gives agents one local memory across harnesses. The native engine stays on your machine; the manager candidate connects it safely through a CLI and exactly two MCP tools.</p>
+    <div class="actions"><a class="button" href="/docs/getting-started/">Preview the workflow</a><a class="button secondary" href="/docs/evidence/">Inspect the evidence</a></div>
   </section>
   <section class="shell grid" aria-label="Product principles">
     <article class="card"><h2>Local by construction</h2><p>Memory content, queries, results, identities, and vault paths are not account-service data.</p></article>
     <article class="card"><h2>Harness neutral</h2><p>Codex, Claude, Cursor, OpenCode, and framework clients consume the same profile and MCP contract.</p></article>
-    <article class="card"><h2>Inspectable boundary</h2><p>Signed packages bind the proprietary object code, public manager, model, contract, licenses, SBOM, and provenance.</p></article>
+    <article class="card"><h2>Inspectable boundary</h2><p>The staged bundle binds object code, manager, model, contract, SBOM, and provenance; production signing and licenses are still gated.</p></article>
   </section>
   <section class="shell hero"><p class="eyebrow">Developer contract</p><h2>Two tools, one persistent process.</h2><p class="lede"><code>search</code> retrieves ranked or addressed memory. <code>remember</code> writes explicit durable semantic deltas. Operator commands never enter the agent tool list.</p></section>
 </main>"""
@@ -578,7 +813,8 @@ def build(output: Path, metadata: dict[str, str], production: bool) -> None:
     )
     write_text(output / "robots.txt", robots)
 
-    security = f"""Contact: {DOMAIN}/docs/security/
+    security = f"""# STAGING ONLY — no production security intake is published.
+Contact: {DOMAIN}/docs/security/
 Canonical: {DOMAIN}/.well-known/security.txt
 Expires: 2026-09-30T23:59:59Z
 Preferred-Languages: en
@@ -588,17 +824,27 @@ Policy: {DOMAIN}/docs/security/
 
     llms = f"""# Kaleidoscope
 
-> Local native memory for agents, exposed through a public manager CLI and persistent stdio MCP. Release status: {metadata["availability"]} ({metadata["release_version"]}).
+> Local native memory for agents, exposed through a manager CLI and persistent stdio MCP. Release status: {metadata["availability"]} ({metadata["release_version"]}); no package or production login is public.
 
 - [Documentation]({DOMAIN}/docs/): product and developer overview
-- [Getting started]({DOMAIN}/docs/getting-started/): profile and reversible host setup
-- [MCP reference]({DOMAIN}/docs/mcp/): exactly `search` and `remember`
+- [Getting started]({DOMAIN}/docs/getting-started/): release-gated profile and reversible host workflow
+- [CLI reference]({DOMAIN}/docs/cli/): exact local manager-candidate commands
+- [MCP reference]({DOMAIN}/docs/mcp/): candidate-bound `search` and `remember` contract
 - [Integrations]({DOMAIN}/docs/integrations/): Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP
-- [Security and privacy]({DOMAIN}/docs/security/): local/account/data boundary and release integrity
+- [Security]({DOMAIN}/docs/security/): package, process, and account isolation evidence
+- [Privacy]({DOMAIN}/docs/privacy/): local/account data boundary, credential storage, and telemetry status
 - [Account]({DOMAIN}/docs/account/): login manages account/device state and does not upload local memory
 - [Operations]({DOMAIN}/docs/operations/): backup, restore, uninstall, update, and exact vault deletion
+- [Compatibility]({DOMAIN}/docs/compatibility/): verified local cells versus native/support holds
+- [Benchmarks]({DOMAIN}/docs/benchmarks/): merged candidate-bound smoke, with no score or release claim
+- [Release evidence]({DOMAIN}/docs/evidence/): exact digests, milestone commits, rebind requirement, and protected gates
+- [Public agent skill]({DOMAIN}/SKILL.md): bounded retrieval and verified durable writes
+- [Agent instructions]({DOMAIN}/agent-instructions.md): safe manager-installed AGENTS, CLAUDE, and Cursor pointers
+- [Machine-readable staging evidence]({DOMAIN}/staging-evidence.json): source-free milestone and gate record
+- [Candidate CLI help]({DOMAIN}/reference/kaleidoscope-cli.candidate.txt): exact DX-05B manager help snapshot
+- [Candidate MCP reference]({DOMAIN}/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The engine is proprietary object code. The manager, wrappers, integrations, and public skill are intended to be public after licensing approval. Hosted memory is planned, not available. Public contract SHA-256: {metadata["public_contract_sha256"]}.
+The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. The locally verified engine candidate SHA-256 is {ENGINE_CANDIDATE_SHA256}; its public-contract SHA-256 is {PUBLIC_CONTRACT_SHA256}. The final auth-merged manager and regenerated distribution digests do not exist yet. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
 """
     write_text(output / "llms.txt", llms)
 
@@ -607,7 +853,27 @@ The engine is proprietary object code. The manager, wrappers, integrations, and 
         chunks.append(
             f"# {page.title}\n\nURL: {DOMAIN}{page.route}\nRelease: {metadata['release_version']}\nUpdated: {metadata['updated_at']}\n\n{plain_text(page.body)}"
         )
+    chunks.extend(
+        [
+            f"# Public agent skill\n\nURL: {DOMAIN}/SKILL.md\nSHA-256: {PUBLIC_SKILL_SHA256}\n\n{PUBLIC_FILES['SKILL.md'].read_text(encoding='utf-8').strip()}",
+            f"# Candidate CLI help\n\nURL: {DOMAIN}/reference/kaleidoscope-cli.candidate.txt\nSource: local auth-manager commit 048bf90854a1e38a1b88d14de88b681a206e5790\n\n{MANAGER_HELP.strip()}",
+            f"# Candidate MCP reference\n\nURL: {DOMAIN}/reference/kaleidoscope-mcp.candidate.json\n\n{json.dumps(MCP_REFERENCE, indent=2, sort_keys=True)}",
+            f"# Machine-readable staging evidence\n\nURL: {DOMAIN}/staging-evidence.json\n\n{json.dumps(STAGING_EVIDENCE, indent=2, sort_keys=True)}",
+        ]
+    )
     write_text(output / "llms-full.txt", "\n\n---\n\n".join(chunks))
+
+    write_text(
+        output / "staging-evidence.json",
+        json.dumps(STAGING_EVIDENCE, indent=2, sort_keys=True),
+    )
+    write_text(
+        output / "reference" / "kaleidoscope-cli.candidate.txt", MANAGER_HELP
+    )
+    write_text(
+        output / "reference" / "kaleidoscope-mcp.candidate.json",
+        json.dumps(MCP_REFERENCE, indent=2, sort_keys=True),
+    )
 
     public_source_digests = {}
     for relative, source in PUBLIC_FILES.items():

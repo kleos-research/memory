@@ -32,14 +32,18 @@
 </div></header>
 <div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
 <main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security &amp; privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/" aria-current="page">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/" aria-current="page">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
   <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Compatibility</h1>
 <p class="lede">A platform or harness is supported only after the packaged artifact passes the canonical end-to-end proof on the named native runner and pinned host version.</p>
-<table><thead><tr><th>Surface</th><th>Candidate target</th><th>Current public claim</th></tr></thead><tbody>
-<tr><td>macOS</td><td>arm64, x64</td><td>Not released</td></tr><tr><td>Linux</td><td>x86_64, arm64; libc policy must be explicit</td><td>Not released</td></tr><tr><td>Windows</td><td>x86_64, arm64</td><td>Not released</td></tr>
-<tr><td>Agent hosts</td><td>Codex, Claude Code, Cursor, OpenCode</td><td>Under conformance</td></tr><tr><td>Frameworks</td><td>Claude Agent SDK, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, generic MCP</td><td>Under conformance</td></tr>
+<table><thead><tr><th>Surface</th><th>Verified local evidence</th><th>Held before support</th></tr></thead><tbody>
+<tr><td>macOS arm64</td><td>Engine candidate, manager, object-code packaging, Python/TypeScript MCP, lifecycle rehearsal.</td><td>Final auth-merged package, production signature/notarization, clean native release runner.</td></tr>
+<tr><td>macOS x64</td><td>Target metadata/refusal only.</td><td>Native binaries, package, runner, signing/notarization.</td></tr>
+<tr><td>Linux x86_64/arm64</td><td>Source implementation and target metadata only; libc policy not frozen.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
+<tr><td>Windows x86_64/arm64</td><td>Source implementation and target metadata only.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
+<tr><td>Codex / Claude Code / Cursor / OpenCode</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Pinned live-host acceptance after packaged installation.</td></tr>
+<tr><td>Framework clients</td><td>Generic MCP and adapter lifecycle suites passed with pinned versions.</td><td>Live-provider lanes where required and final packaged-client rebind.</td></tr>
 </tbody></table>
-<p>Cross-compiling, extracting a foreign package, or parsing a configuration file is useful evidence but never a native support claim. Any matrix cell that does not pass is removed from the release before promotion.</p>
+<p>Cross-compiling, extracting a foreign package, parsing configuration, or running a fake provider is useful evidence but not native support. Nothing in this table is a public availability claim.</p>
 </article>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>

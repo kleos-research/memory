@@ -1,0 +1,67 @@
+{
+  "as_of": "2026-08-22",
+  "engine": {
+    "candidate_sha256": "988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825",
+    "production_signature_verified": false,
+    "public_contract_sha256": "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e",
+    "source_commit": "d96355632cc52816472106d0776ce63d73631fef"
+  },
+  "milestones": [
+    {
+      "commit": "3b1ec66d4fc96ff2e77bf7c382b107502ccc7b8d",
+      "id": "DX-04",
+      "scope": "manager init, profiles, reversible host configuration, doctor, instructions",
+      "status": "verified_local",
+      "verification": "27 ordinary tests plus exact-candidate live contract passed"
+    },
+    {
+      "commit": "048bf90854a1e38a1b88d14de88b681a206e5790",
+      "id": "DX-05B",
+      "scope": "manager OIDC, device login, credential storage, account and device commands",
+      "status": "verified_local_provider_unconfigured",
+      "verification": "40 library tests, 5 CLI tests, and exact-candidate live contract passed on macOS arm64"
+    },
+    {
+      "commit": "4a195d548036aa5bccd61d1bc0025d126a4d71ad",
+      "id": "DX-06A/B",
+      "scope": "source-only distribution tooling, object-code bundle, npm and wheel shapes, lifecycle rehearsal",
+      "status": "verified_local_test_signature_only",
+      "verification": "14 local distribution and lifecycle tests passed"
+    },
+    {
+      "commit": "fd0b1877f70b1bb57e1b67c4c559e8b2e1d44290",
+      "id": "DX-07",
+      "scope": "Python and TypeScript clients plus agent and framework integrations",
+      "status": "verified_local",
+      "verification": "Python dependency matrices, TypeScript 32-pass/1-skip and 33-of-33 real-profile lanes, and poison scan passed"
+    },
+    {
+      "commit": "ceac8311f819437ace54813d2b4ba0731a5981a1",
+      "id": "DX-09",
+      "scope": "candidate-bound benchmark contract and opt-in native smoke; no benchmark score",
+      "status": "merged_functional_smoke_only",
+      "verification": "20 ordinary tests passed with 1 live skip; opt-in exact-candidate smoke passed 1 of 1"
+    },
+    {
+      "commit": "ee01e26baaa0df28331795b918c7f1633dafc6f8",
+      "id": "DX-10B",
+      "scope": "macOS arm64 manager, host transforms, Python and TypeScript persistent MCP conformance",
+      "status": "verified_local_non_auth",
+      "verification": "source-free conformance evidence SHA-256 052e898fafdc129f8865dd51ebd615cdcba253edbe417cde83bed1628d32b694"
+    }
+  ],
+  "production_release": false,
+  "public_availability": false,
+  "release_holds": {
+    "final_auth_merged_distribution_sha256": null,
+    "final_auth_merged_manager_sha256": null,
+    "original_documentation_license_approved": false,
+    "pages_promotion_authorized": false,
+    "production_oidc_issuer": null,
+    "production_signing_identity": null,
+    "public_manager_license_approved": false,
+    "registry_publication_authorized": false
+  },
+  "schema_version": "kaleidoscope.docs-staging-evidence.v1",
+  "status": "local_staging_only"
+}
