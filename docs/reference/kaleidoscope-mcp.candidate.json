@@ -14,7 +14,12 @@
       "sha256": "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
     },
     "local_host_cli_conformance": {
-      "candidate": "model-absent development binary",
+      "candidate": "private verified bundled engine candidate",
+      "candidate_model_status": "bundled",
+      "candidate_sha256": "988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825",
+      "candidate_size_bytes": 21122544,
+      "candidate_source_binding": "private_verified_snapshot",
+      "candidate_version": "0.0.0-proposal",
       "claim_boundary": [
         "configuration, connection, and local stdio discovery only",
         "no credentialed model turn",
@@ -25,18 +30,21 @@
       "commit": "52ad4d243966c5a5c9f65b35909d8f029ae74afd",
       "hosts": [
         {
+          "host_executable_sha256": "134063e133f0b4244fa3b251acf973d4fe4b4aeeacbdc135211bf480f59f1477",
           "name": "Codex",
           "scope": "isolated add/list/get/remove and exact rollback; native connection is not exposed by the management CLI",
           "status": "configuration_verified",
           "version": "0.149.0"
         },
         {
+          "host_executable_sha256": "2b4f7aafdaa65bcc2335f56a4b276317837203f2c5587b1f2a17ca78ad14e36f",
           "name": "Claude Code",
           "scope": "local host wiring and MCP discovery",
           "status": "connected",
           "version": "2.1.239"
         },
         {
+          "host_executable_sha256": "8c783005340f8dfc5e7d168478dd0dd2bd1faead531cb34270de2a9689d9f135",
           "name": "OpenCode",
           "scope": "local host wiring and MCP discovery",
           "status": "connected",
@@ -48,7 +56,7 @@
         "search"
       ],
       "platform": "macOS arm64",
-      "status": "verified_local_development_binary"
+      "status": "verified_local_bundled_candidate"
     },
     "platform_harness_commit": "52ad4d243966c5a5c9f65b35909d8f029ae74afd"
   },

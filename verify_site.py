@@ -365,12 +365,20 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             host_conformance = evidence.get("local_host_cli_conformance", {})
             if host_conformance.get("commit") != PLATFORM_HARNESS_COMMIT:
                 failures.append("staging evidence has wrong platform harness commit")
-            if host_conformance.get("status") != "verified_local_development_binary":
+            if host_conformance.get("status") != "verified_local_bundled_candidate":
                 failures.append("staging evidence has wrong local host status")
             if host_conformance.get("platform") != "macOS arm64":
                 failures.append("staging evidence has wrong local host platform")
-            if host_conformance.get("candidate") != "model-absent development binary":
+            if host_conformance.get("candidate") != "private verified bundled engine candidate":
                 failures.append("staging evidence has wrong local host candidate")
+            if host_conformance.get("candidate_version") != "0.0.0-proposal":
+                failures.append("staging evidence has wrong bundled candidate version")
+            if host_conformance.get("candidate_size_bytes") != 21122544:
+                failures.append("staging evidence has wrong bundled candidate size")
+            if host_conformance.get("candidate_sha256") != ENGINE_CANDIDATE_SHA256:
+                failures.append("staging evidence has wrong bundled candidate digest")
+            if host_conformance.get("candidate_model_status") != "bundled":
+                failures.append("staging evidence must record the bundled model")
             if host_conformance.get("mcp_tools") != ["remember", "search"]:
                 failures.append("staging evidence has wrong local host MCP tools")
             hosts = {
