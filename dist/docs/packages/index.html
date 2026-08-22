@@ -46,7 +46,7 @@ kscope --version</code></pre>
 <h2>What the package checks</h2>
 <ul><li>Exact manager, engine, public-contract, SBOM, provenance, and signature bindings.</li><li>Allowlisted tarball/wheel inventories with private-source and build-path scans.</li><li>Offline installation, executable permissions, <code>kscope --version</code>, and clean update/rollback/uninstall rehearsals.</li><li>Unsupported or untested targets fail clearly; matrix entries do not imply support.</li></ul>
 <h2>Current availability</h2>
-<p>The local macOS arm64 candidate passes the package and lifecycle lanes. The final-name package metadata is staged at SDK commit <code>{SDK_PACKAGE_METADATA_COMMIT}</code>. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.</p>
+<p>The local macOS arm64 candidate passes the package and lifecycle lanes. The final-name SDK metadata is staged at commit <code>{SDK_PACKAGE_METADATA_COMMIT}</code>; the native release-candidate package refresh is bound at <code>{PACKAGE_REFRESH_COMMIT}</code> with proof SHA-256 <code>{PACKAGE_PROOF_SHA256}</code>. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.</p>
 </article>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>

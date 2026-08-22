@@ -141,7 +141,7 @@ What the package checks
 
 Current availability
 
-The local macOS arm64 candidate passes the package and lifecycle lanes. The final-name package metadata is staged at SDK commit {SDK_PACKAGE_METADATA_COMMIT}. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.
+The local macOS arm64 candidate passes the package and lifecycle lanes. The final-name SDK metadata is staged at commit {SDK_PACKAGE_METADATA_COMMIT}; the native release-candidate package refresh is bound at {PACKAGE_REFRESH_COMMIT} with proof SHA-256 {PACKAGE_PROOF_SHA256}. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.
 
 ---
 
