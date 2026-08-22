@@ -3,75 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Package installation | Kaleidoscope</title>
-  <meta name="description" content="Kaleidoscope npm and Python package names, platform selection, source-free payload rules, and protected release gates.">
+  <title>Install | Kaleidoscope</title>
+  <meta name="description" content="The npm and Python package names for Kaleidoscope, what each one installs, what your machine needs, and why neither is available yet.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/packages/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
-  <meta property="og:title" content="Package installation | Kaleidoscope">
-  <meta property="og:description" content="Kaleidoscope npm and Python package names, platform selection, source-free payload rules, and protected release gates.">
+  <meta property="og:title" content="Install | Kaleidoscope">
+  <meta property="og:description" content="The npm and Python package names for Kaleidoscope, what each one installs, what your machine needs, and why neither is available yet.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/packages/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Package installation | Kaleidoscope">
-  <meta name="twitter:description" content="Kaleidoscope npm and Python package names, platform selection, source-free payload rules, and protected release gates.">
+  <meta name="twitter:title" content="Install | Kaleidoscope">
+  <meta name="twitter:description" content="The npm and Python package names for Kaleidoscope, what each one installs, what your machine needs, and why neither is available yet.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Package installation","description":"Kaleidoscope npm and Python package names, platform selection, source-free payload rules, and protected release gates.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/packages/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Package installation","item":"https://memory.kleosresearch.xyz/docs/packages/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Install","description":"The npm and Python package names for Kaleidoscope, what each one installs, what your machine needs, and why neither is available yet.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/packages/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Install","item":"https://memory.kleosresearch.xyz/docs/packages/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/" aria-current="page">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Package installation</h1>
-<p class="lede">The converged contract separates public SDK facades from native companions. Facades contain the full language SDK and both command launchers; native companions contain the manager plus proprietary object-code engine.</p>
-<div class="callout"><strong>Local RC evidence only.</strong> Version <code>0.1.0-rc.1</code> (Python <code>0.1.0rc1</code>) is verified only for macOS arm64. Every artifact remains private, test-signed, unpublished, and outside a support claim.</div>
-<h2>npm: full TypeScript SDK facade</h2>
-<pre><code>npm install -g @kleos-research/kaleidoscope@0.1.0-rc.1
-kaleidoscope --version
-kscope --version</code></pre>
-<p><code>@kleos-research/kaleidoscope</code> contains the full public TypeScript client, type declarations, typed installed-payload resolver, and the <code>kaleidoscope</code>/<code>kscope</code> launchers. It requires Node.js 22 or newer and pins <code>@kleos-research/kaleidoscope-darwin-arm64@0.1.0-rc.1</code> as its exact optional native companion. Do not use <code>--omit=optional</code>.</p>
-<p>The macOS arm64 native companion contains the manager, proprietary object-code engine, bound public contract, manifest, and trust material. It contains neither the public SDK implementation nor engine source.</p>
-<h2>Python: full Python SDK facade</h2>
-<pre><code>python -m pip install kaleidoscope-memory==0.1.0rc1
-kaleidoscope --version
-kscope --version</code></pre>
-<p><code>kaleidoscope-memory</code> contains the full public Python client, installed-payload resolver, and both console scripts. It requires Python 3.11 or newer and selects <code>kaleidoscope-memory-native-darwin-arm64==0.1.0rc1</code> only on macOS arm64.</p>
-<p>The native wheel contains the same manager and proprietary object-code engine payload as the npm native companion. Neither ecosystem uses an install hook, runtime download, compiler, source distribution fallback, or embedded private engine source.</p>
-<h2>Exact local RC artifacts</h2>
-<table><thead><tr><th>Artifact</th><th>SHA-256</th></tr></thead><tbody>
-<tr><td>Source-free release archive</td><td><code>2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a</code></td></tr>
-<tr><td>Signed distribution manifest</td><td><code>efc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8</code></td></tr>
-<tr><td>npm SDK facade</td><td><code>0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd</code></td></tr>
-<tr><td>npm macOS arm64 native companion</td><td><code>ec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b</code></td></tr>
-<tr><td>Python SDK facade</td><td><code>72099296676ef38b146018ae4ffac6cfb082bc8a537f178443acd351cf7bf6d7</code></td></tr>
-<tr><td>Python macOS arm64 native companion</td><td><code>d265493d6ca583f2ecd9e69257c8ed604174636e1c5f3b29dc08eafe01c51d8b</code></td></tr>
-<tr><td>Combined package proof</td><td><code>62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7</code></td></tr>
-</tbody></table>
-<h2>What the package checks</h2>
-<ul><li>Exact SDK commit, manager, engine, public-contract, manifest, package, SBOM, provenance, and signature bindings.</li><li>Facade names, versions, native dependency pins, required client modules, resolvers, both launchers, and allowlisted archive inventories.</li><li>Private-source and build-path scans plus isolated npm/Python installs and both version commands.</li><li>Cross-target type-check evidence now covers Linux x86_64/arm64, Windows x86_64 GNU, and macOS x64; unsupported runtime/package targets still fail clearly.</li></ul>
-<h2>Current availability</h2>
-<p>SDK commit <code>9ed39bddd7bf14e68e1c363074f6921288b9e94b</code>, assembler commit <code>af892d180fe01729450e03917f33ac56698e90e1</code>, and final evidence commit <code>0c42ff35b789a0406aaabf6634bdb2988db36b0a</code> define this local RC contract. The package proof records <code>facade_mode: sdk_artifacts</code>; the final package evidence records fresh npm/Python facade invocation. The Apache-2.0 facade metadata and proprietary EULA review draft are bound into this proof. Final legal review, trusted signing identities, registry credentials, other native platforms, and protected publication approval remain required.</p>
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/" aria-current="page">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><span aria-current="page">Install</span></nav><h1>Install</h1><ul class="toc" aria-label="On this page"><li><a href="#the-two-packages">The two packages</a></li><li><a href="#what-is-inside">What is inside</a></li><li><a href="#why-you-cannot-install-it-yet">Why you cannot install it yet</a></li></ul>
+<p class="lede">You cannot install Kaleidoscope today. Neither package exists in a registry, so both names on this page return 404. What follows is what you will install once they publish, what is inside, and what your machine will need.</p>
+<h2 id="the-two-packages">The two packages</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="The two packages table"><table><thead><tr><th>Ecosystem</th><th>Package</th><th>Requires</th><th>Status</th></tr></thead><tbody>
+<tr><td>npm</td><td><code>@kleos-research/kaleidoscope</code></td><td>Node.js 22 or newer</td><td>Not available</td></tr>
+<tr><td>PyPI</td><td><code>kaleidoscope-memory</code></td><td>Python 3.11 or newer</td><td>Not available</td></tr>
+</tbody></table></div>
+<p>These names are final. You only need one of them: both install the same two commands, <code>kaleidoscope</code> and <code>kscope</code>, and both give you the same local memory. Pick whichever ecosystem your project already uses.</p>
+<h2 id="what-is-inside">What is inside</h2>
+<p>Installing one of these gets you two things. The first is the package for your language: the full client library for TypeScript or Python, and the <code>kaleidoscope</code> and <code>kscope</code> commands. The second is a package built for your platform, which carries the engine that stores and ranks your memory.</p>
+<p>That engine is proprietary object code. Its source is not in either package, and a native binary is still inspectable — shipping object code is not a claim that it cannot be read. Everything around the engine is open: the command-line tool, both SDKs, every integration, and the agent skill are Apache-2.0.</p>
+<p>Today the only platform package that exists is for macOS on Apple Silicon. Neither ecosystem uses an install hook, a download at install time, a compiler, or a source-build fallback — installing puts files on your disk, and that is all it does.</p>
+<h2 id="why-you-cannot-install-it-yet">Why you cannot install it yet</h2>
+<p>There is no public installation channel. <code>@kleos-research/kaleidoscope</code> is not on npm and <code>kaleidoscope-memory</code> is not on PyPI. Archives, tarballs, and wheels do exist, but they are private test builds, not downloads, and there is nowhere to fetch them from.</p>
+<p>Nothing is signed for production either. There is no Apple signing and no notarisation; the only signature that exists is a test fixture checked into the source tree, and the native code is ad-hoc signed only. None of that is a supply-chain guarantee, and it has to be real before either package can publish.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

@@ -3,54 +3,76 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Local operations | Kaleidoscope</title>
-  <meta name="description" content="Operate Kaleidoscope safely: locations, backup and restore, migration, disconnect, uninstall, and exact vault deletion.">
+  <title>Operations | Kaleidoscope</title>
+  <meta name="description" content="Where your memory lives, how to back it up and restore it, and how disconnecting, uninstalling, logging out and deleting a vault differ.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/operations/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
-  <meta property="og:title" content="Local operations | Kaleidoscope">
-  <meta property="og:description" content="Operate Kaleidoscope safely: locations, backup and restore, migration, disconnect, uninstall, and exact vault deletion.">
+  <meta property="og:title" content="Operations | Kaleidoscope">
+  <meta property="og:description" content="Where your memory lives, how to back it up and restore it, and how disconnecting, uninstalling, logging out and deleting a vault differ.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/operations/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Local operations | Kaleidoscope">
-  <meta name="twitter:description" content="Operate Kaleidoscope safely: locations, backup and restore, migration, disconnect, uninstall, and exact vault deletion.">
+  <meta name="twitter:title" content="Operations | Kaleidoscope">
+  <meta name="twitter:description" content="Where your memory lives, how to back it up and restore it, and how disconnecting, uninstalling, logging out and deleting a vault differ.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Local operations","description":"Operate Kaleidoscope safely: locations, backup and restore, migration, disconnect, uninstall, and exact vault deletion.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/operations/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Local operations","item":"https://memory.kleosresearch.xyz/docs/operations/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Operations","description":"Where your memory lives, how to back it up and restore it, and how disconnecting, uninstalling, logging out and deleting a vault differ.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/operations/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Operations","item":"https://memory.kleosresearch.xyz/docs/operations/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/" aria-current="page">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Local operations</h1>
-<p class="lede">Configuration, agent instructions, account credentials, installed executables, and canonical vault data have separate lifecycles.</p>
-<h2>Locate before changing</h2><p>Use the manager profile and doctor views to identify the active package and profile without printing tokens or raw memory content. Never assume a worktree carries gitignored vault data.</p>
-<h2>Back up and restore</h2><p>Back up the canonical vault from the main checkout or another explicit data location, not a disposable worktree. Restore only through the verified export/import path for the same supported vault format.</p>
-<h2>Disconnect and uninstall</h2><p>Disconnect removes only manager-owned host configuration. Instruction removal is separate. A future installer uninstall removes package artifacts according to its scope; account logout/revocation is also separate. None of these operations implicitly deletes a vault.</p>
-<h2>Delete a vault</h2><p>Vault deletion is a separate preview-and-confirm operation tied to one exact resolved root. Logical memory deletion and physical vault deletion are different operations. A broad path, unresolved variable, or ambiguous target must be refused.</p>
-<h2>Update and rollback</h2><p>DX-10A locally exercised clean install, update, exact rollback, and uninstall under an explicitly marked staging root using the final local manager and engine candidate. It verified only a TEST-ONLY Ed25519 trust root and reused the same binaries for the simulated update. This is not a production installer, notarization result, or supported update channel. The separate vault canary remained byte-identical.</p>
-<h2>Package shapes</h2><p>Local macOS arm64 staging produced full TypeScript/Python SDK facades and exact npm/wheel native companions. Both facades expose <code>kaleidoscope</code> and <code>kscope</code>; both companions carry the manager and proprietary object-code engine. Cross-target type-checks cover the other supported source targets, but no foreign native package or runtime acceptance exists. Nothing was published.</p>
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/" aria-current="page">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><span aria-current="page">Operations</span></nav><h1>Operations</h1><ul class="toc" aria-label="On this page"><li><a href="#find-your-profile-first">Find your profile first</a></li><li><a href="#back-up-and-restore">Back up and restore</a></li><li><a href="#disconnect-and-uninstall">Disconnect and uninstall</a></li><li><a href="#delete-a-vault">Delete a vault</a></li><li><a href="#install-update-and-roll-back">Install, update, and roll back</a></li><li><a href="#what-gets-installed">What gets installed</a></li></ul>
+<p class="lede">Your memory lives in one place on your machine — a vault directory you chose. Everything else Kaleidoscope touches (editor configuration, agent instructions, account credentials, the installed executables) has its own lifecycle, and removing any of them does not remove your memory.</p>
+<h2 id="find-your-profile-first">Find your profile first</h2><p>You named a vault root when you initialized a profile. To see which profile is active and where it points, without printing credentials or any memory content:</p>
+<pre tabindex="0"><code>kaleidoscope profile list
+kaleidoscope config --profile default --json
+kaleidoscope doctor --project "$PWD"</code></pre>
+<h2 id="back-up-and-restore">Back up and restore</h2><p>Back up by copying the whole vault directory while nothing is connected to it — close the editors and agents you have connected first, so nothing is writing to it mid-copy. Copy the directory as a whole; a partial copy is not a vault. To restore, or to move your memory to another machine or another path, put the directory back and point a profile at it:</p>
+<pre tabindex="0"><code>kaleidoscope init --profile default --root /absolute/path/to/the/vault</code></pre>
+<h2 id="disconnect-and-uninstall">Disconnect and uninstall</h2><p>These are four separate operations, and it matters that you know which one you are doing.</p>
+<ul>
+<li><code>kaleidoscope disconnect HOST</code> removes only the configuration Kaleidoscope itself wrote into that editor. Other settings in the same file are left alone.</li>
+<li><code>kaleidoscope instructions remove</code> removes the agent guidance pointer, which is a separate thing from the connection.</li>
+<li>Uninstalling the package removes the executables.</li>
+<li><code>kaleidoscope logout</code> removes or revokes account credentials.</li>
+</ul>
+<p>None of the four deletes a vault. Your memory survives all of them.</p>
+<h2 id="delete-a-vault">Delete a vault</h2><p>Deleting a vault is deliberately its own operation: it previews what it will delete, asks you to confirm, and acts on exactly one fully resolved path. A broad path, an unresolved variable, or an ambiguous target is refused rather than guessed at. Deleting a memory and deleting the vault that holds it are different acts — the first is something you ask the engine to do, the second removes the files.</p>
+<h2 id="install-update-and-roll-back">Install, update, and roll back</h2><p>Installing, updating, rolling back to the previous version, and uninstalling have each been run on a Mac with Apple Silicon and behaved correctly, and a vault kept alongside was byte-for-byte identical afterwards. That is the whole of what has been established. Nothing is signed for production, and there is no channel to update from yet, so this is not a supported update path — it is a mechanism we have run once, on one machine.</p>
+<h2 id="what-gets-installed">What gets installed</h2><p>Two things: a language package for npm or Python, and a second package built for your platform. The language package holds the client library and the <code>kaleidoscope</code> and <code>kscope</code> commands; the platform package holds the manager and the engine, as object code. There is no install hook, runtime download, compiler, or source-build fallback — nothing is fetched or built on your machine after the download. The engine source is in neither package.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

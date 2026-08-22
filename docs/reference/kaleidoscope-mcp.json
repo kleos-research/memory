@@ -1,0 +1,53 @@
+{
+  "model_tools": [
+    {
+      "fields": [
+        "content_md",
+        "expected_version_id",
+        "items",
+        "memory_id",
+        "mode",
+        "semantic_delta"
+      ],
+      "maximum_batch_items": 20,
+      "modes": [
+        "create",
+        "update",
+        "delete"
+      ],
+      "name": "remember",
+      "required": [
+        "mode"
+      ]
+    },
+    {
+      "addressing": "exactly_one_of_query_or_memory_id",
+      "fields": [
+        "as_of",
+        "bfs_depth",
+        "candidate_pool",
+        "channels",
+        "ledger",
+        "max_facts",
+        "maximum_context_bytes",
+        "memory_id",
+        "query",
+        "scope",
+        "top_k"
+      ],
+      "ledger_values": [
+        true
+      ],
+      "name": "search",
+      "required": []
+    }
+  ],
+  "operator_commands_are_model_tools": false,
+  "protocol_revision": "2025-11-25",
+  "publicly available": false,
+  "release_readiness_claimed": false,
+  "released": false,
+  "schema_version": "kaleidoscope.docs-mcp-reference.v2",
+  "transport": "stdio",
+  "what this is": "The two tools an agent sees when it connects to Kaleidoscope, and the fields each one takes."
+}

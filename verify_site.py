@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import re
+import struct
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
@@ -14,69 +15,16 @@ from xml.etree import ElementTree
 
 DOMAIN = "https://memory.kleosresearch.xyz"
 SOCIAL_IMAGE = f"{DOMAIN}/assets/kaleidoscope-og.png"
+# The social card is the product's identity on every share surface, and a PNG
+# magic-byte test cannot see that it is the wrong drawing in the wrong colour.
+# Pin the composed brand card itself: ink ground, the real swept mark in brass,
+# the wordmark in Newsreader. Regenerate the card, then update this digest.
+SOCIAL_IMAGE_SHA256 = (
+    "d84723af1329236dc663243909771784a4a056a6359f1f0cbd3243390c27ebf5"
+)
 EXPECTED_CNAME = "memory.kleosresearch.xyz"
-ENGINE_CANDIDATE_SHA256 = (
-    "988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825"
-)
-PUBLIC_CONTRACT_SHA256 = (
-    "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e"
-)
 PUBLIC_SKILL_SHA256 = (
     "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad"
-)
-MANAGER_SOURCE_COMMIT = "9ed39bddd7bf14e68e1c363074f6921288b9e94b"
-MANAGER_SHA256 = (
-    "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1"
-)
-DISTRIBUTION_COMMIT = "42ffba4e3976810f91f2adcf53bd4393e5330d72"
-SDK_FACADE_COMMIT = "9ed39bddd7bf14e68e1c363074f6921288b9e94b"
-DISTRIBUTION_ASSEMBLER_COMMIT = "af892d180fe01729450e03917f33ac56698e90e1"
-FINAL_EVIDENCE_COMMIT = "0c42ff35b789a0406aaabf6634bdb2988db36b0a"
-FINAL_PACKAGE_EVIDENCE_SHA256 = (
-    "7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c"
-)
-FINAL_BUILD_PROOF_SHA256 = (
-    "ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053"
-)
-LOCAL_ARCHIVE_SHA256 = (
-    "2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a"
-)
-LOCAL_MANIFEST_SHA256 = (
-    "efc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8"
-)
-PACKAGE_PROOF_SHA256 = "62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7"
-NPM_FACADE_SHA256 = "0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd"
-NPM_NATIVE_SHA256 = "ec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b"
-PYTHON_FACADE_SHA256 = (
-    "72099296676ef38b146018ae4ffac6cfb082bc8a537f178443acd351cf7bf6d7"
-)
-PYTHON_NATIVE_SHA256 = (
-    "d265493d6ca583f2ecd9e69257c8ed604174636e1c5f3b29dc08eafe01c51d8b"
-)
-LOCAL_SBOM_SHA256 = (
-    "5058f2170630cb70ac14252162245f3ae94cc9d02f9b58c74d36694355094f4c"
-)
-LOCAL_PROVENANCE_SHA256 = (
-    "498c60561520e57834a807c2e17443b0a7eefe1c3901c67450e0506135babfb8"
-)
-LOCAL_TEST_SIGNATURE_SHA256 = (
-    "9bce859379b24683cff7e6069835aa9f8d8ac4f1d07ff353f050ea1b9df60e0c"
-)
-DX10A_EVIDENCE_SHA256 = (
-    "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
-)
-SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
-PLATFORM_HARNESS_COMMIT = "52ad4d243966c5a5c9f65b35909d8f029ae74afd"
-CROSS_TARGET_COMPILE_SOURCE_COMMIT = "be5112911125a31bcf2efa766791d044cadab5ed"
-CROSS_TARGET_COMPILE_EVIDENCE_SHA256 = (
-    "67ec1ad295ce912799c883b661e3f2f0ad6e19139a887ea190613ef4a806c55f"
-)
-DX10B_HOST_EVIDENCE_SHA256 = (
-    "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
-)
-BENCHMARK_COMMIT = "ef89d05f09435afc9790fcdf5df3e01d34c7115b"
-DX09_FIXTURE_EVIDENCE_SHA256 = (
-    "f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
 )
 PRIVATE_MARKERS = (
     "/Users/",
@@ -90,6 +38,51 @@ PRIVATE_MARKERS = (
     "KSCOPE_JOURNAL",
 )
 LEGACY_TOOLS = ("compile", "recall", "read_memory", "ingest_memory")
+# Words that state our internal release process instead of what a reader can
+# and cannot do. Every one of them was published on this site at least once,
+# and the owner rejected the copy that carried them. The scan runs over the
+# whole lowercased text of every published file, so it also sees class names,
+# JSON keys, SVG ids and aria labels, and "-" is a word boundary.
+BANNED_VOCABULARY = (
+    r"dx-\d",
+    r"facades?",
+    r"harnesse?s?",
+    r"conformance",
+    r"signature_verified",
+    r"milestones",
+    r"\bslices?\b",
+    r"\bsmoke\b",
+    r"\blanes?\b",
+    r"\bstaging\b",
+    r"\bcandidates?\b",
+    r"\bpromotion\b",
+    r"\bcanary\b",
+    r"\bexercised\b",
+    # A commit or a build digest is our coordinate, not the reader's. Twelve
+    # characters is the shortest form that was ever published in prose.
+    r"\b[0-9a-f]{12,}\b",
+)
+# Files the site republishes verbatim rather than writes. The four product
+# terms are unreviewed draft source under a mandatory not-in-force notice, and
+# SKILL.md is the agent skill exactly as the product installs it — its
+# "candidates" and "milestone" are ordinary English about memories, not about
+# this release. Editing either from this repository would make the published
+# copy differ from the source it claims to reproduce byte for byte.
+VOCABULARY_EXEMPT = {
+    "SKILL.md",
+    "legal/ENGINE-EULA.txt",
+    "legal/PRIVACY-NOTICE.txt",
+    "legal/SECURITY-POLICY.txt",
+    "legal/SUPPORT-POLICY.txt",
+    "docs/legal/engine-eula/index.html",
+    "docs/legal/privacy-notice/index.html",
+    "docs/legal/security-policy/index.html",
+    "docs/legal/support-policy/index.html",
+    # every file digest in the build manifest is a 64-character hex string
+    "site-manifest.json",
+}
+# llms-full.txt inlines the exempt skill; scan the chunks the site wrote.
+VOCABULARY_EXEMPT_CHUNKS = ("# Public agent skill",)
 PRODUCTION_BLOCKERS = (
     "unreleased",
     "not-yet-bound",
@@ -141,10 +134,9 @@ EXPECTED_HTML = {
     "docs/account/index.html",
     "docs/compatibility/index.html",
     "docs/benchmarks/index.html",
-    "docs/evidence/index.html",
+    "docs/status/index.html",
     "docs/release-notes/index.html",
     "docs/troubleshooting/index.html",
-    "docs/migration/index.html",
     "docs/hosted/index.html",
     "docs/legal/index.html",
     "docs/legal/engine-eula/index.html",
@@ -152,23 +144,66 @@ EXPECTED_HTML = {
     "docs/legal/security-policy/index.html",
     "docs/legal/support-policy/index.html",
 }
-NOINDEX_HTML = {"404.html", "docs/hosted/index.html"}
-EXPECTED_MILESTONES = {
-    "DX-04": MANAGER_SOURCE_COMMIT,
-    "DX-05B": MANAGER_SOURCE_COMMIT,
-    "DX-06A/B": DISTRIBUTION_ASSEMBLER_COMMIT,
-    "DX-07": SDK_FACADE_COMMIT,
-    "DX-09": BENCHMARK_COMMIT,
-    "DX-10A": DISTRIBUTION_COMMIT,
-    "DX-10B": FINAL_EVIDENCE_COMMIT,
+NOINDEX_HTML = {
+    "404.html",
+    "docs/hosted/index.html",
+    "docs/legal/engine-eula/index.html",
+    "docs/legal/privacy-notice/index.html",
+    "docs/legal/security-policy/index.html",
+    "docs/legal/support-policy/index.html",
 }
-
-
+# Routes where a developer has asked for technical provenance. Global chrome
+# must not carry a release version, availability value, or contract digest.
+PROVENANCE_ROUTES = {
+    "docs/status/index.html",
+    "docs/packages/index.html",
+    "docs/release-notes/index.html",
+    "docs/mcp/index.html",
+    "docs/getting-started/index.html",
+    "docs/benchmarks/index.html",
+}
+LEGAL_DRAFT_ROUTES = {
+    "docs/legal/index.html",
+    "docs/legal/engine-eula/index.html",
+    "docs/legal/privacy-notice/index.html",
+    "docs/legal/security-policy/index.html",
+    "docs/legal/support-policy/index.html",
+}
+# "has not" on a document page, "have not" on the section index — match both.
+LEGAL_DRAFT_SENTINELS = ("not been reviewed by legal counsel", "not in force")
+LEGAL_OVERCLAIMS = (
+    "reviewed by counsel",
+    "legally binding",
+    "counsel-approved",
+    "legally effective",
+    # the affirmative that mirrors the sentinel: a page may carry the sentinel
+    # and this at the same time, and neither of the other checks would speak.
+    "has been reviewed by legal counsel",
+    "have been reviewed by legal counsel",
+    "reviewed by outside counsel",
+    "counsel-reviewed",
+    "approved by counsel",
+)
+# kaleidoscope-dark, brand/tokens/tokens.json.
+REQUIRED_TOKENS = ("#0B0B0C", "#131315", "#232325", "#8C887F", "#EAE7E0", "#CFA757")
+# Values that must not reappear: the five drifted ones from the rejected design,
+# plus #605D57, which was a rebuild extension token used for real text at
+# 9.5-12px and measures 3.00:1 on --bg and 2.83:1 on --raised.
+DRIFTED_TOKENS = (
+    "#2c2c30",
+    "#ece8df",
+    "#918b80",
+    "#d2aa5b",
+    "#e0be7b",
+    "#9bc6a4",
+    "#605d57",
+)
 class DocumentParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
         self.links: list[str] = []
         self.h1_count = 0
+        self.headings: list[int] = []
         self.canonicals: list[str] = []
         self.robots: list[str] = []
         self.descriptions: list[str] = []
@@ -196,8 +231,10 @@ class DocumentParser(HTMLParser):
                 self.descriptions.append(values.get("content") or "")
         if tag == "script" and values.get("type") == "application/ld+json":
             self._structured_buffer = []
-        if tag == "h1":
-            self.h1_count += 1
+        if tag in {"h1", "h2", "h3", "h4", "h5", "h6"}:
+            self.headings.append(int(tag[1]))
+            if tag == "h1":
+                self.h1_count += 1
 
     def handle_data(self, data: str) -> None:
         if self._structured_buffer is not None:
@@ -244,10 +281,25 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         failures.append("CNAME does not match the canonical documentation domain")
 
     social_image = root / "assets" / "kaleidoscope-og.png"
-    if not social_image.is_file() or not social_image.read_bytes().startswith(
-        b"\x89PNG\r\n\x1a\n"
-    ):
+    if not social_image.is_file():
         failures.append("missing or invalid Kaleidoscope social image")
+    else:
+        social_bytes = social_image.read_bytes()
+        if not social_bytes.startswith(b"\x89PNG\r\n\x1a\n"):
+            failures.append("missing or invalid Kaleidoscope social image")
+        else:
+            width, height = struct.unpack(">II", social_bytes[16:24])
+            if (width, height) != (1200, 630):
+                failures.append(
+                    f"social image is {width}x{height}, expected 1200x630"
+                )
+            digest = hashlib.sha256(social_bytes).hexdigest()
+            if digest != SOCIAL_IMAGE_SHA256:
+                failures.append(
+                    "social image is not the composed Kaleidoscope brand card "
+                    f"(sha256 {digest}); it must carry the swept mark in brass "
+                    "on ink, not a second palette or a substitute drawing"
+                )
 
     declared = {entry["path"]: entry for entry in manifest.get("files", [])}
     actual = {
@@ -287,290 +339,178 @@ def verify(root: Path, expected_mode: str) -> list[str]:
     elif hashlib.sha256(skill_path.read_bytes()).hexdigest() != PUBLIC_SKILL_SHA256:
         failures.append("canonical public skill digest changed")
 
-    evidence_path = actual.get("staging-evidence.json")
-    if evidence_path is None:
-        failures.append("missing staging-evidence.json")
+    status_path = actual.get("status.json")
+    if status_path is None:
+        failures.append("missing status.json")
     else:
         try:
-            evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
+            status = json.loads(status_path.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
-            failures.append("staging-evidence.json is not valid JSON")
+            failures.append("status.json is not valid JSON")
         else:
-            if evidence.get("schema_version") != "kaleidoscope.docs-staging-evidence.v1":
-                failures.append("wrong staging evidence schema")
-            engine = evidence.get("engine", {})
-            if engine.get("candidate_sha256") != ENGINE_CANDIDATE_SHA256:
-                failures.append("staging evidence has wrong engine candidate")
-            if engine.get("public_contract_sha256") != PUBLIC_CONTRACT_SHA256:
-                failures.append("staging evidence has wrong public contract")
-            if engine.get("production_signature_verified") is not False:
-                failures.append("staging evidence must not claim a production signature")
-            manager = evidence.get("manager", {})
-            if manager.get("source_commit") != MANAGER_SOURCE_COMMIT:
-                failures.append("staging evidence has wrong manager source commit")
-            if manager.get("candidate_sha256") != MANAGER_SHA256:
-                failures.append("staging evidence has wrong manager digest")
-            if manager.get("production_signature_verified") is not False:
-                failures.append("staging evidence must not claim a signed manager")
-            distribution = evidence.get("local_distribution", {})
-            if distribution.get("commit") != FINAL_EVIDENCE_COMMIT:
-                failures.append("staging evidence has wrong final evidence commit")
-            if distribution.get("assembler_commit") != DISTRIBUTION_ASSEMBLER_COMMIT:
-                failures.append("staging evidence has wrong assembler commit")
-            if distribution.get("sdk_facade_commit") != SDK_FACADE_COMMIT:
-                failures.append("staging evidence has wrong SDK facade commit")
-            if distribution.get("version") != "0.1.0-rc.1":
-                failures.append("staging evidence has wrong RC version")
-            if distribution.get("native_target") != "darwin-arm64":
-                failures.append("staging evidence has wrong native RC target")
-            for field, expected in (
-                ("archive_sha256", LOCAL_ARCHIVE_SHA256),
-                ("manifest_sha256", LOCAL_MANIFEST_SHA256),
-                ("sbom_sha256", LOCAL_SBOM_SHA256),
-                ("provenance_sha256", LOCAL_PROVENANCE_SHA256),
-                ("signature_envelope_sha256", LOCAL_TEST_SIGNATURE_SHA256),
-                ("build_proof_sha256", FINAL_BUILD_PROOF_SHA256),
-                ("package_proof_sha256", PACKAGE_PROOF_SHA256),
-                (
-                    "final_facade_happy_path_evidence_sha256",
-                    FINAL_PACKAGE_EVIDENCE_SHA256,
-                ),
-            ):
-                if distribution.get(field) != expected:
-                    failures.append(f"staging evidence has wrong {field}")
-            facades = distribution.get("facades", {})
-            if facades.get("contains") != (
-                "full public SDK plus kaleidoscope and kscope launchers"
-            ):
-                failures.append("staging evidence has wrong facade contents")
-            if facades.get("npm", {}).get("sha256") != NPM_FACADE_SHA256:
-                failures.append("staging evidence has wrong npm facade digest")
-            if facades.get("python", {}).get("sha256") != PYTHON_FACADE_SHA256:
-                failures.append("staging evidence has wrong Python facade digest")
-            native = distribution.get("native_companions", {})
-            if native.get("contains") != "manager plus proprietary object-code engine":
-                failures.append("staging evidence has wrong native companion contents")
-            if native.get("npm", {}).get("sha256") != NPM_NATIVE_SHA256:
-                failures.append("staging evidence has wrong npm native digest")
-            if native.get("python", {}).get("sha256") != PYTHON_NATIVE_SHA256:
-                failures.append("staging evidence has wrong Python native digest")
-            if distribution.get("test_signature_only") is not True:
-                failures.append("staging evidence must mark its signature test-only")
-            if distribution.get("production_release") is not False:
-                failures.append("staging distribution must not claim production release")
-            if evidence.get("production_release") is not False:
-                failures.append("staging evidence must not claim production release")
-            if evidence.get("public_availability") is not False:
-                failures.append("staging evidence must not claim public availability")
-            host_conformance = evidence.get("local_host_cli_conformance", {})
-            if host_conformance.get("commit") != PLATFORM_HARNESS_COMMIT:
-                failures.append("staging evidence has wrong platform harness commit")
-            if host_conformance.get("status") != "verified_local_bundled_candidate":
-                failures.append("staging evidence has wrong local host status")
-            if host_conformance.get("platform") != "macOS arm64":
-                failures.append("staging evidence has wrong local host platform")
-            if host_conformance.get("candidate") != "private verified bundled engine candidate":
-                failures.append("staging evidence has wrong local host candidate")
-            if host_conformance.get("candidate_version") != "0.0.0-proposal":
-                failures.append("staging evidence has wrong bundled candidate version")
-            if host_conformance.get("candidate_size_bytes") != 21122544:
-                failures.append("staging evidence has wrong bundled candidate size")
-            if host_conformance.get("candidate_sha256") != ENGINE_CANDIDATE_SHA256:
-                failures.append("staging evidence has wrong bundled candidate digest")
-            if host_conformance.get("candidate_model_status") != "bundled":
-                failures.append("staging evidence must record the bundled model")
-            if host_conformance.get("mcp_tools") != ["remember", "search"]:
-                failures.append("staging evidence has wrong local host MCP tools")
-            hosts = {
-                (host.get("name"), host.get("version"), host.get("status"))
-                for host in host_conformance.get("hosts", [])
-            }
-            expected_hosts = {
-                ("Codex", "0.149.0", "configuration_verified"),
-                ("Claude Code", "2.1.239", "connected"),
-                ("OpenCode", "1.18.21", "connected"),
-            }
-            if hosts != expected_hosts:
-                failures.append("staging evidence has wrong local host inventory")
-            compile_evidence = evidence.get("cross_target_compile", {})
-            if compile_evidence.get("schema_version") != "kaleidoscope.docs-cross-target-compile.v1":
-                failures.append("staging evidence has wrong cross-target compile schema")
-            if compile_evidence.get("status") != "compile_only":
-                failures.append("staging evidence must mark cross-target checks compile-only")
-            if compile_evidence.get("source_commit") != CROSS_TARGET_COMPILE_SOURCE_COMMIT:
-                failures.append("staging evidence has wrong cross-target source commit")
-            if compile_evidence.get("rust_toolchain") != "1.97.1":
-                failures.append("staging evidence has wrong cross-target toolchain")
-            if compile_evidence.get("host_environment") != "macOS arm64":
-                failures.append("staging evidence has wrong cross-target host environment")
-            if compile_evidence.get("evidence_sha256") != CROSS_TARGET_COMPILE_EVIDENCE_SHA256:
-                failures.append("staging evidence has wrong cross-target evidence digest")
-            compile_targets = {
-                (target.get("triple"), target.get("platform"), target.get("architecture"), target.get("status"))
-                for target in compile_evidence.get("targets", [])
-            }
-            expected_compile_targets = {
-                ("x86_64-unknown-linux-gnu", "Linux", "x86_64", "passed"),
-                ("aarch64-unknown-linux-gnu", "Linux", "arm64", "passed"),
-                ("x86_64-pc-windows-gnu", "Windows", "x86_64", "passed"),
-                ("x86_64-apple-darwin", "macOS", "x86_64", "passed"),
-            }
-            if compile_targets != expected_compile_targets:
-                failures.append("staging evidence has wrong cross-target inventory")
-            holds = evidence.get("release_holds", {})
-            if holds.get("local_host_cli_configuration_verified") is not True:
-                failures.append("staging evidence must record local host wiring")
-            for field in ("production_oidc_issuer", "production_signing_identity"):
-                if holds.get(field, "missing") is not None:
-                    failures.append(f"staging evidence must leave {field} unresolved")
+            if status.get("schema_version") != "kaleidoscope.docs-status.v1":
+                failures.append("status.json has the wrong schema")
+            # Every one of these is a claim a reader would act on. A build that
+            # flips one has said the product is available, and must not pass
+            # until someone changes this file on purpose.
+            for field in ("released", "publicly available"):
+                if status.get(field) is not False:
+                    failures.append(f"status.json must keep {field!r} false")
+            packages = status.get("packages", {})
+            for field in ("published to a registry", "signed for release"):
+                if packages.get(field) is not False:
+                    failures.append(f"status.json must keep packages {field!r} false")
+            if packages.get("the platform package is built for") != [
+                "macOS, Apple Silicon"
+            ]:
+                failures.append("status.json has the wrong built-for platform")
+            licences = status.get("licences", {})
+            if "not in force" not in licences.get("the product terms", ""):
+                failures.append("status.json must keep the product terms not in force")
+            if "no counsel has read them" not in licences.get("the product terms", ""):
+                failures.append("status.json must say no counsel has read the drafts")
+            holds = status.get("still true before any release", {})
             for field in (
-                "production_engine_eula_finalized",
-                "external_legal_review_complete",
-                "registry_publication_authorized",
-                "pages_promotion_authorized",
-                "non_macos_arm64_native_support_verified",
-                "claude_cursor_opencode_live_host_verified",
-                "live_model_or_ide_acceptance_verified",
+                "packages published to a registry",
+                "builds signed for release",
+                "product terms reviewed by legal counsel",
+                "sign-in service configured",
+                "support offered",
+                "security contact published",
+                "any platform other than macOS on Apple Silicon verified",
+                "any editor run against a live model provider",
+                "benchmark score published",
+                "hosted memory built",
             ):
                 if holds.get(field) is not False:
-                    failures.append(f"staging evidence must leave {field} false")
-            for field in (
-                "engine_eula_product_authorized",
-                "public_software_license_product_authorized",
-                "original_documentation_license_product_authorized",
-            ):
-                if holds.get(field) is not True:
-                    failures.append(f"staging evidence must record {field}")
-            milestones = {item.get("id"): item for item in evidence.get("milestones", [])}
-            if set(milestones) != set(EXPECTED_MILESTONES):
-                failures.append("staging evidence milestone inventory changed")
-            else:
-                for milestone, commit in EXPECTED_MILESTONES.items():
-                    if milestones[milestone].get("commit") != commit:
-                        failures.append(
-                            f"staging evidence has wrong commit for {milestone}"
-                        )
-                if DX10A_EVIDENCE_SHA256 not in milestones["DX-10A"].get(
-                    "verification", ""
+                    failures.append(f"status.json must keep {field!r} false")
+            hosts = {
+                (host.get("name"), host.get("status"))
+                for host in status.get("hosts", {}).get("hosts", [])
+            }
+            expected_hosts = {
+                ("Codex", "partly tested"),
+                ("Claude Code", "tested"),
+                ("OpenCode", "tested"),
+                ("Cursor", "partly tested"),
+            }
+            if hosts != expected_hosts:
+                failures.append("status.json has the wrong host inventory")
+            # A "partly tested" row that does not say which part is the exact
+            # thing the status words were introduced to stop.
+            for host in status.get("hosts", {}).get("hosts", []):
+                if host.get("status") == "partly tested" and not host.get(
+                    "not confirmed"
                 ):
-                    failures.append("staging evidence has wrong DX-10A digest")
-                if DX09_FIXTURE_EVIDENCE_SHA256 not in milestones["DX-09"].get(
-                    "verification", ""
-                ):
-                    failures.append("staging evidence has wrong DX-09 digest")
-                if FINAL_PACKAGE_EVIDENCE_SHA256 not in milestones["DX-10B"].get(
-                    "verification", ""
-                ):
-                    failures.append("staging evidence has wrong final DX-10B digest")
-            historical = evidence.get("historical_host_conformance", {})
-            if historical.get("commit") != SDK_HOST_CONFORMANCE_COMMIT:
-                failures.append("staging evidence has wrong historic host commit")
-            if historical.get("evidence_sha256") != DX10B_HOST_EVIDENCE_SHA256:
-                failures.append("staging evidence has wrong historic host digest")
-            if "pre-final manager candidate" not in historical.get("status", ""):
-                failures.append("staging evidence must qualify historic host evidence")
+                    failures.append(
+                        f"status.json marks {host.get('name')!r} partly tested without saying which part"
+                    )
+            if status.get("hosts", {}).get("tools_a_model_sees") != [
+                "remember",
+                "search",
+            ]:
+                failures.append("status.json exposes the wrong tools to a model")
 
-    compile_path = actual.get("cross-target-checks.json")
-    if compile_path is None:
-        failures.append("missing cross-target-checks.json")
+    platform_path = actual.get("platform-support.json")
+    if platform_path is None:
+        failures.append("missing platform-support.json")
     else:
         try:
-            compile_record = json.loads(compile_path.read_text(encoding="utf-8"))
+            platforms = json.loads(platform_path.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
-            failures.append("cross-target-checks.json is not valid JSON")
+            failures.append("platform-support.json is not valid JSON")
         else:
-            if compile_record.get("schema_version") != "kaleidoscope.docs-cross-target-compile.v1":
-                failures.append("wrong cross-target compile evidence schema")
-            if compile_record.get("source_commit") != CROSS_TARGET_COMPILE_SOURCE_COMMIT:
-                failures.append("cross-target compile evidence has wrong source commit")
-            if compile_record.get("evidence_sha256") != CROSS_TARGET_COMPILE_EVIDENCE_SHA256:
-                failures.append("cross-target compile evidence has wrong digest")
+            if (
+                platforms.get("schema_version")
+                != "kaleidoscope.docs-platform-support.v1"
+            ):
+                failures.append("platform-support.json has the wrong schema")
+            if platforms.get("run on") != ["macOS, Apple Silicon"]:
+                failures.append("platform-support.json has the wrong run-on list")
+            checked = platforms.get("compiler checked only", {})
+            # The claim these four rows carry is a compiler check and nothing
+            # more. Published once as "the code builds for this target", it read
+            # as a working build for platforms nothing has ever been built for.
+            meaning = checked.get("meaning", "")
+            for phrase in (
+                "The compiler accepts",
+                "Nothing was ever assembled",
+                "nothing has been run there",
+            ):
+                if phrase not in meaning:
+                    failures.append(
+                        f"platform-support.json must keep {phrase!r} in the compiler-check meaning"
+                    )
+            checked_platforms = {
+                (row.get("platform"), row.get("architecture"), row.get("result"))
+                for row in checked.get("platforms", [])
+            }
+            expected_checked = {
+                ("macOS", "x86_64", "passed"),
+                ("Linux", "x86_64", "passed"),
+                ("Linux", "arm64", "passed"),
+                ("Windows", "x86_64", "passed"),
+            }
+            if checked_platforms != expected_checked:
+                failures.append("platform-support.json has the wrong checked inventory")
+            if platforms.get("not checked at all") != [
+                {"platform": "Windows", "architecture": "arm64"}
+            ]:
+                failures.append("platform-support.json has the wrong unchecked list")
+            if not platforms.get("does not establish"):
+                failures.append(
+                    "platform-support.json must keep the limits of a compiler check"
+                )
 
-    cli_reference = actual.get("reference/kaleidoscope-cli.candidate.txt")
+    cli_reference = actual.get("reference/kaleidoscope-cli.txt")
     if cli_reference is None:
-        failures.append("missing candidate CLI reference")
+        failures.append("missing CLI reference")
     else:
         cli_text = cli_reference.read_text(encoding="utf-8")
         for command in (
             "kaleidoscope [--engine PATH] init",
-            "kaleidoscope [--engine PATH] connect HOST",
-            "kaleidoscope instructions install TARGET",
-            "kaleidoscope login [--device]",
-            "kaleidoscope status [--json]",
-            "kaleidoscope profile account bind ACCOUNT_UUID [NAME]",
-            "kaleidoscope account identities",
-            "kaleidoscope account unlink EXTERNAL_IDENTITY_UUID",
-            "kaleidoscope account revoke-session",
-            "kaleidoscope devices revoke DEVICE_UUID",
+            "connect HOST",
+            "disconnect HOST",
+            "instructions install TARGET",
+            "doctor",
         ):
             if command not in cli_text:
-                failures.append(f"candidate CLI reference missing {command!r}")
+                failures.append(f"CLI reference missing {command!r}")
 
-    mcp_reference = actual.get("reference/kaleidoscope-mcp.candidate.json")
+    mcp_reference = actual.get("reference/kaleidoscope-mcp.json")
     if mcp_reference is None:
-        failures.append("missing candidate MCP reference")
+        failures.append("missing MCP tool reference")
     else:
         try:
             mcp = json.loads(mcp_reference.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
-            failures.append("candidate MCP reference is not valid JSON")
+            failures.append("MCP tool reference is not valid JSON")
         else:
-            if mcp.get("schema_version") != "kaleidoscope.docs-mcp-reference.v1":
-                failures.append("wrong candidate MCP reference schema")
-            if mcp.get("manager", {}).get("source_commit") != MANAGER_SOURCE_COMMIT:
-                failures.append("candidate MCP reference has wrong manager source")
-            if mcp.get("manager", {}).get("sha256") != MANAGER_SHA256:
-                failures.append("candidate MCP reference has wrong manager digest")
-            if mcp.get("engine", {}).get("sha256") != ENGINE_CANDIDATE_SHA256:
-                failures.append("candidate MCP reference has wrong engine digest")
-            if mcp.get("public_contract_sha256") != PUBLIC_CONTRACT_SHA256:
-                failures.append("candidate MCP reference has wrong contract digest")
+            if mcp.get("schema_version") != "kaleidoscope.docs-mcp-reference.v2":
+                failures.append("MCP tool reference has the wrong schema")
             if mcp.get("protocol_revision") != "2025-11-25":
-                failures.append("candidate MCP reference has wrong protocol revision")
-            tools = {tool.get("name"): tool for tool in mcp.get("model_tools", [])}
-            if set(tools) != {"remember", "search"}:
-                failures.append("candidate MCP reference must expose exactly remember/search")
-            if tools.get("remember", {}).get("maximum_batch_items") != 20:
-                failures.append("candidate MCP reference has wrong remember batch bound")
-            if tools.get("search", {}).get("ledger_values") != [True]:
-                failures.append("candidate MCP reference must keep ranked search ledgered")
+                failures.append("MCP tool reference has the wrong protocol revision")
+            tools = {tool.get("name") for tool in mcp.get("model_tools", [])}
+            if tools != {"remember", "search"}:
+                failures.append(
+                    "MCP tool reference must expose exactly remember and search"
+                )
+            for tool in mcp.get("model_tools", []):
+                if tool.get("name") == "remember" and tool.get(
+                    "maximum_batch_items"
+                ) != 20:
+                    failures.append("MCP tool reference has the wrong batch bound")
+                if tool.get("name") == "search" and tool.get("ledger_values") != [True]:
+                    failures.append(
+                        "MCP tool reference must keep ranked search ledgered"
+                    )
             if mcp.get("operator_commands_are_model_tools") is not False:
-                failures.append("candidate MCP reference exposes operator commands")
-            conformance = mcp.get("local_conformance", {})
-            if conformance.get("dx10a_evidence_sha256") != DX10A_EVIDENCE_SHA256:
-                failures.append("candidate MCP reference has wrong DX-10A digest")
-            if (
-                conformance.get("final_package_evidence_sha256")
-                != FINAL_PACKAGE_EVIDENCE_SHA256
-            ):
-                failures.append("candidate MCP reference has wrong final DX-10B digest")
-            if conformance.get("platform_harness_commit") != PLATFORM_HARNESS_COMMIT:
-                failures.append("candidate MCP reference has wrong platform harness commit")
-            host_conformance = conformance.get("local_host_cli_conformance", {})
-            if host_conformance.get("commit") != PLATFORM_HARNESS_COMMIT:
-                failures.append("candidate MCP reference has wrong local host commit")
-            if host_conformance.get("mcp_tools") != ["remember", "search"]:
-                failures.append("candidate MCP reference has wrong local host MCP tools")
-            historical = conformance.get("historical_codex_host_evidence", {})
-            if historical.get("commit") != SDK_HOST_CONFORMANCE_COMMIT:
-                failures.append("candidate MCP reference has wrong historic host commit")
-            if historical.get("sha256") != DX10B_HOST_EVIDENCE_SHA256:
-                failures.append("candidate MCP reference has wrong historic host digest")
-            if historical.get("applies_to") != "pre-final manager candidate only":
-                failures.append("candidate MCP reference must qualify historic host evidence")
-            packages = mcp.get("package_contract", {})
-            if packages.get("version") != "0.1.0-rc.1":
-                failures.append("candidate MCP reference has wrong RC version")
-            if packages.get("sdk_facade_commit") != SDK_FACADE_COMMIT:
-                failures.append("candidate MCP reference has wrong SDK facade commit")
-            if packages.get("native_target") != "darwin-arm64":
-                failures.append("candidate MCP reference has wrong native target")
-            if packages.get("facade_launchers") != ["kaleidoscope", "kscope"]:
-                failures.append("candidate MCP reference has wrong facade launchers")
-            if packages.get("publicly_available") is not False:
-                failures.append("candidate MCP reference claims package availability")
+                failures.append("MCP tool reference exposes operator commands")
             if mcp.get("release_readiness_claimed") is not False:
-                failures.append("candidate MCP reference claims release readiness")
+                failures.append("MCP tool reference claims release readiness")
+            for field in ("released", "publicly available"):
+                if mcp.get(field) is not False:
+                    failures.append(f"MCP tool reference must keep {field!r} false")
 
     for relative, path in actual.items():
         if path.suffix not in {".html", ".txt", ".md", ".xml", ".json", ".css"}:
@@ -582,6 +522,21 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         for marker in PRIVATE_MARKERS:
             if marker in text:
                 failures.append(f"private marker {marker!r} in {relative}")
+        if relative not in VOCABULARY_EXEMPT:
+            scanned = text
+            if relative == "llms-full.txt":
+                scanned = "\n\n---\n\n".join(
+                    chunk
+                    for chunk in text.split("\n\n---\n\n")
+                    if not chunk.lstrip().startswith(VOCABULARY_EXEMPT_CHUNKS)
+                )
+            lowered_text = scanned.lower()
+            for pattern in BANNED_VOCABULARY:
+                found = re.search(pattern, lowered_text)
+                if found:
+                    failures.append(
+                        f"internal vocabulary {found.group(0)!r} in {relative}"
+                    )
         for placeholder in ("{FINAL_PACKAGE_EVIDENCE_SHA256", "{PLATFORM_HARNESS_COMMIT"):
             if placeholder in text:
                 failures.append(f"unexpanded placeholder {placeholder!r} in {relative}")
@@ -606,6 +561,17 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             failures.append(
                 f"{relative}: expected exactly one h1, found {parser.h1_count}"
             )
+        if parser.headings:
+            if parser.headings[0] != 1:
+                failures.append(
+                    f"{relative}: the first heading is h{parser.headings[0]}, not h1"
+                )
+            for previous, level in zip(parser.headings, parser.headings[1:]):
+                if level > previous + 1:
+                    failures.append(
+                        f"{relative}: heading order skips h{previous} -> h{level}"
+                    )
+                    break
         if len(parser.canonicals) != 1 or not parser.canonicals[0].startswith(
             f"{DOMAIN}/"
         ):
@@ -657,17 +623,146 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                         failures.append(
                             f"{relative}: JSON-LD must contain TechArticle and BreadcrumbList"
                         )
-        if not relative.startswith("docs/migration/"):
-            lowered = document.lower()
-            for tool in LEGACY_TOOLS:
-                if re.search(rf"\b{re.escape(tool)}\b", lowered):
+        lowered = document.lower()
+        for tool in LEGACY_TOOLS:
+            if re.search(rf"\b{re.escape(tool)}\b", lowered):
+                failures.append(f"retired tool name {tool!r} in {relative}")
+        stylesheet = actual.get("assets/site.css")
+        css_text = (
+            stylesheet.read_text(encoding="utf-8") if stylesheet is not None else ""
+        )
+        if (
+            "fonts.googleapis.com/css2" not in document
+            and not ("@font-face" in css_text and "as=\"font\"" in document)
+        ):
+            failures.append(
+                f"{relative}: no webfont is loaded; the type system falls back silently"
+            )
+        mark = re.search(r"<svg\b.*?</svg>", document, flags=re.S)
+        if mark is None:
+            failures.append(f"{relative}: the Kaleidoscope mark is missing")
+        else:
+            mark_text = mark.group(0)
+            bars = mark_text.count('width="28" height="7"')
+            if bars != 4:
+                failures.append(
+                    f"{relative}: the mark is one bar swept four times — "
+                    f"found {bars} bars"
+                )
+            for angle in ("rotate(90 32 32)", "rotate(180 32 32)", "rotate(270 32 32)"):
+                if angle not in mark_text:
+                    failures.append(f"{relative}: the mark is missing {angle}")
+            for step in ("0.78", "0.56", "0.34"):
+                if f'opacity="{step}"' not in mark_text:
                     failures.append(
-                        f"legacy tool {tool!r} outside migration page: {relative}"
+                        f"{relative}: the mark has no opacity cascade at {step} — "
+                        "flat sweeps are prohibited"
+                    )
+            if 'x="28.5" y="28.5" width="7" height="7"' not in mark_text:
+                failures.append(
+                    f"{relative}: the inline mark has no centre square"
+                )
+            if "rx=" in mark_text or "ry=" in mark_text:
+                failures.append(
+                    f"{relative}: the mark has rounded corners — nothing in the "
+                    "system is rounded except the app-icon tile"
+                )
+        for opening in re.findall(r"<pre\b[^>]*>", document):
+            if "tabindex=" not in opening:
+                failures.append(
+                    f"{relative}: a <pre> scrolls horizontally with no tab stop — "
+                    "its clipped content is unreachable by keyboard"
+                )
+                break
+        for opening in re.findall(r'<div class="table-scroll"[^>]*>', document):
+            if "tabindex=" not in opening:
+                failures.append(
+                    f"{relative}: a table scroll container has no tab stop"
+                )
+                break
+        if '<link rel="icon" href="/favicon.ico"' not in document:
+            failures.append(f"{relative}: favicon.ico is shipped but not linked")
+        if expected_mode in {"public_docs", "production"} and relative not in PROVENANCE_ROUTES:
+            release = manifest.get("release", {})
+            for label, value in (
+                ("availability", release.get("availability", "")),
+                ("release version", release.get("release_version", "")),
+                ("contract digest", release.get("public_contract_sha256", "")[:12]),
+            ):
+                if value and value in document:
+                    failures.append(
+                        f"{relative}: {label} {value!r} appears outside the provenance pages"
+                    )
+        if expected_mode in {"staging", "public_docs"}:
+            lowered_document = document.lower()
+            if relative in LEGAL_DRAFT_ROUTES:
+                for sentinel in LEGAL_DRAFT_SENTINELS:
+                    if sentinel not in lowered_document:
+                        failures.append(
+                            f"{relative}: review-draft boundary is missing {sentinel!r}"
+                        )
+                if 'class="draft-notice"' not in document:
+                    failures.append(
+                        f"{relative}: the review-draft notice component is absent"
+                    )
+                if 'class="notice-band"' not in document:
+                    failures.append(
+                        f"{relative}: the review-draft notice is not a page-level "
+                        "band — inside the article it falls below the navigation "
+                        "on a narrow viewport"
+                    )
+                elif document.index('class="notice-band"') > document.index(
+                    'class="sidebar"'
+                ):
+                    failures.append(
+                        f"{relative}: the review-draft band renders after the "
+                        "documentation navigation"
+                    )
+            for overclaim in LEGAL_OVERCLAIMS:
+                if overclaim in lowered_document:
+                    failures.append(
+                        f"{relative}: legal overclaim {overclaim!r} — nothing has had counsel review"
                     )
         for link in parser.links:
             target = local_target(root, link)
             if target is not None and not target.exists():
                 failures.append(f"{relative}: broken internal link {link}")
+
+    stylesheet = actual.get("assets/site.css")
+    if stylesheet is None:
+        failures.append("missing assets/site.css")
+    else:
+        css = stylesheet.read_text(encoding="utf-8")
+        lowered_css = css.lower()
+        for required in REQUIRED_TOKENS:
+            if required.lower() not in lowered_css:
+                failures.append(
+                    f"assets/site.css: canonical kaleidoscope-dark token {required} is absent"
+                )
+        for drifted in DRIFTED_TOKENS:
+            if drifted in lowered_css:
+                failures.append(
+                    f"assets/site.css: drifted token {drifted} — use the kaleidoscope-dark value"
+                )
+        rounded = [
+            value
+            for value in re.findall(r"border-radius\s*:\s*([^;}]+)", css)
+            if value.strip().rstrip(";").strip() != "0"
+        ]
+        if rounded:
+            failures.append(
+                "assets/site.css: rounded corners "
+                f"{rounded!r} — nothing in the system is rounded except the "
+                "app-icon tile, which this stylesheet does not draw"
+            )
+        prose_code = re.search(
+            r"\.content p code[^{]*\{([^}]*)\}", css, flags=re.S
+        )
+        if prose_code is None or "overflow-wrap" not in prose_code.group(1):
+            failures.append(
+                "assets/site.css: inline prose code has no overflow-wrap — a "
+                "64-character digest then scrolls the whole page sideways"
+            )
 
     robots = (root / "robots.txt").read_text(encoding="utf-8")
     if expected_mode in {"public_docs", "production"} and "Allow: /" not in robots:
@@ -697,50 +792,39 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             )
 
     security = (root / ".well-known" / "security.txt").read_text(encoding="utf-8")
-    if expected_mode == "staging" and "STAGING ONLY" not in security:
+    if expected_mode == "staging" and "LOCAL BUILD ONLY" not in security:
         failures.append("staging security.txt is not marked as staging")
     if expected_mode == "public_docs" and "DOCUMENTATION PREVIEW" not in security:
         failures.append("public documentation security.txt is not marked as preview")
-    if expected_mode == "production" and "STAGING ONLY" in security:
+    if expected_mode == "production" and "LOCAL BUILD ONLY" in security:
         failures.append("production security.txt still carries the staging marker")
 
     llms = (root / "llms.txt").read_text(encoding="utf-8")
     llms_lower = llms.lower()
+    # llms.txt is linked from the footer of every page, so it is reader-facing
+    # copy and not a machine record. It used to close with a paragraph of
+    # internal work-item identifiers and build digests; these are the honest
+    # claims that replaced it, and each one is load-bearing.
     for required in (
         "local native",
         "`search` and `remember`",
         "proprietary object code",
-        "hosted memory is planned",
+        "kaleidoscope is not released",
+        "neither package is published",
+        "you cannot download a build for any platform",
+        "provider not configured",
+        "a compiler check for the memory engine and nothing more",
+        "nothing is signed for release",
+        "unreviewed drafts that no counsel has read",
+        "hosted memory does not exist",
+        "no benchmark score is published",
         "/docs/privacy/",
-        "/docs/evidence/",
+        "/docs/status/",
         "/skill.md",
-        "/staging-evidence.json",
-        "/cross-target-checks.json",
-        "/reference/kaleidoscope-cli.candidate.txt",
-        "/reference/kaleidoscope-mcp.candidate.json",
-        ENGINE_CANDIDATE_SHA256,
-        PUBLIC_CONTRACT_SHA256,
-        MANAGER_SHA256,
-        FINAL_PACKAGE_EVIDENCE_SHA256,
-        FINAL_BUILD_PROOF_SHA256,
-        DX09_FIXTURE_EVIDENCE_SHA256,
-        DX10A_EVIDENCE_SHA256,
-        DX10B_HOST_EVIDENCE_SHA256,
-        PLATFORM_HARNESS_COMMIT,
-        CROSS_TARGET_COMPILE_EVIDENCE_SHA256,
-        SDK_FACADE_COMMIT,
-        DISTRIBUTION_ASSEMBLER_COMMIT,
-        FINAL_EVIDENCE_COMMIT,
-        LOCAL_ARCHIVE_SHA256,
-        LOCAL_MANIFEST_SHA256,
-        PACKAGE_PROOF_SHA256,
-        NPM_FACADE_SHA256,
-        NPM_NATIVE_SHA256,
-        PYTHON_FACADE_SHA256,
-        PYTHON_NATIVE_SHA256,
-        LOCAL_SBOM_SHA256,
-        LOCAL_PROVENANCE_SHA256,
-        LOCAL_TEST_SIGNATURE_SHA256,
+        "/status.json",
+        "/platform-support.json",
+        "/reference/kaleidoscope-cli.txt",
+        "/reference/kaleidoscope-mcp.json",
     ):
         if required.lower() not in llms_lower:
             failures.append(f"llms.txt missing {required!r}")
@@ -752,13 +836,49 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             failures.append(f"llms-full.txt missing canonical section for {route}")
     for required in (
         "# Public agent skill",
-        PUBLIC_SKILL_SHA256,
-        "# Candidate CLI help",
-        "# Candidate MCP reference",
-        "# Machine-readable staging evidence",
+        "# Full CLI help text",
+        "# Tool reference",
+        "# Status record",
+        "# Platform support record",
     ):
         if required not in llms_full:
             failures.append(f"llms-full.txt missing {required!r}")
+
+    # The text mirror carries the same chrome the HTML does. Scanning only the
+    # HTML let a per-page release tag survive here after it was removed there.
+    provenance_paths = {
+        "/" + relative.removesuffix("index.html") for relative in PROVENANCE_ROUTES
+    }
+    release = manifest.get("release", {})
+    identifiers = [
+        ("availability", release.get("availability", "")),
+        ("release version", release.get("release_version", "")),
+        ("contract digest", release.get("public_contract_sha256", "")[:12]),
+    ]
+    for chunk in llms_full.split("\n\n---\n\n"):
+        url = re.search(rf"^URL: {re.escape(DOMAIN)}(\S*/)$", chunk, flags=re.M)
+        if url is None:
+            continue
+        route = url.group(1)
+        if expected_mode in {"public_docs", "production"} and (
+            route not in provenance_paths
+        ):
+            for label, value in identifiers:
+                if value and value in chunk:
+                    failures.append(
+                        f"llms-full.txt {route}: {label} {value!r} appears "
+                        "outside the provenance pages"
+                    )
+        page_path = route.lstrip("/") + "index.html"
+        if expected_mode in {"staging", "public_docs"} and (
+            page_path in LEGAL_DRAFT_ROUTES
+        ):
+            for sentinel in LEGAL_DRAFT_SENTINELS:
+                if sentinel not in chunk.lower():
+                    failures.append(
+                        f"llms-full.txt {route}: review-draft boundary is "
+                        f"missing {sentinel!r}"
+                    )
     return failures
 
 

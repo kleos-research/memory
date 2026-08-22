@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Generic MCP integration | Kaleidoscope</title>
-  <meta name="description" content="Launch Kaleidoscope as a persistent local stdio MCP server from the manager-generated descriptor.">
+  <meta name="description" content="Read Kaleidoscope&#x27;s launch descriptor and run it as one long-lived stdio MCP server from any standard client.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/integrations/generic-mcp/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
   <meta property="og:title" content="Generic MCP integration | Kaleidoscope">
-  <meta property="og:description" content="Launch Kaleidoscope as a persistent local stdio MCP server from the manager-generated descriptor.">
+  <meta property="og:description" content="Read Kaleidoscope&#x27;s launch descriptor and run it as one long-lived stdio MCP server from any standard client.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/integrations/generic-mcp/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
@@ -23,32 +27,39 @@
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Generic MCP integration | Kaleidoscope">
-  <meta name="twitter:description" content="Launch Kaleidoscope as a persistent local stdio MCP server from the manager-generated descriptor.">
+  <meta name="twitter:description" content="Read Kaleidoscope&#x27;s launch descriptor and run it as one long-lived stdio MCP server from any standard client.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Generic MCP integration","description":"Launch Kaleidoscope as a persistent local stdio MCP server from the manager-generated descriptor.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/integrations/generic-mcp/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Generic MCP integration","item":"https://memory.kleosresearch.xyz/docs/integrations/generic-mcp/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Generic MCP integration","description":"Read Kaleidoscope's launch descriptor and run it as one long-lived stdio MCP server from any standard client.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/integrations/generic-mcp/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Integrations","item":"https://memory.kleosresearch.xyz/docs/integrations/"},{"@type":"ListItem","position":4,"name":"Generic MCP integration","item":"https://memory.kleosresearch.xyz/docs/integrations/generic-mcp/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/" aria-current="page">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/" aria-current="page">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Generic MCP integration</h1>
-<p class="lede">Any standard MCP host can obtain the canonical child-process descriptor from the manager and retain one initialized session for its run.</p>
-<h2>Get the descriptor</h2><pre><code>kaleidoscope config --profile default --json</code></pre>
-<p>The result is intentionally closed: an absolute command, <code>mcp --profile NAME</code>, <code>stdio</code>, exactly two tools, and an empty environment. Do not add vault coordinates or tokens.</p>
-<h2>Persistent session rule</h2><p>Initialize once, discover exactly <code>search</code> and <code>remember</code>, then reuse the session through the agent or application run. A controller-owned raw search replaces a model-facing MCP search for that turn; it does not duplicate it.</p>
-<h2>Evidence boundary</h2><p>Python MCP 1.x/2.x and TypeScript MCP client suites exercised persistent process, restart, teardown, malformed discovery, structured output, and tool-refusal behavior against the local candidate.</p>
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/" aria-current="page">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><a href="/docs/integrations/">Integrations</a><span aria-hidden="true">/</span><span aria-current="page">Generic MCP integration</span></nav><h1>Generic MCP integration</h1><ul class="toc" aria-label="On this page"><li><a href="#get-the-descriptor">Get the descriptor</a></li><li><a href="#keep-one-session">Keep one session</a></li><li><a href="#what-is-tested">What is tested</a></li></ul>
+<p class="lede">Any standard MCP client can ask Kaleidoscope for its launch descriptor and keep one initialized session open for the whole run. You do not have to hand-write the command.</p>
+<h2 id="get-the-descriptor">Get the descriptor</h2><pre tabindex="0"><code>kaleidoscope config --profile default --json</code></pre>
+<p>What comes back is deliberately closed: an absolute command, <code>mcp --profile NAME</code>, <code>stdio</code>, exactly two tools, and an empty environment. Do not add your vault location or a token to it.</p>
+<h2 id="keep-one-session">Keep one session</h2><p>Initialize once, check that you see exactly <code>search</code> and <code>remember</code>, then reuse that session for the rest of the run. Starting a new process per tool call is slower and gains you nothing.</p>
+<h2 id="what-is-tested">What is tested</h2><p>The Python <code>mcp</code> client at 1.29.0 and 2.0.0, and the TypeScript <code>@modelcontextprotocol/client</code> at 2.0.0, have both driven this server on a Mac with Apple Silicon: one long-lived process, restart, shutdown, structured results, a malformed discovery response, and refusal of anything outside the two tools.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

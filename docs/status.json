@@ -1,0 +1,143 @@
+{
+  "as of": "2026-08-22",
+  "hosts": {
+    "hosts": [
+      {
+        "confirmed": "Kaleidoscope's entry is added to Codex's configuration, listed, read back and removed exactly, leaving the file byte for byte as it was",
+        "name": "Codex",
+        "not confirmed": "that Codex then starts the server and sees the two tools; Codex's command line offers no way to check",
+        "status": "partly tested",
+        "version": "0.149.0"
+      },
+      {
+        "confirmed": "connected from the command line, not duplicated on a second run, removed cleanly, and both tools discovered",
+        "name": "Claude Code",
+        "not confirmed": "any run through a model turn, and anything done through the graphical interface",
+        "status": "tested",
+        "version": "2.1.239"
+      },
+      {
+        "confirmed": "both configuration shapes written, applied twice without duplicating, removed cleanly, and both tools discovered",
+        "name": "OpenCode",
+        "not confirmed": "any run through a model turn, and anything done through the graphical interface",
+        "status": "tested",
+        "version": "1.18.21"
+      },
+      {
+        "confirmed": "its configuration and its project rule are written and removed exactly",
+        "name": "Cursor",
+        "not confirmed": "everything after that; Cursor has never been launched against them",
+        "status": "partly tested"
+      }
+    ],
+    "not tested at all": [
+      "any run against a live model provider",
+      "any editor's graphical interface",
+      "any platform other than macOS on Apple Silicon",
+      "any package installed from a registry"
+    ],
+    "run_on": "macOS, Apple Silicon",
+    "schema_version": "kaleidoscope.docs-host-support.v1",
+    "tools_a_model_sees": [
+      "remember",
+      "search"
+    ]
+  },
+  "licences": {
+    "the product terms": "unreviewed drafts, not in force; no counsel has read them",
+    "the public code": "Apache-2.0, in force",
+    "this documentation": "CC BY 4.0, in force"
+  },
+  "packages": {
+    "npm": {
+      "client": "@kleos-research/kaleidoscope",
+      "platform package": "@kleos-research/kaleidoscope-darwin-arm64"
+    },
+    "published to a registry": false,
+    "python": {
+      "client": "kaleidoscope-memory",
+      "platform package": "kaleidoscope-memory-native-darwin-arm64"
+    },
+    "signed for release": false,
+    "the client package contains": "the public SDK and the kaleidoscope and kscope commands",
+    "the platform package contains": "the local manager and the memory engine, as proprietary object code",
+    "the platform package is built for": [
+      "macOS, Apple Silicon"
+    ],
+    "version": "0.1.0-rc.1"
+  },
+  "platforms": {
+    "compiler checked only": {
+      "checked from": "macOS, Apple Silicon",
+      "covers": "the memory engine only, not the command-line tool you would run and not the client libraries",
+      "meaning": "The compiler accepts the memory engine's source for this platform when it is asked from a Mac. Nothing was ever assembled into a program for it, nothing was linked, and nothing has been run there.",
+      "platforms": [
+        {
+          "architecture": "x86_64",
+          "platform": "macOS",
+          "result": "passed"
+        },
+        {
+          "architecture": "x86_64",
+          "platform": "Linux",
+          "result": "passed"
+        },
+        {
+          "architecture": "arm64",
+          "platform": "Linux",
+          "result": "passed"
+        },
+        {
+          "architecture": "x86_64",
+          "platform": "Windows",
+          "result": "passed"
+        }
+      ]
+    },
+    "does not establish": [
+      "that a program was ever built for these platforms",
+      "that anything runs there",
+      "that an installer, a credential store or an editor works there",
+      "that any build is available for them"
+    ],
+    "not checked at all": [
+      {
+        "architecture": "arm64",
+        "platform": "Windows"
+      }
+    ],
+    "run on": [
+      "macOS, Apple Silicon"
+    ],
+    "schema_version": "kaleidoscope.docs-platform-support.v1",
+    "what this is": "Which machines Kaleidoscope has been run on, and which ones have only had a compiler check."
+  },
+  "publicly available": false,
+  "released": false,
+  "schema_version": "kaleidoscope.docs-status.v1",
+  "still true before any release": {
+    "any editor run against a live model provider": false,
+    "any platform other than macOS on Apple Silicon verified": false,
+    "benchmark score published": false,
+    "builds signed for release": false,
+    "hosted memory built": false,
+    "packages published to a registry": false,
+    "product terms reviewed by legal counsel": false,
+    "security contact published": false,
+    "sign-in service configured": false,
+    "support offered": false
+  },
+  "summary": "Kaleidoscope is not released. Nothing here installs from a package registry, nothing is signed for release, and signing in does not work.",
+  "what you can do today": [
+    "Read the documentation, the command reference and the two-tool agent contract.",
+    "On a Mac with Apple Silicon, run a build you already have and connect an editor to it."
+  ],
+  "what you cannot do today": [
+    "Install Kaleidoscope from npm or PyPI: neither package is published.",
+    "Download a build: none is offered, for any platform.",
+    "Sign in or create an account: every account command answers 'provider not configured'.",
+    "Use hosted memory: there is no service, endpoint, API or waitlist.",
+    "Read a benchmark score: none is published.",
+    "Rely on any support commitment: none is offered."
+  ]
+}
