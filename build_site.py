@@ -20,6 +20,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 DOMAIN = "https://memory.kleosresearch.xyz"
+SOCIAL_IMAGE = f"{DOMAIN}/assets/kaleidoscope-og.png"
 ROOT = Path(__file__).resolve().parent
 TODAY = date(2026, 8, 22)
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
@@ -320,6 +321,7 @@ class Page:
     description: str
     body: str
     section: str = "docs"
+    noindex: bool = False
 
 
 DOC_NAV = (
@@ -509,16 +511,15 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         body="""
 <p class="lede">Every integration consumes the same closed profile-first launch descriptor and persistent stdio MCP contract. The wrapper candidates do not contain or reimplement the proprietary memory algorithm.</p>
 <table><thead><tr><th>Integration</th><th>Pinned local evidence</th><th>Public status</th></tr></thead><tbody>
-<tr><td>Codex</td><td>Real <code>codex-cli 0.149.0-alpha.4</code> add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.</td><td>Verified local CLI configuration; model/TUI acceptance held</td></tr>
-<tr><td>Claude Code</td><td>Managed <code>.mcp.json</code> render, dry run, idempotence, and exact rollback passed.</td><td>Not live-host accepted</td></tr>
-<tr><td>Cursor</td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Not live-host accepted</td></tr>
-<tr><td>OpenCode</td><td>Stable v1 direct entry is default; beta v2 is explicit and never silently selected.</td><td>Not live-host accepted</td></tr>
-<tr><td>Python generic MCP</td><td><code>mcp==1.29.0</code> and <code>mcp==2.0.0</code>; persistent and real-profile lanes passed.</td><td>Verified local, unpublished</td></tr>
-<tr><td>TypeScript generic MCP</td><td><code>@modelcontextprotocol/client==2.0.0</code>; explicit revision negotiation and real-profile lane passed.</td><td>Verified local, unpublished</td></tr>
-<tr><td>LangChain / LangGraph</td><td><code>langchain==1.3.16</code>, <code>langgraph==1.2.11</code>; one persistent session and no shadow store.</td><td>Verified with fake provider</td></tr>
-<tr><td>Claude Agent SDK</td><td><code>claude-agent-sdk==0.2.143</code>; strict MCP names and lifecycle passed.</td><td>Verified without live provider</td></tr>
-<tr><td>OpenAI Agents SDK</td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
-<tr><td>CrewAI</td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
+<tr><td><a href="/docs/integrations/codex/">Codex</a></td><td>Real <code>codex-cli 0.149.0-alpha.4</code> add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.</td><td>Verified local CLI configuration; model/TUI acceptance held</td></tr>
+<tr><td><a href="/docs/integrations/claude-code/">Claude Code</a></td><td>Managed <code>.mcp.json</code> render, dry run, idempotence, and exact rollback passed.</td><td>Not live-host accepted</td></tr>
+<tr><td><a href="/docs/integrations/cursor/">Cursor</a></td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Not live-host accepted</td></tr>
+<tr><td><a href="/docs/integrations/opencode/">OpenCode</a></td><td>Stable v1 direct entry is default; beta v2 is explicit and never silently selected.</td><td>Not live-host accepted</td></tr>
+<tr><td><a href="/docs/integrations/generic-mcp/">Python and TypeScript generic MCP</a></td><td><code>mcp==1.29.0</code>, <code>mcp==2.0.0</code>, and <code>@modelcontextprotocol/client==2.0.0</code>; persistent and real-profile lanes passed.</td><td>Verified local, unpublished</td></tr>
+<tr><td><a href="/docs/integrations/langchain/">LangChain</a> / <a href="/docs/integrations/langgraph/">LangGraph</a></td><td><code>langchain==1.3.16</code>, <code>langgraph==1.2.11</code>; one persistent session and no shadow store.</td><td>Verified with fake provider</td></tr>
+<tr><td><a href="/docs/integrations/claude-agent-sdk/">Claude Agent SDK</a></td><td><code>claude-agent-sdk==0.2.143</code>; strict MCP names and lifecycle passed.</td><td>Verified without live provider</td></tr>
+<tr><td><a href="/docs/integrations/openai-agents-sdk/">OpenAI Agents SDK</a></td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
+<tr><td><a href="/docs/integrations/crewai/">CrewAI</a></td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
 <div class="callout"><strong>What DX-07 and DX-10B prove.</strong> SDK commit <code>67e351d…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Host conformance commit <code>9cd4b58…</code> bound the manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
 <h2>Agent guidance</h2>
@@ -680,6 +681,146 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 )
 
 
+INTEGRATION_PAGES = (
+    Page(
+        route="/docs/integrations/codex/",
+        title="Codex integration",
+        description="Connect Kaleidoscope to Codex through the local manager and a two-tool stdio MCP configuration.",
+        body="""
+<p class="lede">Codex uses the same profile-first stdio descriptor as every other harness. The manager owns configuration changes so they can be previewed, backed up, and removed exactly.</p>
+<h2>Connect a project</h2><pre><code>kaleidoscope connect codex --profile default --project "$PWD" --dry-run
+kaleidoscope connect codex --profile default --project "$PWD"
+kaleidoscope instructions install agents --project "$PWD"</code></pre>
+<p>The generated configuration names an absolute local engine command, <code>mcp --profile default</code>, and exactly <code>search</code> and <code>remember</code>. It does not add vault coordinates, provider keys, or account credentials.</p>
+<h2>Evidence boundary</h2><p>The local candidate passed isolated <code>codex mcp add/list/get/remove</code>, byte-exact rollback, and real stdio discovery. That proves the CLI configuration lane on macOS arm64; it does not make a model, TUI, IDE, package, or production account claim.</p>
+""",
+    ),
+    Page(
+        route="/docs/integrations/claude-code/",
+        title="Claude Code integration",
+        description="Configure Claude Code with the Kaleidoscope local stdio MCP descriptor and concise project guidance.",
+        body="""
+<p class="lede">Claude Code receives one local stdio MCP server definition and an optional owner-marked project pointer to the public skill.</p>
+<h2>Preview first</h2><pre><code>kaleidoscope connect claude --profile default --project "$PWD" --dry-run
+kaleidoscope connect claude --profile default --project "$PWD"
+kaleidoscope instructions install claude --project "$PWD"</code></pre>
+<p>The manager writes only its owned entry in <code>.mcp.json</code>, retains unrelated configuration, and refuses ambiguous or modified ownership boundaries. The descriptor publishes only <code>search</code> and <code>remember</code>.</p>
+<h2>Evidence boundary</h2><p>Renderer, dry-run, idempotence, and rollback tests passed locally. Live Claude Code acceptance remains held until an installed, pinned host lane is run against a released package.</p>
+""",
+    ),
+    Page(
+        route="/docs/integrations/claude-agent-sdk/",
+        title="Claude Agent SDK integration",
+        description="Use one Claude Agent SDK client and a strict Kaleidoscope MCP allowlist for an agent run.",
+        body="""
+<p class="lede">The Python recipe creates one Claude Agent SDK client for the intended run and passes a strict stdio MCP configuration with explicit Kaleidoscope tool names.</p>
+<h2>Allowed tools</h2><pre><code>mcp__kaleidoscope__search
+mcp__kaleidoscope__remember</code></pre>
+<p>Provider credentials remain the application’s concern. The descriptor has an empty override environment, so account tokens, vault coordinates, and provider keys do not enter the MCP child process.</p>
+<h2>Evidence boundary</h2><p>The local lifecycle test uses a deterministic client double to prove one client and the exact allowlist. It is not a live-provider acceptance claim.</p>
+""",
+    ),
+    Page(
+        route="/docs/integrations/cursor/",
+        title="Cursor integration",
+        description="Safely configure Cursor with Kaleidoscope’s profile-first local MCP descriptor and project rule pointer.",
+        body="""
+<p class="lede">Cursor uses the same local MCP command and only the two public memory tools. The manager makes the JSON mutation reversible and adds a small project rule only when requested.</p>
+<h2>Connect and guide</h2><pre><code>kaleidoscope connect cursor --profile default --project "$PWD" --dry-run
+kaleidoscope connect cursor --profile default --project "$PWD"
+kaleidoscope instructions install cursor --project "$PWD"</code></pre>
+<p>Existing unrelated entries stay untouched. Tampered receipts, conflicting names, malformed configuration, symlinked files, and concurrent edits are refused for manual review.</p>
+<h2>Evidence boundary</h2><p>Local renderer and rollback coverage passed. A pinned Cursor build and installed-package acceptance remain held.</p>
+""",
+    ),
+    Page(
+        route="/docs/integrations/opencode/",
+        title="OpenCode integration",
+        description="Configure the stable or explicitly selected beta OpenCode MCP format for Kaleidoscope.",
+        body="""
+<p class="lede">OpenCode stable v1 and beta v2 use different configuration shapes. Kaleidoscope never guesses or silently migrates between them.</p>
+<h2>Stable v1 by default</h2><pre><code>kaleidoscope connect opencode --profile default --project "$PWD" --dry-run
+kaleidoscope connect opencode --profile default --project "$PWD"</code></pre>
+<h2>Explicit beta v2</h2><pre><code>kaleidoscope connect opencode --profile default --project "$PWD" --opencode-version beta-v2 --dry-run</code></pre>
+<p>The stable entry is a direct local command; beta v2 uses the explicit server shape with code mode disabled so <code>search</code> and <code>remember</code> remain visible. Ambiguous dual shapes are refused.</p>
+<h2>Evidence boundary</h2><p>Both renderers and safe mutation paths passed locally. Installed OpenCode acceptance remains held.</p>
+""",
+    ),
+    Page(
+        route="/docs/integrations/generic-mcp/",
+        title="Generic MCP integration",
+        description="Launch Kaleidoscope as a persistent local stdio MCP server from the manager-generated descriptor.",
+        body="""
+<p class="lede">Any standard MCP host can obtain the canonical child-process descriptor from the manager and retain one initialized session for its run.</p>
+<h2>Get the descriptor</h2><pre><code>kaleidoscope config --profile default --json</code></pre>
+<p>The result is intentionally closed: an absolute command, <code>mcp --profile NAME</code>, <code>stdio</code>, exactly two tools, and an empty environment. Do not add vault coordinates or tokens.</p>
+<h2>Persistent session rule</h2><p>Initialize once, discover exactly <code>search</code> and <code>remember</code>, then reuse the session through the agent or application run. A controller-owned raw search replaces a model-facing MCP search for that turn; it does not duplicate it.</p>
+<h2>Evidence boundary</h2><p>Python MCP 1.x/2.x and TypeScript MCP client suites exercised persistent process, restart, teardown, malformed discovery, structured output, and tool-refusal behavior against the local candidate.</p>
+""",
+    ),
+    Page(
+        route="/docs/integrations/langchain/",
+        title="LangChain integration",
+        description="Use LangChain’s MCP adapter with one Kaleidoscope session and no shadow memory store.",
+        body="""
+<p class="lede">Use the official LangChain MCP adapter to load the two Kaleidoscope tools inside one adapter session. Kaleidoscope is not a <code>BaseStore</code> implementation.</p>
+<h2>Lifecycle</h2><p>Open the stdio adapter once around the application’s intended agent run, load and filter the two tools, then close the adapter after the run. The application supplies its model-provider credentials separately.</p>
+<h2>Boundary</h2><p>Do not implement a parallel LangChain memory or summarize messages into a second store. The MCP server remains the one canonical memory owner.</p>
+<h2>Evidence boundary</h2><p>The pinned local LangChain adapter suite verified remembered and searched values share one MCP process. It uses a deterministic provider double and does not claim live provider behavior.</p>
+""",
+    ),
+    Page(
+        route="/docs/integrations/langgraph/",
+        title="LangGraph integration",
+        description="Use the LangChain MCP adapter inside a LangGraph tool node without making Kaleidoscope a graph store.",
+        body="""
+<p class="lede">LangGraph uses the same one-session MCP adapter as LangChain, placed in the graph’s tool node for the run.</p>
+<h2>Boundary</h2><p>Kaleidoscope is not a LangGraph checkpointer or <code>BaseStore</code>. Graph state and local durable memory remain distinct so the integration does not create a second canonical owner.</p>
+<h2>Lifecycle</h2><p>Open the adapter before executing the graph, pass the filtered MCP tools into the tool node, and close it once execution is complete. Reuse the session across node calls.</p>
+<h2>Evidence boundary</h2><p>The pinned local graph test exercised a tool node calling <code>remember</code> then <code>search</code> through the same MCP process.</p>
+""",
+    ),
+    Page(
+        route="/docs/integrations/openai-agents-sdk/",
+        title="OpenAI Agents SDK integration",
+        description="Attach a persistent Kaleidoscope stdio MCP server to an OpenAI Agents SDK agent with a strict two-tool contract.",
+        body="""
+<p class="lede">Use the official stdio MCP server lifecycle supplied by the OpenAI Agents SDK, keeping one server alive for the agent run and filtering the model-facing tools to Kaleidoscope’s two public operations.</p>
+<h2>Tool boundary</h2><p>The agent may call <code>search</code> and <code>remember</code>. Controller, account, and operator commands stay outside the model tool set. Provider credentials are supplied by the application, never through the Kaleidoscope descriptor.</p>
+<h2>Lifecycle</h2><p>Create the MCP server as a managed resource around the run, then close it deterministically. Do not reopen a separate engine process for each tool call.</p>
+<h2>Evidence boundary</h2><p>Pinned Python and TypeScript adapters passed scripted-model lifecycle tests with one persistent server. This is not a live-model or account claim.</p>
+""",
+    ),
+    Page(
+        route="/docs/integrations/crewai/",
+        title="CrewAI integration",
+        description="Use the CrewAI MCP adapter as one persistent context with Kaleidoscope’s two-tool local contract.",
+        body="""
+<p class="lede">CrewAI uses one stdio MCP adapter context for the crew run. The adapter exposes only the Kaleidoscope tools that are appropriate for the model.</p>
+<h2>Lifecycle</h2><p>Construct the adapter with the manager-generated local descriptor, enter it once, select <code>search</code> and <code>remember</code>, run the crew, then close the context. Do not recreate the server for each task.</p>
+<h2>Boundary</h2><p>The framework owns provider configuration and crew state. Kaleidoscope owns only its local memory and does not receive model-provider credentials or account tokens.</p>
+<h2>Evidence boundary</h2><p>The pinned adapter was exercised against the local MCP fixture with one persistent process and explicit tool filtering.</p>
+""",
+    ),
+)
+
+
+PAGES += INTEGRATION_PAGES + (
+    Page(
+        route="/docs/hosted/",
+        title="Hosted memory (future)",
+        description="The boundary between Kaleidoscope’s local memory product and a future hosted-memory service.",
+        noindex=True,
+        body="""
+<p class="lede">Hosted memory is not available. This page exists to make that boundary explicit, not to advertise an endpoint, API, waitlist, or implicit sync path.</p>
+<h2>What local Kaleidoscope does today</h2><p>The local CLI, manager, and stdio MCP server keep canonical memory in a user-owned local vault. Login and device management are separate account workflows; they do not upload or host local memory.</p>
+<h2>What a future hosted service would require</h2><p>A separate product decision must define tenant authorization, consent, data residency, retention, deletion, export/import, synchronization, billing, incident handling, and model-training policy. None is implied by a local profile or account login.</p>
+<p>This future-facing route is intentionally excluded from search indexing and the documentation sitemap.</p>
+""",
+    ),
+)
+
+
 class TextExtractor(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
@@ -750,7 +891,12 @@ def load_metadata(path: Path | None, production: bool) -> dict[str, str]:
 
 
 def nav_link(route: str, label: str, current: str) -> str:
-    active = ' aria-current="page"' if route == current else ""
+    active = (
+        ' aria-current="page"'
+        if route == current
+        or (route == "/docs/integrations/" and current.startswith(route))
+        else ""
+    )
     return f'<a href="{route}"{active}>{html.escape(label)}</a>'
 
 
@@ -779,14 +925,36 @@ def structured_data(page: Page | None, canonical: str) -> str:
             ],
         }
     else:
+        crumbs = [
+            {"@type": "ListItem", "position": 1, "name": "Kaleidoscope", "item": f"{DOMAIN}/"},
+            {"@type": "ListItem", "position": 2, "name": "Docs", "item": f"{DOMAIN}/docs/"},
+        ]
+        if page.route != "/docs/":
+            route_name = page.title
+            crumbs.append(
+                {
+                    "@type": "ListItem",
+                    "position": len(crumbs) + 1,
+                    "name": route_name,
+                    "item": canonical,
+                }
+            )
         data = {
             "@context": "https://schema.org",
-            "@type": "TechArticle",
-            "headline": page.title,
-            "description": page.description,
-            "dateModified": TODAY.isoformat(),
-            "mainEntityOfPage": canonical,
-            "publisher": {"@id": f"{DOMAIN}/#organization"},
+            "@graph": [
+                {
+                    "@type": "TechArticle",
+                    "headline": page.title,
+                    "description": page.description,
+                    "dateModified": TODAY.isoformat(),
+                    "mainEntityOfPage": canonical,
+                    "publisher": {"@id": f"{DOMAIN}/#organization"},
+                },
+                {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": crumbs,
+                },
+            ],
         }
     return json.dumps(data, separators=(",", ":"), ensure_ascii=False).replace(
         "</", "<\\/"
@@ -794,9 +962,15 @@ def structured_data(page: Page | None, canonical: str) -> str:
 
 
 def head(
-    title: str, description: str, canonical: str, production: bool, page: Page | None
+    title: str,
+    description: str,
+    canonical: str,
+    production: bool,
+    page: Page | None,
+    *,
+    noindex: bool = False,
 ) -> str:
-    robots = "index,follow" if production else "noindex,nofollow"
+    robots = "index,follow" if production and not noindex else "noindex,nofollow"
     full_title = (
         "Kaleidoscope — local memory for agents"
         if page is None
@@ -821,7 +995,15 @@ def head(
   <meta property="og:title" content="{html.escape(full_title, quote=True)}">
   <meta property="og:description" content="{html.escape(description, quote=True)}">
   <meta property="og:url" content="{canonical}">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="{SOCIAL_IMAGE}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{html.escape(full_title, quote=True)}">
+  <meta name="twitter:description" content="{html.escape(description, quote=True)}">
+  <meta name="twitter:image" content="{SOCIAL_IMAGE}">
+  <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
   <script type="application/ld+json">{structured_data(page, canonical)}</script>
 </head>"""
 
@@ -878,7 +1060,14 @@ def render_page(page: Page, metadata: dict[str, str], production: bool) -> str:
         f"<li>{nav_link(route, label, page.route)}</li>" for route, label in DOC_NAV
     )
     return (
-        head(page.title, page.description, canonical, production, page)
+        head(
+            page.title,
+            page.description,
+            canonical,
+            production,
+            page,
+            noindex=page.noindex,
+        )
         + header(page.route, metadata)
         + f"""
 <main id="main" class="shell layout">
@@ -939,7 +1128,8 @@ def build(output: Path, metadata: dict[str, str], production: bool) -> None:
     ):
         shutil.copyfile(ROOT / asset, output / asset)
     (output / "assets").mkdir(exist_ok=True)
-    shutil.copyfile(ROOT / "assets/site.css", output / "assets/site.css")
+    for asset in ("site.css", "kaleidoscope-og.png"):
+        shutil.copyfile(ROOT / "assets" / asset, output / "assets" / asset)
     write_text(output / ".nojekyll", "")
     write_text(route_path(output, "/"), render_home(metadata, production))
     for page in PAGES:
@@ -961,7 +1151,10 @@ def build(output: Path, metadata: dict[str, str], production: bool) -> None:
     )
     write_text(output / "404.html", not_found)
 
-    urls = [f"{DOMAIN}/", *(f"{DOMAIN}{page.route}" for page in PAGES)]
+    urls = [
+        f"{DOMAIN}/",
+        *(f"{DOMAIN}{page.route}" for page in PAGES if not page.noindex),
+    ]
     sitemap = (
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(
@@ -1016,6 +1209,8 @@ The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {
 
     chunks = [llms.strip()]
     for page in PAGES:
+        if page.noindex:
+            continue
         chunks.append(
             f"# {page.title}\n\nURL: {DOMAIN}{page.route}\nRelease: {metadata['release_version']}\nUpdated: {metadata['updated_at']}\n\n{plain_text(page.body)}"
         )

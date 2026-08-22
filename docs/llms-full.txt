@@ -307,25 +307,23 @@ Every integration consumes the same closed profile-first launch descriptor and p
 
 IntegrationPinned local evidencePublic status
 
-CodexReal codex-cli 0.149.0-alpha.4 add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.Verified local CLI configuration; model/TUI acceptance held
+Codex (/docs/integrations/codex/)Real codex-cli 0.149.0-alpha.4 add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.Verified local CLI configuration; model/TUI acceptance held
 
-Claude CodeManaged .mcp.json render, dry run, idempotence, and exact rollback passed.Not live-host accepted
+Claude Code (/docs/integrations/claude-code/)Managed .mcp.json render, dry run, idempotence, and exact rollback passed.Not live-host accepted
 
-CursorManaged mcp.json plus owner-marked rule passed local configuration tests.Not live-host accepted
+Cursor (/docs/integrations/cursor/)Managed mcp.json plus owner-marked rule passed local configuration tests.Not live-host accepted
 
-OpenCodeStable v1 direct entry is default; beta v2 is explicit and never silently selected.Not live-host accepted
+OpenCode (/docs/integrations/opencode/)Stable v1 direct entry is default; beta v2 is explicit and never silently selected.Not live-host accepted
 
-Python generic MCPmcp==1.29.0 and mcp==2.0.0; persistent and real-profile lanes passed.Verified local, unpublished
+Python and TypeScript generic MCP (/docs/integrations/generic-mcp/)mcp==1.29.0, mcp==2.0.0, and @modelcontextprotocol/client==2.0.0; persistent and real-profile lanes passed.Verified local, unpublished
 
-TypeScript generic MCP@modelcontextprotocol/client==2.0.0; explicit revision negotiation and real-profile lane passed.Verified local, unpublished
+LangChain (/docs/integrations/langchain/) / LangGraph (/docs/integrations/langgraph/)langchain==1.3.16, langgraph==1.2.11; one persistent session and no shadow store.Verified with fake provider
 
-LangChain / LangGraphlangchain==1.3.16, langgraph==1.2.11; one persistent session and no shadow store.Verified with fake provider
+Claude Agent SDK (/docs/integrations/claude-agent-sdk/)claude-agent-sdk==0.2.143; strict MCP names and lifecycle passed.Verified without live provider
 
-Claude Agent SDKclaude-agent-sdk==0.2.143; strict MCP names and lifecycle passed.Verified without live provider
+OpenAI Agents SDK (/docs/integrations/openai-agents-sdk/)Python 0.22.0 and TypeScript 0.17.0; scripted-model routing passed.Verified with adapter caveat
 
-OpenAI Agents SDKPython 0.22.0 and TypeScript 0.17.0; scripted-model routing passed.Verified with adapter caveat
-
-CrewAIcrewai==1.15.17; long-lived MCP adapter passed.Verified with fake server
+CrewAI (/docs/integrations/crewai/)crewai==1.15.17; long-lived MCP adapter passed.Verified with fake server
 
 What DX-07 and DX-10B prove. SDK commit 67e351d… converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Host conformance commit 9cd4b58… bound the manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.
 
@@ -682,6 +680,230 @@ Remove merge_verdict, ontology_proposal, policy, policy_patch, ope, and replay f
 Operator feedback
 
 feedback is an operator command, not an MCP tool. Public search does not return its required decision handle, so a model has no supported public path to call it. Do not reconstruct private state or advertise a fake attribution workflow.
+
+---
+
+# Codex integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/codex/
+Release: unreleased
+Updated: 2026-08-22
+
+Codex uses the same profile-first stdio descriptor as every other harness. The manager owns configuration changes so they can be previewed, backed up, and removed exactly.
+
+Connect a project
+
+kaleidoscope connect codex --profile default --project "$PWD" --dry-run
+kaleidoscope connect codex --profile default --project "$PWD"
+kaleidoscope instructions install agents --project "$PWD"
+
+The generated configuration names an absolute local engine command, mcp --profile default, and exactly search and remember. It does not add vault coordinates, provider keys, or account credentials.
+
+Evidence boundary
+
+The local candidate passed isolated codex mcp add/list/get/remove, byte-exact rollback, and real stdio discovery. That proves the CLI configuration lane on macOS arm64; it does not make a model, TUI, IDE, package, or production account claim.
+
+---
+
+# Claude Code integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/claude-code/
+Release: unreleased
+Updated: 2026-08-22
+
+Claude Code receives one local stdio MCP server definition and an optional owner-marked project pointer to the public skill.
+
+Preview first
+
+kaleidoscope connect claude --profile default --project "$PWD" --dry-run
+kaleidoscope connect claude --profile default --project "$PWD"
+kaleidoscope instructions install claude --project "$PWD"
+
+The manager writes only its owned entry in .mcp.json, retains unrelated configuration, and refuses ambiguous or modified ownership boundaries. The descriptor publishes only search and remember.
+
+Evidence boundary
+
+Renderer, dry-run, idempotence, and rollback tests passed locally. Live Claude Code acceptance remains held until an installed, pinned host lane is run against a released package.
+
+---
+
+# Claude Agent SDK integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/claude-agent-sdk/
+Release: unreleased
+Updated: 2026-08-22
+
+The Python recipe creates one Claude Agent SDK client for the intended run and passes a strict stdio MCP configuration with explicit Kaleidoscope tool names.
+
+Allowed tools
+
+mcp__kaleidoscope__search
+mcp__kaleidoscope__remember
+
+Provider credentials remain the application’s concern. The descriptor has an empty override environment, so account tokens, vault coordinates, and provider keys do not enter the MCP child process.
+
+Evidence boundary
+
+The local lifecycle test uses a deterministic client double to prove one client and the exact allowlist. It is not a live-provider acceptance claim.
+
+---
+
+# Cursor integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/cursor/
+Release: unreleased
+Updated: 2026-08-22
+
+Cursor uses the same local MCP command and only the two public memory tools. The manager makes the JSON mutation reversible and adds a small project rule only when requested.
+
+Connect and guide
+
+kaleidoscope connect cursor --profile default --project "$PWD" --dry-run
+kaleidoscope connect cursor --profile default --project "$PWD"
+kaleidoscope instructions install cursor --project "$PWD"
+
+Existing unrelated entries stay untouched. Tampered receipts, conflicting names, malformed configuration, symlinked files, and concurrent edits are refused for manual review.
+
+Evidence boundary
+
+Local renderer and rollback coverage passed. A pinned Cursor build and installed-package acceptance remain held.
+
+---
+
+# OpenCode integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/opencode/
+Release: unreleased
+Updated: 2026-08-22
+
+OpenCode stable v1 and beta v2 use different configuration shapes. Kaleidoscope never guesses or silently migrates between them.
+
+Stable v1 by default
+
+kaleidoscope connect opencode --profile default --project "$PWD" --dry-run
+kaleidoscope connect opencode --profile default --project "$PWD"
+
+Explicit beta v2
+
+kaleidoscope connect opencode --profile default --project "$PWD" --opencode-version beta-v2 --dry-run
+
+The stable entry is a direct local command; beta v2 uses the explicit server shape with code mode disabled so search and remember remain visible. Ambiguous dual shapes are refused.
+
+Evidence boundary
+
+Both renderers and safe mutation paths passed locally. Installed OpenCode acceptance remains held.
+
+---
+
+# Generic MCP integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/generic-mcp/
+Release: unreleased
+Updated: 2026-08-22
+
+Any standard MCP host can obtain the canonical child-process descriptor from the manager and retain one initialized session for its run.
+
+Get the descriptor
+
+kaleidoscope config --profile default --json
+
+The result is intentionally closed: an absolute command, mcp --profile NAME, stdio, exactly two tools, and an empty environment. Do not add vault coordinates or tokens.
+
+Persistent session rule
+
+Initialize once, discover exactly search and remember, then reuse the session through the agent or application run. A controller-owned raw search replaces a model-facing MCP search for that turn; it does not duplicate it.
+
+Evidence boundary
+
+Python MCP 1.x/2.x and TypeScript MCP client suites exercised persistent process, restart, teardown, malformed discovery, structured output, and tool-refusal behavior against the local candidate.
+
+---
+
+# LangChain integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/langchain/
+Release: unreleased
+Updated: 2026-08-22
+
+Use the official LangChain MCP adapter to load the two Kaleidoscope tools inside one adapter session. Kaleidoscope is not a BaseStore implementation.
+
+Lifecycle
+
+Open the stdio adapter once around the application’s intended agent run, load and filter the two tools, then close the adapter after the run. The application supplies its model-provider credentials separately.
+
+Boundary
+
+Do not implement a parallel LangChain memory or summarize messages into a second store. The MCP server remains the one canonical memory owner.
+
+Evidence boundary
+
+The pinned local LangChain adapter suite verified remembered and searched values share one MCP process. It uses a deterministic provider double and does not claim live provider behavior.
+
+---
+
+# LangGraph integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/langgraph/
+Release: unreleased
+Updated: 2026-08-22
+
+LangGraph uses the same one-session MCP adapter as LangChain, placed in the graph’s tool node for the run.
+
+Boundary
+
+Kaleidoscope is not a LangGraph checkpointer or BaseStore. Graph state and local durable memory remain distinct so the integration does not create a second canonical owner.
+
+Lifecycle
+
+Open the adapter before executing the graph, pass the filtered MCP tools into the tool node, and close it once execution is complete. Reuse the session across node calls.
+
+Evidence boundary
+
+The pinned local graph test exercised a tool node calling remember then search through the same MCP process.
+
+---
+
+# OpenAI Agents SDK integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/openai-agents-sdk/
+Release: unreleased
+Updated: 2026-08-22
+
+Use the official stdio MCP server lifecycle supplied by the OpenAI Agents SDK, keeping one server alive for the agent run and filtering the model-facing tools to Kaleidoscope’s two public operations.
+
+Tool boundary
+
+The agent may call search and remember. Controller, account, and operator commands stay outside the model tool set. Provider credentials are supplied by the application, never through the Kaleidoscope descriptor.
+
+Lifecycle
+
+Create the MCP server as a managed resource around the run, then close it deterministically. Do not reopen a separate engine process for each tool call.
+
+Evidence boundary
+
+Pinned Python and TypeScript adapters passed scripted-model lifecycle tests with one persistent server. This is not a live-model or account claim.
+
+---
+
+# CrewAI integration
+
+URL: https://memory.kleosresearch.xyz/docs/integrations/crewai/
+Release: unreleased
+Updated: 2026-08-22
+
+CrewAI uses one stdio MCP adapter context for the crew run. The adapter exposes only the Kaleidoscope tools that are appropriate for the model.
+
+Lifecycle
+
+Construct the adapter with the manager-generated local descriptor, enter it once, select search and remember, run the crew, then close the context. Do not recreate the server for each task.
+
+Boundary
+
+The framework owns provider configuration and crew state. Kaleidoscope owns only its local memory and does not receive model-provider credentials or account tokens.
+
+Evidence boundary
+
+The pinned adapter was exercised against the local MCP fixture with one persistent process and explicit tool filtering.
 
 ---
 

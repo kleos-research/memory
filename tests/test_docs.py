@@ -32,12 +32,20 @@ class DocumentationArtifactTest(unittest.TestCase):
                 json.loads((checked_in / "site-manifest.json").read_text()),
                 json.loads((output / "site-manifest.json").read_text()),
             )
+        image = ROOT / "assets" / "kaleidoscope-og.png"
+        self.assertTrue(image.is_file())
+        self.assertTrue(image.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"))
 
     def test_route_inventory_matches_navigation(self) -> None:
         page_routes = [page.route for page in build_site.PAGES]
         nav_routes = [route for route, _label in build_site.DOC_NAV]
         self.assertEqual(len(page_routes), len(set(page_routes)))
-        self.assertEqual(page_routes, nav_routes)
+        self.assertEqual(len(nav_routes), len(set(nav_routes)))
+        self.assertTrue(set(nav_routes).issubset(page_routes))
+        self.assertIn("/docs/hosted/", page_routes)
+        self.assertTrue(
+            next(page for page in build_site.PAGES if page.route == "/docs/hosted/").noindex
+        )
 
     def test_public_skill_and_candidate_bindings_are_exact(self) -> None:
         skill = build_site.PUBLIC_FILES["SKILL.md"]

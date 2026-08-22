@@ -17,8 +17,16 @@
   <meta property="og:title" content="Agent and framework integrations | Kaleidoscope">
   <meta property="og:description" content="How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/integrations/">
-  <meta name="twitter:card" content="summary">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Agent and framework integrations","description":"How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/integrations/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+  <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Agent and framework integrations | Kaleidoscope">
+  <meta name="twitter:description" content="How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.">
+  <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
+  <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Agent and framework integrations","description":"How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/integrations/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Agent and framework integrations","item":"https://memory.kleosresearch.xyz/docs/integrations/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
@@ -36,16 +44,15 @@
   <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Agent and framework integrations</h1>
 <p class="lede">Every integration consumes the same closed profile-first launch descriptor and persistent stdio MCP contract. The wrapper candidates do not contain or reimplement the proprietary memory algorithm.</p>
 <table><thead><tr><th>Integration</th><th>Pinned local evidence</th><th>Public status</th></tr></thead><tbody>
-<tr><td>Codex</td><td>Real <code>codex-cli 0.149.0-alpha.4</code> add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.</td><td>Verified local CLI configuration; model/TUI acceptance held</td></tr>
-<tr><td>Claude Code</td><td>Managed <code>.mcp.json</code> render, dry run, idempotence, and exact rollback passed.</td><td>Not live-host accepted</td></tr>
-<tr><td>Cursor</td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Not live-host accepted</td></tr>
-<tr><td>OpenCode</td><td>Stable v1 direct entry is default; beta v2 is explicit and never silently selected.</td><td>Not live-host accepted</td></tr>
-<tr><td>Python generic MCP</td><td><code>mcp==1.29.0</code> and <code>mcp==2.0.0</code>; persistent and real-profile lanes passed.</td><td>Verified local, unpublished</td></tr>
-<tr><td>TypeScript generic MCP</td><td><code>@modelcontextprotocol/client==2.0.0</code>; explicit revision negotiation and real-profile lane passed.</td><td>Verified local, unpublished</td></tr>
-<tr><td>LangChain / LangGraph</td><td><code>langchain==1.3.16</code>, <code>langgraph==1.2.11</code>; one persistent session and no shadow store.</td><td>Verified with fake provider</td></tr>
-<tr><td>Claude Agent SDK</td><td><code>claude-agent-sdk==0.2.143</code>; strict MCP names and lifecycle passed.</td><td>Verified without live provider</td></tr>
-<tr><td>OpenAI Agents SDK</td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
-<tr><td>CrewAI</td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
+<tr><td><a href="/docs/integrations/codex/">Codex</a></td><td>Real <code>codex-cli 0.149.0-alpha.4</code> add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.</td><td>Verified local CLI configuration; model/TUI acceptance held</td></tr>
+<tr><td><a href="/docs/integrations/claude-code/">Claude Code</a></td><td>Managed <code>.mcp.json</code> render, dry run, idempotence, and exact rollback passed.</td><td>Not live-host accepted</td></tr>
+<tr><td><a href="/docs/integrations/cursor/">Cursor</a></td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Not live-host accepted</td></tr>
+<tr><td><a href="/docs/integrations/opencode/">OpenCode</a></td><td>Stable v1 direct entry is default; beta v2 is explicit and never silently selected.</td><td>Not live-host accepted</td></tr>
+<tr><td><a href="/docs/integrations/generic-mcp/">Python and TypeScript generic MCP</a></td><td><code>mcp==1.29.0</code>, <code>mcp==2.0.0</code>, and <code>@modelcontextprotocol/client==2.0.0</code>; persistent and real-profile lanes passed.</td><td>Verified local, unpublished</td></tr>
+<tr><td><a href="/docs/integrations/langchain/">LangChain</a> / <a href="/docs/integrations/langgraph/">LangGraph</a></td><td><code>langchain==1.3.16</code>, <code>langgraph==1.2.11</code>; one persistent session and no shadow store.</td><td>Verified with fake provider</td></tr>
+<tr><td><a href="/docs/integrations/claude-agent-sdk/">Claude Agent SDK</a></td><td><code>claude-agent-sdk==0.2.143</code>; strict MCP names and lifecycle passed.</td><td>Verified without live provider</td></tr>
+<tr><td><a href="/docs/integrations/openai-agents-sdk/">OpenAI Agents SDK</a></td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
+<tr><td><a href="/docs/integrations/crewai/">CrewAI</a></td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
 <div class="callout"><strong>What DX-07 and DX-10B prove.</strong> SDK commit <code>67e351d…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Host conformance commit <code>9cd4b58…</code> bound the manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
 <h2>Agent guidance</h2>

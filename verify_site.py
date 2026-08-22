@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 from xml.etree import ElementTree
 
 DOMAIN = "https://memory.kleosresearch.xyz"
+SOCIAL_IMAGE = f"{DOMAIN}/assets/kaleidoscope-og.png"
 EXPECTED_CNAME = "memory.kleosresearch.xyz"
 ENGINE_CANDIDATE_SHA256 = (
     "988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825"
@@ -105,6 +106,16 @@ EXPECTED_HTML = {
     "docs/cli/index.html",
     "docs/mcp/index.html",
     "docs/integrations/index.html",
+    "docs/integrations/codex/index.html",
+    "docs/integrations/claude-code/index.html",
+    "docs/integrations/claude-agent-sdk/index.html",
+    "docs/integrations/cursor/index.html",
+    "docs/integrations/opencode/index.html",
+    "docs/integrations/generic-mcp/index.html",
+    "docs/integrations/langchain/index.html",
+    "docs/integrations/langgraph/index.html",
+    "docs/integrations/openai-agents-sdk/index.html",
+    "docs/integrations/crewai/index.html",
     "docs/operations/index.html",
     "docs/security/index.html",
     "docs/privacy/index.html",
@@ -115,7 +126,9 @@ EXPECTED_HTML = {
     "docs/release-notes/index.html",
     "docs/troubleshooting/index.html",
     "docs/migration/index.html",
+    "docs/hosted/index.html",
 }
+NOINDEX_HTML = {"404.html", "docs/hosted/index.html"}
 EXPECTED_MILESTONES = {
     "DX-04": MANAGER_SOURCE_COMMIT,
     "DX-05B": MANAGER_SOURCE_COMMIT,
@@ -135,6 +148,7 @@ class DocumentParser(HTMLParser):
         self.canonicals: list[str] = []
         self.robots: list[str] = []
         self.descriptions: list[str] = []
+        self.meta: dict[str, list[str]] = {}
         self.structured_data: list[str] = []
         self._structured_buffer: list[str] | None = None
 
@@ -148,10 +162,14 @@ class DocumentParser(HTMLParser):
             self.links.append(values["href"] or "")
             if values.get("rel") == "canonical":
                 self.canonicals.append(values["href"] or "")
-        if tag == "meta" and values.get("name") == "robots":
-            self.robots.append(values.get("content") or "")
-        if tag == "meta" and values.get("name") == "description":
-            self.descriptions.append(values.get("content") or "")
+        if tag == "meta":
+            key = values.get("name") or values.get("property")
+            if key:
+                self.meta.setdefault(key, []).append(values.get("content") or "")
+            if values.get("name") == "robots":
+                self.robots.append(values.get("content") or "")
+            if values.get("name") == "description":
+                self.descriptions.append(values.get("content") or "")
         if tag == "script" and values.get("type") == "application/ld+json":
             self._structured_buffer = []
         if tag == "h1":
@@ -200,6 +218,12 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         failures.append("missing CNAME")
     elif cname_path.read_text(encoding="utf-8").strip() != EXPECTED_CNAME:
         failures.append("CNAME does not match the canonical documentation domain")
+
+    social_image = root / "assets" / "kaleidoscope-og.png"
+    if not social_image.is_file() or not social_image.read_bytes().startswith(
+        b"\x89PNG\r\n\x1a\n"
+    ):
+        failures.append("missing or invalid Kaleidoscope social image")
 
     declared = {entry["path"]: entry for entry in manifest.get("files", [])}
     actual = {
@@ -455,7 +479,7 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             failures.append(f"{relative}: missing or invalid canonical")
         expected_robots = (
             "index,follow"
-            if expected_mode == "production" and relative != "404.html"
+            if expected_mode == "production" and relative not in NOINDEX_HTML
             else "noindex,nofollow"
         )
         if parser.robots != [expected_robots]:
@@ -464,6 +488,19 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             )
         if len(parser.descriptions) != 1 or not parser.descriptions[0].strip():
             failures.append(f"{relative}: expected one non-empty meta description")
+        for name, expected in (
+            ("og:image", SOCIAL_IMAGE),
+            ("og:image:width", "1200"),
+            ("og:image:height", "630"),
+            ("og:image:alt", "Kaleidoscope — local memory for agents"),
+            ("twitter:card", "summary_large_image"),
+            ("twitter:image", SOCIAL_IMAGE),
+            ("twitter:image:alt", "Kaleidoscope — local memory for agents"),
+        ):
+            if parser.meta.get(name) != [expected]:
+                failures.append(
+                    f"{relative}: {name} is {parser.meta.get(name)!r}, expected {[expected]!r}"
+                )
         if len(parser.structured_data) != 1:
             failures.append(
                 f"{relative}: expected one JSON-LD block, found {len(parser.structured_data)}"
@@ -476,6 +513,16 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             else:
                 if structured.get("@context") != "https://schema.org":
                     failures.append(f"{relative}: JSON-LD has wrong schema context")
+                if relative.startswith("docs/"):
+                    graph = structured.get("@graph")
+                    if not isinstance(graph, list) or {
+                        item.get("@type")
+                        for item in graph
+                        if isinstance(item, dict)
+                    } != {"TechArticle", "BreadcrumbList"}:
+                        failures.append(
+                            f"{relative}: JSON-LD must contain TechArticle and BreadcrumbList"
+                        )
         if not relative.startswith("docs/migration/"):
             lowered = document.lower()
             for tool in LEGACY_TOOLS:
@@ -508,7 +555,7 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         expected_urls = {f"{DOMAIN}/"}
         expected_urls.update(
             f"{DOMAIN}/" + relative.removesuffix("index.html")
-            for relative in EXPECTED_HTML - {"404.html", "index.html"}
+            for relative in EXPECTED_HTML - NOINDEX_HTML - {"index.html"}
         )
         if sitemap_urls != expected_urls:
             failures.append(
@@ -556,7 +603,7 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             failures.append(f"llms.txt missing {required!r}")
 
     llms_full = (root / "llms-full.txt").read_text(encoding="utf-8")
-    for relative in sorted(EXPECTED_HTML - {"404.html", "index.html"}):
+    for relative in sorted(EXPECTED_HTML - NOINDEX_HTML - {"index.html"}):
         route = "/" + relative.removesuffix("index.html")
         if f"URL: {DOMAIN}{route}" not in llms_full:
             failures.append(f"llms-full.txt missing canonical section for {route}")
