@@ -930,6 +930,7 @@ def prepare_output(output: Path) -> None:
 
 def build(output: Path, metadata: dict[str, str], production: bool) -> None:
     prepare_output(output)
+    shutil.copyfile(ROOT / "CNAME", output / "CNAME")
     for asset in (
         "favicon.svg",
         "favicon-32.png",
@@ -1072,7 +1073,7 @@ The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=ROOT / "dist")
+    parser.add_argument("--output", type=Path, default=ROOT / "docs")
     parser.add_argument("--release-metadata", type=Path)
     parser.add_argument("--production", action="store_true")
     args = parser.parse_args()

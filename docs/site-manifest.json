@@ -16,6 +16,11 @@
       "size_bytes": 3085
     },
     {
+      "path": "CNAME",
+      "sha256": "e44249353df343fa685fbe8b2a6a2c36c86303eeb32417f4074a06073bd54289",
+      "size_bytes": 25
+    },
+    {
       "path": "SKILL.md",
       "sha256": "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad",
       "size_bytes": 4136

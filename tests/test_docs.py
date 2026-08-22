@@ -10,6 +10,9 @@ import build_site
 import verify_site
 
 
+ROOT = Path(__file__).parents[1]
+
+
 class DocumentationArtifactTest(unittest.TestCase):
     def test_staging_build_passes_full_verifier(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -17,6 +20,18 @@ class DocumentationArtifactTest(unittest.TestCase):
             metadata = build_site.load_metadata(None, production=False)
             build_site.build(output, metadata, production=False)
             self.assertEqual(verify_site.verify(output, "staging"), [])
+
+    def test_checked_in_pages_artifact_matches_the_deterministic_staging_build(self) -> None:
+        checked_in = ROOT / "docs"
+        self.assertEqual(verify_site.verify(checked_in, "staging"), [])
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "site"
+            metadata = build_site.load_metadata(None, production=False)
+            build_site.build(output, metadata, production=False)
+            self.assertEqual(
+                json.loads((checked_in / "site-manifest.json").read_text()),
+                json.loads((output / "site-manifest.json").read_text()),
+            )
 
     def test_route_inventory_matches_navigation(self) -> None:
         page_routes = [page.route for page in build_site.PAGES]

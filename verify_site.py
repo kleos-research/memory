@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 from xml.etree import ElementTree
 
 DOMAIN = "https://memory.kleosresearch.xyz"
+EXPECTED_CNAME = "memory.kleosresearch.xyz"
 ENGINE_CANDIDATE_SHA256 = (
     "988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825"
 )
@@ -193,6 +194,12 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         failures.append(
             f"manifest mode is {manifest.get('mode')!r}, expected {expected_mode!r}"
         )
+
+    cname_path = root / "CNAME"
+    if not cname_path.is_file():
+        failures.append("missing CNAME")
+    elif cname_path.read_text(encoding="utf-8").strip() != EXPECTED_CNAME:
+        failures.append("CNAME does not match the canonical documentation domain")
 
     declared = {entry["path"]: entry for entry in manifest.get("files", [])}
     actual = {

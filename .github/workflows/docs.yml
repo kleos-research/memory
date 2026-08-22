@@ -18,6 +18,8 @@ jobs:
           python-version: "3.12"
       - run: python build_site.py --output .site
       - run: python verify_site.py .site --mode staging
+      - name: Check in the exact reviewed Pages artifact
+        run: diff --brief --recursive .site docs
       - name: Production must require immutable release metadata
         run: |
           if python build_site.py --output .production-without-release --production; then

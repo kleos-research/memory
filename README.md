@@ -51,10 +51,19 @@ native platforms and hosts, licenses/EULA, registry publication, and Pages
 promotion remain held.
 
 ```sh
-python3 build_site.py --output dist
-python3 verify_site.py dist --mode staging
+python3 build_site.py --output docs
+python3 verify_site.py docs --mode staging
 python3 -m unittest discover -s tests -v
 ```
+
+`docs/` is the checked-in, deterministic Pages artifact. The repository is
+currently still configured to serve legacy GitHub Pages from `main:/`, so
+merging this staging work does not promote the new artifact. During the
+separately approved Pages promotion, switch the publishing source to
+`main:/docs` only after the reviewed artifact and its release content are ready.
+The generated artifact carries both `.nojekyll` and the canonical `CNAME` so
+the supported branch-folder deployment shape preserves the static route and
+custom-domain contract.
 
 A production build requires immutable release metadata containing exactly
 `release_version`, `public_contract_sha256`, `availability`, and `updated_at`.
