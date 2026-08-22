@@ -56,6 +56,7 @@ DX10A_EVIDENCE_SHA256 = (
     "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
 )
 SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
+SDK_PACKAGE_METADATA_COMMIT = "d328647"
 DX10B_HOST_EVIDENCE_SHA256 = (
     "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
 )
@@ -360,7 +361,7 @@ kscope --version</code></pre>
 <h2>What the package checks</h2>
 <ul><li>Exact manager, engine, public-contract, SBOM, provenance, and signature bindings.</li><li>Allowlisted tarball/wheel inventories with private-source and build-path scans.</li><li>Offline installation, executable permissions, <code>kscope --version</code>, and clean update/rollback/uninstall rehearsals.</li><li>Unsupported or untested targets fail clearly; matrix entries do not imply support.</li></ul>
 <h2>Current availability</h2>
-<p>The local macOS arm64 candidate passes the package and lifecycle lanes. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.</p>
+<p>The local macOS arm64 candidate passes the package and lifecycle lanes. The final-name package metadata is staged at SDK commit <code>{SDK_PACKAGE_METADATA_COMMIT}</code>. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.</p>
 """,
     ),
     Page(
