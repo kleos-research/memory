@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Package installation | Kaleidoscope</title>
+  <meta name="description" content="Kaleidoscope npm and Python package names, platform selection, source-free payload rules, and protected release gates.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/packages/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Package installation | Kaleidoscope">
+  <meta property="og:description" content="Kaleidoscope npm and Python package names, platform selection, source-free payload rules, and protected release gates.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/packages/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Package installation","description":"Kaleidoscope npm and Python package names, platform selection, source-free payload rules, and protected release gates.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/packages/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>staging</strong><span>Release unreleased · contract not-yet-boun</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/" aria-current="page">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
+  <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Package installation</h1>
+<p class="lede">The release package contains the public manager and proprietary engine object code. It never contains engine source, build inputs, model tables as standalone files, or a compiler.</p>
+<div class="callout"><strong>Release-candidate shape.</strong> The final registry names are fixed, but publication is still gated by legal approval, production signing, native platform evidence, registry credentials, and a separate release approval.</div>
+<h2>npm</h2>
+<pre><code>npm install -g @kleos-research/kaleidoscope
+kscope --version</code></pre>
+<p><code>@kleos-research/kaleidoscope</code> is the platform-neutral entry package. It resolves one exact optional companion, such as <code>@kleos-research/kaleidoscope-darwin-arm64</code>, for the installing machine. The companion carries the source-free native payload and its bound public contract. Do not install with <code>--omit=optional</code>.</p>
+<h2>Python</h2>
+<pre><code>python -m pip install kaleidoscope-memory</code></pre>
+<p><code>kaleidoscope-memory</code> is the Python facade. A platform wheel, such as <code>kaleidoscope-memory-native-darwin-arm64</code>, carries the same signed native payload and is selected by the facade. There is no source distribution fallback that compiles or downloads the private engine.</p>
+<h2>What the package checks</h2>
+<ul><li>Exact manager, engine, public-contract, SBOM, provenance, and signature bindings.</li><li>Allowlisted tarball/wheel inventories with private-source and build-path scans.</li><li>Offline installation, executable permissions, <code>kscope --version</code>, and clean update/rollback/uninstall rehearsals.</li><li>Unsupported or untested targets fail clearly; matrix entries do not imply support.</li></ul>
+<h2>Current availability</h2>
+<p>The local macOS arm64 candidate passes the package and lifecycle lanes. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.</p>
+</article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/llms.txt">llms.txt</a><a href="/.well-known/security.txt">security.txt</a><a href="/docs/account/">Account boundary</a></nav>
+</div></footer></body></html>

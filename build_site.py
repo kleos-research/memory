@@ -279,6 +279,7 @@ class Page:
 DOC_NAV = (
     ("/docs/", "Overview"),
     ("/docs/getting-started/", "Getting started"),
+    ("/docs/packages/", "Packages"),
     ("/docs/concepts/", "Concepts"),
     ("/docs/cli/", "CLI"),
     ("/docs/mcp/", "MCP"),
@@ -306,6 +307,7 @@ PAGES = (
 <div class="callout"><strong>Release status.</strong> This is a non-indexable documentation staging build. Local implementation and conformance evidence exists, but no package, registry, production login, public SDK repository, or Pages promotion is authorized.</div>
 <div class="grid">
   <article class="card"><h2><a href="/docs/getting-started/">Preview the workflow</a></h2><p>Inspect the verified manager interface for one profile, reversible host setup, and local diagnostics.</p></article>
+  <article class="card"><h2><a href="/docs/packages/">Prepare a package install</a></h2><p>See the final npm and Python names, platform rules, and source-free release gates.</p></article>
   <article class="card"><h2><a href="/docs/mcp/">Build against MCP</a></h2><p>Use the candidate-bound two-tool contract over one long-lived stdio process.</p></article>
   <article class="card"><h2><a href="/docs/evidence/">Check what passed</a></h2><p>Separate locally verified milestones from platform holds and protected production gates.</p></article>
 </div>
@@ -339,6 +341,26 @@ kaleidoscope --engine /absolute/path/to/kscope doctor --project "$PWD"</code></p
 <pre><code>kaleidoscope disconnect codex --project "$PWD" --dry-run
 kaleidoscope disconnect codex --project "$PWD"</code></pre>
 <p>Disconnect removes only Kaleidoscope-owned material and leaves other host settings and vault bytes unchanged.</p>
+""",
+    ),
+    Page(
+        route="/docs/packages/",
+        title="Package installation",
+        description="Kaleidoscope npm and Python package names, platform selection, source-free payload rules, and protected release gates.",
+        body="""
+<p class="lede">The release package contains the public manager and proprietary engine object code. It never contains engine source, build inputs, model tables as standalone files, or a compiler.</p>
+<div class="callout"><strong>Release-candidate shape.</strong> The final registry names are fixed, but publication is still gated by legal approval, production signing, native platform evidence, registry credentials, and a separate release approval.</div>
+<h2>npm</h2>
+<pre><code>npm install -g @kleos-research/kaleidoscope
+kscope --version</code></pre>
+<p><code>@kleos-research/kaleidoscope</code> is the platform-neutral entry package. It resolves one exact optional companion, such as <code>@kleos-research/kaleidoscope-darwin-arm64</code>, for the installing machine. The companion carries the source-free native payload and its bound public contract. Do not install with <code>--omit=optional</code>.</p>
+<h2>Python</h2>
+<pre><code>python -m pip install kaleidoscope-memory</code></pre>
+<p><code>kaleidoscope-memory</code> is the Python facade. A platform wheel, such as <code>kaleidoscope-memory-native-darwin-arm64</code>, carries the same signed native payload and is selected by the facade. There is no source distribution fallback that compiles or downloads the private engine.</p>
+<h2>What the package checks</h2>
+<ul><li>Exact manager, engine, public-contract, SBOM, provenance, and signature bindings.</li><li>Allowlisted tarball/wheel inventories with private-source and build-path scans.</li><li>Offline installation, executable permissions, <code>kscope --version</code>, and clean update/rollback/uninstall rehearsals.</li><li>Unsupported or untested targets fail clearly; matrix entries do not imply support.</li></ul>
+<h2>Current availability</h2>
+<p>The local macOS arm64 candidate passes the package and lifecycle lanes. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.</p>
 """,
     ),
     Page(

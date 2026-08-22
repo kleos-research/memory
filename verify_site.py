@@ -81,6 +81,7 @@ EXPECTED_HTML = {
     "index.html",
     "docs/index.html",
     "docs/getting-started/index.html",
+    "docs/packages/index.html",
     "docs/concepts/index.html",
     "docs/cli/index.html",
     "docs/mcp/index.html",

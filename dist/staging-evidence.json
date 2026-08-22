@@ -53,11 +53,11 @@
       "verification": "Python dependency matrices, TypeScript 32-pass/1-skip and 33-of-33 real-profile lanes, and poison scan passed"
     },
     {
-      "commit": "ceac8311f819437ace54813d2b4ba0731a5981a1",
+      "commit": "ef89d05f09435afc9790fcdf5df3e01d34c7115b",
       "id": "DX-09",
-      "scope": "candidate-bound benchmark contract and opt-in native smoke; no benchmark score",
-      "status": "merged_functional_smoke_only",
-      "verification": "20 ordinary tests passed with 1 live skip; opt-in exact-candidate smoke passed 1 of 1"
+      "scope": "candidate-bound native smoke and credential-free deterministic fixture pipeline; no benchmark score",
+      "status": "merged_deterministic_fixture_only",
+      "verification": "24 tests passed with 1 live skip; stable fixture evidence SHA-256 f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
     },
     {
       "commit": "9cd4b5837e887a0bb3dcc13209134c002aad08f5",

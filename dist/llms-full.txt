@@ -20,7 +20,7 @@
 - [Candidate CLI help](https://memory.kleosresearch.xyz/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference](https://memory.kleosresearch.xyz/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. Exact locally verified bindings: manager SHA-256 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e; engine SHA-256 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825; public contract SHA-256 a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e; DX-06 summary SHA-256 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed; DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e; DX-10B Codex-host evidence SHA-256 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840. The local distribution is test-signed only and supports no production-release claim. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
+The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. Exact locally verified bindings: manager SHA-256 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e; engine SHA-256 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825; public contract SHA-256 a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e; DX-06 summary SHA-256 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed; DX-09 deterministic fixture evidence SHA-256 f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504; DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e; DX-10B Codex-host evidence SHA-256 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840. The local distribution is test-signed only and supports no production-release claim. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
 
 ---
 
@@ -37,6 +37,10 @@ Release status. This is a non-indexable documentation staging build. Local imple
 Preview the workflow (/docs/getting-started/)
 
 Inspect the verified manager interface for one profile, reversible host setup, and local diagnostics.
+
+Prepare a package install (/docs/packages/)
+
+See the final npm and Python names, platform rules, and source-free release gates.
 
 Build against MCP (/docs/mcp/)
 
@@ -99,6 +103,45 @@ kaleidoscope disconnect codex --project "$PWD" --dry-run
 kaleidoscope disconnect codex --project "$PWD"
 
 Disconnect removes only Kaleidoscope-owned material and leaves other host settings and vault bytes unchanged.
+
+---
+
+# Package installation
+
+URL: https://memory.kleosresearch.xyz/docs/packages/
+Release: unreleased
+Updated: 2026-08-22
+
+The release package contains the public manager and proprietary engine object code. It never contains engine source, build inputs, model tables as standalone files, or a compiler.
+
+Release-candidate shape. The final registry names are fixed, but publication is still gated by legal approval, production signing, native platform evidence, registry credentials, and a separate release approval.
+
+npm
+
+npm install -g @kleos-research/kaleidoscope
+kscope --version
+
+@kleos-research/kaleidoscope is the platform-neutral entry package. It resolves one exact optional companion, such as @kleos-research/kaleidoscope-darwin-arm64, for the installing machine. The companion carries the source-free native payload and its bound public contract. Do not install with --omit=optional.
+
+Python
+
+python -m pip install kaleidoscope-memory
+
+kaleidoscope-memory is the Python facade. A platform wheel, such as kaleidoscope-memory-native-darwin-arm64, carries the same signed native payload and is selected by the facade. There is no source distribution fallback that compiles or downloads the private engine.
+
+What the package checks
+
+- Exact manager, engine, public-contract, SBOM, provenance, and signature bindings.
+
+- Allowlisted tarball/wheel inventories with private-source and build-path scans.
+
+- Offline installation, executable permissions, kscope --version, and clean update/rollback/uninstall rehearsals.
+
+- Unsupported or untested targets fail clearly; matrix entries do not imply support.
+
+Current availability
+
+The local macOS arm64 candidate passes the package and lifecycle lanes. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.
 
 ---
 
@@ -475,7 +518,7 @@ DX-06A/B42ffba4e3976810f91f2adcf53bd4393e5330d72, summary 98d36d4ce6a7b99c273f6c
 
 DX-07fd0b187…Pinned Python/TypeScript client and integration matrices passed locally; no license or remote.
 
-DX-09ceac831…, merged PRs 3/4Clean contract tests and native smoke passed; no score or signed release evidence.
+DX-09ef89d05f09435afc9790fcdf5df3e01d34c7115b, merged PRs 5/6; evidence f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.
 
 DX-10Acfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12eFinal local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.
 
@@ -515,7 +558,7 @@ Unreleased local staging — 2026-08-22
 
 - DX-07 Python/TypeScript and harness integration matrices passed locally.
 
-- DX-09 candidate-bound benchmark cleanup and native smoke merged; no benchmark score was produced.
+- DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.
 
 - DX-10A final local macOS arm64 clean install, MCP, offline account refusal, update/rollback/uninstall, and vault-canary lane passed.
 
@@ -836,11 +879,11 @@ URL: https://memory.kleosresearch.xyz/staging-evidence.json
       "verification": "Python dependency matrices, TypeScript 32-pass/1-skip and 33-of-33 real-profile lanes, and poison scan passed"
     },
     {
-      "commit": "ceac8311f819437ace54813d2b4ba0731a5981a1",
+      "commit": "ef89d05f09435afc9790fcdf5df3e01d34c7115b",
       "id": "DX-09",
-      "scope": "candidate-bound benchmark contract and opt-in native smoke; no benchmark score",
-      "status": "merged_functional_smoke_only",
-      "verification": "20 ordinary tests passed with 1 live skip; opt-in exact-candidate smoke passed 1 of 1"
+      "scope": "candidate-bound native smoke and credential-free deterministic fixture pipeline; no benchmark score",
+      "status": "merged_deterministic_fixture_only",
+      "verification": "24 tests passed with 1 live skip; stable fixture evidence SHA-256 f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
     },
     {
       "commit": "9cd4b5837e887a0bb3dcc13209134c002aad08f5",
