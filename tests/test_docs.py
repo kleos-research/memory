@@ -17,17 +17,19 @@ class DocumentationArtifactTest(unittest.TestCase):
     def test_staging_build_passes_full_verifier(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "site"
-            metadata = build_site.load_metadata(None, production=False)
-            build_site.build(output, metadata, production=False)
+            metadata = build_site.load_metadata(None)
+            build_site.build(output, metadata)
             self.assertEqual(verify_site.verify(output, "staging"), [])
 
-    def test_checked_in_pages_artifact_matches_the_deterministic_staging_build(self) -> None:
+    def test_checked_in_pages_artifact_matches_the_deterministic_public_docs_build(self) -> None:
         checked_in = ROOT / "docs"
-        self.assertEqual(verify_site.verify(checked_in, "staging"), [])
+        self.assertEqual(verify_site.verify(checked_in, "public_docs"), [])
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "site"
-            metadata = build_site.load_metadata(None, production=False)
-            build_site.build(output, metadata, production=False)
+            metadata = build_site.load_metadata(
+                ROOT / "public-docs-release.json", "public_docs"
+            )
+            build_site.build(output, metadata, "public_docs")
             self.assertEqual(
                 json.loads((checked_in / "site-manifest.json").read_text()),
                 json.loads((output / "site-manifest.json").read_text()),
@@ -35,6 +37,14 @@ class DocumentationArtifactTest(unittest.TestCase):
         image = ROOT / "assets" / "kaleidoscope-og.png"
         self.assertTrue(image.is_file())
         self.assertTrue(image.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"))
+
+    def test_public_docs_requires_immutable_preview_metadata(self) -> None:
+        with self.assertRaises(SystemExit):
+            build_site.load_metadata(None, "public_docs")
+        metadata = build_site.load_metadata(
+            ROOT / "public-docs-release.json", "public_docs"
+        )
+        self.assertEqual(metadata["availability"], "documentation_preview")
 
     def test_route_inventory_matches_navigation(self) -> None:
         page_routes = [page.route for page in build_site.PAGES]

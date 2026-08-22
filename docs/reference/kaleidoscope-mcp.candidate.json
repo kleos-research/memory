@@ -7,7 +7,7 @@
   },
   "local_conformance": {
     "dx10a_evidence_sha256": "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e",
-    "final_package_evidence_sha256": "f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0",
+    "final_package_evidence_sha256": "7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c",
     "historical_codex_host_evidence": {
       "applies_to": "pre-final manager candidate only",
       "commit": "9cd4b5837e887a0bb3dcc13209134c002aad08f5",
@@ -15,8 +15,8 @@
     }
   },
   "manager": {
-    "sha256": "fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b",
-    "source_commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
+    "sha256": "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1",
+    "source_commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
     "version": "0.1.0"
   },
   "model_tools": [
@@ -70,7 +70,7 @@
     ],
     "native_target": "darwin-arm64",
     "publicly_available": false,
-    "sdk_facade_commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
+    "sdk_facade_commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
     "version": "0.1.0-rc.1"
   },
   "protocol_revision": "2025-11-25",

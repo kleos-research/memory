@@ -1,4 +1,4 @@
-# STAGING ONLY — no production security intake is published.
+# DOCUMENTATION PREVIEW — no production security intake is published.
 Contact: https://memory.kleosresearch.xyz/docs/security/
 Canonical: https://memory.kleosresearch.xyz/.well-known/security.txt
 Expires: 2026-09-30T23:59:59Z

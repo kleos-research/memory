@@ -7,13 +7,13 @@
     },
     {
       "path": ".well-known/security.txt",
-      "sha256": "5f4c0465dba193060a19ba3e72cd45da2e95eb83b760da57b33c8318c9408942",
-      "size_bytes": 299
+      "sha256": "d64611139647f1bb72bd05911f59df681d1bc6fc01c98c229e11cafc7a1a39f8",
+      "size_bytes": 308
     },
     {
       "path": "404.html",
-      "sha256": "7460fe14e742a3aca46bcc9e9ee0cea7fa33102c2a3d9fad2e7d0b8aa825179a",
-      "size_bytes": 3753
+      "sha256": "ed045bb9b3fbdf03278142a63c7c98abefe0a5720e8e8a99e87174e12a843c9e",
+      "size_bytes": 3880
     },
     {
       "path": "CNAME",
@@ -47,143 +47,173 @@
     },
     {
       "path": "docs/account/index.html",
-      "sha256": "c8154031fbb96e5bc114adc9c5006fa2e29390c74a832997516f501ee5945947",
-      "size_bytes": 7296
+      "sha256": "c93ae08ffd1ba5a208f6b9aea87cc8530a4bec91c93eb3708eae4de10e8ba184",
+      "size_bytes": 7460
     },
     {
       "path": "docs/benchmarks/index.html",
-      "sha256": "50c9c0929eb2df676a75e1c607278a8519c8264ff686e12243a2b0749a5cd084",
-      "size_bytes": 6589
+      "sha256": "f742fe1784f437d1845ed8ad96a8671fccfd2291c0b5ddb22d3f22f0dfb982f1",
+      "size_bytes": 6753
     },
     {
       "path": "docs/cli/index.html",
-      "sha256": "d3c73e22da1144813540a1dc7ec7ea4f4ecdb42ef2bdde9c84e759d147ed8291",
-      "size_bytes": 7599
+      "sha256": "01f977a29d723e8bff0e6a6b7441bf13f3812d558bad91f86a51af9b1e4ec407",
+      "size_bytes": 7763
     },
     {
       "path": "docs/compatibility/index.html",
-      "sha256": "6091ba1d801e795fd20ceee91a7e920cd3c82c50a0db591b1b7dffeeec32d308",
-      "size_bytes": 6870
+      "sha256": "b71f357a471e5d40ac5bd6c263113bfc154e26fe1de77d71f99adcbcc5fdbca0",
+      "size_bytes": 7034
     },
     {
       "path": "docs/concepts/index.html",
-      "sha256": "1741eb51183a302df549d9f317339758ffa20507bf279faf98222429154406d6",
-      "size_bytes": 6908
+      "sha256": "dacf35dbaa324ae56fc050ab2577e9776414fb0bbdebda9dc3029388905956e1",
+      "size_bytes": 7072
     },
     {
       "path": "docs/evidence/index.html",
-      "sha256": "a384c9670a1970f3686424b1cda5556523f98d9c75c1476eee4411b624685709",
-      "size_bytes": 10446
+      "sha256": "8ae1796fc4afa8c5a5c147144ca76efae033f2a49a58bb1ed11cf2a87cb5d9da",
+      "size_bytes": 10843
     },
     {
       "path": "docs/getting-started/index.html",
-      "sha256": "7e4b78485117e652727f22e8d45ff1ef76e98571de0c768100700f4836ebe65c",
-      "size_bytes": 7808
+      "sha256": "1aa636919025ea4e8eaba20959680a1463a5a567abfff7301d2d1bf58990a190",
+      "size_bytes": 7999
     },
     {
       "path": "docs/hosted/index.html",
-      "sha256": "a2db905ac2dd894c58630a18e18db108e26a960cc029fe850cd88a283c08411e",
-      "size_bytes": 5563
+      "sha256": "bbc46f6a9e5c7c207ee8042e95472c3557208c8e0af34c20adf09069f03b27fc",
+      "size_bytes": 5731
     },
     {
       "path": "docs/index.html",
-      "sha256": "9a88a81df6b67a7179ec2a5f11f1b031a323a0a7b52101a360e7068e0c88c0d6",
-      "size_bytes": 6798
+      "sha256": "d7f2e6ee8202a3f26302e10376f20251c808385e96d1da6407f9ade72e73920f",
+      "size_bytes": 6936
     },
     {
       "path": "docs/integrations/claude-agent-sdk/index.html",
-      "sha256": "5aabf22c575cee51122f8905c70a14caa8e0ce1c19220f67c5d16d0cbd8690bf",
-      "size_bytes": 5545
+      "sha256": "ded6a7105485d2ce0eda0c6c2b17a5359243625c871921bfbd5e3c5485658294",
+      "size_bytes": 5709
     },
     {
       "path": "docs/integrations/claude-code/index.html",
-      "sha256": "09c437d97281bf5f374c2f0622ac66278921692587084cbdc3b2f70bd72f2fdc",
-      "size_bytes": 5711
+      "sha256": "26c70aad974beaf80a85f60a67f3af02cd88e8a50dbeb52a3a2f9b291db2f1c9",
+      "size_bytes": 5875
     },
     {
       "path": "docs/integrations/codex/index.html",
-      "sha256": "cc0d65ab3eaec182fe446187250d5d5272a51737d34f61ee0e4e3493e315bada",
-      "size_bytes": 5760
+      "sha256": "ce487ca96f123a98503f1b7605121ba7504d9dc17d8c8e3f3f4c37e8585a57bf",
+      "size_bytes": 5924
     },
     {
       "path": "docs/integrations/crewai/index.html",
-      "sha256": "57d23458dc949fddd0bf9857e17e0779d5a9368566cbbbbace14c98a1a77b301",
-      "size_bytes": 5566
+      "sha256": "ccfd31e5e52834a3be0772d8e454f1ee9845569137b0c8cf4db384c67682e901",
+      "size_bytes": 5730
     },
     {
       "path": "docs/integrations/cursor/index.html",
-      "sha256": "575a9befdb8cddb25ede1f984cfcea44821f8a9a6ed267aaa882921ed6fb218b",
-      "size_bytes": 5614
+      "sha256": "df764c3b006c95d15669734d2e594c4ab8b3fe6db5bb2a9208c5c1c20e6d6eb3",
+      "size_bytes": 5778
     },
     {
       "path": "docs/integrations/generic-mcp/index.html",
-      "sha256": "456b05ff00597664d8b4cc6275f49599a79622c6b90984a1e1311e6e191b9c06",
-      "size_bytes": 5832
+      "sha256": "6d3005e3153858ee32acc7395afc3cc74394b5a31e587bfa06dccc869db40e31",
+      "size_bytes": 5996
     },
     {
       "path": "docs/integrations/index.html",
-      "sha256": "52f6c5439820bbb81ac07bbd83bd95885266f6cc1333e51fc9aa591e7d54a742",
-      "size_bytes": 8545
+      "sha256": "525442eed6e281c6cdb29b28ec8b7672d996cc5ab2ae71afea7b9a1f5c730f92",
+      "size_bytes": 8709
     },
     {
       "path": "docs/integrations/langchain/index.html",
-      "sha256": "c34ab81bff689f0c6f9e7675b6cc0299eb31a9980189800997e82b9a5467a632",
-      "size_bytes": 5608
+      "sha256": "30a41bf60c4306ee852d089ba645230f25f75b268e7028081fe05a32cbfe1f14",
+      "size_bytes": 5772
     },
     {
       "path": "docs/integrations/langgraph/index.html",
-      "sha256": "39f2bd62508f9c4591e74c3d5f5d9c19bd44fd5eb9c06589e62aac8badbe7367",
-      "size_bytes": 5560
+      "sha256": "54c53545a6c73f9493e733cc861fe6c54da9df0a6a6b495529a44579834f3300",
+      "size_bytes": 5724
     },
     {
       "path": "docs/integrations/openai-agents-sdk/index.html",
-      "sha256": "a8ca1c9985ed521d7fec2a31ea53f21b7c9bb98dccb2bfee40e530546d7ee379",
-      "size_bytes": 5829
+      "sha256": "4231c28f6ec1dec9f288a71d350f1dd598fef108cfddcbadc8de42f8a307792f",
+      "size_bytes": 5993
     },
     {
       "path": "docs/integrations/opencode/index.html",
-      "sha256": "a02feefba63cbf9c49c9f48643620e944f07f545e533a56ee9f1bf026d6c3856",
-      "size_bytes": 5626
+      "sha256": "36b47076dae0bfb5349092ad8a03c494c678a46924cbbf6ab55a460256b5d1fd",
+      "size_bytes": 5790
+    },
+    {
+      "path": "docs/legal/engine-eula/index.html",
+      "sha256": "9a3e7ff5bb240d046cdeb05c0c5ecc9070846ddbb7e80860ef51f4dc3885730b",
+      "size_bytes": 17052
+    },
+    {
+      "path": "docs/legal/index.html",
+      "sha256": "535cdca6dbcbba5c3296e301a3b3a9c85aaaccf69b78db235f40d18d04bc2fac",
+      "size_bytes": 6229
+    },
+    {
+      "path": "docs/legal/privacy-notice/index.html",
+      "sha256": "464926a9bb2d84f66faaa58813c745e74865d9a47ec580e5f273e398177b16d0",
+      "size_bytes": 13717
+    },
+    {
+      "path": "docs/legal/security-policy/index.html",
+      "sha256": "22bd1b4749ae91188688b6c19e21084e0f7ebc938ecf4be61ab1beb33de9ce40",
+      "size_bytes": 10926
+    },
+    {
+      "path": "docs/legal/support-policy/index.html",
+      "sha256": "a81b7e731bd39c44824a1ea3bf00c098e9a308a52a3ab3697c9adb5664314aef",
+      "size_bytes": 11587
     },
     {
       "path": "docs/mcp/index.html",
-      "sha256": "6127f836272f2f1fc5d933de9deb212e0b06d5ce736324f005e00ee936e3d753",
-      "size_bytes": 7187
+      "sha256": "cc1005a3868c46a54bd84acc92e6ad05165a297165f05a578f10cf368d7aeb4e",
+      "size_bytes": 7351
     },
     {
       "path": "docs/migration/index.html",
-      "sha256": "63e68e0fedfc245b70ff2f21ea5f46721a7f06c54d2287c1d7abb1b5f6658475",
-      "size_bytes": 6196
+      "sha256": "1d779bf7e1a3a8ffc0bea65f6595a77e798017fcbd8ad14a48a1b20c672ad029",
+      "size_bytes": 6360
     },
     {
       "path": "docs/operations/index.html",
-      "sha256": "88a0f0f0bdeae263adef117243c52814984284d602309d7f62d25f544869908e",
-      "size_bytes": 6837
+      "sha256": "36d934387b8718ecb4e332998d23af0f47f0336cb304ab86f9566d6c888e4f0c",
+      "size_bytes": 7001
     },
     {
       "path": "docs/packages/index.html",
-      "sha256": "16342fae1f0de0945121b71fc43aba20a02cfb41c9d58d3cb7a22dad6ce39311",
-      "size_bytes": 8931
+      "sha256": "947a8d2140c2a89bbd436ee0c4168751012221e921da4f77e12866101c2adf18",
+      "size_bytes": 9160
     },
     {
       "path": "docs/privacy/index.html",
-      "sha256": "38412a36fb54b41ac2794aac2a1df4aad79286d366503823b1ce187e3c80a6ee",
-      "size_bytes": 6684
+      "sha256": "3170c5f5c5dec6530cfa3d4fc12d7e09a873a6b645426528358e97f4a7485691",
+      "size_bytes": 6848
     },
     {
       "path": "docs/release-notes/index.html",
-      "sha256": "74f518a4796e7e4576c8256fefcdcfcf0692dcff184e1f3d753282bfcbdfcaa2",
-      "size_bytes": 6297
+      "sha256": "1ce0d147950138b9721944ed98403fd084b90b6f1e6580163c5b5d9aeb454e29",
+      "size_bytes": 6502
     },
     {
       "path": "docs/security/index.html",
-      "sha256": "dd0e483e852fe96f73b622795da66ff532a6e7686ad36a1f5dd29e4be236f352",
-      "size_bytes": 7061
+      "sha256": "9a5da0d715d7e10e5af05eb3a548818df94dbea3cb8fe144ee16bd6f21ef5253",
+      "size_bytes": 7343
     },
     {
       "path": "docs/troubleshooting/index.html",
-      "sha256": "fc9fbdb3dcdd49b487fd6b1bb796523b1c4f825e02c7f07809fe52e0281c9737",
-      "size_bytes": 6660
+      "sha256": "b3d558ea811635fc711249d0c4415055b3a3584539c3554a9396e508656e94f2",
+      "size_bytes": 6824
+    },
+    {
+      "path": "documentation-license.txt",
+      "sha256": "9990924724715776775d1f5c4147fae3efa70f7d409cdfbf5eadf498a8376eb4",
+      "size_bytes": 1563
     },
     {
       "path": "favicon-32.png",
@@ -202,18 +232,43 @@
     },
     {
       "path": "index.html",
-      "sha256": "10580cf32261b0c629f376bba5e015626ce721ad52c297ed534374a252914f1b",
-      "size_bytes": 5043
+      "sha256": "1339c36f733fbc5430ac1c5705543c91e448d9294190d83a109dcf502d37b1b6",
+      "size_bytes": 5222
+    },
+    {
+      "path": "legal/CC-BY-4.0.txt",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "size_bytes": 18657
+    },
+    {
+      "path": "legal/ENGINE-EULA.txt",
+      "sha256": "5cb1b04370f9cb154c304d711078446beeab7819febdf06e57ab0791dd636ef2",
+      "size_bytes": 11525
+    },
+    {
+      "path": "legal/PRIVACY-NOTICE.txt",
+      "sha256": "6de3e8f560cb9a764c92b7513bd8e7cc2dec3b1e006ec26254a901f3dea4e6e0",
+      "size_bytes": 8300
+    },
+    {
+      "path": "legal/SECURITY-POLICY.txt",
+      "sha256": "73f5ece11d3f0fa5f87850b094fbe13be803d042f8190dced9c40a401d796a7d",
+      "size_bytes": 5481
+    },
+    {
+      "path": "legal/SUPPORT-POLICY.txt",
+      "sha256": "ebc1a89e7aee3b91fda4fee209f9d84fbfad078fa25c39552959bc7ca69f014e",
+      "size_bytes": 6132
     },
     {
       "path": "llms-full.txt",
-      "sha256": "1bdb7956f15351564e236d9834893077762f402be5c402ea71bc1c04052f4e91",
-      "size_bytes": 66857
+      "sha256": "7152e01e8dda39b7ff759d2d67649891c5e966fd7c2b86a250ea0527f9743bc8",
+      "size_bytes": 102472
     },
     {
       "path": "llms.txt",
-      "sha256": "1417d5f5c326282d4d9aba8802968888f487a240ab881b36934e931fe68f47bf",
-      "size_bytes": 5027
+      "sha256": "38f5bfd2f15ea46b7a42d13e8c756c99fbf1d25c599d507d365520627a21c2c9",
+      "size_bytes": 5694
     },
     {
       "path": "reference/kaleidoscope-cli.candidate.txt",
@@ -222,18 +277,18 @@
     },
     {
       "path": "reference/kaleidoscope-mcp.candidate.json",
-      "sha256": "a4d9719cacf6fc287a7bdebee8c653fc4120e3dcd260dc28b47934a1179702cd",
+      "sha256": "e01d8d1dc746aa155bbd89188d1f0a4b9bce3c74fc1d82173f1dc40b87963fd1",
       "size_bytes": 2284
     },
     {
       "path": "robots.txt",
-      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
-      "size_bytes": 26
+      "sha256": "0b52334231a31adb76446e4fa4b5cf212c2b5d0b5a0e1eb94b0697b5f1da3927",
+      "size_bytes": 77
     },
     {
       "path": "sitemap.xml",
-      "sha256": "a49542e6ca339d572a4e3d9cf14d835e84af047ad03ae8b87f1835c86fe17b6f",
-      "size_bytes": 3084
+      "sha256": "577fd24cf30e2883c018ddf2c431d529c67cca15aa2bc85fe96aa64120a25e44",
+      "size_bytes": 3632
     },
     {
       "path": "snippets/AGENTS.md",
@@ -252,22 +307,28 @@
     },
     {
       "path": "staging-evidence.json",
-      "sha256": "75bd922c2cadc43f02d3d38fcff87572544cdbc040bc165ddc8e92d0c53f3dd5",
-      "size_bytes": 6485
+      "sha256": "027d3667f951d28146e5523c184cf75865fc00bcfd569ee1898fe7e479ce4490",
+      "size_bytes": 6594
     }
   ],
-  "mode": "staging",
+  "mode": "public_docs",
   "public_source_sha256": {
     "SKILL.md": "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad",
     "agent-instructions.md": "36c9afd78057c054d345b78df351dd41f5a2b6f5fb47d7d0fd178a94822ecc3c",
+    "documentation-license.txt": "9990924724715776775d1f5c4147fae3efa70f7d409cdfbf5eadf498a8376eb4",
+    "legal/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "legal/ENGINE-EULA.txt": "5cb1b04370f9cb154c304d711078446beeab7819febdf06e57ab0791dd636ef2",
+    "legal/PRIVACY-NOTICE.txt": "6de3e8f560cb9a764c92b7513bd8e7cc2dec3b1e006ec26254a901f3dea4e6e0",
+    "legal/SECURITY-POLICY.txt": "73f5ece11d3f0fa5f87850b094fbe13be803d042f8190dced9c40a401d796a7d",
+    "legal/SUPPORT-POLICY.txt": "ebc1a89e7aee3b91fda4fee209f9d84fbfad078fa25c39552959bc7ca69f014e",
     "snippets/AGENTS.md": "86134dc05ebbcf60b4cafb9f884daa1b75d18e7ff67d1060ed8b1856052e9814",
     "snippets/CLAUDE.md": "1200d1fa27bf830a26c7115ef135514badc4bd040963e1e30684699dc3ed1207",
     "snippets/cursor-kaleidoscope.mdc": "26a965c079a6183628f70a06c350f6f24f101376ced8876bd8cb2081e6c5c645"
   },
   "release": {
-    "availability": "staging",
-    "public_contract_sha256": "not-yet-bound",
-    "release_version": "unreleased",
+    "availability": "documentation_preview",
+    "public_contract_sha256": "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e",
+    "release_version": "0.1.0-rc.1",
     "updated_at": "2026-08-22"
   },
   "schema_version": "kaleidoscope.docs-artifact.v1"

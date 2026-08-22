@@ -24,43 +24,43 @@ PUBLIC_CONTRACT_SHA256 = (
 PUBLIC_SKILL_SHA256 = (
     "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad"
 )
-MANAGER_SOURCE_COMMIT = "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317"
+MANAGER_SOURCE_COMMIT = "9ed39bddd7bf14e68e1c363074f6921288b9e94b"
 MANAGER_SHA256 = (
-    "fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b"
+    "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1"
 )
 DISTRIBUTION_COMMIT = "42ffba4e3976810f91f2adcf53bd4393e5330d72"
-SDK_FACADE_COMMIT = "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317"
+SDK_FACADE_COMMIT = "9ed39bddd7bf14e68e1c363074f6921288b9e94b"
 DISTRIBUTION_ASSEMBLER_COMMIT = "af892d180fe01729450e03917f33ac56698e90e1"
-FINAL_EVIDENCE_COMMIT = "d9409ebacf63bcf2b32fde56a31a6350cfdfd491"
+FINAL_EVIDENCE_COMMIT = "0c42ff35b789a0406aaabf6634bdb2988db36b0a"
 FINAL_PACKAGE_EVIDENCE_SHA256 = (
-    "f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0"
+    "7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c"
 )
 FINAL_BUILD_PROOF_SHA256 = (
-    "eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94"
+    "ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053"
 )
 LOCAL_ARCHIVE_SHA256 = (
-    "fc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf"
+    "2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a"
 )
 LOCAL_MANIFEST_SHA256 = (
-    "39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f"
+    "efc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8"
 )
-PACKAGE_PROOF_SHA256 = "095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c"
-NPM_FACADE_SHA256 = "c30d45d9ccc61b36ede7b6df87f6728aa9307445a08446a7de5de5bafe9c0605"
-NPM_NATIVE_SHA256 = "a2cd8924c89a74204fcb9ee8790daf6a53d4ce4bec6fdf6329e127ff9b5b5d12"
+PACKAGE_PROOF_SHA256 = "62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7"
+NPM_FACADE_SHA256 = "0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd"
+NPM_NATIVE_SHA256 = "ec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b"
 PYTHON_FACADE_SHA256 = (
-    "7208468413a44412959e0426cf7fb508ca7f32861fcd0ee79ec0f6bedb88e68c"
+    "72099296676ef38b146018ae4ffac6cfb082bc8a537f178443acd351cf7bf6d7"
 )
 PYTHON_NATIVE_SHA256 = (
-    "24eb29ac7ec70a2a9d36832994d5a17cba2b42f6a12fd6557f541bd2890f89d3"
+    "d265493d6ca583f2ecd9e69257c8ed604174636e1c5f3b29dc08eafe01c51d8b"
 )
 LOCAL_SBOM_SHA256 = (
-    "a236f913fa83bf02e99605ba573203ba7cb48f7798ad8728c2aa4d590fd191f3"
+    "5058f2170630cb70ac14252162245f3ae94cc9d02f9b58c74d36694355094f4c"
 )
 LOCAL_PROVENANCE_SHA256 = (
-    "a177d3537d87bfba08e77fe4171e41dff69a757499a742c8a5501ed5777b1d56"
+    "498c60561520e57834a807c2e17443b0a7eefe1c3901c67450e0506135babfb8"
 )
 LOCAL_TEST_SIGNATURE_SHA256 = (
-    "7fc485f638bcf3327804009bf2890afb96b106fd3171e6f8a013dadac90510d2"
+    "9bce859379b24683cff7e6069835aa9f8d8ac4f1d07ff353f050ea1b9df60e0c"
 )
 DX10A_EVIDENCE_SHA256 = (
     "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
@@ -524,7 +524,8 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             failures.append(f"{relative}: missing or invalid canonical")
         expected_robots = (
             "index,follow"
-            if expected_mode == "production" and relative not in NOINDEX_HTML
+            if expected_mode in {"public_docs", "production"}
+            and relative not in NOINDEX_HTML
             else "noindex,nofollow"
         )
         if parser.robots != [expected_robots]:
@@ -581,8 +582,8 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                 failures.append(f"{relative}: broken internal link {link}")
 
     robots = (root / "robots.txt").read_text(encoding="utf-8")
-    if expected_mode == "production" and "Allow: /" not in robots:
-        failures.append("production robots does not allow root")
+    if expected_mode in {"public_docs", "production"} and "Allow: /" not in robots:
+        failures.append(f"{expected_mode} robots does not allow root")
     if expected_mode == "staging" and "Disallow: /" not in robots:
         failures.append("staging robots does not disallow root")
 
@@ -610,6 +611,8 @@ def verify(root: Path, expected_mode: str) -> list[str]:
     security = (root / ".well-known" / "security.txt").read_text(encoding="utf-8")
     if expected_mode == "staging" and "STAGING ONLY" not in security:
         failures.append("staging security.txt is not marked as staging")
+    if expected_mode == "public_docs" and "DOCUMENTATION PREVIEW" not in security:
+        failures.append("public documentation security.txt is not marked as preview")
     if expected_mode == "production" and "STAGING ONLY" in security:
         failures.append("production security.txt still carries the staging marker")
 
@@ -671,7 +674,9 @@ def verify(root: Path, expected_mode: str) -> list[str]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("root", type=Path)
-    parser.add_argument("--mode", choices=("staging", "production"), required=True)
+    parser.add_argument(
+        "--mode", choices=("staging", "public_docs", "production"), required=True
+    )
     args = parser.parse_args()
     failures = verify(args.root.resolve(), args.mode)
     if failures:

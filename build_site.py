@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Build the source-free Kaleidoscope public documentation surface.
 
-The default build is an explicitly non-indexable staging artifact. A production
-artifact requires immutable release metadata and refuses placeholder values.
-This script performs no network, authentication, publication, or deployment.
+The default build is an explicitly non-indexable staging artifact. A public
+documentation preview is indexable but does not claim package availability or
+production login. A production artifact requires immutable release metadata and
+refuses placeholder values. This script performs no network, authentication,
+publication, or deployment.
 """
 
 from __future__ import annotations
@@ -51,32 +53,32 @@ PUBLIC_CONTRACT_SHA256 = (
 PUBLIC_SKILL_SHA256 = (
     "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad"
 )
-MANAGER_SOURCE_COMMIT = "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317"
+MANAGER_SOURCE_COMMIT = "9ed39bddd7bf14e68e1c363074f6921288b9e94b"
 MANAGER_SHA256 = (
-    "fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b"
+    "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1"
 )
 DISTRIBUTION_COMMIT = "42ffba4e3976810f91f2adcf53bd4393e5330d72"
-SDK_FACADE_COMMIT = "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317"
+SDK_FACADE_COMMIT = "9ed39bddd7bf14e68e1c363074f6921288b9e94b"
 DISTRIBUTION_ASSEMBLER_COMMIT = "af892d180fe01729450e03917f33ac56698e90e1"
-FINAL_EVIDENCE_COMMIT = "d9409ebacf63bcf2b32fde56a31a6350cfdfd491"
+FINAL_EVIDENCE_COMMIT = "0c42ff35b789a0406aaabf6634bdb2988db36b0a"
 FINAL_PACKAGE_EVIDENCE_SHA256 = (
-    "f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0"
+    "7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c"
 )
 FINAL_BUILD_PROOF_SHA256 = (
-    "eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94"
+    "ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053"
 )
 DX10A_EVIDENCE_SHA256 = (
     "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
 )
 SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
-PACKAGE_PROOF_SHA256 = "095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c"
-NPM_FACADE_SHA256 = "c30d45d9ccc61b36ede7b6df87f6728aa9307445a08446a7de5de5bafe9c0605"
-NPM_NATIVE_SHA256 = "a2cd8924c89a74204fcb9ee8790daf6a53d4ce4bec6fdf6329e127ff9b5b5d12"
+PACKAGE_PROOF_SHA256 = "62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7"
+NPM_FACADE_SHA256 = "0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd"
+NPM_NATIVE_SHA256 = "ec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b"
 PYTHON_FACADE_SHA256 = (
-    "7208468413a44412959e0426cf7fb508ca7f32861fcd0ee79ec0f6bedb88e68c"
+    "72099296676ef38b146018ae4ffac6cfb082bc8a537f178443acd351cf7bf6d7"
 )
 PYTHON_NATIVE_SHA256 = (
-    "24eb29ac7ec70a2a9d36832994d5a17cba2b42f6a12fd6557f541bd2890f89d3"
+    "d265493d6ca583f2ecd9e69257c8ed604174636e1c5f3b29dc08eafe01c51d8b"
 )
 DX10B_HOST_EVIDENCE_SHA256 = (
     "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
@@ -86,19 +88,19 @@ DX09_FIXTURE_EVIDENCE_SHA256 = (
     "f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
 )
 LOCAL_ARCHIVE_SHA256 = (
-    "fc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf"
+    "2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a"
 )
 LOCAL_MANIFEST_SHA256 = (
-    "39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f"
+    "efc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8"
 )
 LOCAL_SBOM_SHA256 = (
-    "a236f913fa83bf02e99605ba573203ba7cb48f7798ad8728c2aa4d590fd191f3"
+    "5058f2170630cb70ac14252162245f3ae94cc9d02f9b58c74d36694355094f4c"
 )
 LOCAL_PROVENANCE_SHA256 = (
-    "a177d3537d87bfba08e77fe4171e41dff69a757499a742c8a5501ed5777b1d56"
+    "498c60561520e57834a807c2e17443b0a7eefe1c3901c67450e0506135babfb8"
 )
 LOCAL_TEST_SIGNATURE_SHA256 = (
-    "7fc485f638bcf3327804009bf2890afb96b106fd3171e6f8a013dadac90510d2"
+    "9bce859379b24683cff7e6069835aa9f8d8ac4f1d07ff353f050ea1b9df60e0c"
 )
 
 MANAGER_HELP = """Kaleidoscope public local manager
@@ -393,7 +395,7 @@ PAGES = (
         description="Developer documentation for the local Kaleidoscope CLI, stdio MCP server, profiles, integrations, security, and account boundary.",
         body="""
 <p class="lede">Kaleidoscope is local memory for agents: a native CLI and persistent stdio MCP server with one profile shared across configured harnesses.</p>
-<div class="callout"><strong>Release status.</strong> This is a non-indexable documentation staging build. Local implementation and conformance evidence exists, but no package, registry, production login, public SDK repository, or Pages promotion is authorized.</div>
+<div class="callout"><strong>Release status.</strong> This documentation is not a product release. Local implementation and conformance evidence exists, but no package, registry, production login, or public SDK repository is available.</div>
 <div class="grid">
   <article class="card"><h2><a href="/docs/getting-started/">Preview the workflow</a></h2><p>Inspect the verified manager interface for one profile, reversible host setup, and local diagnostics.</p></article>
   <article class="card"><h2><a href="/docs/packages/">Prepare a package install</a></h2><p>See the final npm and Python names, platform rules, and source-free release gates.</p></article>
@@ -410,7 +412,7 @@ PAGES = (
         description="The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.",
         body="""
 <p class="lede">The verified manager creates or imports one local profile, previews an owner-marked host change, applies it with confirmation, and can remove exactly what it owns.</p>
-<div class="callout"><strong>Release-candidate quickstart, not a live registry command.</strong> The converged <code>0.1.0-rc.1</code> package contract passed locally for macOS arm64, but the packages remain private, test-signed, noindex, and unpublished.</div>
+<div class="callout"><strong>Release-candidate quickstart, not a live registry command.</strong> The converged <code>0.1.0-rc.1</code> package contract passed locally for macOS arm64, but the packages remain private, test-signed, unpublished, and unavailable from public registries.</div>
 <h2>1. Install after protected promotion</h2>
 <p>Choose one public SDK facade after publication. Each facade installs its exact macOS arm64 native companion; do not install both and do not omit the native dependency.</p>
 <pre><code># npm / Node.js 22+
@@ -473,7 +475,7 @@ kscope --version</code></pre>
 <h2>What the package checks</h2>
 <ul><li>Exact SDK commit, manager, engine, public-contract, manifest, package, SBOM, provenance, and signature bindings.</li><li>Facade names, versions, native dependency pins, required client modules, resolvers, both launchers, and allowlisted archive inventories.</li><li>Private-source and build-path scans plus isolated npm/Python installs and both version commands.</li><li>Unsupported targets fail clearly; the five non-macOS-arm64 entries remain refusal-only scaffolds.</li></ul>
 <h2>Current availability</h2>
-<p>SDK commit <code>{SDK_FACADE_COMMIT}</code>, assembler commit <code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, and final evidence commit <code>{FINAL_EVIDENCE_COMMIT}</code> define this local RC contract. The package proof records <code>facade_mode: sdk_artifacts</code>; the final package evidence records fresh npm/Python facade invocation. Apache-2.0 metadata and the proprietary EULA review draft are source-staged and a legally-bound refresh of this local proof is in progress. Final legal review, trusted signing identities, registry credentials, other native platforms, and protected publication approval remain required.</p>
+<p>SDK commit <code>{SDK_FACADE_COMMIT}</code>, assembler commit <code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, and final evidence commit <code>{FINAL_EVIDENCE_COMMIT}</code> define this local RC contract. The package proof records <code>facade_mode: sdk_artifacts</code>; the final package evidence records fresh npm/Python facade invocation. The Apache-2.0 facade metadata and proprietary EULA review draft are bound into this proof. Final legal review, trusted signing identities, registry credentials, other native platforms, and protected publication approval remain required.</p>
 """,
     ),
     Page(
@@ -485,9 +487,9 @@ kscope --version</code></pre>
 <h2>Local engine</h2>
 <p>The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Its source is not part of the public manager, client, integration, or skill surfaces.</p>
 <h2>Manager and profile</h2>
-<p>The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes account/device commands. A profile may carry one explicit, manager-local account UUID reference; this changes neither its vault identity nor its credentials. The local distribution is bound to manager source commit <code>fc15e1e…</code> and its candidate binary digest.</p>
+<p>The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes account/device commands. A profile may carry one explicit, manager-local account UUID reference; this changes neither its vault identity nor its credentials. The local distribution is bound to manager source commit <code>9ed39bd…</code> and its candidate binary digest.</p>
 <h2>SDK facade and native companion</h2>
-<p>The npm and Python facades at SDK commit <code>fc15e1e…</code> contain the full public clients, typed installed-payload resolvers, and <code>kaleidoscope</code>/<code>kscope</code> launchers. Their exact macOS arm64 native companions contain the manager and proprietary engine object code. This keeps the public developer API in the facade without placing engine source in either layer.</p>
+<p>The npm and Python facades at SDK commit <code>9ed39bd…</code> contain the full public clients, typed installed-payload resolvers, and <code>kaleidoscope</code>/<code>kscope</code> launchers. Their exact macOS arm64 native companions contain the manager and proprietary engine object code. This keeps the public developer API in the facade without placing engine source in either layer.</p>
 <h2>Harness identity</h2>
 <p>Codex, Claude, Cursor, OpenCode, framework clients, and generic MCP clients are consumers of the same profile. They do not become separate memory stores merely because their configuration formats differ.</p>
 <h2>Account identity</h2>
@@ -502,7 +504,7 @@ kscope --version</code></pre>
         description="Candidate-generated reference for the Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.",
         body="""
 <p class="lede">The developer-facing CLI is <code>kaleidoscope</code>. The engine executable <code>kscope</code> remains a native runtime/operator surface and is not the manager quickstart.</p>
-<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from consolidated manager source commit <code>fc15e1e…</code> and the bound candidate SHA-256. It is not a public-installation claim.</div>
+<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from consolidated manager source commit <code>9ed39bd…</code> and the bound candidate SHA-256. It is not a public-installation claim.</div>
 <p><a href="/reference/kaleidoscope-cli.candidate.txt">Download the exact candidate help text</a>.</p>
 <h2>Local memory and host commands</h2>
 <pre><code>kaleidoscope [--engine PATH] init [--root PATH] [--profile NAME] [--durability process-local|durable-local]
@@ -566,7 +568,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <tr><td><a href="/docs/integrations/openai-agents-sdk/">OpenAI Agents SDK</a></td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
 <tr><td><a href="/docs/integrations/crewai/">CrewAI</a></td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
-<div class="callout"><strong>What DX-07 and final package evidence prove.</strong> SDK commit <code>fc15e1e…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Final evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256[:10]}…</code> proves fresh npm/Python facade <code>init</code>, <code>doctor</code>, <code>connect codex --dry-run</code>, and stdio MCP discovery. Historic commit <code>9cd4b58…</code> covered real Codex CLI configuration for a pre-final manager candidate only. Claude Code, Cursor, and OpenCode live acceptance remains unverified; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
+<div class="callout"><strong>What DX-07 and final package evidence prove.</strong> SDK commit <code>9ed39bd…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Final evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256[:10]}…</code> proves fresh npm/Python facade <code>init</code>, <code>doctor</code>, <code>connect codex --dry-run</code>, and stdio MCP discovery. Historic commit <code>9cd4b58…</code> covered real Codex CLI configuration for a pre-final manager candidate only. Claude Code, Cursor, and OpenCode live acceptance remains unverified; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
 <h2>Agent guidance</h2>
 <p>Install the <a href="/SKILL.md">public skill</a>, then add only the compact owner-marked pointer appropriate to <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or <a href="/snippets/cursor-kaleidoscope.mdc">Cursor</a>. Use the manager so dry runs, backups, receipts, tamper checks, and exact removal remain intact.</p>
 """,
@@ -593,7 +595,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <p class="lede">Kaleidoscope protects source distribution and establishes verifiable boundaries. A native binary remains inspectable and may be reverse engineered; object-code distribution is not a claim of impossibility.</p>
 <h2>Local engine boundary</h2><p>The generated candidate contract declares a local vault, stdio MCP, no required network, and no external model calls. The manager launches the engine with a closed non-secret environment instead of inheriting provider keys, account tokens, cloud credentials, or direct vault-coordinate variables.</p>
 <h2>Account boundary</h2><p>The consolidated manager constructs only 11 declared account routes. Its request privacy guard rejects memory/profile field families and absolute local paths before transport. DX-10A exercised all 11 without an engine argument against a deliberately missing engine and observed provider-not-configured refusals before engine resolution. No production account endpoint is available.</p>
-<h2>Package integrity</h2><p>DX-06 binds the SDK facade commit, manager, engine, bundled model, public contract, package digests, CycloneDX SBOM, provenance, target, and prior-manifest rollback identity. It validates facade client modules, resolvers, both launchers, exact native dependency pins, archive safety, and the public/private source boundary. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Authorized license selections and an EULA review draft are now source-staged; the older exact package proof does not contain them. Production trust roots, role keys, Apple signing/notarization, final notices, and final legal review remain absent.</p>
+<h2>Package integrity</h2><p>DX-06 binds the SDK facade commit, manager, engine, bundled model, public contract, package digests, CycloneDX SBOM, provenance, target, and prior-manifest rollback identity. It validates facade client modules, resolvers, both launchers, exact native dependency pins, archive safety, and the public/private source boundary. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Apache-2.0 facade metadata and the proprietary engine EULA review draft are included in this exact package proof. Production trust roots, role keys, Apple signing/notarization, final notices, and final legal review remain absent.</p>
 <h2>Verified privacy checks</h2><p>The manager and engine candidates contain no bounded private builder-path hits and no Mach-O debug sections. Local conformance used canary values for environment, outputs, profiles, host configuration, and MCP traffic. The Codex lane used isolated HOME, CODEX_HOME, XDG, project, profile, and vault roots and restored its non-empty baseline byte-for-byte. These are scoped test results, not a universal absence claim.</p>
 <h2>Report a vulnerability</h2><p>Do not publish an exploit or sensitive report in a public issue. The production security contact and supported-version policy are release blockers and will be published here and in <code>/.well-known/security.txt</code> before promotion.</p>
 """,
@@ -617,7 +619,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         description="What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.",
         body="""
 <p class="lede">Login is intended for product-account and device workflows. It is not a hosted-memory connection and is not usable against a production issuer today.</p>
-<h2>Locally verified manager flows</h2><p>Consolidated manager commit <code>fc15e1e…</code> implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse. The local control plane also completes a one-time external-identity link after fresh provider authentication, returning only opaque identity IDs for unlinking. The package candidate has only credential-free account-provider refusal evidence until an approved OIDC deployment exists.</p>
+<h2>Locally verified manager flows</h2><p>Consolidated manager commit <code>9ed39bd…</code> implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse. The local control plane also completes a one-time external-identity link after fresh provider authentication, returning only opaque identity IDs for unlinking. The package candidate has only credential-free account-provider refusal evidence until an approved OIDC deployment exists.</p>
 <h2>Commands</h2><pre><code>kaleidoscope login
 kaleidoscope login --device
 kaleidoscope status --json
@@ -681,7 +683,7 @@ kaleidoscope profile account unbind [NAME]</code></pre>
 <h2>Milestones</h2>
 <table><thead><tr><th>Slice</th><th>Exact evidence</th><th>What is true now</th></tr></thead><tbody>
 <tr><td>DX-04 / DX-05B</td><td><code>{MANAGER_SOURCE_COMMIT}</code>, manager <code>{MANAGER_SHA256}</code></td><td>Consolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.</td></tr>
-<tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, proof <code>{PACKAGE_PROOF_SHA256}</code></td><td>The final source-bound archive and package set was reassembled with a test-only signature; a legally-bound refresh is in progress and no publication occurred.</td></tr>
+<tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, proof <code>{PACKAGE_PROOF_SHA256}</code></td><td>The licensed source-bound archive and package set was reassembled with a test-only signature; no publication occurred.</td></tr>
 <tr><td>DX-07</td><td><code>{SDK_FACADE_COMMIT}</code></td><td>Full Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; Apache-2.0 licensing is source-staged and no public remote is configured.</td></tr>
 <tr><td>DX-09</td><td><code>{BENCHMARK_COMMIT}</code>, merged PRs 5/6; evidence <code>{DX09_FIXTURE_EVIDENCE_SHA256}</code></td><td>Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.</td></tr>
 <tr><td>DX-10A</td><td><code>{DX10A_EVIDENCE_SHA256}</code></td><td>Final local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.</td></tr>
@@ -697,7 +699,7 @@ kaleidoscope profile account unbind [NAME]</code></pre>
         description="Versioned Kaleidoscope release notes bound to immutable package and public-contract digests.",
         body="""
 <p class="lede">Release notes become authoritative only when they name the exact signed package, final manager, engine, and public-contract digests.</p>
-<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>fc6afb3606fc…</code>.</li><li>SDK commit <code>fc15e1e…</code> places the full public TypeScript/Python clients, installed-payload resolvers, account identity lifecycle, profile-account binding, and both launchers in the facade packages.</li><li>Distribution assembler <code>af892d1…</code> pairs those facades with macOS arm64 native companions containing the manager and proprietary object-code engine; the exact package proof is <code>095f91ca…</code>.</li><li>DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.</li><li>DX-10A historic local macOS arm64 lifecycle evidence remains recorded for its then-current candidate.</li><li>Final DX-10B package evidence passed fresh npm/Python facade init, doctor, Codex dry-run configuration, and stdio MCP discovery; other platforms and live host/model/IDE acceptance remain held.</li></ul>
+<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>a1eb37ab61f8…</code>.</li><li>SDK commit <code>9ed39bd…</code> places the full public TypeScript/Python clients, installed-payload resolvers, account identity lifecycle, profile-account binding, Apache-2.0 metadata, and both launchers in the facade packages.</li><li>Distribution assembler <code>af892d1…</code> pairs those facades with macOS arm64 native companions containing the manager, proprietary object-code engine, and EULA review draft; the exact package proof is <code>62afa571…</code>.</li><li>DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.</li><li>DX-10A historic local macOS arm64 lifecycle evidence remains recorded for its then-current candidate.</li><li>Final DX-10B package evidence passed fresh npm/Python facade init, doctor, Codex dry-run configuration, and stdio MCP discovery; other platforms and live host/model/IDE acceptance remain held.</li></ul>
 <h2>Promotion rule</h2><p>A release entry must record public availability, supported targets and pinned host versions, known limitations, migration requirements, security fixes, all package checksums, SBOM/provenance, exact rollback identity, license/EULA links, and production account/privacy terms. Publication and documentation promotion are separate protected actions.</p>
 """,
     ),
@@ -968,10 +970,12 @@ class TextExtractor(HTMLParser):
         return value.strip()
 
 
-def load_metadata(path: Path | None, production: bool) -> dict[str, str]:
+def load_metadata(path: Path | None, mode: str = "staging") -> dict[str, str]:
+    if mode not in {"staging", "public_docs", "production"}:
+        raise ValueError(f"unknown documentation build mode: {mode}")
     if path is None:
-        if production:
-            raise SystemExit("production build requires --release-metadata")
+        if mode != "staging":
+            raise SystemExit(f"{mode} build requires --release-metadata")
         return {
             "release_version": "unreleased",
             "public_contract_sha256": "not-yet-bound",
@@ -987,16 +991,21 @@ def load_metadata(path: Path | None, production: bool) -> dict[str, str]:
     }
     if set(data) != allowed or not all(isinstance(data[key], str) for key in allowed):
         raise SystemExit("release metadata must contain exactly four string fields")
-    if production:
-        if data["availability"] not in {"release_candidate", "released"}:
+    if mode != "staging":
+        allowed_availability = (
+            {"documentation_preview"}
+            if mode == "public_docs"
+            else {"release_candidate", "released"}
+        )
+        if data["availability"] not in allowed_availability:
             raise SystemExit(
-                "production build requires release_candidate or released metadata"
+                f"{mode} build has an invalid availability value"
             )
         if data["release_version"] in {"", "unreleased", "latest"}:
-            raise SystemExit("production build requires an immutable release version")
+            raise SystemExit(f"{mode} build requires an immutable release version")
         if not HEX64.fullmatch(data["public_contract_sha256"]):
             raise SystemExit(
-                "production build requires a lowercase 64-hex public contract digest"
+                f"{mode} build requires a lowercase 64-hex public contract digest"
             )
         try:
             date.fromisoformat(data["updated_at"])
@@ -1080,12 +1089,12 @@ def head(
     title: str,
     description: str,
     canonical: str,
-    production: bool,
+    indexable: bool,
     page: Page | None,
     *,
     noindex: bool = False,
 ) -> str:
-    robots = "index,follow" if production and not noindex else "noindex,nofollow"
+    robots = "index,follow" if indexable and not noindex else "noindex,nofollow"
     full_title = (
         "Kaleidoscope — local memory for agents"
         if page is None
@@ -1145,10 +1154,10 @@ def footer() -> str:
 </div></footer></body></html>"""
 
 
-def render_home(metadata: dict[str, str], production: bool) -> str:
+def render_home(metadata: dict[str, str], indexable: bool) -> str:
     description = "Local native memory for AI agents: one CLI and stdio MCP profile across Codex, Claude, Cursor, OpenCode, and agent frameworks."
     return (
-        head("Kaleidoscope", description, f"{DOMAIN}/", production, None)
+        head("Kaleidoscope", description, f"{DOMAIN}/", indexable, None)
         + header("/", metadata)
         + """
 <main id="main">
@@ -1169,7 +1178,7 @@ def render_home(metadata: dict[str, str], production: bool) -> str:
     )
 
 
-def render_page(page: Page, metadata: dict[str, str], production: bool) -> str:
+def render_page(page: Page, metadata: dict[str, str], indexable: bool) -> str:
     canonical = f"{DOMAIN}{page.route}"
     sidebar = "".join(
         f"<li>{nav_link(route, label, page.route)}</li>" for route, label in DOC_NAV
@@ -1179,7 +1188,7 @@ def render_page(page: Page, metadata: dict[str, str], production: bool) -> str:
             page.title,
             page.description,
             canonical,
-            production,
+            indexable,
             page,
             noindex=page.noindex,
         )
@@ -1232,7 +1241,10 @@ def prepare_output(output: Path) -> None:
     output.mkdir(parents=True)
 
 
-def build(output: Path, metadata: dict[str, str], production: bool) -> None:
+def build(output: Path, metadata: dict[str, str], mode: str = "staging") -> None:
+    if mode not in {"staging", "public_docs", "production"}:
+        raise ValueError(f"unknown documentation build mode: {mode}")
+    indexable = mode in {"public_docs", "production"}
     prepare_output(output)
     shutil.copyfile(ROOT / "CNAME", output / "CNAME")
     for asset in (
@@ -1246,10 +1258,10 @@ def build(output: Path, metadata: dict[str, str], production: bool) -> None:
     for asset in ("site.css", "kaleidoscope-og.png"):
         shutil.copyfile(ROOT / "assets" / asset, output / "assets" / asset)
     write_text(output / ".nojekyll", "")
-    write_text(route_path(output, "/"), render_home(metadata, production))
+    write_text(route_path(output, "/"), render_home(metadata, indexable))
     for page in PAGES:
         write_text(
-            route_path(output, page.route), render_page(page, metadata, production)
+            route_path(output, page.route), render_page(page, metadata, indexable)
         )
 
     not_found = head(
@@ -1281,12 +1293,19 @@ def build(output: Path, metadata: dict[str, str], production: bool) -> None:
     write_text(output / "sitemap.xml", sitemap)
     robots = (
         "User-agent: *\nAllow: /\nSitemap: https://memory.kleosresearch.xyz/sitemap.xml"
-        if production
+        if indexable
         else "User-agent: *\nDisallow: /"
     )
     write_text(output / "robots.txt", robots)
 
-    security = f"""# STAGING ONLY — no production security intake is published.
+    security_heading = (
+        "# STAGING ONLY — no production security intake is published."
+        if mode == "staging"
+        else "# DOCUMENTATION PREVIEW — no production security intake is published."
+        if mode == "public_docs"
+        else "# No production security intake is published."
+    )
+    security = f"""{security_heading}
 Contact: {DOMAIN}/docs/security/
 Canonical: {DOMAIN}/.well-known/security.txt
 Expires: 2026-09-30T23:59:59Z
@@ -1375,7 +1394,7 @@ The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {
         )
     manifest = {
         "schema_version": "kaleidoscope.docs-artifact.v1",
-        "mode": "production" if production else "staging",
+        "mode": mode,
         "release": metadata,
         "public_source_sha256": public_source_digests,
         "files": manifest_items,
@@ -1389,10 +1408,19 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=ROOT / "docs")
     parser.add_argument("--release-metadata", type=Path)
-    parser.add_argument("--production", action="store_true")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--production", action="store_true")
+    mode.add_argument("--public-docs", action="store_true")
     args = parser.parse_args()
-    metadata = load_metadata(args.release_metadata, args.production)
-    build(args.output.expanduser().absolute(), metadata, args.production)
+    build_mode = (
+        "production"
+        if args.production
+        else "public_docs"
+        if args.public_docs
+        else "staging"
+    )
+    metadata = load_metadata(args.release_metadata, build_mode)
+    build(args.output.expanduser().absolute(), metadata, build_mode)
 
 
 if __name__ == "__main__":

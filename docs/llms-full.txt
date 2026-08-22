@@ -1,6 +1,6 @@
 # Kaleidoscope
 
-> Local native memory for agents, exposed through a manager CLI and persistent stdio MCP. Release status: staging (unreleased); no package or production login is public.
+> Local native memory for agents, exposed through a manager CLI and persistent stdio MCP. Release status: documentation_preview (0.1.0-rc.1); no package or production login is public.
 
 - [Documentation](https://memory.kleosresearch.xyz/docs/): product and developer overview
 - [Getting started](https://memory.kleosresearch.xyz/docs/getting-started/): protected RC install, profile and reversible host workflow
@@ -10,6 +10,10 @@
 - [Integrations](https://memory.kleosresearch.xyz/docs/integrations/): Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP
 - [Security](https://memory.kleosresearch.xyz/docs/security/): package, process, and account isolation evidence
 - [Privacy](https://memory.kleosresearch.xyz/docs/privacy/): local/account data boundary, credential storage, and telemetry status
+- [Licenses and terms](https://memory.kleosresearch.xyz/docs/legal/): Apache-2.0 public software boundary, CC BY 4.0 documentation, and proprietary engine EULA
+- [Privacy notice](https://memory.kleosresearch.xyz/docs/legal/privacy-notice/): review draft of production privacy terms
+- [Security policy](https://memory.kleosresearch.xyz/docs/legal/security-policy/): review draft of disclosure, safe-harbor, and supported-version policy
+- [Support policy](https://memory.kleosresearch.xyz/docs/legal/support-policy/): review draft of scope, exclusions, severity, and response targets
 - [Account](https://memory.kleosresearch.xyz/docs/account/): login manages account/device state and does not upload local memory
 - [Operations](https://memory.kleosresearch.xyz/docs/operations/): backup, restore, uninstall, update, and exact vault deletion
 - [Compatibility](https://memory.kleosresearch.xyz/docs/compatibility/): verified local cells versus native/support holds
@@ -21,19 +25,19 @@
 - [Candidate CLI help](https://memory.kleosresearch.xyz/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference](https://memory.kleosresearch.xyz/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317 puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit af892d180fe01729450e03917f33ac56698e90e1 pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit d9409ebacf63bcf2b32fde56a31a6350cfdfd491 freezes the result. Exact hashes: release archive fc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf; manifest 39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f; build proof eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94; package proof 095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c; npm facade c30d45d9ccc61b36ede7b6df87f6728aa9307445a08446a7de5de5bafe9c0605; npm native companion a2cd8924c89a74204fcb9ee8790daf6a53d4ce4bec6fdf6329e127ff9b5b5d12; Python facade 7208468413a44412959e0426cf7fb508ca7f32861fcd0ee79ec0f6bedb88e68c; Python native companion 24eb29ac7ec70a2a9d36832994d5a17cba2b42f6a12fd6557f541bd2890f89d3; SBOM a236f913fa83bf02e99605ba573203ba7cb48f7798ad8728c2aa4d590fd191f3; provenance a177d3537d87bfba08e77fe4171e41dff69a757499a742c8a5501ed5777b1d56; test-only signature envelope 7fc485f638bcf3327804009bf2890afb96b106fd3171e6f8a013dadac90510d2. The engine source is not in any public surface. Manager SHA-256 fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b; engine SHA-256 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825; public contract SHA-256 a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e; final package evidence SHA-256 f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0; DX-09 fixture evidence SHA-256 f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504; historic DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e; historic pre-final Codex-host evidence SHA-256 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840. Final package evidence proves fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery—not real host/IDE acceptance. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Production licensing/EULA, signing, registry publication, login and Pages promotion require separate approval.
+The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit 9ed39bddd7bf14e68e1c363074f6921288b9e94b puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit af892d180fe01729450e03917f33ac56698e90e1 pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit 0c42ff35b789a0406aaabf6634bdb2988db36b0a freezes the result. Exact hashes: release archive 2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a; manifest efc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8; build proof ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053; package proof 62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7; npm facade 0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd; npm native companion ec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b; Python facade 72099296676ef38b146018ae4ffac6cfb082bc8a537f178443acd351cf7bf6d7; Python native companion d265493d6ca583f2ecd9e69257c8ed604174636e1c5f3b29dc08eafe01c51d8b; SBOM 5058f2170630cb70ac14252162245f3ae94cc9d02f9b58c74d36694355094f4c; provenance 498c60561520e57834a807c2e17443b0a7eefe1c3901c67450e0506135babfb8; test-only signature envelope 9bce859379b24683cff7e6069835aa9f8d8ac4f1d07ff353f050ea1b9df60e0c. The engine source is not in any public surface. Manager SHA-256 a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1; engine SHA-256 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825; public contract SHA-256 a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e; final package evidence SHA-256 7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c; DX-09 fixture evidence SHA-256 f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504; historic DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e; historic pre-final Codex-host evidence SHA-256 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840. Final package evidence proves fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery—not real host/IDE acceptance. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Apache-2.0 and CC BY 4.0 source licensing and review-draft product terms are staged; production signing, final legal review, registry publication, and login remain separately gated.
 
 ---
 
 # Kaleidoscope documentation
 
 URL: https://memory.kleosresearch.xyz/docs/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Kaleidoscope is local memory for agents: a native CLI and persistent stdio MCP server with one profile shared across configured harnesses.
 
-Release status. This is a non-indexable documentation staging build. Local implementation and conformance evidence exists, but no package, registry, production login, public SDK repository, or Pages promotion is authorized.
+Release status. This documentation is not a product release. Local implementation and conformance evidence exists, but no package, registry, production login, or public SDK repository is available.
 
 Preview the workflow (/docs/getting-started/)
 
@@ -68,12 +72,12 @@ Choose a path
 # Getting started
 
 URL: https://memory.kleosresearch.xyz/docs/getting-started/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 The verified manager creates or imports one local profile, previews an owner-marked host change, applies it with confirmation, and can remove exactly what it owns.
 
-Release-candidate quickstart, not a live registry command. The converged 0.1.0-rc.1 package contract passed locally for macOS arm64, but the packages remain private, test-signed, noindex, and unpublished.
+Release-candidate quickstart, not a live registry command. The converged 0.1.0-rc.1 package contract passed locally for macOS arm64, but the packages remain private, test-signed, unpublished, and unavailable from public registries.
 
 1. Install after protected promotion
 
@@ -121,7 +125,7 @@ Disconnect removes only Kaleidoscope-owned material and leaves other host settin
 # Package installation
 
 URL: https://memory.kleosresearch.xyz/docs/packages/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 The converged contract separates public SDK facades from native companions. Facades contain the full language SDK and both command launchers; native companions contain the manager plus proprietary object-code engine.
@@ -152,19 +156,19 @@ Exact local RC artifacts
 
 ArtifactSHA-256
 
-Source-free release archivefc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf
+Source-free release archive2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a
 
-Signed distribution manifest39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f
+Signed distribution manifestefc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8
 
-npm SDK facadec30d45d9ccc61b36ede7b6df87f6728aa9307445a08446a7de5de5bafe9c0605
+npm SDK facade0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd
 
-npm macOS arm64 native companiona2cd8924c89a74204fcb9ee8790daf6a53d4ce4bec6fdf6329e127ff9b5b5d12
+npm macOS arm64 native companionec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b
 
-Python SDK facade7208468413a44412959e0426cf7fb508ca7f32861fcd0ee79ec0f6bedb88e68c
+Python SDK facade72099296676ef38b146018ae4ffac6cfb082bc8a537f178443acd351cf7bf6d7
 
-Python macOS arm64 native companion24eb29ac7ec70a2a9d36832994d5a17cba2b42f6a12fd6557f541bd2890f89d3
+Python macOS arm64 native companiond265493d6ca583f2ecd9e69257c8ed604174636e1c5f3b29dc08eafe01c51d8b
 
-Combined package proof095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c
+Combined package proof62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7
 
 What the package checks
 
@@ -178,14 +182,14 @@ What the package checks
 
 Current availability
 
-SDK commit fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317, assembler commit af892d180fe01729450e03917f33ac56698e90e1, and final evidence commit d9409ebacf63bcf2b32fde56a31a6350cfdfd491 define this local RC contract. The package proof records facade_mode: sdk_artifacts; the final package evidence records fresh npm/Python facade invocation. Production EULA/license text, trusted signing identities, registry credentials, other native platforms, protected publication approval, and Pages promotion remain required.
+SDK commit 9ed39bddd7bf14e68e1c363074f6921288b9e94b, assembler commit af892d180fe01729450e03917f33ac56698e90e1, and final evidence commit 0c42ff35b789a0406aaabf6634bdb2988db36b0a define this local RC contract. The package proof records facade_mode: sdk_artifacts; the final package evidence records fresh npm/Python facade invocation. The Apache-2.0 facade metadata and proprietary EULA review draft are bound into this proof. Final legal review, trusted signing identities, registry credentials, other native platforms, and protected publication approval remain required.
 
 ---
 
 # Concepts and boundaries
 
 URL: https://memory.kleosresearch.xyz/docs/concepts/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 The important boundary is local memory versus account metadata—not merely “logged in versus logged out.”
@@ -196,11 +200,11 @@ The proprietary native engine owns the memory algorithm, canonical vault, graph,
 
 Manager and profile
 
-The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes account/device commands. A profile may carry one explicit, manager-local account UUID reference; this changes neither its vault identity nor its credentials. The local distribution is bound to manager source commit fc15e1e… and its candidate binary digest.
+The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes account/device commands. A profile may carry one explicit, manager-local account UUID reference; this changes neither its vault identity nor its credentials. The local distribution is bound to manager source commit 9ed39bd… and its candidate binary digest.
 
 SDK facade and native companion
 
-The npm and Python facades at SDK commit fc15e1e… contain the full public clients, typed installed-payload resolvers, and kaleidoscope/kscope launchers. Their exact macOS arm64 native companions contain the manager and proprietary engine object code. This keeps the public developer API in the facade without placing engine source in either layer.
+The npm and Python facades at SDK commit 9ed39bd… contain the full public clients, typed installed-payload resolvers, and kaleidoscope/kscope launchers. Their exact macOS arm64 native companions contain the manager and proprietary engine object code. This keeps the public developer API in the facade without placing engine source in either layer.
 
 Harness identity
 
@@ -219,12 +223,12 @@ A hosted service is a later product requiring separate authorization, tenant iso
 # CLI reference
 
 URL: https://memory.kleosresearch.xyz/docs/cli/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 The developer-facing CLI is kaleidoscope. The engine executable kscope remains a native runtime/operator surface and is not the manager quickstart.
 
-Candidate-generated reference. The exact help snapshot comes from consolidated manager source commit fc15e1e… and the bound candidate SHA-256. It is not a public-installation claim.
+Candidate-generated reference. The exact help snapshot comes from consolidated manager source commit 9ed39bd… and the bound candidate SHA-256. It is not a public-installation claim.
 
 Download the exact candidate help text (/reference/kaleidoscope-cli.candidate.txt).
 
@@ -272,7 +276,7 @@ Safety invariants
 # MCP reference
 
 URL: https://memory.kleosresearch.xyz/docs/mcp/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 The candidate public contract publishes exactly two model-callable MCP tools over stdio revision 2025-11-25. Everything else remains outside the agent tool list.
@@ -304,7 +308,7 @@ Feedback, lifecycle/import, maintenance, ontology, and diagnostics are controlle
 # Agent and framework integrations
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Every integration consumes the same closed profile-first launch descriptor and persistent stdio MCP contract. The wrapper candidates do not contain or reimplement the proprietary memory algorithm.
@@ -329,7 +333,7 @@ OpenAI Agents SDK (/docs/integrations/openai-agents-sdk/)Python 0.22.0 and TypeS
 
 CrewAI (/docs/integrations/crewai/)crewai==1.15.17; long-lived MCP adapter passed.Verified with fake server
 
-What DX-07 and final package evidence prove. SDK commit fc15e1e… converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Final evidence {FINAL_PACKAGE_EVIDENCE_SHA256[:10]}… proves fresh npm/Python facade init, doctor, connect codex --dry-run, and stdio MCP discovery. Historic commit 9cd4b58… covered real Codex CLI configuration for a pre-final manager candidate only. Claude Code, Cursor, and OpenCode live acceptance remains unverified; no live provider, model/TUI/IDE, publication, or support claim follows.
+What DX-07 and final package evidence prove. SDK commit 9ed39bd… converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Final evidence {FINAL_PACKAGE_EVIDENCE_SHA256[:10]}… proves fresh npm/Python facade init, doctor, connect codex --dry-run, and stdio MCP discovery. Historic commit 9cd4b58… covered real Codex CLI configuration for a pre-final manager candidate only. Claude Code, Cursor, and OpenCode live acceptance remains unverified; no live provider, model/TUI/IDE, publication, or support claim follows.
 
 Agent guidance
 
@@ -340,7 +344,7 @@ Install the public skill (/SKILL.md), then add only the compact owner-marked poi
 # Local operations
 
 URL: https://memory.kleosresearch.xyz/docs/operations/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Configuration, agent instructions, account credentials, installed executables, and canonical vault data have separate lifecycles.
@@ -374,7 +378,7 @@ Local macOS arm64 staging produced full TypeScript/Python SDK facades and exact 
 # Security
 
 URL: https://memory.kleosresearch.xyz/docs/security/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Kaleidoscope protects source distribution and establishes verifiable boundaries. A native binary remains inspectable and may be reverse engineered; object-code distribution is not a claim of impossibility.
@@ -389,7 +393,7 @@ The consolidated manager constructs only 11 declared account routes. Its request
 
 Package integrity
 
-DX-06 binds the SDK facade commit, manager, engine, bundled model, public contract, package digests, CycloneDX SBOM, provenance, target, and prior-manifest rollback identity. It validates facade client modules, resolvers, both launchers, exact native dependency pins, archive safety, and the public/private source boundary. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Production trust roots, role keys, Apple signing/notarization, EULA, notices, and approved licenses are absent.
+DX-06 binds the SDK facade commit, manager, engine, bundled model, public contract, package digests, CycloneDX SBOM, provenance, target, and prior-manifest rollback identity. It validates facade client modules, resolvers, both launchers, exact native dependency pins, archive safety, and the public/private source boundary. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Apache-2.0 facade metadata and the proprietary engine EULA review draft are included in this exact package proof. Production trust roots, role keys, Apple signing/notarization, final notices, and final legal review remain absent.
 
 Verified privacy checks
 
@@ -404,7 +408,7 @@ Do not publish an exploit or sensitive report in a public issue. The production 
 # Privacy and data boundary
 
 URL: https://memory.kleosresearch.xyz/docs/privacy/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Local memory and account identity are separate systems. Logging in does not authorize memory upload, sync, analysis, training, or deletion.
@@ -434,14 +438,14 @@ Hosted memory is a future, separately authorized product. It requires explicit c
 # Account and devices
 
 URL: https://memory.kleosresearch.xyz/docs/account/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Login is intended for product-account and device workflows. It is not a hosted-memory connection and is not usable against a production issuer today.
 
 Locally verified manager flows
 
-Consolidated manager commit fc15e1e… implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse. The local control plane also completes a one-time external-identity link after fresh provider authentication, returning only opaque identity IDs for unlinking. The package candidate has only credential-free account-provider refusal evidence until an approved OIDC deployment exists.
+Consolidated manager commit 9ed39bd… implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse. The local control plane also completes a one-time external-identity link after fresh provider authentication, returning only opaque identity IDs for unlinking. The package candidate has only credential-free account-provider refusal evidence until an approved OIDC deployment exists.
 
 Commands
 
@@ -476,7 +480,7 @@ The client contract is closed and account-only, but production identity-provider
 # Compatibility
 
 URL: https://memory.kleosresearch.xyz/docs/compatibility/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 A platform or harness is supported only after the packaged artifact passes the canonical end-to-end proof on the named native runner and pinned host version.
@@ -504,7 +508,7 @@ Cross-compiling, extracting a foreign package, parsing configuration, or running
 # Benchmarks and evidence
 
 URL: https://memory.kleosresearch.xyz/docs/benchmarks/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Benchmark results are meaningful only when the candidate, public contract, dataset, evaluator, and retrieval path are immutable and auditable.
@@ -532,7 +536,7 @@ The benchmark harness is the only milestone here already merged into its public 
 # Local evidence and production gates
 
 URL: https://memory.kleosresearch.xyz/docs/evidence/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Evidence is split into local functional proof, package/signature proof, native platform support, and protected production promotion. Passing one does not imply the others.
@@ -541,17 +545,17 @@ Machine-readable record. staging-evidence.json (/staging-evidence.json) carries 
 
 Exact local candidate
 
-SDK facade commitfc15e1ec7d98a9d37983cea87ab23bfc0b7fd317
+SDK facade commit9ed39bddd7bf14e68e1c363074f6921288b9e94b
 
 Distribution assembler commitaf892d180fe01729450e03917f33ac56698e90e1
 
-Final evidence commitd9409ebacf63bcf2b32fde56a31a6350cfdfd491
+Final evidence commit0c42ff35b789a0406aaabf6634bdb2988db36b0a
 
-Final package evidence SHA-256f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0
+Final package evidence SHA-2567d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c
 
-Manager source commitfc15e1ec7d98a9d37983cea87ab23bfc0b7fd317
+Manager source commit9ed39bddd7bf14e68e1c363074f6921288b9e94b
 
-Manager candidate SHA-256fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b
+Manager candidate SHA-256a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1
 
 Engine source commitd96355632cc52816472106d0776ce63d73631fef
 
@@ -569,51 +573,51 @@ Milestones
 
 SliceExact evidenceWhat is true now
 
-DX-04 / DX-05Bfc15e1ec7d98a9d37983cea87ab23bfc0b7fd317, manager fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336bConsolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.
+DX-04 / DX-05B9ed39bddd7bf14e68e1c363074f6921288b9e94b, manager a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1Consolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.
 
-DX-06A/Baf892d180fe01729450e03917f33ac56698e90e1, proof 095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3cThe final source-bound archive and package set was reassembled with a test-only signature; no publication.
+DX-06A/Baf892d180fe01729450e03917f33ac56698e90e1, proof 62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7The licensed source-bound archive and package set was reassembled with a test-only signature; no publication occurred.
 
-DX-07fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317Full Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; no license or remote.
+DX-079ed39bddd7bf14e68e1c363074f6921288b9e94bFull Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; Apache-2.0 licensing is source-staged and no public remote is configured.
 
 DX-09ef89d05f09435afc9790fcdf5df3e01d34c7115b, merged PRs 5/6; evidence f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.
 
 DX-10Acfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12eFinal local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.
 
-DX-10Bd9409ebacf63bcf2b32fde56a31a6350cfdfd491, evidence f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0Fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery passed. This is not real Codex/Claude/Cursor/OpenCode host acceptance.
+DX-10B0c42ff35b789a0406aaabf6634bdb2988db36b0a, evidence 7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307cFresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery passed. This is not real Codex/Claude/Cursor/OpenCode host acceptance.
 
 Converged RC package proof
 
-The local archive fc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf, manifest 39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f, build proof eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94, and combined package proof 095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c bind the full npm/Python SDK facades to their exact macOS arm64 native companions. The facades carry public client code, installed-payload resolution and both launchers; the companions carry manager fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b and engine 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825 plus contract a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e. The SBOM a236f913fa83bf02e99605ba573203ba7cb48f7798ad8728c2aa4d590fd191f3, provenance a177d3537d87bfba08e77fe4171e41dff69a757499a742c8a5501ed5777b1d56, and signature envelope 7fc485f638bcf3327804009bf2890afb96b106fd3171e6f8a013dadac90510d2 are all test-only local evidence. This closes local package-shape convergence, not protected production gates.
+The local archive 2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a, manifest efc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8, build proof ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053, and combined package proof 62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7 bind the full npm/Python SDK facades to their exact macOS arm64 native companions. The facades carry public client code, installed-payload resolution and both launchers; the companions carry manager a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1 and engine 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825 plus contract a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e. The SBOM 5058f2170630cb70ac14252162245f3ae94cc9d02f9b58c74d36694355094f4c, provenance 498c60561520e57834a807c2e17443b0a7eefe1c3901c67450e0506135babfb8, and signature envelope 9bce859379b24683cff7e6069835aa9f8d8ac4f1d07ff353f050ea1b9df60e0c are all test-only local evidence. This closes local package-shape convergence, not protected production gates.
 
 Approval and credential gates
 
-- Approval of a license for the public manager, wrappers, integrations, and skill.
+- Apache-2.0 for the public manager, wrappers, integrations, and skill and CC BY 4.0 for original documentation are product-authorized and source-staged.
 
-- Approval of terms for original documentation and an engine object-code EULA.
+- The engine object-code EULA, privacy, security, and support policies remain review drafts pending exact entity, jurisdiction, contacts, operational commitments, and external legal review.
 
 - Staging/production OIDC configuration and private control-plane deployment evidence.
 
 - Production signing/notarization identities, registry/CDN credentials, and native platform runners.
 
-- A separate final approval for package publication, production login, and Pages promotion.
+- Package publication and production login remain separate deferred approvals.
 
 ---
 
 # Release notes
 
 URL: https://memory.kleosresearch.xyz/docs/release-notes/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Release notes become authoritative only when they name the exact signed package, final manager, engine, and public-contract digests.
 
 Unreleased local staging — 2026-08-22
 
-- The consolidated auth-enabled manager is deterministically bound at fc6afb3606fc….
+- The consolidated auth-enabled manager is deterministically bound at a1eb37ab61f8….
 
-- SDK commit fc15e1e… places the full public TypeScript/Python clients, installed-payload resolvers, account identity lifecycle, profile-account binding, and both launchers in the facade packages.
+- SDK commit 9ed39bd… places the full public TypeScript/Python clients, installed-payload resolvers, account identity lifecycle, profile-account binding, Apache-2.0 metadata, and both launchers in the facade packages.
 
-- Distribution assembler af892d1… pairs those facades with macOS arm64 native companions containing the manager and proprietary object-code engine; the exact package proof is 095f91ca….
+- Distribution assembler af892d1… pairs those facades with macOS arm64 native companions containing the manager, proprietary object-code engine, and EULA review draft; the exact package proof is 62afa571….
 
 - DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.
 
@@ -630,7 +634,7 @@ A release entry must record public availability, supported targets and pinned ho
 # Troubleshooting
 
 URL: https://memory.kleosresearch.xyz/docs/troubleshooting/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Start with kaleidoscope doctor for local profile/engine/host issues. Account commands have a separate error boundary.
@@ -670,7 +674,7 @@ Remove local paths, account identifiers, provider keys, tokens, memory content, 
 # Migration from historical tool contracts
 
 URL: https://memory.kleosresearch.xyz/docs/migration/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Current agents discover exactly search and remember. Historical names are not aliases and must be removed from host allowlists and prompts.
@@ -696,7 +700,7 @@ feedback is an operator command, not an MCP tool. Public search does not return 
 # Codex integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/codex/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Codex uses the same profile-first stdio descriptor as every other harness. The manager owns configuration changes so they can be previewed, backed up, and removed exactly.
@@ -718,7 +722,7 @@ The local candidate passed isolated codex mcp add/list/get/remove, byte-exact ro
 # Claude Code integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/claude-code/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Claude Code receives one local stdio MCP server definition and an optional owner-marked project pointer to the public skill.
@@ -740,7 +744,7 @@ Renderer, dry-run, idempotence, and rollback tests passed locally. Live Claude C
 # Claude Agent SDK integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/claude-agent-sdk/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 The Python recipe creates one Claude Agent SDK client for the intended run and passes a strict stdio MCP configuration with explicit Kaleidoscope tool names.
@@ -761,7 +765,7 @@ The local lifecycle test uses a deterministic client double to prove one client 
 # Cursor integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/cursor/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Cursor uses the same local MCP command and only the two public memory tools. The manager makes the JSON mutation reversible and adds a small project rule only when requested.
@@ -783,7 +787,7 @@ Local renderer and rollback coverage passed. A pinned Cursor build and installed
 # OpenCode integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/opencode/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 OpenCode stable v1 and beta v2 use different configuration shapes. Kaleidoscope never guesses or silently migrates between them.
@@ -808,7 +812,7 @@ Both renderers and safe mutation paths passed locally. Installed OpenCode accept
 # Generic MCP integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/generic-mcp/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Any standard MCP host can obtain the canonical child-process descriptor from the manager and retain one initialized session for its run.
@@ -832,7 +836,7 @@ Python MCP 1.x/2.x and TypeScript MCP client suites exercised persistent process
 # LangChain integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/langchain/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Use the official LangChain MCP adapter to load the two Kaleidoscope tools inside one adapter session. Kaleidoscope is not a BaseStore implementation.
@@ -854,7 +858,7 @@ The pinned local LangChain adapter suite verified remembered and searched values
 # LangGraph integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/langgraph/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 LangGraph uses the same one-session MCP adapter as LangChain, placed in the graph’s tool node for the run.
@@ -876,7 +880,7 @@ The pinned local graph test exercised a tool node calling remember then search t
 # OpenAI Agents SDK integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/openai-agents-sdk/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 Use the official stdio MCP server lifecycle supplied by the OpenAI Agents SDK, keeping one server alive for the agent run and filtering the model-facing tools to Kaleidoscope’s two public operations.
@@ -898,7 +902,7 @@ Pinned Python and TypeScript adapters passed scripted-model lifecycle tests with
 # CrewAI integration
 
 URL: https://memory.kleosresearch.xyz/docs/integrations/crewai/
-Release: unreleased
+Release: 0.1.0-rc.1
 Updated: 2026-08-22
 
 CrewAI uses one stdio MCP adapter context for the crew run. The adapter exposes only the Kaleidoscope tools that are appropriate for the model.
@@ -914,6 +918,793 @@ The framework owns provider configuration and crew state. Kaleidoscope owns only
 Evidence boundary
 
 The pinned adapter was exercised against the local MCP fixture with one persistent process and explicit tool filtering.
+
+---
+
+# Licenses and product terms
+
+URL: https://memory.kleosresearch.xyz/docs/legal/
+Release: 0.1.0-rc.1
+Updated: 2026-08-22
+
+The public software, original documentation, and proprietary
+engine have deliberately separate license boundaries.
+
+Review status. Apache-2.0 and CC BY 4.0
+are the authorized public license selections. The EULA, privacy, security, and
+support text remains a source-controlled review draft until the production
+entity, jurisdiction, contacts, operational commitments, and external legal
+review are complete.
+
+- Documentation license scope (/documentation-license.txt) and
+CC BY 4.0 legal code (/legal/CC-BY-4.0.txt).
+
+- Proprietary engine EULA (/docs/legal/engine-eula/).
+
+- Privacy notice (/docs/legal/privacy-notice/).
+
+- Security policy (/docs/legal/security-policy/).
+
+- Support policy (/docs/legal/support-policy/).
+
+The Apache-2.0 license for the public manager, SDKs, wrappers,
+integrations, and skill is carried in those source and package repositories.
+It does not license the native engine, model weights, trademarks, or
+third-party material.
+
+---
+
+# Proprietary engine EULA
+
+URL: https://memory.kleosresearch.xyz/docs/legal/engine-eula/
+Release: 0.1.0-rc.1
+Updated: 2026-08-22
+
+Terms proposed for proprietary Kaleidoscope engine object code; public Apache-2.0 components and CC BY 4.0 documentation remain separate.
+Review status. This is a source-controlled review draft, not a production legal notice, support commitment, or claim of external legal approval.
+Download the plain-text source (/legal/ENGINE-EULA.txt).
+
+KALEIDOSCOPE ENGINE END USER LICENSE AGREEMENT
+REVIEW DRAFT - NOT FOR PRODUCTION DISTRIBUTION
+
+Last updated: August 22, 2026
+
+IMPORTANT: This review draft is included only in a private, dry-run release
+candidate. It does not authorize publication or distribution. Before any
+production release, the Licensor's exact legal name, notice address, governing
+law, venue, consumer-law treatment, liability cap, and acceptance flow must be
+approved and inserted.
+
+This End User License Agreement ("Agreement") governs the proprietary
+Kaleidoscope native engine object code distributed with a Kaleidoscope product
+(the "Engine"). The person or entity that supplies the Engine under an order,
+receipt, download page, or other release record is the "Licensor." "You" means
+the individual or entity accepting this Agreement.
+
+By installing, copying, or using a production copy of the Engine after being
+presented with this Agreement, You agree to it. If You accept for an
+organization, You represent that You have authority to bind that organization.
+If You do not agree, do not install or use the Engine and remove any copies
+provided to You. This acceptance paragraph does not activate this review draft.
+
+1. SCOPE AND SEPARATE MATERIALS
+
+1.1 Engine. The Engine includes proprietary executable code, embedded
+components and model assets supplied with it, and updates the Licensor
+designates as governed by this Agreement.
+
+1.2 Public components. The Kaleidoscope public manager, SDKs, wrappers,
+integrations, examples, snippets, and agent skill are separate works licensed
+under the Apache License 2.0 when their distribution says so. Original
+Kaleidoscope documentation may be licensed under Creative Commons Attribution
+4.0 International when marked accordingly. Those public licenses are not
+restricted by this Agreement.
+
+1.3 Third-party material. Third-party components are governed by their
+applicable notices and license terms. Those terms control if they conflict with
+this Agreement for that component. The Engine's command-line notice report and
+the package's third-party notice file identify applicable components.
+
+1.4 Services. Hosted services, accounts, billing, support plans, and
+professional services may have separate terms. This Agreement does not create a
+hosted-memory service or authorize upload of local memory data.
+
+2. LICENSE GRANT
+
+Subject to Your compliance with this Agreement and any applicable order or
+entitlement, the Licensor grants You a limited, non-exclusive,
+non-transferable, non-sublicensable, revocable license to:
+
+(a) install and run the Engine in object-code form on devices You own or
+control, solely for Your personal or internal business use with Kaleidoscope
+products;
+
+(b) make one reasonable backup copy for disaster recovery; and
+
+(c) permit Your employees and contractors to use the Engine for Your benefit,
+provided they are bound by obligations at least as protective as this
+Agreement and You remain responsible for their compliance.
+
+The license is limited by the devices, users, term, plan, and other entitlement
+terms stated in Your order or release record. If no such limit is stated, the
+license is for one user on devices that user owns or controls.
+
+3. RESTRICTIONS
+
+Except to the extent a restriction is prohibited by applicable law, You must
+not, and must not enable another person to:
+
+(a) copy the Engine except as expressly permitted;
+
+(b) sell, resell, rent, lease, sublicense, distribute, publish, transfer, or
+make the Engine available to a third party;
+
+(c) use the Engine to provide a hosted, service-bureau, time-sharing, or
+managed service for third parties;
+
+(d) modify, translate, adapt, or create derivative works of the Engine;
+
+(e) reverse engineer, decompile, disassemble, or otherwise attempt to derive
+source code, non-public algorithms, models, keys, or protocols from the Engine;
+
+(f) bypass or defeat license, entitlement, signature, integrity, access, or
+usage controls;
+
+(g) remove, obscure, or alter proprietary notices; or
+
+(h) use the Engine unlawfully or in a way that infringes another person's
+rights.
+
+Where applicable law permits interoperability research or reverse engineering
+despite this section, You may exercise only the non-waivable right, after first
+requesting reasonably necessary interoperability information from the
+Licensor, and only to the minimum extent the law permits.
+
+4. OWNERSHIP AND FEEDBACK
+
+The Engine is licensed, not sold. The Licensor and its licensors retain all
+right, title, and interest in the Engine and all intellectual-property rights
+not expressly granted. No implied license is granted. Kaleidoscope names,
+logos, and marks are not licensed except for truthful identification of the
+product.
+
+If You voluntarily provide product feedback, You grant the Licensor a
+worldwide, perpetual, irrevocable, royalty-free right to use and incorporate
+that feedback without identifying You. This does not grant rights in Your
+memory content, prompts, queries, results, or other local data.
+
+5. LOCAL DATA, ACCOUNTS, AND NETWORK USE
+
+5.1 Local engine data. Under the documented local configuration, memory
+content, queries, selected results, graph data, and vault files remain on
+devices You control. You own Your content. You are responsible for lawful
+collection, use, backups, access control, and deletion of that content.
+
+5.2 No implied upload. Installing or using the Engine does not authorize the
+Licensor to upload, sync, train on, sell, or delete Your local memory data.
+A hosted or sync feature requires a separate, express agreement and user
+action.
+
+5.3 Optional account features. If You choose to use account or device
+features, the public manager may communicate the bounded account fields
+described in the then-current privacy notice. Account traffic is separate from
+the Engine's local memory protocol.
+
+5.4 Diagnostics. Do not send secrets, raw memory content, credentials, or
+private paths in a support request. Review and redact diagnostic output before
+sharing it.
+
+6. UPDATES AND CHANGES
+
+The Licensor may provide updates, patches, or replacements. An update may be
+required for security, compatibility, or continued service access. Updates are
+governed by this Agreement unless supplied with different terms. The Licensor
+does not promise any update, feature, compatibility, or maintenance period
+except in a separate written support plan.
+
+7. SECURITY AND RESPONSIBLE USE
+
+You must use reasonable safeguards for devices, credentials, profiles, and
+vaults; install security updates within a reasonable time; and notify the
+Licensor through the published security channel if You discover a suspected
+vulnerability. You must not publicly disclose exploit details before a
+reasonable coordinated-disclosure period unless applicable law requires it.
+
+8. CONFIDENTIALITY
+
+Non-public Engine internals, private release materials, keys, and technical
+information identified as confidential or reasonably understood to be
+confidential are the Licensor's confidential information. You must protect them
+with at least reasonable care and use them only as this Agreement permits.
+This section does not cover information You can document was lawfully public,
+already known without restriction, independently developed, or received
+lawfully from another source.
+
+9. COMPLIANCE
+
+You must comply with applicable export-control, sanctions, anti-corruption, and
+other laws. You represent that You are not prohibited from receiving the
+Engine. You are responsible for obtaining permissions needed for Your data and
+use case. The Engine is not designed or warranted for emergency, life-support,
+nuclear, weapons, or other use where failure could reasonably cause death,
+personal injury, or severe environmental or property damage.
+
+10. TERM AND TERMINATION
+
+This Agreement starts when validly accepted and continues while You possess or
+use the Engine, unless an order states a shorter term. Your license terminates
+automatically if You materially breach this Agreement and do not cure a
+curable breach within 30 days after notice. It may terminate immediately for a
+breach of Sections 3, 8, or 9, or where continued performance would violate
+law.
+
+When the license ends, stop using the Engine and delete all copies, except one
+archival copy retained solely if law requires it. Sections concerning
+ownership, confidentiality, disclaimers, liability, and general terms survive.
+
+11. WARRANTY DISCLAIMER
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE ENGINE IS PROVIDED "AS IS" AND "AS
+AVAILABLE." THE LICENSOR AND ITS SUPPLIERS DISCLAIM ALL EXPRESS, IMPLIED, AND
+STATUTORY WARRANTIES, INCLUDING TITLE, NON-INFRINGEMENT, MERCHANTABILITY,
+SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, QUIET
+ENJOYMENT, AND THAT THE ENGINE WILL BE ERROR-FREE, SECURE, OR UNINTERRUPTED.
+
+THIS DISCLAIMER DOES NOT EXCLUDE WARRANTIES OR REMEDIES THAT CANNOT LAWFULLY BE
+EXCLUDED. ANY EXPRESS LIMITED WARRANTY IN AN ORDER CONTROLS OVER THIS SECTION
+ONLY TO THE EXTENT OF THE CONFLICT.
+
+12. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, NEITHER THE LICENSOR NOR ITS SUPPLIERS
+WILL BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE, OR
+CONSEQUENTIAL DAMAGES, OR FOR LOST PROFITS, REVENUE, GOODWILL, BUSINESS,
+OPPORTUNITY, OR DATA, ARISING FROM THE ENGINE OR THIS AGREEMENT, EVEN IF ADVISED
+THAT SUCH DAMAGES WERE POSSIBLE.
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE AGGREGATE LIABILITY OF THE LICENSOR
+AND ITS SUPPLIERS ARISING FROM THE ENGINE OR THIS AGREEMENT WILL NOT EXCEED THE
+GREATER OF (A) THE AMOUNT YOU PAID FOR THE ENGINE DURING THE 12 MONTHS BEFORE
+THE EVENT GIVING RISE TO LIABILITY OR (B) USD 100.
+
+THE LIMITATIONS DO NOT APPLY TO LIABILITY THAT CANNOT LAWFULLY BE LIMITED. Some
+jurisdictions do not allow particular exclusions or limits, so parts of this
+section may not apply to You. The parties intend the limitations to allocate
+risk and apply even if a limited remedy fails of its essential purpose.
+
+13. GENERAL TERMS
+
+13.1 Governing law and venue. The production Agreement must identify the
+Licensor's jurisdiction and an appropriate exclusive venue before release.
+Mandatory consumer protections and non-waivable statutory rights continue to
+apply.
+
+13.2 Assignment. You may not assign this Agreement without the Licensor's prior
+written consent, except in connection with a merger or sale of substantially
+all assets where the assignee accepts this Agreement. The Licensor may assign
+this Agreement as part of a reorganization, financing, or sale of the relevant
+business.
+
+13.3 Notices. Legal notices must be sent to the address identified in the
+production download page or order. A production release must provide an exact
+legal entity, postal or electronic notice address, and security contact.
+
+13.4 Entire agreement; order of precedence. This Agreement, applicable orders,
+and incorporated third-party notices are the entire agreement about the
+Engine. An executed order controls over this Agreement for its subject matter.
+A purchase order does not modify these terms unless expressly accepted in
+writing.
+
+13.5 Severability and waiver. If a provision is unenforceable, it will be
+reformed only to the minimum extent necessary, and the remainder stays in
+effect. A failure to enforce a provision is not a waiver.
+
+13.6 Force majeure. Neither party is responsible for delay caused by events
+beyond its reasonable control, except payment obligations.
+
+13.7 Language. The English version controls unless applicable law requires
+otherwise.
+
+END OF REVIEW DRAFT
+
+---
+
+# Privacy notice
+
+URL: https://memory.kleosresearch.xyz/docs/legal/privacy-notice/
+Release: 0.1.0-rc.1
+Updated: 2026-08-22
+
+The local engine does not imply memory upload; optional account, site, purchase, and support processing require explicit production disclosures.
+Review status. This is a source-controlled review draft, not a production legal notice, support commitment, or claim of external legal approval.
+Download the plain-text source (/legal/PRIVACY-NOTICE.txt).
+
+KALEIDOSCOPE LOCAL PRODUCT PRIVACY NOTICE
+REVIEW DRAFT - NOT FOR PRODUCTION USE
+
+Last updated: August 22, 2026
+
+This draft describes the intended privacy boundary for the local Kaleidoscope
+product. Production account features and publication must remain disabled until
+the data controller's exact legal identity and contact, processors,
+jurisdiction-specific disclosures, retention schedule, and rights-request
+process are completed and reviewed.
+
+1. SCOPE
+
+This notice applies to the Kaleidoscope local manager, proprietary local engine,
+optional product-account features, documentation site, and product support. It
+does not apply to a separately contracted hosted-memory or synchronization
+service, or to third-party services governed by their own notices.
+
+2. LOCAL MEMORY DATA
+
+The local engine is designed to keep memory content, prompts, queries, selected
+results, graph data, memory identifiers, workspace/principal/journal
+coordinates, local paths, and vault files on devices controlled by the user.
+
+Installing or using the local engine does not authorize Kleos Research to
+upload, sync, inspect, sell, train on, or delete that local memory data. Local
+vault deletion is a separate user-initiated operation. Users are responsible
+for access controls, lawful content, backups, exports, and deletion on their
+devices.
+
+3. DATA PROCESSED BY OPTIONAL ACCOUNT FEATURES
+
+If a user chooses to activate a production account feature, the public manager
+may process only the bounded account and device data needed for that feature,
+such as:
+
+- email address and account identifiers;
+- identity-provider name and opaque external identity identifiers;
+- device identifier, user-supplied device label, platform, and last-seen time;
+- authorization state, session family identifiers, and security audit events;
+- authentication and revocation timestamps; and
+- ordinary network metadata such as IP address, user agent, and request status
+recorded by the identity provider, hosting provider, or account service.
+
+Refresh credentials are intended to remain in the operating-system credential
+store. Agent configuration, profiles, and local vaults must not contain those
+credentials. Account requests must exclude memory content, queries, results,
+vault coordinates, profile identity fields, provider secrets, and absolute
+local paths.
+
+Production login is not available until the exact fields, provider, endpoints,
+credential behavior, and data flows are verified and published.
+
+4. DOCUMENTATION SITE, PURCHASES, AND SUPPORT
+
+A static documentation host may process ordinary delivery and security logs.
+The production site must publish its hosting provider, cookie/local-storage
+inventory, and retention before analytics, personalization, or non-essential
+cookies are enabled.
+
+If purchases are offered, payment providers may process billing and payment
+information under their own notices. Kaleidoscope should receive only the
+billing records needed to provide the product, prevent fraud, and meet legal
+obligations.
+
+Support processes may receive contact details, correspondence, account/device
+identifiers, and diagnostics a user chooses to submit. Users must review and
+redact diagnostics and must not submit credentials, private keys, raw memory
+content, prompts, or confidential local paths unless specifically requested
+through an approved secure channel.
+
+5. PURPOSES AND LEGAL BASES
+
+Subject to the law that applies to the production data controller, account and
+support data may be processed to:
+
+- provide requested account, device, entitlement, purchase, and support
+functions;
+- authenticate users and protect accounts, releases, and services;
+- diagnose failures and maintain compatibility;
+- comply with law and enforce product terms; and
+- improve the product using aggregated or de-identified information.
+
+Before production, the controller must map each purpose and data category to an
+applicable legal basis, including contract, legitimate interests, consent, or
+legal obligation as required. Consent must be freely given and withdrawable
+where it is the selected basis.
+
+6. TELEMETRY AND TRAINING
+
+The local engine contract declares no required network connection, external
+model call, or production telemetry. Non-account manager operations are
+designed to run offline.
+
+Kaleidoscope does not sell local memory data or use it for targeted
+advertising. No production feature may use local memory data, prompts, queries,
+or results to train a model unless a separate, explicit, informed opt-in and
+applicable contract identify the data, purpose, recipient, retention, and
+withdrawal consequences.
+
+Any future telemetry must be documented field by field, default state,
+destination, purpose, legal basis, retention, and opt-out behavior before it is
+enabled.
+
+7. SHARING
+
+Production data may be disclosed only as needed to:
+
+- contracted processors that provide identity, hosting, payment, email,
+customer-support, or security services;
+- professional advisers under confidentiality obligations;
+- authorities or other parties when required by law or reasonably necessary to
+protect rights, users, or service security; or
+- a successor in a merger, financing, reorganization, or sale, subject to
+appropriate notice and safeguards.
+
+A production notice must name or categorize material processors and provide
+required cross-border transfer disclosures. Processors may not use product data
+for their own advertising or model training unless the user separately agrees.
+
+8. RETENTION AND DELETION
+
+Data must be kept only for the shortest period needed for the stated purpose,
+security, dispute resolution, and legal obligations. Before production, the
+following proposed schedule must be validated against system behavior and law:
+
+- active account records: while the account is active;
+- deleted-account records: delete or de-identify within 30 days, except records
+that must be retained for security, fraud, tax, or legal claims;
+- authentication and security audit events: 90 days unless an active
+investigation or law requires longer;
+- support cases: 24 months after closure unless a user or contract requires a
+shorter period;
+- service backups containing account data: expire within 35 days; and
+- local memory data: controlled and deleted locally by the user, not retained
+by the account service.
+
+A production release must confirm these periods, backup behavior, legal holds,
+and account-deletion verification. A local logout or account deletion must not
+silently delete a local vault.
+
+9. SECURITY
+
+Kaleidoscope uses measures intended to separate local memory, account traffic,
+credentials, package integrity, and support diagnostics. No method is perfectly
+secure. Users should protect devices and credentials, install verified updates,
+use least privilege, and report suspected vulnerabilities through the
+published security channel.
+
+10. INTERNATIONAL TRANSFERS
+
+If account or support data crosses borders, the production controller must use
+a valid transfer mechanism and publish the relevant countries and safeguards.
+No claim about an adequacy decision, standard contractual clauses, or data
+residency is made in this draft.
+
+11. PRIVACY RIGHTS
+
+Depending on location, a user may have rights to access, correct, delete,
+restrict, object to, or port personal data; withdraw consent; and complain to a
+regulator. Identity verification may be required before fulfilling a request.
+A production release must provide an exact request channel, controller
+identity, response timeline, appeal method where required, and regulator
+details.
+
+12. CHILDREN
+
+Kaleidoscope is not directed to children under 16, and account features should
+not knowingly collect their personal data. The production controller must
+adjust this threshold and consent process where local law requires.
+
+13. CHANGES
+
+Material changes should be announced before they take effect when practicable.
+The notice must show its effective date and preserve prior versions. A change
+does not retroactively authorize a new use of local memory data.
+
+14. CONTACT
+
+Before production, insert the data controller's exact legal name, postal
+address, privacy email or request portal, data-protection representative where
+required, and data protection officer contact where applicable.
+
+END OF REVIEW DRAFT
+
+---
+
+# Security policy
+
+URL: https://memory.kleosresearch.xyz/docs/legal/security-policy/
+Release: 0.1.0-rc.1
+Updated: 2026-08-22
+
+A proposed coordinated-disclosure policy; no production intake exists until a monitored private channel and supported-version table are published.
+Review status. This is a source-controlled review draft, not a production legal notice, support commitment, or claim of external legal approval.
+Download the plain-text source (/legal/SECURITY-POLICY.txt).
+
+KALEIDOSCOPE SECURITY POLICY
+REVIEW DRAFT - NOT FOR PRODUCTION USE
+
+Last updated: August 22, 2026
+
+This draft defines a proposed vulnerability-reporting and support boundary. No
+production security intake or supported version exists until an exact staffed
+contact and supported-version table are published.
+
+1. SUPPORTED VERSIONS
+
+Only versions explicitly listed on the production security page are supported.
+Release candidates, local staging builds, test-signed packages, source
+snapshots, refusal-only platform scaffolds, and unlisted host versions are not
+production-supported.
+
+Proposed default after general availability: support the current release and
+the immediately preceding minor release for 90 days after replacement, subject
+to platform and host versions in the compatibility table. Security fixes may
+require upgrading to the current release. This lifecycle needs staffing and
+product-owner confirmation before release.
+
+2. REPORTING A VULNERABILITY
+
+Do not report vulnerabilities, credentials, private keys, exploit details, or
+sensitive user data in a public issue.
+
+Before production, publish a monitored security email or secure submission
+portal and an encryption key if encrypted reports are accepted. A complete
+report should include:
+
+- affected product, version, platform, package digest, and host version;
+- a concise impact statement and prerequisite conditions;
+- reproducible steps or a minimal proof of concept;
+- whether sensitive data or another person's account was accessed;
+- mitigations already attempted; and
+- a safe way to contact the reporter.
+
+Do not send raw vaults, memory content, prompts, tokens, account credentials, or
+unredacted local paths unless a responder specifically requests them through
+an approved secure channel.
+
+3. PROPOSED RESPONSE TARGETS
+
+After production staffing is confirmed, the proposed non-binding targets are:
+
+- acknowledge a complete report within 3 business days;
+- provide initial triage within 10 business days;
+- provide a status update at least every 30 days while remediation is active;
+and
+- coordinate disclosure after a fix or mitigation is broadly available.
+
+These are targets, not an SLA or promise of a bounty. Paid support or a separate
+written agreement may provide different commitments.
+
+4. COORDINATED DISCLOSURE
+
+Give Kaleidoscope a reasonable opportunity to investigate and remediate before
+public disclosure. The parties should agree on a disclosure date based on
+severity, exploitability, affected users, and fix availability. Kaleidoscope
+will not ask a reporter to conceal an unresolved risk indefinitely and will
+credit a reporter who requests credit and whose report materially helps,
+subject to law and privacy.
+
+5. GOOD-FAITH RESEARCH
+
+Kaleidoscope intends not to initiate legal action against research that:
+
+- is performed in good faith on systems and accounts the researcher owns or is
+authorized to test;
+- avoids privacy violations, persistence, service disruption, social
+engineering, physical attacks, extortion, and unnecessary data access;
+- accesses only the minimum data needed to demonstrate the issue and securely
+deletes any retained data;
+- does not exploit a vulnerability beyond what is needed to confirm impact;
+- complies with applicable law and this policy; and
+- reports promptly through the designated private channel.
+
+This statement cannot authorize testing of third-party infrastructure or waive
+rights belonging to others. If uncertain whether planned testing is covered,
+ask through the security channel before proceeding.
+
+6. OUT OF SCOPE
+
+Ordinarily out of scope unless a concrete security impact is shown:
+
+- automated scanner output without validation;
+- denial-of-service or resource-exhaustion testing;
+- social engineering, phishing, spam, or physical attacks;
+- vulnerabilities only in unsupported versions or unmodified third-party
+software;
+- missing headers or best-practice observations with no exploitable impact;
+- reports requiring a compromised operating-system administrator or physical
+device access where that is the stated trust boundary; and
+- claims that object code is impossible to inspect or reverse engineer.
+
+7. PACKAGE AND LOCAL-DATA BOUNDARY
+
+Verify package digests and signatures only against a production trust root.
+Test fixture signatures and ad hoc platform signatures are not production
+proof.
+
+The local engine is designed for a local vault and stdio protocol. Account
+traffic is a separate manager surface and must exclude memory content, queries,
+results, vault coordinates, provider secrets, and absolute local paths. A
+security report should identify any observed violation of that boundary.
+
+8. INCIDENT COMMUNICATIONS
+
+For a confirmed incident, Kaleidoscope should publish the affected versions,
+impact, mitigations, fixed version, package checksums, and required migration or
+credential actions without exposing exploit details that would create
+unnecessary harm. Applicable breach-notification obligations and contractual
+notice periods control.
+
+9. REQUIRED PRODUCTION COMPLETION
+
+Before this policy becomes effective, confirm:
+
+- the exact legal entity and monitored security channel;
+- staffed business hours and emergency escalation;
+- supported versions, platforms, and host pins;
+- encryption and evidence-handling procedures;
+- response targets and any bounty terms;
+- incident severity and notification procedures; and
+- applicable jurisdiction and safe-harbor review.
+
+END OF REVIEW DRAFT
+
+---
+
+# Support policy
+
+URL: https://memory.kleosresearch.xyz/docs/legal/support-policy/
+Release: 0.1.0-rc.1
+Updated: 2026-08-22
+
+Proposed standard support terms; prereleases and test-signed packages remain unsupported and no SLA exists without a separate written plan.
+Review status. This is a source-controlled review draft, not a production legal notice, support commitment, or claim of external legal approval.
+Download the plain-text source (/legal/SUPPORT-POLICY.txt).
+
+KALEIDOSCOPE SUPPORT POLICY
+REVIEW DRAFT - NOT FOR PRODUCTION USE
+
+Last updated: August 22, 2026
+
+This draft describes proposed standard support for a local Kaleidoscope
+product. It creates no service-level agreement, warranty, maintenance promise,
+or public support claim. Production support begins only when a supported
+release, staffed intake channel, business hours, and plan terms are published.
+
+1. COVERED PRODUCTS
+
+Standard support may cover:
+
+- the current generally available public manager, SDK wrappers, integrations,
+and agent skill;
+- the proprietary engine object-code package under a valid entitlement; and
+- the operating systems, architectures, package managers, and host versions
+explicitly listed in the production compatibility table.
+
+A separate order or paid support plan controls if it states different scope,
+response times, hours, or remedies.
+
+2. NOT COVERED
+
+Unless a written plan says otherwise, standard support excludes:
+
+- release candidates, local staging builds, test-signed artifacts, nightly
+builds, source snapshots, and refusal-only packages;
+- unlisted platforms, host versions, custom forks, modified binaries, or
+packages whose integrity cannot be verified;
+- third-party services, models, frameworks, or operating systems except for
+reasonable interoperability diagnosis;
+- user-authored prompts, memory content, business logic, data recovery, or
+backup administration;
+- incidents caused by credential compromise, unsupported configuration,
+failure to install an available fix, or use contrary to documentation;
+- consulting, architecture design, migrations, custom integrations, and
+performance tuning; and
+- security research, which must use the private security-reporting channel.
+
+3. SUPPORT CHANNEL
+
+Before production, publish one authenticated support portal or monitored email,
+the operating legal entity, business hours and time zone, supported languages,
+and escalation process. Public issues may be used for non-sensitive
+Apache-licensed SDK defects after a public repository exists, but must never
+contain credentials, private engine material, exploit details, or user memory
+data.
+
+4. INFORMATION TO PROVIDE
+
+A support request should include:
+
+- product and exact version;
+- operating system, architecture, package manager, and relevant host version;
+- package and executable digests where available;
+- a concise expected-versus-observed description;
+- reproducible steps using non-sensitive test data;
+- redacted error output and diagnostics; and
+- recent relevant changes.
+
+Users must review diagnostics before sharing them. Remove local paths, account
+identifiers, provider keys, tokens, memory content, prompts, queries, results,
+and vault coordinates. Support may refuse unsafe uploads and ask for a minimal
+redacted reproduction.
+
+5. SEVERITY GUIDANCE
+
+Proposed severity levels are:
+
+- Severity 1: verified security incident, data-loss risk, or complete outage of
+a supported production use with no workaround;
+- Severity 2: major supported function unavailable or severely degraded, with
+material impact and no reasonable workaround;
+- Severity 3: limited defect with a workaround or moderate impact; and
+- Severity 4: question, documentation issue, compatibility request, or feature
+request.
+
+Kaleidoscope may reclassify a request based on verified impact and scope.
+
+6. PROPOSED RESPONSE TARGETS
+
+For standard support during published business hours, proposed non-binding
+initial-response targets are:
+
+- Severity 1: 1 business day;
+- Severity 2: 2 business days;
+- Severity 3: 5 business days; and
+- Severity 4: 10 business days or best effort.
+
+A response is an acknowledgement and triage action, not necessarily a fix.
+No restoration, resolution, uptime, or response SLA applies unless a written
+paid plan expressly provides one. These targets require staffing confirmation
+before production.
+
+7. FIXES AND WORKAROUNDS
+
+Support may provide documentation, configuration guidance, a workaround, an
+upgrade recommendation, or a product fix. Security and compatibility fixes may
+be delivered only in the current release. Kaleidoscope does not promise to
+backport a fix or maintain compatibility with an unpinned third-party host.
+
+8. VERSION LIFECYCLE
+
+Only versions in the production support table are covered. Proposed default:
+the current release and the immediately preceding minor release remain eligible
+for standard support for 90 days after replacement. Kaleidoscope should give at
+least 90 days' notice before ending ordinary support where practicable, but may
+end support sooner for legal, security, third-party platform, or emergency
+reasons.
+
+No lifecycle period applies to prereleases. A separate long-term-support plan
+must be stated in writing.
+
+9. USER RESPONSIBILITIES
+
+Users are responsible for:
+
+- maintaining verified backups and testing restoration;
+- controlling device, profile, credential, and vault access;
+- using supported platforms and installing fixes within a reasonable time;
+- preserving a safe minimal reproduction;
+- obtaining rights and consents for data they process; and
+- maintaining a reasonable business-continuity plan.
+
+Support activity does not authorize Kaleidoscope to access or delete a local
+vault. Remote access, if ever offered, requires separate informed consent,
+least privilege, a defined session, and an audit trail.
+
+10. PRIVACY AND CONFIDENTIALITY
+
+Support data is handled under the production privacy notice and applicable
+order. Support personnel should access only the minimum data necessary and must
+not use customer memory content, prompts, queries, or results for advertising
+or model training without a separate explicit opt-in.
+
+11. REQUIRED PRODUCTION COMPLETION
+
+Before this policy becomes effective, confirm:
+
+- legal entity, support channel, staffing, hours, and time zone;
+- supported products, versions, platforms, packages, and host pins;
+- plan tiers, entitlements, targets, exclusions, and any remedies;
+- data-handling, secure upload, retention, and deletion procedures; and
+- escalation ownership for security, privacy, billing, and account recovery.
+
+END OF REVIEW DRAFT
 
 ---
 
@@ -990,8 +1781,8 @@ Before handing off, make one final delta check. Persist only newly verified dura
 # Candidate CLI help
 
 URL: https://memory.kleosresearch.xyz/reference/kaleidoscope-cli.candidate.txt
-Source: consolidated manager commit fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317
-SHA-256: fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b
+Source: consolidated manager commit 9ed39bddd7bf14e68e1c363074f6921288b9e94b
+SHA-256: a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1
 
 Kaleidoscope public local manager
 
@@ -1045,7 +1836,7 @@ URL: https://memory.kleosresearch.xyz/reference/kaleidoscope-mcp.candidate.json
   },
   "local_conformance": {
     "dx10a_evidence_sha256": "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e",
-    "final_package_evidence_sha256": "f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0",
+    "final_package_evidence_sha256": "7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c",
     "historical_codex_host_evidence": {
       "applies_to": "pre-final manager candidate only",
       "commit": "9cd4b5837e887a0bb3dcc13209134c002aad08f5",
@@ -1053,8 +1844,8 @@ URL: https://memory.kleosresearch.xyz/reference/kaleidoscope-mcp.candidate.json
     }
   },
   "manager": {
-    "sha256": "fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b",
-    "source_commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
+    "sha256": "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1",
+    "source_commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
     "version": "0.1.0"
   },
   "model_tools": [
@@ -1108,7 +1899,7 @@ URL: https://memory.kleosresearch.xyz/reference/kaleidoscope-mcp.candidate.json
     ],
     "native_target": "darwin-arm64",
     "publicly_available": false,
-    "sdk_facade_commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
+    "sdk_facade_commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
     "version": "0.1.0-rc.1"
   },
   "protocol_revision": "2025-11-25",
@@ -1139,60 +1930,60 @@ URL: https://memory.kleosresearch.xyz/staging-evidence.json
     "status": "pre-final manager candidate only; not final package acceptance"
   },
   "local_distribution": {
-    "archive_sha256": "fc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf",
+    "archive_sha256": "2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a",
     "assembler_commit": "af892d180fe01729450e03917f33ac56698e90e1",
-    "build_proof_sha256": "eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94",
-    "commit": "d9409ebacf63bcf2b32fde56a31a6350cfdfd491",
+    "build_proof_sha256": "ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053",
+    "commit": "0c42ff35b789a0406aaabf6634bdb2988db36b0a",
     "facades": {
       "contains": "full public SDK plus kaleidoscope and kscope launchers",
       "npm": {
         "name": "@kleos-research/kaleidoscope",
-        "sha256": "c30d45d9ccc61b36ede7b6df87f6728aa9307445a08446a7de5de5bafe9c0605"
+        "sha256": "0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd"
       },
       "python": {
         "name": "kaleidoscope-memory",
-        "sha256": "7208468413a44412959e0426cf7fb508ca7f32861fcd0ee79ec0f6bedb88e68c"
+        "sha256": "72099296676ef38b146018ae4ffac6cfb082bc8a537f178443acd351cf7bf6d7"
       }
     },
-    "final_facade_happy_path_evidence_sha256": "f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0",
-    "manifest_sha256": "39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f",
+    "final_facade_happy_path_evidence_sha256": "7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c",
+    "manifest_sha256": "efc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8",
     "native_companions": {
       "contains": "manager plus proprietary object-code engine",
       "npm": {
         "name": "@kleos-research/kaleidoscope-darwin-arm64",
-        "sha256": "a2cd8924c89a74204fcb9ee8790daf6a53d4ce4bec6fdf6329e127ff9b5b5d12"
+        "sha256": "ec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b"
       },
       "python": {
         "name": "kaleidoscope-memory-native-darwin-arm64",
-        "sha256": "24eb29ac7ec70a2a9d36832994d5a17cba2b42f6a12fd6557f541bd2890f89d3"
+        "sha256": "d265493d6ca583f2ecd9e69257c8ed604174636e1c5f3b29dc08eafe01c51d8b"
       }
     },
     "native_target": "darwin-arm64",
-    "package_proof_sha256": "095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c",
+    "package_proof_sha256": "62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7",
     "production_release": false,
-    "provenance_sha256": "a177d3537d87bfba08e77fe4171e41dff69a757499a742c8a5501ed5777b1d56",
-    "sbom_sha256": "a236f913fa83bf02e99605ba573203ba7cb48f7798ad8728c2aa4d590fd191f3",
-    "sdk_facade_commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
-    "signature_envelope_sha256": "7fc485f638bcf3327804009bf2890afb96b106fd3171e6f8a013dadac90510d2",
+    "provenance_sha256": "498c60561520e57834a807c2e17443b0a7eefe1c3901c67450e0506135babfb8",
+    "sbom_sha256": "5058f2170630cb70ac14252162245f3ae94cc9d02f9b58c74d36694355094f4c",
+    "sdk_facade_commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
+    "signature_envelope_sha256": "9bce859379b24683cff7e6069835aa9f8d8ac4f1d07ff353f050ea1b9df60e0c",
     "test_signature_only": true,
     "version": "0.1.0-rc.1"
   },
   "manager": {
-    "candidate_sha256": "fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b",
+    "candidate_sha256": "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1",
     "production_signature_verified": false,
-    "source_commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
+    "source_commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
     "version": "0.1.0"
   },
   "milestones": [
     {
-      "commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
+      "commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
       "id": "DX-04",
       "scope": "consolidated manager init, profiles, reversible host configuration, doctor, instructions",
       "status": "verified_local",
-      "verification": "deterministic candidate manager SHA-256 fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b"
+      "verification": "deterministic candidate manager SHA-256 a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1"
     },
     {
-      "commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
+      "commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
       "id": "DX-05B",
       "scope": "consolidated manager OIDC, device login, credential storage, account and device commands",
       "status": "verified_local_provider_unconfigured",
@@ -1203,10 +1994,10 @@ URL: https://memory.kleosresearch.xyz/staging-evidence.json
       "id": "DX-06A/B",
       "scope": "source-only distribution tooling, full SDK facades, native object-code companions and lifecycle rehearsal",
       "status": "verified_local_test_signature_only",
-      "verification": "reassembled source-bound archive and package proof SHA-256 095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c; build proof SHA-256 eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94"
+      "verification": "reassembled source-bound archive and package proof SHA-256 62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7; build proof SHA-256 ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053"
     },
     {
-      "commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
+      "commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
       "id": "DX-07",
       "scope": "full Python and TypeScript SDK facades, agent/framework integrations, installed-payload resolvers and both launchers",
       "status": "verified_local",
@@ -1220,11 +2011,11 @@ URL: https://memory.kleosresearch.xyz/staging-evidence.json
       "verification": "24 tests passed with 1 live skip; stable fixture evidence SHA-256 f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
     },
     {
-      "commit": "d9409ebacf63bcf2b32fde56a31a6350cfdfd491",
+      "commit": "0c42ff35b789a0406aaabf6634bdb2988db36b0a",
       "id": "DX-10B",
       "scope": "fresh npm and Python facade invocation: init, doctor, Codex dry-run configuration, and stdio MCP discovery",
       "status": "verified_local_package_facades",
-      "verification": "final package evidence SHA-256 f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0; no real host acceptance claim"
+      "verification": "final package evidence SHA-256 7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c; no real host acceptance claim"
     },
     {
       "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
@@ -1238,14 +2029,16 @@ URL: https://memory.kleosresearch.xyz/staging-evidence.json
   "public_availability": false,
   "release_holds": {
     "claude_cursor_opencode_live_host_verified": false,
+    "engine_eula_product_authorized": true,
+    "external_legal_review_complete": false,
     "live_model_or_ide_acceptance_verified": false,
     "non_macos_arm64_native_support_verified": false,
-    "original_documentation_license_approved": false,
+    "original_documentation_license_product_authorized": true,
     "pages_promotion_authorized": false,
-    "production_engine_eula_approved": false,
+    "production_engine_eula_finalized": false,
     "production_oidc_issuer": null,
     "production_signing_identity": null,
-    "public_manager_license_approved": false,
+    "public_software_license_product_authorized": true,
     "registry_publication_authorized": false
   },
   "schema_version": "kaleidoscope.docs-staging-evidence.v1",

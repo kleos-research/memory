@@ -7,9 +7,9 @@ staging build and performs no network, login, publication, or deployment.
 The canonical skill and three harness snippets under `public/` remain
 byte-for-byte mirrors of the consolidated manager sources. The converged SDK
 facades are bound to commit
-`fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317`; the deterministic local manager
+`9ed39bddd7bf14e68e1c363074f6921288b9e94b`; the deterministic local manager
 candidate is
-`fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b`.
+`a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1`.
 The canonical skill SHA-256 is
 `c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad`.
 `public/agent-instructions.md` is the docs index for those exact files. The
@@ -32,19 +32,19 @@ candidate reference snapshots:
 
 The converged local RC uses distribution assembler
 `af892d180fe01729450e03917f33ac56698e90e1` and final evidence commit
-`d9409ebacf63bcf2b32fde56a31a6350cfdfd491`. The public npm and Python facades
+`0c42ff35b789a0406aaabf6634bdb2988db36b0a`. The public npm and Python facades
 contain the full SDK and both `kaleidoscope`/`kscope` launchers; the macOS arm64
 native companions contain the manager and proprietary object-code engine.
 Exact RC evidence is:
 
-- release archive `fc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf`;
-- manifest `39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f`;
-- build proof `eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94`;
-- package proof `095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c`;
-- final facade evidence `f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0`;
-- npm facade/native `c30d45d9ccc61b36ede7b6df87f6728aa9307445a08446a7de5de5bafe9c0605` / `a2cd8924c89a74204fcb9ee8790daf6a53d4ce4bec6fdf6329e127ff9b5b5d12`;
-- Python facade/native `7208468413a44412959e0426cf7fb508ca7f32861fcd0ee79ec0f6bedb88e68c` / `24eb29ac7ec70a2a9d36832994d5a17cba2b42f6a12fd6557f541bd2890f89d3`;
-- SBOM/provenance/test-only signature `a236f913fa83bf02e99605ba573203ba7cb48f7798ad8728c2aa4d590fd191f3` / `a177d3537d87bfba08e77fe4171e41dff69a757499a742c8a5501ed5777b1d56` / `7fc485f638bcf3327804009bf2890afb96b106fd3171e6f8a013dadac90510d2`;
+- release archive `2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a`;
+- manifest `efc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8`;
+- build proof `ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053`;
+- package proof `62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7`;
+- final facade evidence `7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c`;
+- npm facade/native `0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd` / `ec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b`;
+- Python facade/native `72099296676ef38b146018ae4ffac6cfb082bc8a537f178443acd351cf7bf6d7` / `d265493d6ca583f2ecd9e69257c8ed604174636e1c5f3b29dc08eafe01c51d8b`;
+- SBOM/provenance/test-only signature `5058f2170630cb70ac14252162245f3ae94cc9d02f9b58c74d36694355094f4c` / `498c60561520e57834a807c2e17443b0a7eefe1c3901c67450e0506135babfb8` / `9bce859379b24683cff7e6069835aa9f8d8ac4f1d07ff353f050ea1b9df60e0c`;
 - DX-10A evidence `cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e`;
 - DX-09 fixture evidence `f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504`;
 - historic pre-final DX-10B real-Codex host evidence `74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840`.
@@ -59,25 +59,24 @@ authorized Pages release is prepared from a verified public documentation
 artifact.
 
 ```sh
-python3 build_site.py --output docs
-python3 verify_site.py docs --mode staging
+python3 build_site.py --output docs --public-docs --release-metadata public-docs-release.json
+python3 verify_site.py docs --mode public_docs
 python3 -m unittest discover -s tests -v
 ```
 
-`docs/` is the checked-in, deterministic Pages artifact. The repository is
-currently still configured to serve legacy GitHub Pages from `main:/`, so
-merging this staging work does not promote the new artifact. During the
-separately approved Pages promotion, switch the publishing source to
-`main:/docs` only after the reviewed artifact and its release content are ready.
-The generated artifact carries both `.nojekyll` and the canonical `CNAME` so
-the supported branch-folder deployment shape preserves the static route and
-custom-domain contract.
+`docs/` is the checked-in, deterministic public documentation-preview artifact.
+It is intentionally indexable because it documents the public developer
+contract, but it does not make the private package artifacts or production OIDC
+available. `public-docs-release.json` binds the immutable preview version and
+public-contract digest. GitHub Pages serves `main:/docs`; the generated artifact
+carries both `.nojekyll` and the canonical `CNAME` so that branch-folder
+deployment preserves the static route and custom-domain contract.
 
-A production build requires immutable release metadata containing exactly
-`release_version`, `public_contract_sha256`, `availability`, and `updated_at`.
-The verifier additionally refuses staging language, stale tool contracts,
-private paths, and private core repository links. Building a production
-artifact is not permission to publish it. The [documentation license](LICENSE)
-applies CC BY 4.0 to original documentation while excluding software,
-proprietary engine material, trademarks, third-party content, and the product
-terms themselves. Pages promotion remains a separate protected action.
+The public preview and a production build both require immutable release
+metadata containing exactly `release_version`, `public_contract_sha256`,
+`availability`, and `updated_at`. The production verifier additionally refuses
+staging language, stale tool contracts, private paths, and private core
+repository links. Building a production artifact is not permission to publish
+it. The [documentation license](LICENSE) applies CC BY 4.0 to original
+documentation while excluding software, proprietary engine material,
+trademarks, third-party content, and the product terms themselves.
