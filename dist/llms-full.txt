@@ -3,7 +3,8 @@
 > Local native memory for agents, exposed through a manager CLI and persistent stdio MCP. Release status: staging (unreleased); no package or production login is public.
 
 - [Documentation](https://memory.kleosresearch.xyz/docs/): product and developer overview
-- [Getting started](https://memory.kleosresearch.xyz/docs/getting-started/): release-gated profile and reversible host workflow
+- [Getting started](https://memory.kleosresearch.xyz/docs/getting-started/): protected RC install, profile and reversible host workflow
+- [Packages](https://memory.kleosresearch.xyz/docs/packages/): full SDK facades, native companions, exact macOS arm64 RC hashes and gates
 - [CLI reference](https://memory.kleosresearch.xyz/docs/cli/): exact local manager-candidate commands
 - [MCP reference](https://memory.kleosresearch.xyz/docs/mcp/): candidate-bound `search` and `remember` contract
 - [Integrations](https://memory.kleosresearch.xyz/docs/integrations/): Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP
@@ -13,14 +14,14 @@
 - [Operations](https://memory.kleosresearch.xyz/docs/operations/): backup, restore, uninstall, update, and exact vault deletion
 - [Compatibility](https://memory.kleosresearch.xyz/docs/compatibility/): verified local cells versus native/support holds
 - [Benchmarks](https://memory.kleosresearch.xyz/docs/benchmarks/): merged candidate-bound smoke, with no score or release claim
-- [Release evidence](https://memory.kleosresearch.xyz/docs/evidence/): exact digests, milestone commits, rebind requirement, and protected gates
+- [Release evidence](https://memory.kleosresearch.xyz/docs/evidence/): exact digests, converged package proof, milestone commits, and protected gates
 - [Public agent skill](https://memory.kleosresearch.xyz/SKILL.md): bounded retrieval and verified durable writes
 - [Agent instructions](https://memory.kleosresearch.xyz/agent-instructions.md): safe manager-installed AGENTS, CLAUDE, and Cursor pointers
 - [Machine-readable staging evidence](https://memory.kleosresearch.xyz/staging-evidence.json): source-free milestone and gate record
 - [Candidate CLI help](https://memory.kleosresearch.xyz/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference](https://memory.kleosresearch.xyz/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. Exact locally verified bindings: manager SHA-256 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e; engine SHA-256 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825; public contract SHA-256 a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e; DX-06 summary SHA-256 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed; DX-09 deterministic fixture evidence SHA-256 f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504; DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e; DX-10B Codex-host evidence SHA-256 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840. The local distribution is test-signed only and supports no production-release claim. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
+The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit 67e351d9210756153338825b1d2aab7bb8f1dcb7 puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit af892d180fe01729450e03917f33ac56698e90e1 pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit 53ff63960e660becba3624bd83a17dff5b1caf6b freezes the result. Exact hashes: release archive dc7d54bf894966b935c8e2d44868c5caa4571b3fdfabd6765672486a95eb9d9a; manifest a997d4679f54125bc618c412bca5b877afc83273730cca5a0c9553a29da88e04; package proof 9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa; npm facade 24774b0c455136aff861b643121feec755d03d5d01bf7a9f318082083ec2b8f5; npm native companion d60be804252af0d1abe8207a00816cfce33903afae1770f0674a1c7deb1d9d81; Python facade 596dcff8043a94d19ff47f60db27f7d183b4dda3fc084274e7e79ea06e5f1ccf; Python native companion f9d9ad0ec7b3d2ecb99e06a92e68c1c3ba24026c78d460741597d0b32bcf7920. The engine source is not in any public surface. Manager SHA-256 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e; engine SHA-256 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825; public contract SHA-256 a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e; base DX-06 summary SHA-256 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed; DX-09 fixture evidence SHA-256 f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504; DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e; DX-10B Codex-host evidence SHA-256 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Production licensing/EULA, signing, registry publication, login and Pages promotion require separate approval.
 
 ---
 
@@ -72,24 +73,35 @@ Updated: 2026-08-22
 
 The verified manager creates or imports one local profile, previews an owner-marked host change, applies it with confirmation, and can remove exactly what it owns.
 
-Interface preview, not an install command. No package is public. The final local DX-06 archive is bound to the auth-enabled manager but still uses a test-only signature; it is evidence, not a downloadable release.
+Release-candidate quickstart, not a live registry command. The converged 0.1.0-rc.1 package contract passed locally for macOS arm64, but the packages remain private, test-signed, noindex, and unpublished.
 
 1. Install after protected promotion
 
-The intended package contains the public manager and proprietary engine object code without engine source. License grants, an engine EULA, production signing, registry credentials, supported-target evidence, and a separate publication approval are still required.
+Choose one public SDK facade after publication. Each facade installs its exact macOS arm64 native companion; do not install both and do not omit the native dependency.
+
+# npm / Node.js 22+
+npm install -g @kleos-research/kaleidoscope@0.1.0-rc.1
+
+# or Python 3.11+
+python -m pip install kaleidoscope-memory==0.1.0rc1
+
+kaleidoscope --version
+kscope --version
+
+The facade contains the full public SDK, installed-payload resolver, and both launchers. Its native companion contains the manager and proprietary object-code engine without engine source. There is no install hook, runtime download, compiler, or source-build fallback.
 
 2. Initialize a profile
 
-kaleidoscope --engine /absolute/path/to/kscope init --profile default --root /absolute/path/to/user-owned/kaleidoscope-memory
-kaleidoscope --engine /absolute/path/to/kscope config --json
+kaleidoscope init --profile default --root /absolute/path/to/user-owned/kaleidoscope-memory
+kaleidoscope config --profile default --json
 
-The no-argument friendly path is also implemented locally. A profile is selected through the manager and native profile registry; agent configuration receives mcp --profile NAME, not credentials or raw vault coordinates.
+The launcher resolves the manager and engine from the installed native companion. A profile is selected through the manager and native profile registry; agent configuration receives mcp --profile NAME, not credentials or raw vault coordinates.
 
 3. Preview and connect a host
 
 kaleidoscope connect codex --profile default --project "$PWD" --dry-run
 kaleidoscope connect codex --profile default --project "$PWD"
-kaleidoscope --engine /absolute/path/to/kscope doctor --project "$PWD"
+kaleidoscope doctor --project "$PWD"
 
 Local tests cover codex, claude, cursor, and opencode transforms. That is configuration evidence, not live acceptance by a released host version. Existing unrelated configuration is preserved; ambiguous, symlinked, tampered, or concurrently edited files are refused.
 
@@ -112,36 +124,61 @@ URL: https://memory.kleosresearch.xyz/docs/packages/
 Release: unreleased
 Updated: 2026-08-22
 
-The release package contains the public manager and proprietary engine object code. It never contains engine source, build inputs, model tables as standalone files, or a compiler.
+The converged contract separates public SDK facades from native companions. Facades contain the full language SDK and both command launchers; native companions contain the manager plus proprietary object-code engine.
 
-Release-candidate shape. The final registry names are fixed, but publication is still gated by legal approval, production signing, native platform evidence, registry credentials, and a separate release approval.
+Local RC evidence only. Version 0.1.0-rc.1 (Python 0.1.0rc1) is verified only for macOS arm64. Every artifact remains private, test-signed, unpublished, and outside a support claim.
 
-npm
+npm: full TypeScript SDK facade
 
-npm install -g @kleos-research/kaleidoscope
+npm install -g @kleos-research/kaleidoscope@0.1.0-rc.1
+kaleidoscope --version
 kscope --version
 
-@kleos-research/kaleidoscope is the platform-neutral entry package. It resolves one exact optional companion, such as @kleos-research/kaleidoscope-darwin-arm64, for the installing machine. The companion carries the source-free native payload and its bound public contract. Do not install with --omit=optional.
+@kleos-research/kaleidoscope contains the full public TypeScript client, type declarations, typed installed-payload resolver, and the kaleidoscope/kscope launchers. It requires Node.js 22 or newer and pins @kleos-research/kaleidoscope-darwin-arm64@0.1.0-rc.1 as its exact optional native companion. Do not use --omit=optional.
 
-Python
+The macOS arm64 native companion contains the manager, proprietary object-code engine, bound public contract, manifest, and trust material. It contains neither the public SDK implementation nor engine source.
 
-python -m pip install kaleidoscope-memory
+Python: full Python SDK facade
 
-kaleidoscope-memory is the Python facade. A platform wheel, such as kaleidoscope-memory-native-darwin-arm64, carries the same signed native payload and is selected by the facade. There is no source distribution fallback that compiles or downloads the private engine.
+python -m pip install kaleidoscope-memory==0.1.0rc1
+kaleidoscope --version
+kscope --version
+
+kaleidoscope-memory contains the full public Python client, installed-payload resolver, and both console scripts. It requires Python 3.11 or newer and selects kaleidoscope-memory-native-darwin-arm64==0.1.0rc1 only on macOS arm64.
+
+The native wheel contains the same manager and proprietary object-code engine payload as the npm native companion. Neither ecosystem uses an install hook, runtime download, compiler, source distribution fallback, or embedded private engine source.
+
+Exact local RC artifacts
+
+ArtifactSHA-256
+
+Source-free release archivedc7d54bf894966b935c8e2d44868c5caa4571b3fdfabd6765672486a95eb9d9a
+
+Signed distribution manifesta997d4679f54125bc618c412bca5b877afc83273730cca5a0c9553a29da88e04
+
+npm SDK facade24774b0c455136aff861b643121feec755d03d5d01bf7a9f318082083ec2b8f5
+
+npm macOS arm64 native companiond60be804252af0d1abe8207a00816cfce33903afae1770f0674a1c7deb1d9d81
+
+Python SDK facade596dcff8043a94d19ff47f60db27f7d183b4dda3fc084274e7e79ea06e5f1ccf
+
+Python macOS arm64 native companionf9d9ad0ec7b3d2ecb99e06a92e68c1c3ba24026c78d460741597d0b32bcf7920
+
+Combined package proof9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa
 
 What the package checks
 
-- Exact manager, engine, public-contract, SBOM, provenance, and signature bindings.
+- Exact SDK commit, manager, engine, public-contract, manifest, package, SBOM, provenance, and signature bindings.
 
-- Allowlisted tarball/wheel inventories with private-source and build-path scans.
+- Facade names, versions, native dependency pins, required client modules, resolvers, both launchers, and allowlisted archive inventories.
 
-- Offline installation, executable permissions, kscope --version, and clean update/rollback/uninstall rehearsals.
+- Private-source and build-path scans plus isolated npm/Python installs and both version commands.
 
-- Unsupported or untested targets fail clearly; matrix entries do not imply support.
+- Unsupported targets fail clearly; the five non-macOS-arm64 entries remain refusal-only scaffolds.
 
 Current availability
 
-The local macOS arm64 candidate passes the package and lifecycle lanes. The final-name SDK metadata is staged at commit {SDK_PACKAGE_METADATA_COMMIT}; the native release-candidate package refresh is bound at {PACKAGE_REFRESH_COMMIT} with proof SHA-256 {PACKAGE_PROOF_SHA256}. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.
+SDK commit 67e351d9210756153338825b1d2aab7bb8f1dcb7, assembler commit af892d180fe01729450e03917f33ac56698e90e1, and evidence commit 53ff63960e660becba3624bd83a17dff5b1caf6b define this local RC contract. The package proof records facade_mode: sdk_artifacts. Production EULA/license text, trusted signing identities, registry credentials, other native platforms, protected publication approval, and Pages promotion remain required.
 
 ---
 
@@ -160,6 +197,10 @@ The proprietary native engine owns the memory algorithm, canonical vault, graph,
 Manager and profile
 
 The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes the account/device commands. The local distribution is bound to manager source commit 05948a3… and binary SHA-256 4fecd84584ed….
+
+SDK facade and native companion
+
+The npm and Python facades at SDK commit 67e351d… contain the full public clients, typed installed-payload resolvers, and kaleidoscope/kscope launchers. Their exact macOS arm64 native companions contain the manager and proprietary engine object code. This keeps the public developer API in the facade without placing engine source in either layer.
 
 Harness identity
 
@@ -286,7 +327,7 @@ OpenAI Agents SDKPython 0.22.0 and TypeScript 0.17.0; scripted-model routing pas
 
 CrewAIcrewai==1.15.17; long-lived MCP adapter passed.Verified with fake server
 
-What DX-07 and DX-10B prove. The Python/TypeScript matrices and real-profile lanes passed, and host conformance commit 9cd4b58… bound the final manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.
+What DX-07 and DX-10B prove. SDK commit 67e351d… converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Host conformance commit 9cd4b58… bound the manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.
 
 Agent guidance
 
@@ -324,7 +365,7 @@ DX-10A locally exercised clean install, update, exact rollback, and uninstall un
 
 Package shapes
 
-Local macOS arm64 staging produced an object-code archive, npm meta/platform tarballs, and Python facade/native wheels, plus aggregate SBOM and provenance. Nothing was published; other platform entries are refusal-only scaffolds.
+Local macOS arm64 staging produced full TypeScript/Python SDK facades and exact npm/wheel native companions. Both facades expose kaleidoscope and kscope; both companions carry the manager and proprietary object-code engine. Nothing was published, and the other five platform entries remain refusal-only scaffolds.
 
 ---
 
@@ -346,7 +387,7 @@ The consolidated manager constructs only 11 declared account routes. Its request
 
 Package integrity
 
-DX-06 binds object-code digests, source commits, bundled model, CycloneDX SBOM, provenance, candidate public contract, target, and prior-manifest rollback identity. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Production trust roots, role keys, Apple signing/notarization, EULA, notices, and approved licenses are absent.
+DX-06 binds the SDK facade commit, manager, engine, bundled model, public contract, package digests, CycloneDX SBOM, provenance, target, and prior-manifest rollback identity. It validates facade client modules, resolvers, both launchers, exact native dependency pins, archive safety, and the public/private source boundary. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Production trust roots, role keys, Apple signing/notarization, EULA, notices, and approved licenses are absent.
 
 Verified privacy checks
 
@@ -436,7 +477,7 @@ A platform or harness is supported only after the packaged artifact passes the c
 
 SurfaceVerified local evidenceHeld before support
 
-macOS arm64Final auth-enabled manager and engine candidate, object-code packaging, real stdio MCP, account refusal, clean install/update/rollback/uninstall, vault canary, and real Codex CLI configuration.Production signature/notarization, approved terms, live OIDC/keychain, model/TUI/IDE acceptance, and protected publication.
+macOS arm64Full npm/Python SDK facades, exact native companions, auth-enabled manager and engine candidate, real stdio MCP, account refusal, clean install/update/rollback/uninstall, vault canary, and real Codex CLI configuration.Production signature/notarization, approved terms, live OIDC/keychain, model/TUI/IDE acceptance, and protected publication.
 
 macOS x64Target metadata/refusal only.Native binaries, package, runner, signing/notarization.
 
@@ -494,6 +535,12 @@ Machine-readable record. staging-evidence.json (/staging-evidence.json) carries 
 
 Exact local candidate
 
+SDK facade commit67e351d9210756153338825b1d2aab7bb8f1dcb7
+
+Distribution assembler commitaf892d180fe01729450e03917f33ac56698e90e1
+
+Final evidence commit53ff63960e660becba3624bd83a17dff5b1caf6b
+
 Manager source commit05948a3acfbf0a325f06ecfe6057db484f02e5a1
 
 Manager candidate SHA-2564fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e
@@ -504,7 +551,9 @@ Engine candidate SHA-256988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37dda
 
 Public contract SHA-256a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e
 
-Native target testedmacOS arm64
+RC package version0.1.0-rc.1 / Python 0.1.0rc1
+
+Native target testedmacOS arm64 only
 
 Production signatureNot verified
 
@@ -514,9 +563,9 @@ SliceExact evidenceWhat is true now
 
 DX-04 / DX-05B05948a3acfbf0a325f06ecfe6057db484f02e5a1, manager 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3eConsolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.
 
-DX-06A/B42ffba4e3976810f91f2adcf53bd4393e5330d72, summary 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed18 tests passed over source-only tooling and final object-code package shapes with a test-only signature; no publication.
+DX-06A/Baf892d180fe01729450e03917f33ac56698e90e1, proof 9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa20 distribution/native tests passed over full SDK facades and macOS arm64 native companions with a test-only signature; no publication.
 
-DX-07fd0b187…Pinned Python/TypeScript client and integration matrices passed locally; no license or remote.
+DX-0767e351d9210756153338825b1d2aab7bb8f1dcb7Full Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; no license or remote.
 
 DX-09ef89d05f09435afc9790fcdf5df3e01d34c7115b, merged PRs 5/6; evidence f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.
 
@@ -524,9 +573,9 @@ DX-10Acfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12eFinal loca
 
 DX-10B9cd4b5837e887a0bb3dcc13209134c002aad08f5, evidence 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840Real isolated Codex CLI configuration and generic MCP passed; model/TUI/IDE and absent-host cells held.
 
-Local rebind complete, production promotion held
+Converged RC package proof
 
-The local DX-06 archive, manifest, SBOM, provenance, package shapes, and DX-10A lane are now bound to manager 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e, engine 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825, and contract a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e. The archive digest is 48e34b1126d4b29b103cb913ddd71ffe2fd39ad141228346afccb8eaa504c658. Its signature envelope 6dd03a82e4688413c438a8ca8682b20e3a8886895ba2059a22881458127f843e uses only a checked-in TEST-ONLY trust root. These bindings close the local rebind; they do not satisfy licenses, EULA, production OIDC, production signing/notarization, other native platforms, live model/IDE acceptance, registry publication, or Pages promotion.
+The local archive dc7d54bf894966b935c8e2d44868c5caa4571b3fdfabd6765672486a95eb9d9a, manifest a997d4679f54125bc618c412bca5b877afc83273730cca5a0c9553a29da88e04, and combined proof 9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa bind the full npm/Python SDK facades to their exact macOS arm64 native companions. The facades carry public client code, installed-payload resolution and both launchers; the companions carry manager 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e and engine 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825 plus contract a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e. The signature envelope 6dd03a82e4688413c438a8ca8682b20e3a8886895ba2059a22881458127f843e uses only a checked-in TEST-ONLY trust root. This closes the local package-shape convergence, not the protected production gates.
 
 Approval and credential gates
 
@@ -554,15 +603,15 @@ Unreleased local staging — 2026-08-22
 
 - The consolidated auth-enabled manager is deterministically bound at 4fecd84584ed….
 
-- DX-06 object-code archive, npm/wheel shapes, SBOM/provenance, and lifecycle rehearsal passed with a test-only signature and final local manager.
+- SDK commit 67e351d… places the full public TypeScript/Python clients, installed-payload resolvers, and both launchers in the facade packages.
 
-- DX-07 Python/TypeScript and harness integration matrices passed locally.
+- Distribution assembler af892d1… pairs those facades with macOS arm64 native companions containing the manager and proprietary object-code engine; the exact package proof is 9f925898….
 
 - DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.
 
 - DX-10A final local macOS arm64 clean install, MCP, offline account refusal, update/rollback/uninstall, and vault-canary lane passed.
 
-- DX-10B isolated real Codex CLI configuration and generic stdio MCP passed; other hosts and model/IDE acceptance remain held.
+- DX-10B isolated real Codex CLI configuration and generic stdio MCP passed; other platforms, hosts and model/IDE acceptance remain held.
 
 Promotion rule
 
@@ -811,6 +860,16 @@ URL: https://memory.kleosresearch.xyz/reference/kaleidoscope-mcp.candidate.json
     }
   ],
   "operator_commands_are_model_tools": false,
+  "package_contract": {
+    "facade_launchers": [
+      "kaleidoscope",
+      "kscope"
+    ],
+    "native_target": "darwin-arm64",
+    "publicly_available": false,
+    "sdk_facade_commit": "67e351d9210756153338825b1d2aab7bb8f1dcb7",
+    "version": "0.1.0-rc.1"
+  },
   "protocol_revision": "2025-11-25",
   "public_contract_sha256": "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e",
   "release_readiness_claimed": false,
@@ -833,15 +892,42 @@ URL: https://memory.kleosresearch.xyz/staging-evidence.json
     "source_commit": "d96355632cc52816472106d0776ce63d73631fef"
   },
   "local_distribution": {
-    "archive_sha256": "48e34b1126d4b29b103cb913ddd71ffe2fd39ad141228346afccb8eaa504c658",
-    "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
-    "manifest_sha256": "e1f19abbfcf088e0121c135a623f2aa86fd68ba412b640084324bdf125a0eb6c",
+    "archive_sha256": "dc7d54bf894966b935c8e2d44868c5caa4571b3fdfabd6765672486a95eb9d9a",
+    "assembler_commit": "af892d180fe01729450e03917f33ac56698e90e1",
+    "base_verification_summary_sha256": "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed",
+    "commit": "53ff63960e660becba3624bd83a17dff5b1caf6b",
+    "facades": {
+      "contains": "full public SDK plus kaleidoscope and kscope launchers",
+      "npm": {
+        "name": "@kleos-research/kaleidoscope",
+        "sha256": "24774b0c455136aff861b643121feec755d03d5d01bf7a9f318082083ec2b8f5"
+      },
+      "python": {
+        "name": "kaleidoscope-memory",
+        "sha256": "596dcff8043a94d19ff47f60db27f7d183b4dda3fc084274e7e79ea06e5f1ccf"
+      }
+    },
+    "manifest_sha256": "a997d4679f54125bc618c412bca5b877afc83273730cca5a0c9553a29da88e04",
+    "native_companions": {
+      "contains": "manager plus proprietary object-code engine",
+      "npm": {
+        "name": "@kleos-research/kaleidoscope-darwin-arm64",
+        "sha256": "d60be804252af0d1abe8207a00816cfce33903afae1770f0674a1c7deb1d9d81"
+      },
+      "python": {
+        "name": "kaleidoscope-memory-native-darwin-arm64",
+        "sha256": "f9d9ad0ec7b3d2ecb99e06a92e68c1c3ba24026c78d460741597d0b32bcf7920"
+      }
+    },
+    "native_target": "darwin-arm64",
+    "package_proof_sha256": "9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa",
     "production_release": false,
     "provenance_sha256": "7b08171edaf1aac81f81c78d5bd704674db3f2a8c3e44f122cccf456ee3ff82e",
     "sbom_sha256": "50444804bb2d29561b9b3f9f85afdb5133d06afb92886683ab9e4f7339ec2a15",
+    "sdk_facade_commit": "67e351d9210756153338825b1d2aab7bb8f1dcb7",
     "signature_envelope_sha256": "6dd03a82e4688413c438a8ca8682b20e3a8886895ba2059a22881458127f843e",
     "test_signature_only": true,
-    "verification_summary_sha256": "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
+    "version": "0.1.0-rc.1"
   },
   "manager": {
     "candidate_sha256": "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e",
@@ -865,18 +951,18 @@ URL: https://memory.kleosresearch.xyz/staging-evidence.json
       "verification": "11 account commands passed the offline provider-not-configured and no-engine-resolution lane"
     },
     {
-      "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
+      "commit": "af892d180fe01729450e03917f33ac56698e90e1",
       "id": "DX-06A/B",
-      "scope": "source-only distribution tooling, object-code bundle, npm and wheel shapes, lifecycle rehearsal",
+      "scope": "source-only distribution tooling, full SDK facades, native object-code companions and lifecycle rehearsal",
       "status": "verified_local_test_signature_only",
-      "verification": "18 tests passed; verification summary SHA-256 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
+      "verification": "20 distribution/native tests passed; package proof SHA-256 9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa"
     },
     {
-      "commit": "fd0b1877f70b1bb57e1b67c4c559e8b2e1d44290",
+      "commit": "67e351d9210756153338825b1d2aab7bb8f1dcb7",
       "id": "DX-07",
-      "scope": "Python and TypeScript clients plus agent and framework integrations",
+      "scope": "full Python and TypeScript SDK facades, agent/framework integrations, installed-payload resolvers and both launchers",
       "status": "verified_local",
-      "verification": "Python dependency matrices, TypeScript 32-pass/1-skip and 33-of-33 real-profile lanes, and poison scan passed"
+      "verification": "37 TypeScript tests and Python suite passed with one intentional native-profile skip each, plus source poison scan"
     },
     {
       "commit": "ef89d05f09435afc9790fcdf5df3e01d34c7115b",

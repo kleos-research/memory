@@ -60,9 +60,20 @@ class DocumentationArtifactTest(unittest.TestCase):
         )
         self.assertEqual(
             build_site.STAGING_EVIDENCE["local_distribution"][
-                "verification_summary_sha256"
+                "package_proof_sha256"
             ],
-            build_site.DX06_VERIFICATION_SHA256,
+            build_site.PACKAGE_PROOF_SHA256,
+        )
+        distribution = build_site.STAGING_EVIDENCE["local_distribution"]
+        self.assertEqual(distribution["sdk_facade_commit"], build_site.SDK_FACADE_COMMIT)
+        self.assertEqual(distribution["native_target"], "darwin-arm64")
+        self.assertEqual(
+            distribution["facades"]["contains"],
+            "full public SDK plus kaleidoscope and kscope launchers",
+        )
+        self.assertEqual(
+            distribution["native_companions"]["contains"],
+            "manager plus proprietary object-code engine",
         )
         self.assertTrue(
             build_site.STAGING_EVIDENCE["local_distribution"][

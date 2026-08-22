@@ -39,6 +39,8 @@
 <p>The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Its source is not part of the public manager, client, integration, or skill surfaces.</p>
 <h2>Manager and profile</h2>
 <p>The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes the account/device commands. The local distribution is bound to manager source commit <code>05948a3…</code> and binary SHA-256 <code>4fecd84584ed…</code>.</p>
+<h2>SDK facade and native companion</h2>
+<p>The npm and Python facades at SDK commit <code>67e351d…</code> contain the full public clients, typed installed-payload resolvers, and <code>kaleidoscope</code>/<code>kscope</code> launchers. Their exact macOS arm64 native companions contain the manager and proprietary engine object code. This keeps the public developer API in the facade without placing engine source in either layer.</p>
 <h2>Harness identity</h2>
 <p>Codex, Claude, Cursor, OpenCode, framework clients, and generic MCP clients are consumers of the same profile. They do not become separate memory stores merely because their configuration formats differ.</p>
 <h2>Account identity</h2>

@@ -35,17 +35,26 @@
   <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/" aria-current="page">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
   <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Getting started</h1>
 <p class="lede">The verified manager creates or imports one local profile, previews an owner-marked host change, applies it with confirmation, and can remove exactly what it owns.</p>
-<div class="callout"><strong>Interface preview, not an install command.</strong> No package is public. The final local DX-06 archive is bound to the auth-enabled manager but still uses a test-only signature; it is evidence, not a downloadable release.</div>
+<div class="callout"><strong>Release-candidate quickstart, not a live registry command.</strong> The converged <code>0.1.0-rc.1</code> package contract passed locally for macOS arm64, but the packages remain private, test-signed, noindex, and unpublished.</div>
 <h2>1. Install after protected promotion</h2>
-<p>The intended package contains the public manager and proprietary engine object code without engine source. License grants, an engine EULA, production signing, registry credentials, supported-target evidence, and a separate publication approval are still required.</p>
+<p>Choose one public SDK facade after publication. Each facade installs its exact macOS arm64 native companion; do not install both and do not omit the native dependency.</p>
+<pre><code># npm / Node.js 22+
+npm install -g @kleos-research/kaleidoscope@0.1.0-rc.1
+
+# or Python 3.11+
+python -m pip install kaleidoscope-memory==0.1.0rc1
+
+kaleidoscope --version
+kscope --version</code></pre>
+<p>The facade contains the full public SDK, installed-payload resolver, and both launchers. Its native companion contains the manager and proprietary object-code engine without engine source. There is no install hook, runtime download, compiler, or source-build fallback.</p>
 <h2>2. Initialize a profile</h2>
-<pre><code>kaleidoscope --engine /absolute/path/to/kscope init   --profile default   --root /absolute/path/to/user-owned/kaleidoscope-memory
-kaleidoscope --engine /absolute/path/to/kscope config --json</code></pre>
-<p>The no-argument friendly path is also implemented locally. A profile is selected through the manager and native profile registry; agent configuration receives <code>mcp --profile NAME</code>, not credentials or raw vault coordinates.</p>
+<pre><code>kaleidoscope init   --profile default   --root /absolute/path/to/user-owned/kaleidoscope-memory
+kaleidoscope config --profile default --json</code></pre>
+<p>The launcher resolves the manager and engine from the installed native companion. A profile is selected through the manager and native profile registry; agent configuration receives <code>mcp --profile NAME</code>, not credentials or raw vault coordinates.</p>
 <h2>3. Preview and connect a host</h2>
 <pre><code>kaleidoscope connect codex --profile default --project "$PWD" --dry-run
 kaleidoscope connect codex --profile default --project "$PWD"
-kaleidoscope --engine /absolute/path/to/kscope doctor --project "$PWD"</code></pre>
+kaleidoscope doctor --project "$PWD"</code></pre>
 <p>Local tests cover <code>codex</code>, <code>claude</code>, <code>cursor</code>, and <code>opencode</code> transforms. That is configuration evidence, not live acceptance by a released host version. Existing unrelated configuration is preserved; ambiguous, symlinked, tampered, or concurrently edited files are refused.</p>
 <h2>4. Verify the contract</h2>
 <p>The local candidate contract is bound to engine SHA-256 <code>988192ac9677…</code> and public-contract SHA-256 <code>a2357ed6c00e…</code>. It publishes exactly <code>remember</code> and <code>search</code>; the launch descriptor presents the agent-facing order <code>search</code>, <code>remember</code>. Ranked search returns <code>selected_hits</code>; addressed search returns the memory at top level.</p>

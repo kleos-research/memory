@@ -58,6 +58,16 @@
     }
   ],
   "operator_commands_are_model_tools": false,
+  "package_contract": {
+    "facade_launchers": [
+      "kaleidoscope",
+      "kscope"
+    ],
+    "native_target": "darwin-arm64",
+    "publicly_available": false,
+    "sdk_facade_commit": "67e351d9210756153338825b1d2aab7bb8f1dcb7",
+    "version": "0.1.0-rc.1"
+  },
   "protocol_revision": "2025-11-25",
   "public_contract_sha256": "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e",
   "release_readiness_claimed": false,

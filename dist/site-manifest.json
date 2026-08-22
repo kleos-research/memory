@@ -52,23 +52,23 @@
     },
     {
       "path": "docs/compatibility/index.html",
-      "sha256": "dbfcc76e06511b19908588f161fbc7170ccd78c9133a307560c0df96ce2c42fb",
-      "size_bytes": 5744
+      "sha256": "346ca078aaac595bf4f1f3aee5ae39d8e4aff9a510b27204ca423f4f76810034",
+      "size_bytes": 5769
     },
     {
       "path": "docs/concepts/index.html",
-      "sha256": "6a07a1e180afd7b5b5acdbe7fba683fe2c124c3a68c528d522a4931e3a0ba995",
-      "size_bytes": 5258
+      "sha256": "f72970278c75df9ab750b06e638bceee22a154e515a14cbed409689a306fab54",
+      "size_bytes": 5695
     },
     {
       "path": "docs/evidence/index.html",
-      "sha256": "c7215a36a50c8d19ae8b0ae0117fa8c5c3c03556379415d12af6a1eca843556b",
-      "size_bytes": 8262
+      "sha256": "ec4916feb874ce1cf4b2b0a5773190846bdcee8a3736f9feae0d35798eee96e2",
+      "size_bytes": 8870
     },
     {
       "path": "docs/getting-started/index.html",
-      "sha256": "25c7ed77b37a2a38edc5090762f76796d242f694df6709fea38037b2e947e89d",
-      "size_bytes": 6363
+      "sha256": "b8749e6986914a5c98916a0ae915003bbcf0ae7d55c0063adb27b45b8a3505e8",
+      "size_bytes": 6697
     },
     {
       "path": "docs/index.html",
@@ -77,8 +77,8 @@
     },
     {
       "path": "docs/integrations/index.html",
-      "sha256": "220833a49a8100afed2eaeea5ff567c09d790b5efe163b33c30a5ad592bcd915",
-      "size_bytes": 6766
+      "sha256": "171acdd6a31dbd91a21207bcd06b633fd844da6666ade107871a1d782d1991fe",
+      "size_bytes": 6887
     },
     {
       "path": "docs/mcp/index.html",
@@ -92,13 +92,13 @@
     },
     {
       "path": "docs/operations/index.html",
-      "sha256": "654de33e2cdef84e1953a23e543b6a7464e28cfc8ca6409440d971646b229ba4",
-      "size_bytes": 5635
+      "sha256": "00c6830da886e22d18af56a10b23fbe7e0bb61eebdab9598bad0e706146398a9",
+      "size_bytes": 5745
     },
     {
       "path": "docs/packages/index.html",
-      "sha256": "4872dc590daa639b62239e689ea501b124644a087df2e62c4ea8d071624a820f",
-      "size_bytes": 6045
+      "sha256": "519fd6e2766525476b3bd808176e95ba88d9349afeeee8c32a1abada52aaac28",
+      "size_bytes": 7757
     },
     {
       "path": "docs/privacy/index.html",
@@ -107,13 +107,13 @@
     },
     {
       "path": "docs/release-notes/index.html",
-      "sha256": "12a61a3843d8ce365e8d28b2569467ef3a14631cf47600f0340f3219f9a06828",
-      "size_bytes": 4992
+      "sha256": "b3cca3e0f211a2e5b61b5c6475a5361b45d83be03632a4176511faa155b7d74e",
+      "size_bytes": 5156
     },
     {
       "path": "docs/security/index.html",
-      "sha256": "d566ee4cbdde90e49ed7d30dbbee2ccf8960312c1ccc2fbe55b6d8623c889511",
-      "size_bytes": 5830
+      "sha256": "dd53eb2161e5081bdc79726c4afc940257773480836c6c9b2ffe628c577ae3e4",
+      "size_bytes": 5989
     },
     {
       "path": "docs/troubleshooting/index.html",
@@ -142,13 +142,13 @@
     },
     {
       "path": "llms-full.txt",
-      "sha256": "aff20b01aea589ef56a61b526f75fb5f3a03be50db79ce04ad87828cc163f0b8",
-      "size_bytes": 49216
+      "sha256": "69739ff7473b73b7cef0c00e2e43ff582f435be5b6b65fe5916be2b093ca12a7",
+      "size_bytes": 54677
     },
     {
       "path": "llms.txt",
-      "sha256": "86f34e070a82b217a2489772b9db4e0b4df349c744d3f0271e62ddd694c5a94f",
-      "size_bytes": 3455
+      "sha256": "12a7d4f8a031eb9da790a654ce8c582f3c737ca2f7c1de4045338abec4b4d21e",
+      "size_bytes": 4534
     },
     {
       "path": "reference/kaleidoscope-cli.candidate.txt",
@@ -157,8 +157,8 @@
     },
     {
       "path": "reference/kaleidoscope-mcp.candidate.json",
-      "sha256": "680383528533facd9e49fe9624d46c80de74f567a03350aa6df60fdab8c3bfa6",
-      "size_bytes": 1769
+      "sha256": "2cf27f43e80f5905bd68d711d4c1ea16b021f6b0b47443ba59aee69c6da16b5d",
+      "size_bytes": 2035
     },
     {
       "path": "robots.txt",
@@ -187,8 +187,8 @@
     },
     {
       "path": "staging-evidence.json",
-      "sha256": "48eec5b12c071b96cfca207fa8bee42bcecf79fffbbb722ef9650adb6cb180eb",
-      "size_bytes": 4632
+      "sha256": "82524a3114713b917aabc42a0bb86b94a1c11623148249d5e6ecba33277f0816",
+      "size_bytes": 5859
     }
   ],
   "mode": "staging",

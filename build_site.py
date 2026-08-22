@@ -49,6 +49,9 @@ MANAGER_SHA256 = (
     "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e"
 )
 DISTRIBUTION_COMMIT = "42ffba4e3976810f91f2adcf53bd4393e5330d72"
+SDK_FACADE_COMMIT = "67e351d9210756153338825b1d2aab7bb8f1dcb7"
+DISTRIBUTION_ASSEMBLER_COMMIT = "af892d180fe01729450e03917f33ac56698e90e1"
+FINAL_EVIDENCE_COMMIT = "53ff63960e660becba3624bd83a17dff5b1caf6b"
 DX06_VERIFICATION_SHA256 = (
     "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
 )
@@ -56,9 +59,15 @@ DX10A_EVIDENCE_SHA256 = (
     "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
 )
 SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
-SDK_PACKAGE_METADATA_COMMIT = "d328647"
-PACKAGE_REFRESH_COMMIT = "0628016"
-PACKAGE_PROOF_SHA256 = "9e1ddf7cde0850d28b26bae54fb6a9fc5011de55450c77c500ffd22e679ea45e"
+PACKAGE_PROOF_SHA256 = "9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa"
+NPM_FACADE_SHA256 = "24774b0c455136aff861b643121feec755d03d5d01bf7a9f318082083ec2b8f5"
+NPM_NATIVE_SHA256 = "d60be804252af0d1abe8207a00816cfce33903afae1770f0674a1c7deb1d9d81"
+PYTHON_FACADE_SHA256 = (
+    "596dcff8043a94d19ff47f60db27f7d183b4dda3fc084274e7e79ea06e5f1ccf"
+)
+PYTHON_NATIVE_SHA256 = (
+    "f9d9ad0ec7b3d2ecb99e06a92e68c1c3ba24026c78d460741597d0b32bcf7920"
+)
 DX10B_HOST_EVIDENCE_SHA256 = (
     "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
 )
@@ -67,10 +76,10 @@ DX09_FIXTURE_EVIDENCE_SHA256 = (
     "f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
 )
 LOCAL_ARCHIVE_SHA256 = (
-    "48e34b1126d4b29b103cb913ddd71ffe2fd39ad141228346afccb8eaa504c658"
+    "dc7d54bf894966b935c8e2d44868c5caa4571b3fdfabd6765672486a95eb9d9a"
 )
 LOCAL_MANIFEST_SHA256 = (
-    "e1f19abbfcf088e0121c135a623f2aa86fd68ba412b640084324bdf125a0eb6c"
+    "a997d4679f54125bc618c412bca5b877afc83273730cca5a0c9553a29da88e04"
 )
 LOCAL_SBOM_SHA256 = (
     "50444804bb2d29561b9b3f9f85afdb5133d06afb92886683ab9e4f7339ec2a15"
@@ -172,6 +181,13 @@ MCP_REFERENCE = {
         "dx10a_evidence_sha256": DX10A_EVIDENCE_SHA256,
         "dx10b_host_evidence_sha256": DX10B_HOST_EVIDENCE_SHA256,
     },
+    "package_contract": {
+        "version": "0.1.0-rc.1",
+        "sdk_facade_commit": SDK_FACADE_COMMIT,
+        "native_target": "darwin-arm64",
+        "facade_launchers": ["kaleidoscope", "kscope"],
+        "publicly_available": False,
+    },
     "release_readiness_claimed": False,
 }
 
@@ -192,13 +208,40 @@ STAGING_EVIDENCE = {
         "production_signature_verified": False,
     },
     "local_distribution": {
-        "commit": DISTRIBUTION_COMMIT,
+        "commit": FINAL_EVIDENCE_COMMIT,
+        "assembler_commit": DISTRIBUTION_ASSEMBLER_COMMIT,
+        "sdk_facade_commit": SDK_FACADE_COMMIT,
+        "version": "0.1.0-rc.1",
+        "native_target": "darwin-arm64",
         "archive_sha256": LOCAL_ARCHIVE_SHA256,
         "manifest_sha256": LOCAL_MANIFEST_SHA256,
         "sbom_sha256": LOCAL_SBOM_SHA256,
         "provenance_sha256": LOCAL_PROVENANCE_SHA256,
         "signature_envelope_sha256": LOCAL_TEST_SIGNATURE_SHA256,
-        "verification_summary_sha256": DX06_VERIFICATION_SHA256,
+        "base_verification_summary_sha256": DX06_VERIFICATION_SHA256,
+        "package_proof_sha256": PACKAGE_PROOF_SHA256,
+        "facades": {
+            "contains": "full public SDK plus kaleidoscope and kscope launchers",
+            "npm": {
+                "name": "@kleos-research/kaleidoscope",
+                "sha256": NPM_FACADE_SHA256,
+            },
+            "python": {
+                "name": "kaleidoscope-memory",
+                "sha256": PYTHON_FACADE_SHA256,
+            },
+        },
+        "native_companions": {
+            "contains": "manager plus proprietary object-code engine",
+            "npm": {
+                "name": "@kleos-research/kaleidoscope-darwin-arm64",
+                "sha256": NPM_NATIVE_SHA256,
+            },
+            "python": {
+                "name": "kaleidoscope-memory-native-darwin-arm64",
+                "sha256": PYTHON_NATIVE_SHA256,
+            },
+        },
         "test_signature_only": True,
         "production_release": False,
     },
@@ -219,17 +262,17 @@ STAGING_EVIDENCE = {
         },
         {
             "id": "DX-06A/B",
-            "commit": DISTRIBUTION_COMMIT,
+            "commit": DISTRIBUTION_ASSEMBLER_COMMIT,
             "status": "verified_local_test_signature_only",
-            "scope": "source-only distribution tooling, object-code bundle, npm and wheel shapes, lifecycle rehearsal",
-            "verification": f"18 tests passed; verification summary SHA-256 {DX06_VERIFICATION_SHA256}",
+            "scope": "source-only distribution tooling, full SDK facades, native object-code companions and lifecycle rehearsal",
+            "verification": f"20 distribution/native tests passed; package proof SHA-256 {PACKAGE_PROOF_SHA256}",
         },
         {
             "id": "DX-07",
-            "commit": "fd0b1877f70b1bb57e1b67c4c559e8b2e1d44290",
+            "commit": SDK_FACADE_COMMIT,
             "status": "verified_local",
-            "scope": "Python and TypeScript clients plus agent and framework integrations",
-            "verification": "Python dependency matrices, TypeScript 32-pass/1-skip and 33-of-33 real-profile lanes, and poison scan passed",
+            "scope": "full Python and TypeScript SDK facades, agent/framework integrations, installed-payload resolvers and both launchers",
+            "verification": "37 TypeScript tests and Python suite passed with one intentional native-profile skip each, plus source poison scan",
         },
         {
             "id": "DX-09",
@@ -324,19 +367,28 @@ PAGES = (
         description="The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.",
         body="""
 <p class="lede">The verified manager creates or imports one local profile, previews an owner-marked host change, applies it with confirmation, and can remove exactly what it owns.</p>
-<div class="callout"><strong>Interface preview, not an install command.</strong> No package is public. The final local DX-06 archive is bound to the auth-enabled manager but still uses a test-only signature; it is evidence, not a downloadable release.</div>
+<div class="callout"><strong>Release-candidate quickstart, not a live registry command.</strong> The converged <code>0.1.0-rc.1</code> package contract passed locally for macOS arm64, but the packages remain private, test-signed, noindex, and unpublished.</div>
 <h2>1. Install after protected promotion</h2>
-<p>The intended package contains the public manager and proprietary engine object code without engine source. License grants, an engine EULA, production signing, registry credentials, supported-target evidence, and a separate publication approval are still required.</p>
+<p>Choose one public SDK facade after publication. Each facade installs its exact macOS arm64 native companion; do not install both and do not omit the native dependency.</p>
+<pre><code># npm / Node.js 22+
+npm install -g @kleos-research/kaleidoscope@0.1.0-rc.1
+
+# or Python 3.11+
+python -m pip install kaleidoscope-memory==0.1.0rc1
+
+kaleidoscope --version
+kscope --version</code></pre>
+<p>The facade contains the full public SDK, installed-payload resolver, and both launchers. Its native companion contains the manager and proprietary object-code engine without engine source. There is no install hook, runtime download, compiler, or source-build fallback.</p>
 <h2>2. Initialize a profile</h2>
-<pre><code>kaleidoscope --engine /absolute/path/to/kscope init \
+<pre><code>kaleidoscope init \
   --profile default \
   --root /absolute/path/to/user-owned/kaleidoscope-memory
-kaleidoscope --engine /absolute/path/to/kscope config --json</code></pre>
-<p>The no-argument friendly path is also implemented locally. A profile is selected through the manager and native profile registry; agent configuration receives <code>mcp --profile NAME</code>, not credentials or raw vault coordinates.</p>
+kaleidoscope config --profile default --json</code></pre>
+<p>The launcher resolves the manager and engine from the installed native companion. A profile is selected through the manager and native profile registry; agent configuration receives <code>mcp --profile NAME</code>, not credentials or raw vault coordinates.</p>
 <h2>3. Preview and connect a host</h2>
 <pre><code>kaleidoscope connect codex --profile default --project "$PWD" --dry-run
 kaleidoscope connect codex --profile default --project "$PWD"
-kaleidoscope --engine /absolute/path/to/kscope doctor --project "$PWD"</code></pre>
+kaleidoscope doctor --project "$PWD"</code></pre>
 <p>Local tests cover <code>codex</code>, <code>claude</code>, <code>cursor</code>, and <code>opencode</code> transforms. That is configuration evidence, not live acceptance by a released host version. Existing unrelated configuration is preserved; ambiguous, symlinked, tampered, or concurrently edited files are refused.</p>
 <h2>4. Verify the contract</h2>
 <p>The local candidate contract is bound to engine SHA-256 <code>988192ac9677…</code> and public-contract SHA-256 <code>a2357ed6c00e…</code>. It publishes exactly <code>remember</code> and <code>search</code>; the launch descriptor presents the agent-facing order <code>search</code>, <code>remember</code>. Ranked search returns <code>selected_hits</code>; addressed search returns the memory at top level.</p>
@@ -350,20 +402,35 @@ kaleidoscope disconnect codex --project "$PWD"</code></pre>
         route="/docs/packages/",
         title="Package installation",
         description="Kaleidoscope npm and Python package names, platform selection, source-free payload rules, and protected release gates.",
-        body="""
-<p class="lede">The release package contains the public manager and proprietary engine object code. It never contains engine source, build inputs, model tables as standalone files, or a compiler.</p>
-<div class="callout"><strong>Release-candidate shape.</strong> The final registry names are fixed, but publication is still gated by legal approval, production signing, native platform evidence, registry credentials, and a separate release approval.</div>
-<h2>npm</h2>
-<pre><code>npm install -g @kleos-research/kaleidoscope
+        body=f"""
+<p class="lede">The converged contract separates public SDK facades from native companions. Facades contain the full language SDK and both command launchers; native companions contain the manager plus proprietary object-code engine.</p>
+<div class="callout"><strong>Local RC evidence only.</strong> Version <code>0.1.0-rc.1</code> (Python <code>0.1.0rc1</code>) is verified only for macOS arm64. Every artifact remains private, test-signed, unpublished, and outside a support claim.</div>
+<h2>npm: full TypeScript SDK facade</h2>
+<pre><code>npm install -g @kleos-research/kaleidoscope@0.1.0-rc.1
+kaleidoscope --version
 kscope --version</code></pre>
-<p><code>@kleos-research/kaleidoscope</code> is the platform-neutral entry package. It resolves one exact optional companion, such as <code>@kleos-research/kaleidoscope-darwin-arm64</code>, for the installing machine. The companion carries the source-free native payload and its bound public contract. Do not install with <code>--omit=optional</code>.</p>
-<h2>Python</h2>
-<pre><code>python -m pip install kaleidoscope-memory</code></pre>
-<p><code>kaleidoscope-memory</code> is the Python facade. A platform wheel, such as <code>kaleidoscope-memory-native-darwin-arm64</code>, carries the same signed native payload and is selected by the facade. There is no source distribution fallback that compiles or downloads the private engine.</p>
+<p><code>@kleos-research/kaleidoscope</code> contains the full public TypeScript client, type declarations, typed installed-payload resolver, and the <code>kaleidoscope</code>/<code>kscope</code> launchers. It requires Node.js 22 or newer and pins <code>@kleos-research/kaleidoscope-darwin-arm64@0.1.0-rc.1</code> as its exact optional native companion. Do not use <code>--omit=optional</code>.</p>
+<p>The macOS arm64 native companion contains the manager, proprietary object-code engine, bound public contract, manifest, and trust material. It contains neither the public SDK implementation nor engine source.</p>
+<h2>Python: full Python SDK facade</h2>
+<pre><code>python -m pip install kaleidoscope-memory==0.1.0rc1
+kaleidoscope --version
+kscope --version</code></pre>
+<p><code>kaleidoscope-memory</code> contains the full public Python client, installed-payload resolver, and both console scripts. It requires Python 3.11 or newer and selects <code>kaleidoscope-memory-native-darwin-arm64==0.1.0rc1</code> only on macOS arm64.</p>
+<p>The native wheel contains the same manager and proprietary object-code engine payload as the npm native companion. Neither ecosystem uses an install hook, runtime download, compiler, source distribution fallback, or embedded private engine source.</p>
+<h2>Exact local RC artifacts</h2>
+<table><thead><tr><th>Artifact</th><th>SHA-256</th></tr></thead><tbody>
+<tr><td>Source-free release archive</td><td><code>{LOCAL_ARCHIVE_SHA256}</code></td></tr>
+<tr><td>Signed distribution manifest</td><td><code>{LOCAL_MANIFEST_SHA256}</code></td></tr>
+<tr><td>npm SDK facade</td><td><code>{NPM_FACADE_SHA256}</code></td></tr>
+<tr><td>npm macOS arm64 native companion</td><td><code>{NPM_NATIVE_SHA256}</code></td></tr>
+<tr><td>Python SDK facade</td><td><code>{PYTHON_FACADE_SHA256}</code></td></tr>
+<tr><td>Python macOS arm64 native companion</td><td><code>{PYTHON_NATIVE_SHA256}</code></td></tr>
+<tr><td>Combined package proof</td><td><code>{PACKAGE_PROOF_SHA256}</code></td></tr>
+</tbody></table>
 <h2>What the package checks</h2>
-<ul><li>Exact manager, engine, public-contract, SBOM, provenance, and signature bindings.</li><li>Allowlisted tarball/wheel inventories with private-source and build-path scans.</li><li>Offline installation, executable permissions, <code>kscope --version</code>, and clean update/rollback/uninstall rehearsals.</li><li>Unsupported or untested targets fail clearly; matrix entries do not imply support.</li></ul>
+<ul><li>Exact SDK commit, manager, engine, public-contract, manifest, package, SBOM, provenance, and signature bindings.</li><li>Facade names, versions, native dependency pins, required client modules, resolvers, both launchers, and allowlisted archive inventories.</li><li>Private-source and build-path scans plus isolated npm/Python installs and both version commands.</li><li>Unsupported targets fail clearly; the five non-macOS-arm64 entries remain refusal-only scaffolds.</li></ul>
 <h2>Current availability</h2>
-<p>The local macOS arm64 candidate passes the package and lifecycle lanes. The final-name SDK metadata is staged at commit <code>{SDK_PACKAGE_METADATA_COMMIT}</code>; the native release-candidate package refresh is bound at <code>{PACKAGE_REFRESH_COMMIT}</code> with proof SHA-256 <code>{PACKAGE_PROOF_SHA256}</code>. Its signature is test-only and the artifacts are not published. Other platform cells, production EULA/license text, trusted signing identities, registry publication, and Pages promotion remain protected gates.</p>
+<p>SDK commit <code>{SDK_FACADE_COMMIT}</code>, assembler commit <code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, and evidence commit <code>{FINAL_EVIDENCE_COMMIT}</code> define this local RC contract. The package proof records <code>facade_mode: sdk_artifacts</code>. Production EULA/license text, trusted signing identities, registry credentials, other native platforms, protected publication approval, and Pages promotion remain required.</p>
 """,
     ),
     Page(
@@ -376,6 +443,8 @@ kscope --version</code></pre>
 <p>The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Its source is not part of the public manager, client, integration, or skill surfaces.</p>
 <h2>Manager and profile</h2>
 <p>The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes the account/device commands. The local distribution is bound to manager source commit <code>05948a3…</code> and binary SHA-256 <code>4fecd84584ed…</code>.</p>
+<h2>SDK facade and native companion</h2>
+<p>The npm and Python facades at SDK commit <code>67e351d…</code> contain the full public clients, typed installed-payload resolvers, and <code>kaleidoscope</code>/<code>kscope</code> launchers. Their exact macOS arm64 native companions contain the manager and proprietary engine object code. This keeps the public developer API in the facade without placing engine source in either layer.</p>
 <h2>Harness identity</h2>
 <p>Codex, Claude, Cursor, OpenCode, framework clients, and generic MCP clients are consumers of the same profile. They do not become separate memory stores merely because their configuration formats differ.</p>
 <h2>Account identity</h2>
@@ -451,7 +520,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <tr><td>OpenAI Agents SDK</td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
 <tr><td>CrewAI</td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
-<div class="callout"><strong>What DX-07 and DX-10B prove.</strong> The Python/TypeScript matrices and real-profile lanes passed, and host conformance commit <code>9cd4b58…</code> bound the final manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
+<div class="callout"><strong>What DX-07 and DX-10B prove.</strong> SDK commit <code>67e351d…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Host conformance commit <code>9cd4b58…</code> bound the manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
 <h2>Agent guidance</h2>
 <p>Install the <a href="/SKILL.md">public skill</a>, then add only the compact owner-marked pointer appropriate to <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or <a href="/snippets/cursor-kaleidoscope.mdc">Cursor</a>. Use the manager so dry runs, backups, receipts, tamper checks, and exact removal remain intact.</p>
 """,
@@ -467,7 +536,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <h2>Disconnect and uninstall</h2><p>Disconnect removes only manager-owned host configuration. Instruction removal is separate. A future installer uninstall removes package artifacts according to its scope; account logout/revocation is also separate. None of these operations implicitly deletes a vault.</p>
 <h2>Delete a vault</h2><p>Vault deletion is a separate preview-and-confirm operation tied to one exact resolved root. Logical memory deletion and physical vault deletion are different operations. A broad path, unresolved variable, or ambiguous target must be refused.</p>
 <h2>Update and rollback</h2><p>DX-10A locally exercised clean install, update, exact rollback, and uninstall under an explicitly marked staging root using the final local manager and engine candidate. It verified only a TEST-ONLY Ed25519 trust root and reused the same binaries for the simulated update. This is not a production installer, notarization result, or supported update channel. The separate vault canary remained byte-identical.</p>
-<h2>Package shapes</h2><p>Local macOS arm64 staging produced an object-code archive, npm meta/platform tarballs, and Python facade/native wheels, plus aggregate SBOM and provenance. Nothing was published; other platform entries are refusal-only scaffolds.</p>
+<h2>Package shapes</h2><p>Local macOS arm64 staging produced full TypeScript/Python SDK facades and exact npm/wheel native companions. Both facades expose <code>kaleidoscope</code> and <code>kscope</code>; both companions carry the manager and proprietary object-code engine. Nothing was published, and the other five platform entries remain refusal-only scaffolds.</p>
 """,
     ),
     Page(
@@ -478,7 +547,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <p class="lede">Kaleidoscope protects source distribution and establishes verifiable boundaries. A native binary remains inspectable and may be reverse engineered; object-code distribution is not a claim of impossibility.</p>
 <h2>Local engine boundary</h2><p>The generated candidate contract declares a local vault, stdio MCP, no required network, and no external model calls. The manager launches the engine with a closed non-secret environment instead of inheriting provider keys, account tokens, cloud credentials, or direct vault-coordinate variables.</p>
 <h2>Account boundary</h2><p>The consolidated manager constructs only 11 declared account routes. Its request privacy guard rejects memory/profile field families and absolute local paths before transport. DX-10A exercised all 11 without an engine argument against a deliberately missing engine and observed provider-not-configured refusals before engine resolution. No production account endpoint is available.</p>
-<h2>Package integrity</h2><p>DX-06 binds object-code digests, source commits, bundled model, CycloneDX SBOM, provenance, candidate public contract, target, and prior-manifest rollback identity. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Production trust roots, role keys, Apple signing/notarization, EULA, notices, and approved licenses are absent.</p>
+<h2>Package integrity</h2><p>DX-06 binds the SDK facade commit, manager, engine, bundled model, public contract, package digests, CycloneDX SBOM, provenance, target, and prior-manifest rollback identity. It validates facade client modules, resolvers, both launchers, exact native dependency pins, archive safety, and the public/private source boundary. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Production trust roots, role keys, Apple signing/notarization, EULA, notices, and approved licenses are absent.</p>
 <h2>Verified privacy checks</h2><p>The manager and engine candidates contain no bounded private builder-path hits and no Mach-O debug sections. Local conformance used canary values for environment, outputs, profiles, host configuration, and MCP traffic. The Codex lane used isolated HOME, CODEX_HOME, XDG, project, profile, and vault roots and restored its non-empty baseline byte-for-byte. These are scoped test results, not a universal absence claim.</p>
 <h2>Report a vulnerability</h2><p>Do not publish an exploit or sensitive report in a public issue. The production security contact and supported-version policy are release blockers and will be published here and in <code>/.well-known/security.txt</code> before promotion.</p>
 """,
@@ -526,7 +595,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         body="""
 <p class="lede">A platform or harness is supported only after the packaged artifact passes the canonical end-to-end proof on the named native runner and pinned host version.</p>
 <table><thead><tr><th>Surface</th><th>Verified local evidence</th><th>Held before support</th></tr></thead><tbody>
-<tr><td>macOS arm64</td><td>Final auth-enabled manager and engine candidate, object-code packaging, real stdio MCP, account refusal, clean install/update/rollback/uninstall, vault canary, and real Codex CLI configuration.</td><td>Production signature/notarization, approved terms, live OIDC/keychain, model/TUI/IDE acceptance, and protected publication.</td></tr>
+<tr><td>macOS arm64</td><td>Full npm/Python SDK facades, exact native companions, auth-enabled manager and engine candidate, real stdio MCP, account refusal, clean install/update/rollback/uninstall, vault canary, and real Codex CLI configuration.</td><td>Production signature/notarization, approved terms, live OIDC/keychain, model/TUI/IDE acceptance, and protected publication.</td></tr>
 <tr><td>macOS x64</td><td>Target metadata/refusal only.</td><td>Native binaries, package, runner, signing/notarization.</td></tr>
 <tr><td>Linux x86_64/arm64</td><td>Source implementation and target metadata only; libc policy not frozen.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
 <tr><td>Windows x86_64/arm64</td><td>Source implementation and target metadata only.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
@@ -558,17 +627,17 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <p class="lede">Evidence is split into local functional proof, package/signature proof, native platform support, and protected production promotion. Passing one does not imply the others.</p>
 <div class="callout"><strong>Machine-readable record.</strong> <a href="/staging-evidence.json">staging-evidence.json</a> carries the same public, source-free status. It contains no local paths, credentials, vault coordinates, or private engine source.</div>
 <h2>Exact local candidate</h2>
-<table><tbody><tr><th>Manager source commit</th><td><code>{MANAGER_SOURCE_COMMIT}</code></td></tr><tr><th>Manager candidate SHA-256</th><td><code>{MANAGER_SHA256}</code></td></tr><tr><th>Engine source commit</th><td><code>{ENGINE_SOURCE_COMMIT}</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>{ENGINE_CANDIDATE_SHA256}</code></td></tr><tr><th>Public contract SHA-256</th><td><code>{PUBLIC_CONTRACT_SHA256}</code></td></tr><tr><th>Native target tested</th><td>macOS arm64</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
+<table><tbody><tr><th>SDK facade commit</th><td><code>{SDK_FACADE_COMMIT}</code></td></tr><tr><th>Distribution assembler commit</th><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code></td></tr><tr><th>Final evidence commit</th><td><code>{FINAL_EVIDENCE_COMMIT}</code></td></tr><tr><th>Manager source commit</th><td><code>{MANAGER_SOURCE_COMMIT}</code></td></tr><tr><th>Manager candidate SHA-256</th><td><code>{MANAGER_SHA256}</code></td></tr><tr><th>Engine source commit</th><td><code>{ENGINE_SOURCE_COMMIT}</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>{ENGINE_CANDIDATE_SHA256}</code></td></tr><tr><th>Public contract SHA-256</th><td><code>{PUBLIC_CONTRACT_SHA256}</code></td></tr><tr><th>RC package version</th><td><code>0.1.0-rc.1</code> / Python <code>0.1.0rc1</code></td></tr><tr><th>Native target tested</th><td>macOS arm64 only</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
 <h2>Milestones</h2>
 <table><thead><tr><th>Slice</th><th>Exact evidence</th><th>What is true now</th></tr></thead><tbody>
 <tr><td>DX-04 / DX-05B</td><td><code>{MANAGER_SOURCE_COMMIT}</code>, manager <code>{MANAGER_SHA256}</code></td><td>Consolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.</td></tr>
-<tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_COMMIT}</code>, summary <code>{DX06_VERIFICATION_SHA256}</code></td><td>18 tests passed over source-only tooling and final object-code package shapes with a test-only signature; no publication.</td></tr>
-<tr><td>DX-07</td><td><code>fd0b187…</code></td><td>Pinned Python/TypeScript client and integration matrices passed locally; no license or remote.</td></tr>
+<tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, proof <code>{PACKAGE_PROOF_SHA256}</code></td><td>20 distribution/native tests passed over full SDK facades and macOS arm64 native companions with a test-only signature; no publication.</td></tr>
+<tr><td>DX-07</td><td><code>{SDK_FACADE_COMMIT}</code></td><td>Full Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; no license or remote.</td></tr>
 <tr><td>DX-09</td><td><code>{BENCHMARK_COMMIT}</code>, merged PRs 5/6; evidence <code>{DX09_FIXTURE_EVIDENCE_SHA256}</code></td><td>Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.</td></tr>
 <tr><td>DX-10A</td><td><code>{DX10A_EVIDENCE_SHA256}</code></td><td>Final local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.</td></tr>
 <tr><td>DX-10B</td><td><code>{SDK_HOST_CONFORMANCE_COMMIT}</code>, evidence <code>{DX10B_HOST_EVIDENCE_SHA256}</code></td><td>Real isolated Codex CLI configuration and generic MCP passed; model/TUI/IDE and absent-host cells held.</td></tr>
 </tbody></table>
-<h2>Local rebind complete, production promotion held</h2><p>The local DX-06 archive, manifest, SBOM, provenance, package shapes, and DX-10A lane are now bound to manager <code>{MANAGER_SHA256}</code>, engine <code>{ENGINE_CANDIDATE_SHA256}</code>, and contract <code>{PUBLIC_CONTRACT_SHA256}</code>. The archive digest is <code>{LOCAL_ARCHIVE_SHA256}</code>. Its signature envelope <code>{LOCAL_TEST_SIGNATURE_SHA256}</code> uses only a checked-in TEST-ONLY trust root. These bindings close the local rebind; they do not satisfy licenses, EULA, production OIDC, production signing/notarization, other native platforms, live model/IDE acceptance, registry publication, or Pages promotion.</p>
+<h2>Converged RC package proof</h2><p>The local archive <code>{LOCAL_ARCHIVE_SHA256}</code>, manifest <code>{LOCAL_MANIFEST_SHA256}</code>, and combined proof <code>{PACKAGE_PROOF_SHA256}</code> bind the full npm/Python SDK facades to their exact macOS arm64 native companions. The facades carry public client code, installed-payload resolution and both launchers; the companions carry manager <code>{MANAGER_SHA256}</code> and engine <code>{ENGINE_CANDIDATE_SHA256}</code> plus contract <code>{PUBLIC_CONTRACT_SHA256}</code>. The signature envelope <code>{LOCAL_TEST_SIGNATURE_SHA256}</code> uses only a checked-in TEST-ONLY trust root. This closes the local package-shape convergence, not the protected production gates.</p>
 <h2>Approval and credential gates</h2><ul><li>Approval of a license for the public manager, wrappers, integrations, and skill.</li><li>Approval of terms for original documentation and an engine object-code EULA.</li><li>Staging/production OIDC configuration and private control-plane deployment evidence.</li><li>Production signing/notarization identities, registry/CDN credentials, and native platform runners.</li><li>A separate final approval for package publication, production login, and Pages promotion.</li></ul>
 """,
     ),
@@ -578,7 +647,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         description="Versioned Kaleidoscope release notes bound to immutable package and public-contract digests.",
         body="""
 <p class="lede">Release notes become authoritative only when they name the exact signed package, final manager, engine, and public-contract digests.</p>
-<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>4fecd84584ed…</code>.</li><li>DX-06 object-code archive, npm/wheel shapes, SBOM/provenance, and lifecycle rehearsal passed with a test-only signature and final local manager.</li><li>DX-07 Python/TypeScript and harness integration matrices passed locally.</li><li>DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.</li><li>DX-10A final local macOS arm64 clean install, MCP, offline account refusal, update/rollback/uninstall, and vault-canary lane passed.</li><li>DX-10B isolated real Codex CLI configuration and generic stdio MCP passed; other hosts and model/IDE acceptance remain held.</li></ul>
+<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>4fecd84584ed…</code>.</li><li>SDK commit <code>67e351d…</code> places the full public TypeScript/Python clients, installed-payload resolvers, and both launchers in the facade packages.</li><li>Distribution assembler <code>af892d1…</code> pairs those facades with macOS arm64 native companions containing the manager and proprietary object-code engine; the exact package proof is <code>9f925898…</code>.</li><li>DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.</li><li>DX-10A final local macOS arm64 clean install, MCP, offline account refusal, update/rollback/uninstall, and vault-canary lane passed.</li><li>DX-10B isolated real Codex CLI configuration and generic stdio MCP passed; other platforms, hosts and model/IDE acceptance remain held.</li></ul>
 <h2>Promotion rule</h2><p>A release entry must record public availability, supported targets and pinned host versions, known limitations, migration requirements, security fixes, all package checksums, SBOM/provenance, exact rollback identity, license/EULA links, and production account/privacy terms. Publication and documentation promotion are separate protected actions.</p>
 """,
     ),
@@ -922,7 +991,8 @@ Policy: {DOMAIN}/docs/security/
 > Local native memory for agents, exposed through a manager CLI and persistent stdio MCP. Release status: {metadata["availability"]} ({metadata["release_version"]}); no package or production login is public.
 
 - [Documentation]({DOMAIN}/docs/): product and developer overview
-- [Getting started]({DOMAIN}/docs/getting-started/): release-gated profile and reversible host workflow
+- [Getting started]({DOMAIN}/docs/getting-started/): protected RC install, profile and reversible host workflow
+- [Packages]({DOMAIN}/docs/packages/): full SDK facades, native companions, exact macOS arm64 RC hashes and gates
 - [CLI reference]({DOMAIN}/docs/cli/): exact local manager-candidate commands
 - [MCP reference]({DOMAIN}/docs/mcp/): candidate-bound `search` and `remember` contract
 - [Integrations]({DOMAIN}/docs/integrations/): Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP
@@ -932,14 +1002,14 @@ Policy: {DOMAIN}/docs/security/
 - [Operations]({DOMAIN}/docs/operations/): backup, restore, uninstall, update, and exact vault deletion
 - [Compatibility]({DOMAIN}/docs/compatibility/): verified local cells versus native/support holds
 - [Benchmarks]({DOMAIN}/docs/benchmarks/): merged candidate-bound smoke, with no score or release claim
-- [Release evidence]({DOMAIN}/docs/evidence/): exact digests, milestone commits, rebind requirement, and protected gates
+- [Release evidence]({DOMAIN}/docs/evidence/): exact digests, converged package proof, milestone commits, and protected gates
 - [Public agent skill]({DOMAIN}/SKILL.md): bounded retrieval and verified durable writes
 - [Agent instructions]({DOMAIN}/agent-instructions.md): safe manager-installed AGENTS, CLAUDE, and Cursor pointers
 - [Machine-readable staging evidence]({DOMAIN}/staging-evidence.json): source-free milestone and gate record
 - [Candidate CLI help]({DOMAIN}/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference]({DOMAIN}/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. Exact locally verified bindings: manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; DX-06 summary SHA-256 {DX06_VERIFICATION_SHA256}; DX-09 deterministic fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; DX-10B Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. The local distribution is test-signed only and supports no production-release claim. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
+The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {SDK_FACADE_COMMIT} puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit {DISTRIBUTION_ASSEMBLER_COMMIT} pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit {FINAL_EVIDENCE_COMMIT} freezes the result. Exact hashes: release archive {LOCAL_ARCHIVE_SHA256}; manifest {LOCAL_MANIFEST_SHA256}; package proof {PACKAGE_PROOF_SHA256}; npm facade {NPM_FACADE_SHA256}; npm native companion {NPM_NATIVE_SHA256}; Python facade {PYTHON_FACADE_SHA256}; Python native companion {PYTHON_NATIVE_SHA256}. The engine source is not in any public surface. Manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; base DX-06 summary SHA-256 {DX06_VERIFICATION_SHA256}; DX-09 fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; DX-10B Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Production licensing/EULA, signing, registry publication, login and Pages promotion require separate approval.
 """
     write_text(output / "llms.txt", llms)
 

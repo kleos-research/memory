@@ -27,8 +27,26 @@ MANAGER_SHA256 = (
     "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e"
 )
 DISTRIBUTION_COMMIT = "42ffba4e3976810f91f2adcf53bd4393e5330d72"
+SDK_FACADE_COMMIT = "67e351d9210756153338825b1d2aab7bb8f1dcb7"
+DISTRIBUTION_ASSEMBLER_COMMIT = "af892d180fe01729450e03917f33ac56698e90e1"
+FINAL_EVIDENCE_COMMIT = "53ff63960e660becba3624bd83a17dff5b1caf6b"
 DX06_VERIFICATION_SHA256 = (
     "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
+)
+LOCAL_ARCHIVE_SHA256 = (
+    "dc7d54bf894966b935c8e2d44868c5caa4571b3fdfabd6765672486a95eb9d9a"
+)
+LOCAL_MANIFEST_SHA256 = (
+    "a997d4679f54125bc618c412bca5b877afc83273730cca5a0c9553a29da88e04"
+)
+PACKAGE_PROOF_SHA256 = "9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa"
+NPM_FACADE_SHA256 = "24774b0c455136aff861b643121feec755d03d5d01bf7a9f318082083ec2b8f5"
+NPM_NATIVE_SHA256 = "d60be804252af0d1abe8207a00816cfce33903afae1770f0674a1c7deb1d9d81"
+PYTHON_FACADE_SHA256 = (
+    "596dcff8043a94d19ff47f60db27f7d183b4dda3fc084274e7e79ea06e5f1ccf"
+)
+PYTHON_NATIVE_SHA256 = (
+    "f9d9ad0ec7b3d2ecb99e06a92e68c1c3ba24026c78d460741597d0b32bcf7920"
 )
 DX10A_EVIDENCE_SHA256 = (
     "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
@@ -100,8 +118,8 @@ EXPECTED_HTML = {
 EXPECTED_MILESTONES = {
     "DX-04": MANAGER_SOURCE_COMMIT,
     "DX-05B": MANAGER_SOURCE_COMMIT,
-    "DX-06A/B": DISTRIBUTION_COMMIT,
-    "DX-07": "fd0b1877f70b1bb57e1b67c4c559e8b2e1d44290",
+    "DX-06A/B": DISTRIBUTION_ASSEMBLER_COMMIT,
+    "DX-07": SDK_FACADE_COMMIT,
     "DX-09": BENCHMARK_COMMIT,
     "DX-10A": DISTRIBUTION_COMMIT,
     "DX-10B": SDK_HOST_CONFORMANCE_COMMIT,
@@ -240,13 +258,44 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             if manager.get("production_signature_verified") is not False:
                 failures.append("staging evidence must not claim a signed manager")
             distribution = evidence.get("local_distribution", {})
-            if distribution.get("commit") != DISTRIBUTION_COMMIT:
-                failures.append("staging evidence has wrong distribution commit")
+            if distribution.get("commit") != FINAL_EVIDENCE_COMMIT:
+                failures.append("staging evidence has wrong final evidence commit")
+            if distribution.get("assembler_commit") != DISTRIBUTION_ASSEMBLER_COMMIT:
+                failures.append("staging evidence has wrong assembler commit")
+            if distribution.get("sdk_facade_commit") != SDK_FACADE_COMMIT:
+                failures.append("staging evidence has wrong SDK facade commit")
+            if distribution.get("version") != "0.1.0-rc.1":
+                failures.append("staging evidence has wrong RC version")
+            if distribution.get("native_target") != "darwin-arm64":
+                failures.append("staging evidence has wrong native RC target")
             if (
-                distribution.get("verification_summary_sha256")
+                distribution.get("base_verification_summary_sha256")
                 != DX06_VERIFICATION_SHA256
             ):
-                failures.append("staging evidence has wrong DX-06 evidence digest")
+                failures.append("staging evidence has wrong base DX-06 digest")
+            for field, expected in (
+                ("archive_sha256", LOCAL_ARCHIVE_SHA256),
+                ("manifest_sha256", LOCAL_MANIFEST_SHA256),
+                ("package_proof_sha256", PACKAGE_PROOF_SHA256),
+            ):
+                if distribution.get(field) != expected:
+                    failures.append(f"staging evidence has wrong {field}")
+            facades = distribution.get("facades", {})
+            if facades.get("contains") != (
+                "full public SDK plus kaleidoscope and kscope launchers"
+            ):
+                failures.append("staging evidence has wrong facade contents")
+            if facades.get("npm", {}).get("sha256") != NPM_FACADE_SHA256:
+                failures.append("staging evidence has wrong npm facade digest")
+            if facades.get("python", {}).get("sha256") != PYTHON_FACADE_SHA256:
+                failures.append("staging evidence has wrong Python facade digest")
+            native = distribution.get("native_companions", {})
+            if native.get("contains") != "manager plus proprietary object-code engine":
+                failures.append("staging evidence has wrong native companion contents")
+            if native.get("npm", {}).get("sha256") != NPM_NATIVE_SHA256:
+                failures.append("staging evidence has wrong npm native digest")
+            if native.get("python", {}).get("sha256") != PYTHON_NATIVE_SHA256:
+                failures.append("staging evidence has wrong Python native digest")
             if distribution.get("test_signature_only") is not True:
                 failures.append("staging evidence must mark its signature test-only")
             if distribution.get("production_release") is not False:
@@ -348,6 +397,17 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                 != DX10B_HOST_EVIDENCE_SHA256
             ):
                 failures.append("candidate MCP reference has wrong DX-10B digest")
+            packages = mcp.get("package_contract", {})
+            if packages.get("version") != "0.1.0-rc.1":
+                failures.append("candidate MCP reference has wrong RC version")
+            if packages.get("sdk_facade_commit") != SDK_FACADE_COMMIT:
+                failures.append("candidate MCP reference has wrong SDK facade commit")
+            if packages.get("native_target") != "darwin-arm64":
+                failures.append("candidate MCP reference has wrong native target")
+            if packages.get("facade_launchers") != ["kaleidoscope", "kscope"]:
+                failures.append("candidate MCP reference has wrong facade launchers")
+            if packages.get("publicly_available") is not False:
+                failures.append("candidate MCP reference claims package availability")
             if mcp.get("release_readiness_claimed") is not False:
                 failures.append("candidate MCP reference claims release readiness")
 
@@ -474,6 +534,16 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         DX09_FIXTURE_EVIDENCE_SHA256,
         DX10A_EVIDENCE_SHA256,
         DX10B_HOST_EVIDENCE_SHA256,
+        SDK_FACADE_COMMIT,
+        DISTRIBUTION_ASSEMBLER_COMMIT,
+        FINAL_EVIDENCE_COMMIT,
+        LOCAL_ARCHIVE_SHA256,
+        LOCAL_MANIFEST_SHA256,
+        PACKAGE_PROOF_SHA256,
+        NPM_FACADE_SHA256,
+        NPM_NATIVE_SHA256,
+        PYTHON_FACADE_SHA256,
+        PYTHON_NATIVE_SHA256,
     ):
         if required.lower() not in llms_lower:
             failures.append(f"llms.txt missing {required!r}")
