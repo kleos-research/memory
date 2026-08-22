@@ -33,6 +33,12 @@ PUBLIC_FILES = {
     / "public"
     / "snippets"
     / "cursor-kaleidoscope.mdc",
+    "documentation-license.txt": ROOT / "LICENSE",
+    "legal/CC-BY-4.0.txt": ROOT / "legal" / "CC-BY-4.0.txt",
+    "legal/ENGINE-EULA.txt": ROOT / "legal" / "ENGINE-EULA.txt",
+    "legal/PRIVACY-NOTICE.txt": ROOT / "legal" / "PRIVACY-NOTICE.txt",
+    "legal/SECURITY-POLICY.txt": ROOT / "legal" / "SECURITY-POLICY.txt",
+    "legal/SUPPORT-POLICY.txt": ROOT / "legal" / "SUPPORT-POLICY.txt",
 }
 
 ENGINE_SOURCE_COMMIT = "d96355632cc52816472106d0776ce63d73631fef"
@@ -319,9 +325,11 @@ STAGING_EVIDENCE = {
     "release_holds": {
         "production_oidc_issuer": None,
         "production_signing_identity": None,
-        "production_engine_eula_approved": False,
-        "public_manager_license_approved": False,
-        "original_documentation_license_approved": False,
+        "engine_eula_product_authorized": True,
+        "production_engine_eula_finalized": False,
+        "public_software_license_product_authorized": True,
+        "original_documentation_license_product_authorized": True,
+        "external_legal_review_complete": False,
         "registry_publication_authorized": False,
         "pages_promotion_authorized": False,
         "non_macos_arm64_native_support_verified": False,
@@ -343,6 +351,19 @@ class Page:
     noindex: bool = False
 
 
+def legal_document_body(filename: str, summary: str) -> str:
+    source = PUBLIC_FILES[f"legal/{filename}"].read_text(encoding="utf-8")
+    return (
+        f'<p class="lede">{html.escape(summary)}</p>'
+        '<div class="callout"><strong>Review status.</strong> This is a '
+        "source-controlled review draft, not a production legal notice, "
+        "support commitment, or claim of external legal approval.</div>"
+        f'<p><a href="/legal/{html.escape(filename, quote=True)}">'
+        "Download the plain-text source</a>.</p>"
+        f'<pre class="legal-document"><code>{html.escape(source)}</code></pre>'
+    )
+
+
 DOC_NAV = (
     ("/docs/", "Overview"),
     ("/docs/getting-started/", "Getting started"),
@@ -361,6 +382,7 @@ DOC_NAV = (
     ("/docs/release-notes/", "Release notes"),
     ("/docs/troubleshooting/", "Troubleshooting"),
     ("/docs/migration/", "Migration"),
+    ("/docs/legal/", "Legal"),
 )
 
 
@@ -451,7 +473,7 @@ kscope --version</code></pre>
 <h2>What the package checks</h2>
 <ul><li>Exact SDK commit, manager, engine, public-contract, manifest, package, SBOM, provenance, and signature bindings.</li><li>Facade names, versions, native dependency pins, required client modules, resolvers, both launchers, and allowlisted archive inventories.</li><li>Private-source and build-path scans plus isolated npm/Python installs and both version commands.</li><li>Unsupported targets fail clearly; the five non-macOS-arm64 entries remain refusal-only scaffolds.</li></ul>
 <h2>Current availability</h2>
-<p>SDK commit <code>{SDK_FACADE_COMMIT}</code>, assembler commit <code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, and final evidence commit <code>{FINAL_EVIDENCE_COMMIT}</code> define this local RC contract. The package proof records <code>facade_mode: sdk_artifacts</code>; the final package evidence records fresh npm/Python facade invocation. Production EULA/license text, trusted signing identities, registry credentials, other native platforms, protected publication approval, and Pages promotion remain required.</p>
+<p>SDK commit <code>{SDK_FACADE_COMMIT}</code>, assembler commit <code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, and final evidence commit <code>{FINAL_EVIDENCE_COMMIT}</code> define this local RC contract. The package proof records <code>facade_mode: sdk_artifacts</code>; the final package evidence records fresh npm/Python facade invocation. Apache-2.0 metadata and the proprietary EULA review draft are source-staged and a legally-bound refresh of this local proof is in progress. Final legal review, trusted signing identities, registry credentials, other native platforms, and protected publication approval remain required.</p>
 """,
     ),
     Page(
@@ -571,7 +593,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <p class="lede">Kaleidoscope protects source distribution and establishes verifiable boundaries. A native binary remains inspectable and may be reverse engineered; object-code distribution is not a claim of impossibility.</p>
 <h2>Local engine boundary</h2><p>The generated candidate contract declares a local vault, stdio MCP, no required network, and no external model calls. The manager launches the engine with a closed non-secret environment instead of inheriting provider keys, account tokens, cloud credentials, or direct vault-coordinate variables.</p>
 <h2>Account boundary</h2><p>The consolidated manager constructs only 11 declared account routes. Its request privacy guard rejects memory/profile field families and absolute local paths before transport. DX-10A exercised all 11 without an engine argument against a deliberately missing engine and observed provider-not-configured refusals before engine resolution. No production account endpoint is available.</p>
-<h2>Package integrity</h2><p>DX-06 binds the SDK facade commit, manager, engine, bundled model, public contract, package digests, CycloneDX SBOM, provenance, target, and prior-manifest rollback identity. It validates facade client modules, resolvers, both launchers, exact native dependency pins, archive safety, and the public/private source boundary. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Production trust roots, role keys, Apple signing/notarization, EULA, notices, and approved licenses are absent.</p>
+<h2>Package integrity</h2><p>DX-06 binds the SDK facade commit, manager, engine, bundled model, public contract, package digests, CycloneDX SBOM, provenance, target, and prior-manifest rollback identity. It validates facade client modules, resolvers, both launchers, exact native dependency pins, archive safety, and the public/private source boundary. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Authorized license selections and an EULA review draft are now source-staged; the older exact package proof does not contain them. Production trust roots, role keys, Apple signing/notarization, final notices, and final legal review remain absent.</p>
 <h2>Verified privacy checks</h2><p>The manager and engine candidates contain no bounded private builder-path hits and no Mach-O debug sections. Local conformance used canary values for environment, outputs, profiles, host configuration, and MCP traffic. The Codex lane used isolated HOME, CODEX_HOME, XDG, project, profile, and vault roots and restored its non-empty baseline byte-for-byte. These are scoped test results, not a universal absence claim.</p>
 <h2>Report a vulnerability</h2><p>Do not publish an exploit or sensitive report in a public issue. The production security contact and supported-version policy are release blockers and will be published here and in <code>/.well-known/security.txt</code> before promotion.</p>
 """,
@@ -659,14 +681,14 @@ kaleidoscope profile account unbind [NAME]</code></pre>
 <h2>Milestones</h2>
 <table><thead><tr><th>Slice</th><th>Exact evidence</th><th>What is true now</th></tr></thead><tbody>
 <tr><td>DX-04 / DX-05B</td><td><code>{MANAGER_SOURCE_COMMIT}</code>, manager <code>{MANAGER_SHA256}</code></td><td>Consolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.</td></tr>
-<tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, proof <code>{PACKAGE_PROOF_SHA256}</code></td><td>The final source-bound archive and package set was reassembled with a test-only signature; no publication.</td></tr>
-<tr><td>DX-07</td><td><code>{SDK_FACADE_COMMIT}</code></td><td>Full Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; no license or remote.</td></tr>
+<tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, proof <code>{PACKAGE_PROOF_SHA256}</code></td><td>The final source-bound archive and package set was reassembled with a test-only signature; a legally-bound refresh is in progress and no publication occurred.</td></tr>
+<tr><td>DX-07</td><td><code>{SDK_FACADE_COMMIT}</code></td><td>Full Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; Apache-2.0 licensing is source-staged and no public remote is configured.</td></tr>
 <tr><td>DX-09</td><td><code>{BENCHMARK_COMMIT}</code>, merged PRs 5/6; evidence <code>{DX09_FIXTURE_EVIDENCE_SHA256}</code></td><td>Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.</td></tr>
 <tr><td>DX-10A</td><td><code>{DX10A_EVIDENCE_SHA256}</code></td><td>Final local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.</td></tr>
 <tr><td>DX-10B</td><td><code>{FINAL_EVIDENCE_COMMIT}</code>, evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256}</code></td><td>Fresh npm/Python facade <code>init</code>, <code>doctor</code>, Codex dry-run configuration, and MCP discovery passed. This is not real Codex/Claude/Cursor/OpenCode host acceptance.</td></tr>
 </tbody></table>
 <h2>Converged RC package proof</h2><p>The local archive <code>{LOCAL_ARCHIVE_SHA256}</code>, manifest <code>{LOCAL_MANIFEST_SHA256}</code>, build proof <code>{FINAL_BUILD_PROOF_SHA256}</code>, and combined package proof <code>{PACKAGE_PROOF_SHA256}</code> bind the full npm/Python SDK facades to their exact macOS arm64 native companions. The facades carry public client code, installed-payload resolution and both launchers; the companions carry manager <code>{MANAGER_SHA256}</code> and engine <code>{ENGINE_CANDIDATE_SHA256}</code> plus contract <code>{PUBLIC_CONTRACT_SHA256}</code>. The SBOM <code>{LOCAL_SBOM_SHA256}</code>, provenance <code>{LOCAL_PROVENANCE_SHA256}</code>, and signature envelope <code>{LOCAL_TEST_SIGNATURE_SHA256}</code> are all test-only local evidence. This closes local package-shape convergence, not protected production gates.</p>
-<h2>Approval and credential gates</h2><ul><li>Approval of a license for the public manager, wrappers, integrations, and skill.</li><li>Approval of terms for original documentation and an engine object-code EULA.</li><li>Staging/production OIDC configuration and private control-plane deployment evidence.</li><li>Production signing/notarization identities, registry/CDN credentials, and native platform runners.</li><li>A separate final approval for package publication, production login, and Pages promotion.</li></ul>
+<h2>Approval and credential gates</h2><ul><li>Apache-2.0 for the public manager, wrappers, integrations, and skill and CC BY 4.0 for original documentation are product-authorized and source-staged.</li><li>The engine object-code EULA, privacy, security, and support policies remain review drafts pending exact entity, jurisdiction, contacts, operational commitments, and external legal review.</li><li>Staging/production OIDC configuration and private control-plane deployment evidence.</li><li>Production signing/notarization identities, registry/CDN credentials, and native platform runners.</li><li>Package publication and production login remain separate deferred approvals.</li></ul>
 """,
     ),
     Page(
@@ -832,7 +854,73 @@ kaleidoscope connect opencode --profile default --project "$PWD"</code></pre>
 )
 
 
-PAGES += INTEGRATION_PAGES + (
+LEGAL_PAGES = (
+    Page(
+        route="/docs/legal/",
+        title="Licenses and product terms",
+        description="Kaleidoscope public software and documentation licenses, proprietary engine EULA, privacy notice, security policy, and support policy.",
+        body="""
+<p class="lede">The public software, original documentation, and proprietary
+engine have deliberately separate license boundaries.</p>
+<div class="callout"><strong>Review status.</strong> Apache-2.0 and CC BY 4.0
+are the authorized public license selections. The EULA, privacy, security, and
+support text remains a source-controlled review draft until the production
+entity, jurisdiction, contacts, operational commitments, and external legal
+review are complete.</div>
+<ul>
+<li><a href="/documentation-license.txt">Documentation license scope</a> and
+<a href="/legal/CC-BY-4.0.txt">CC BY 4.0 legal code</a>.</li>
+<li><a href="/docs/legal/engine-eula/">Proprietary engine EULA</a>.</li>
+<li><a href="/docs/legal/privacy-notice/">Privacy notice</a>.</li>
+<li><a href="/docs/legal/security-policy/">Security policy</a>.</li>
+<li><a href="/docs/legal/support-policy/">Support policy</a>.</li>
+</ul>
+<p>The Apache-2.0 license for the public manager, SDKs, wrappers,
+integrations, and skill is carried in those source and package repositories.
+It does not license the native engine, model weights, trademarks, or
+third-party material.</p>
+""",
+    ),
+    Page(
+        route="/docs/legal/engine-eula/",
+        title="Proprietary engine EULA",
+        description="Review draft of the Kaleidoscope proprietary native engine object-code end user license agreement.",
+        body=legal_document_body(
+            "ENGINE-EULA.txt",
+            "Terms proposed for proprietary Kaleidoscope engine object code; public Apache-2.0 components and CC BY 4.0 documentation remain separate.",
+        ),
+    ),
+    Page(
+        route="/docs/legal/privacy-notice/",
+        title="Privacy notice",
+        description="Review draft of the Kaleidoscope local-product privacy notice and local-memory/account data boundary.",
+        body=legal_document_body(
+            "PRIVACY-NOTICE.txt",
+            "The local engine does not imply memory upload; optional account, site, purchase, and support processing require explicit production disclosures.",
+        ),
+    ),
+    Page(
+        route="/docs/legal/security-policy/",
+        title="Security policy",
+        description="Review draft of supported-version, vulnerability reporting, safe-harbor, and incident communication terms.",
+        body=legal_document_body(
+            "SECURITY-POLICY.txt",
+            "A proposed coordinated-disclosure policy; no production intake exists until a monitored private channel and supported-version table are published.",
+        ),
+    ),
+    Page(
+        route="/docs/legal/support-policy/",
+        title="Support policy",
+        description="Review draft of Kaleidoscope standard product support scope, exclusions, severity guidance, and response targets.",
+        body=legal_document_body(
+            "SUPPORT-POLICY.txt",
+            "Proposed standard support terms; prereleases and test-signed packages remain unsupported and no SLA exists without a separate written plan.",
+        ),
+    ),
+)
+
+
+PAGES += INTEGRATION_PAGES + LEGAL_PAGES + (
     Page(
         route="/docs/hosted/",
         title="Hosted memory (future)",
@@ -1053,7 +1141,7 @@ def header(current: str, metadata: dict[str, str]) -> str:
 def footer() -> str:
     return """<footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/llms.txt">llms.txt</a><a href="/.well-known/security.txt">security.txt</a><a href="/docs/account/">Account boundary</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>"""
 
 
@@ -1073,7 +1161,7 @@ def render_home(metadata: dict[str, str], production: bool) -> str:
   <section class="shell grid" aria-label="Product principles">
     <article class="card"><h2>Local by construction</h2><p>Memory content, queries, results, identities, and vault paths are not account-service data.</p></article>
     <article class="card"><h2>Harness neutral</h2><p>Codex, Claude, Cursor, OpenCode, and framework clients consume the same profile and MCP contract.</p></article>
-    <article class="card"><h2>Inspectable boundary</h2><p>The staged bundle binds object code, manager, model, contract, SBOM, and provenance; production signing and licenses are still gated.</p></article>
+    <article class="card"><h2>Inspectable boundary</h2><p>The staged bundle binds object code, manager, model, contract, SBOM, and provenance; license source is staged separately while production signing, final terms, and publication remain gated.</p></article>
   </section>
   <section class="shell hero"><p class="eyebrow">Developer contract</p><h2>Two tools, one persistent process.</h2><p class="lede"><code>search</code> retrieves ranked or addressed memory. <code>remember</code> writes explicit durable semantic deltas. Operator commands never enter the agent tool list.</p></section>
 </main>"""
@@ -1219,6 +1307,10 @@ Policy: {DOMAIN}/docs/security/
 - [Integrations]({DOMAIN}/docs/integrations/): Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP
 - [Security]({DOMAIN}/docs/security/): package, process, and account isolation evidence
 - [Privacy]({DOMAIN}/docs/privacy/): local/account data boundary, credential storage, and telemetry status
+- [Licenses and terms]({DOMAIN}/docs/legal/): Apache-2.0 public software boundary, CC BY 4.0 documentation, and proprietary engine EULA
+- [Privacy notice]({DOMAIN}/docs/legal/privacy-notice/): review draft of production privacy terms
+- [Security policy]({DOMAIN}/docs/legal/security-policy/): review draft of disclosure, safe-harbor, and supported-version policy
+- [Support policy]({DOMAIN}/docs/legal/support-policy/): review draft of scope, exclusions, severity, and response targets
 - [Account]({DOMAIN}/docs/account/): login manages account/device state and does not upload local memory
 - [Operations]({DOMAIN}/docs/operations/): backup, restore, uninstall, update, and exact vault deletion
 - [Compatibility]({DOMAIN}/docs/compatibility/): verified local cells versus native/support holds
@@ -1230,7 +1322,7 @@ Policy: {DOMAIN}/docs/security/
 - [Candidate CLI help]({DOMAIN}/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference]({DOMAIN}/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {SDK_FACADE_COMMIT} puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit {DISTRIBUTION_ASSEMBLER_COMMIT} pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit {FINAL_EVIDENCE_COMMIT} freezes the result. Exact hashes: release archive {LOCAL_ARCHIVE_SHA256}; manifest {LOCAL_MANIFEST_SHA256}; build proof {FINAL_BUILD_PROOF_SHA256}; package proof {PACKAGE_PROOF_SHA256}; npm facade {NPM_FACADE_SHA256}; npm native companion {NPM_NATIVE_SHA256}; Python facade {PYTHON_FACADE_SHA256}; Python native companion {PYTHON_NATIVE_SHA256}; SBOM {LOCAL_SBOM_SHA256}; provenance {LOCAL_PROVENANCE_SHA256}; test-only signature envelope {LOCAL_TEST_SIGNATURE_SHA256}. The engine source is not in any public surface. Manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; DX-09 fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; historic DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; historic pre-final Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. Final package evidence proves fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery—not real host/IDE acceptance. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Production licensing/EULA, signing, registry publication, login and Pages promotion require separate approval.
+The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {SDK_FACADE_COMMIT} puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit {DISTRIBUTION_ASSEMBLER_COMMIT} pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit {FINAL_EVIDENCE_COMMIT} freezes the result. Exact hashes: release archive {LOCAL_ARCHIVE_SHA256}; manifest {LOCAL_MANIFEST_SHA256}; build proof {FINAL_BUILD_PROOF_SHA256}; package proof {PACKAGE_PROOF_SHA256}; npm facade {NPM_FACADE_SHA256}; npm native companion {NPM_NATIVE_SHA256}; Python facade {PYTHON_FACADE_SHA256}; Python native companion {PYTHON_NATIVE_SHA256}; SBOM {LOCAL_SBOM_SHA256}; provenance {LOCAL_PROVENANCE_SHA256}; test-only signature envelope {LOCAL_TEST_SIGNATURE_SHA256}. The engine source is not in any public surface. Manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; DX-09 fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; historic DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; historic pre-final Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. Final package evidence proves fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery—not real host/IDE acceptance. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Apache-2.0 and CC BY 4.0 source licensing and review-draft product terms are staged; production signing, final legal review, registry publication, and login remain separately gated.
 """
     write_text(output / "llms.txt", llms)
 

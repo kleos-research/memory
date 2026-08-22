@@ -103,7 +103,13 @@ class DocumentationArtifactTest(unittest.TestCase):
                 "test_signature_only"
             ]
         )
-        self.assertFalse(holds["production_engine_eula_approved"])
+        self.assertTrue(holds["engine_eula_product_authorized"])
+        self.assertTrue(holds["public_software_license_product_authorized"])
+        self.assertTrue(
+            holds["original_documentation_license_product_authorized"]
+        )
+        self.assertFalse(holds["production_engine_eula_finalized"])
+        self.assertFalse(holds["external_legal_review_complete"])
         self.assertFalse(holds["non_macos_arm64_native_support_verified"])
         self.assertFalse(holds["claude_cursor_opencode_live_host_verified"])
         self.assertFalse(build_site.STAGING_EVIDENCE["production_release"])

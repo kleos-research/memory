@@ -51,9 +51,12 @@ Exact RC evidence is:
 All remain local, test-signed and unpublished. The RC has native evidence only
 for macOS arm64. The final package evidence covers fresh npm/Python facade
 invocation, `connect codex --dry-run`, and MCP discovery; it does not establish
-real host/IDE acceptance. Production signing, live OIDC, additional native
-platforms and hosts, licenses/EULA, registry publication, and Pages promotion
-remain held.
+real host/IDE acceptance. Apache-2.0 public software licensing, CC BY 4.0
+original documentation licensing, and review-draft product terms are
+source-staged. Production signing, live OIDC, additional native platforms and
+hosts, final legal review, and registry publication remain held; the separately
+authorized Pages release is prepared from a verified public documentation
+artifact.
 
 ```sh
 python3 build_site.py --output docs
@@ -74,5 +77,7 @@ A production build requires immutable release metadata containing exactly
 `release_version`, `public_contract_sha256`, `availability`, and `updated_at`.
 The verifier additionally refuses staging language, stale tool contracts,
 private paths, and private core repository links. Building a production
-artifact is not permission to publish it. This repository intentionally has no
-`LICENSE`; documentation licensing and Pages promotion remain unapproved.
+artifact is not permission to publish it. The [documentation license](LICENSE)
+applies CC BY 4.0 to original documentation while excluding software,
+proprietary engine material, trademarks, third-party content, and the product
+terms themselves. Pages promotion remains a separate protected action.

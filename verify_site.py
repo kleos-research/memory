@@ -102,6 +102,8 @@ PRODUCTION_BLOCKERS = (
     "unapproved",
     "provider not configured",
     "production login remains disabled",
+    "review draft",
+    "not for production",
     "not live-host accepted",
     "verified local, unpublished",
     "verified without live provider",
@@ -139,6 +141,11 @@ EXPECTED_HTML = {
     "docs/troubleshooting/index.html",
     "docs/migration/index.html",
     "docs/hosted/index.html",
+    "docs/legal/index.html",
+    "docs/legal/engine-eula/index.html",
+    "docs/legal/privacy-notice/index.html",
+    "docs/legal/security-policy/index.html",
+    "docs/legal/support-policy/index.html",
 }
 NOINDEX_HTML = {"404.html", "docs/hosted/index.html"}
 EXPECTED_MILESTONES = {
@@ -355,9 +362,8 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                 if holds.get(field, "missing") is not None:
                     failures.append(f"staging evidence must leave {field} unresolved")
             for field in (
-                "production_engine_eula_approved",
-                "public_manager_license_approved",
-                "original_documentation_license_approved",
+                "production_engine_eula_finalized",
+                "external_legal_review_complete",
                 "registry_publication_authorized",
                 "pages_promotion_authorized",
                 "non_macos_arm64_native_support_verified",
@@ -366,6 +372,13 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             ):
                 if holds.get(field) is not False:
                     failures.append(f"staging evidence must leave {field} false")
+            for field in (
+                "engine_eula_product_authorized",
+                "public_software_license_product_authorized",
+                "original_documentation_license_product_authorized",
+            ):
+                if holds.get(field) is not True:
+                    failures.append(f"staging evidence must record {field}")
             milestones = {item.get("id"): item for item in evidence.get("milestones", [])}
             if set(milestones) != set(EXPECTED_MILESTONES):
                 failures.append("staging evidence milestone inventory changed")

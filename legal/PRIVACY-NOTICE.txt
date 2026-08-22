@@ -1,0 +1,185 @@
+KALEIDOSCOPE LOCAL PRODUCT PRIVACY NOTICE
+REVIEW DRAFT - NOT FOR PRODUCTION USE
+
+Last updated: August 22, 2026
+
+This draft describes the intended privacy boundary for the local Kaleidoscope
+product. Production account features and publication must remain disabled until
+the data controller's exact legal identity and contact, processors,
+jurisdiction-specific disclosures, retention schedule, and rights-request
+process are completed and reviewed.
+
+1. SCOPE
+
+This notice applies to the Kaleidoscope local manager, proprietary local engine,
+optional product-account features, documentation site, and product support. It
+does not apply to a separately contracted hosted-memory or synchronization
+service, or to third-party services governed by their own notices.
+
+2. LOCAL MEMORY DATA
+
+The local engine is designed to keep memory content, prompts, queries, selected
+results, graph data, memory identifiers, workspace/principal/journal
+coordinates, local paths, and vault files on devices controlled by the user.
+
+Installing or using the local engine does not authorize Kleos Research to
+upload, sync, inspect, sell, train on, or delete that local memory data. Local
+vault deletion is a separate user-initiated operation. Users are responsible
+for access controls, lawful content, backups, exports, and deletion on their
+devices.
+
+3. DATA PROCESSED BY OPTIONAL ACCOUNT FEATURES
+
+If a user chooses to activate a production account feature, the public manager
+may process only the bounded account and device data needed for that feature,
+such as:
+
+- email address and account identifiers;
+- identity-provider name and opaque external identity identifiers;
+- device identifier, user-supplied device label, platform, and last-seen time;
+- authorization state, session family identifiers, and security audit events;
+- authentication and revocation timestamps; and
+- ordinary network metadata such as IP address, user agent, and request status
+  recorded by the identity provider, hosting provider, or account service.
+
+Refresh credentials are intended to remain in the operating-system credential
+store. Agent configuration, profiles, and local vaults must not contain those
+credentials. Account requests must exclude memory content, queries, results,
+vault coordinates, profile identity fields, provider secrets, and absolute
+local paths.
+
+Production login is not available until the exact fields, provider, endpoints,
+credential behavior, and data flows are verified and published.
+
+4. DOCUMENTATION SITE, PURCHASES, AND SUPPORT
+
+A static documentation host may process ordinary delivery and security logs.
+The production site must publish its hosting provider, cookie/local-storage
+inventory, and retention before analytics, personalization, or non-essential
+cookies are enabled.
+
+If purchases are offered, payment providers may process billing and payment
+information under their own notices. Kaleidoscope should receive only the
+billing records needed to provide the product, prevent fraud, and meet legal
+obligations.
+
+Support processes may receive contact details, correspondence, account/device
+identifiers, and diagnostics a user chooses to submit. Users must review and
+redact diagnostics and must not submit credentials, private keys, raw memory
+content, prompts, or confidential local paths unless specifically requested
+through an approved secure channel.
+
+5. PURPOSES AND LEGAL BASES
+
+Subject to the law that applies to the production data controller, account and
+support data may be processed to:
+
+- provide requested account, device, entitlement, purchase, and support
+  functions;
+- authenticate users and protect accounts, releases, and services;
+- diagnose failures and maintain compatibility;
+- comply with law and enforce product terms; and
+- improve the product using aggregated or de-identified information.
+
+Before production, the controller must map each purpose and data category to an
+applicable legal basis, including contract, legitimate interests, consent, or
+legal obligation as required. Consent must be freely given and withdrawable
+where it is the selected basis.
+
+6. TELEMETRY AND TRAINING
+
+The local engine contract declares no required network connection, external
+model call, or production telemetry. Non-account manager operations are
+designed to run offline.
+
+Kaleidoscope does not sell local memory data or use it for targeted
+advertising. No production feature may use local memory data, prompts, queries,
+or results to train a model unless a separate, explicit, informed opt-in and
+applicable contract identify the data, purpose, recipient, retention, and
+withdrawal consequences.
+
+Any future telemetry must be documented field by field, default state,
+destination, purpose, legal basis, retention, and opt-out behavior before it is
+enabled.
+
+7. SHARING
+
+Production data may be disclosed only as needed to:
+
+- contracted processors that provide identity, hosting, payment, email,
+  customer-support, or security services;
+- professional advisers under confidentiality obligations;
+- authorities or other parties when required by law or reasonably necessary to
+  protect rights, users, or service security; or
+- a successor in a merger, financing, reorganization, or sale, subject to
+  appropriate notice and safeguards.
+
+A production notice must name or categorize material processors and provide
+required cross-border transfer disclosures. Processors may not use product data
+for their own advertising or model training unless the user separately agrees.
+
+8. RETENTION AND DELETION
+
+Data must be kept only for the shortest period needed for the stated purpose,
+security, dispute resolution, and legal obligations. Before production, the
+following proposed schedule must be validated against system behavior and law:
+
+- active account records: while the account is active;
+- deleted-account records: delete or de-identify within 30 days, except records
+  that must be retained for security, fraud, tax, or legal claims;
+- authentication and security audit events: 90 days unless an active
+  investigation or law requires longer;
+- support cases: 24 months after closure unless a user or contract requires a
+  shorter period;
+- service backups containing account data: expire within 35 days; and
+- local memory data: controlled and deleted locally by the user, not retained
+  by the account service.
+
+A production release must confirm these periods, backup behavior, legal holds,
+and account-deletion verification. A local logout or account deletion must not
+silently delete a local vault.
+
+9. SECURITY
+
+Kaleidoscope uses measures intended to separate local memory, account traffic,
+credentials, package integrity, and support diagnostics. No method is perfectly
+secure. Users should protect devices and credentials, install verified updates,
+use least privilege, and report suspected vulnerabilities through the
+published security channel.
+
+10. INTERNATIONAL TRANSFERS
+
+If account or support data crosses borders, the production controller must use
+a valid transfer mechanism and publish the relevant countries and safeguards.
+No claim about an adequacy decision, standard contractual clauses, or data
+residency is made in this draft.
+
+11. PRIVACY RIGHTS
+
+Depending on location, a user may have rights to access, correct, delete,
+restrict, object to, or port personal data; withdraw consent; and complain to a
+regulator. Identity verification may be required before fulfilling a request.
+A production release must provide an exact request channel, controller
+identity, response timeline, appeal method where required, and regulator
+details.
+
+12. CHILDREN
+
+Kaleidoscope is not directed to children under 16, and account features should
+not knowingly collect their personal data. The production controller must
+adjust this threshold and consent process where local law requires.
+
+13. CHANGES
+
+Material changes should be announced before they take effect when practicable.
+The notice must show its effective date and preserve prior versions. A change
+does not retroactively authorize a new use of local memory data.
+
+14. CONTACT
+
+Before production, insert the data controller's exact legal name, postal
+address, privacy email or request portal, data-protection representative where
+required, and data protection officer contact where applicable.
+
+END OF REVIEW DRAFT
+
