@@ -1,11 +1,13 @@
 # Kaleidoscope agent instructions
 
-These are the exact locally verified manager-candidate workflows. No public
-package or production account endpoint is available yet.
+These are the commands that tell your agent Kaleidoscope is there. They work on
+a build you already have; there is no package to install and no account to sign
+in to yet.
 
-The manager installs the canonical skill into
-`.agents/skills/use-kaleidoscope/SKILL.md` and can add an owner-marked pointer
-for each harness without overwriting unrelated instructions.
+Kaleidoscope installs the shared skill into
+`.agents/skills/use-kaleidoscope/SKILL.md`, and can add a short pointer to the
+instructions file your editor already reads, marked as its own, without
+touching anything else in that file.
 
 ```bash
 kaleidoscope instructions install skill --project "$PWD"
@@ -18,18 +20,18 @@ kaleidoscope instructions remove cursor --project "$PWD" --dry-run
 kaleidoscope instructions remove cursor --project "$PWD"
 ```
 
-Published byte-identical sources:
+The files it installs are published here, byte for byte:
 
 - [SKILL.md](/SKILL.md)
 - [AGENTS.md snippet](/snippets/AGENTS.md)
 - [CLAUDE.md snippet](/snippets/CLAUDE.md)
 - [Cursor rule](/snippets/cursor-kaleidoscope.mdc)
 
-Use the manager for installation and removal so ownership receipts, bounded
-backups, tamper refusal, and concurrent-edit checks stay intact.
+Install and remove them with `kaleidoscope` rather than by hand. That is what
+keeps the dry run, the backup, the record of what Kaleidoscope owns, the
+refusal to overwrite something you edited yourself, and the check for a file
+that changed underneath it.
 
-The canonical skill SHA-256 for this staging build is
-`c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad`.
-It exposes only agent use of `search` and `remember`; it does not advertise
-account, feedback, lifecycle, maintenance, ontology, or diagnostic operations
-as model tools.
+The skill tells an agent how to use `search` and `remember`, and nothing else.
+It does not offer an agent any account, maintenance or diagnostic command as a
+tool, because a model never sees one.
