@@ -139,6 +139,50 @@ LOCAL_HOST_CLI_CONFORMANCE = {
     ],
 }
 
+CROSS_TARGET_COMPILE_EVIDENCE = {
+    "schema_version": "kaleidoscope.docs-cross-target-compile.v1",
+    "status": "compile_only",
+    "source_commit": "be5112911125a31bcf2efa766791d044cadab5ed",
+    "rust_toolchain": "1.97.1",
+    "host_environment": "macOS arm64",
+    "command_template": "CARGO_BUILD_JOBS=1 cargo check --locked --target TARGET -p kaleidoscope-service --bin kscope",
+    "targets": [
+        {
+            "triple": "x86_64-unknown-linux-gnu",
+            "platform": "Linux",
+            "architecture": "x86_64",
+            "status": "passed",
+        },
+        {
+            "triple": "aarch64-unknown-linux-gnu",
+            "platform": "Linux",
+            "architecture": "arm64",
+            "status": "passed",
+        },
+        {
+            "triple": "x86_64-pc-windows-gnu",
+            "platform": "Windows",
+            "architecture": "x86_64",
+            "status": "passed",
+        },
+        {
+            "triple": "x86_64-apple-darwin",
+            "platform": "macOS",
+            "architecture": "x86_64",
+            "status": "passed",
+        },
+    ],
+    "claim_boundary": [
+        "cross-target type-check only",
+        "no foreign runtime execution",
+        "no native installer or package evidence",
+        "no native credential-store, GUI, IDE, or live-provider evidence",
+    ],
+}
+CROSS_TARGET_COMPILE_EVIDENCE_SHA256 = (
+    "67ec1ad295ce912799c883b661e3f2f0ad6e19139a887ea190613ef4a806c55f"
+)
+
 MANAGER_HELP = """Kaleidoscope public local manager
 
 Usage:
@@ -363,6 +407,10 @@ STAGING_EVIDENCE = {
         "status": "pre-final manager candidate only; not final package acceptance",
     },
     "local_host_cli_conformance": LOCAL_HOST_CLI_CONFORMANCE,
+    "cross_target_compile": {
+        **CROSS_TARGET_COMPILE_EVIDENCE,
+        "evidence_sha256": CROSS_TARGET_COMPILE_EVIDENCE_SHA256,
+    },
     "release_holds": {
         "production_oidc_issuer": None,
         "production_signing_identity": None,
@@ -513,7 +561,7 @@ kscope --version</code></pre>
 <tr><td>Combined package proof</td><td><code>{PACKAGE_PROOF_SHA256}</code></td></tr>
 </tbody></table>
 <h2>What the package checks</h2>
-<ul><li>Exact SDK commit, manager, engine, public-contract, manifest, package, SBOM, provenance, and signature bindings.</li><li>Facade names, versions, native dependency pins, required client modules, resolvers, both launchers, and allowlisted archive inventories.</li><li>Private-source and build-path scans plus isolated npm/Python installs and both version commands.</li><li>Unsupported targets fail clearly; the five non-macOS-arm64 entries remain refusal-only scaffolds.</li></ul>
+<ul><li>Exact SDK commit, manager, engine, public-contract, manifest, package, SBOM, provenance, and signature bindings.</li><li>Facade names, versions, native dependency pins, required client modules, resolvers, both launchers, and allowlisted archive inventories.</li><li>Private-source and build-path scans plus isolated npm/Python installs and both version commands.</li><li>Cross-target type-check evidence now covers Linux x86_64/arm64, Windows x86_64 GNU, and macOS x64; unsupported runtime/package targets still fail clearly.</li></ul>
 <h2>Current availability</h2>
 <p>SDK commit <code>{SDK_FACADE_COMMIT}</code>, assembler commit <code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, and final evidence commit <code>{FINAL_EVIDENCE_COMMIT}</code> define this local RC contract. The package proof records <code>facade_mode: sdk_artifacts</code>; the final package evidence records fresh npm/Python facade invocation. The Apache-2.0 facade metadata and proprietary EULA review draft are bound into this proof. Final legal review, trusted signing identities, registry credentials, other native platforms, and protected publication approval remain required.</p>
 """,
@@ -624,7 +672,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <h2>Disconnect and uninstall</h2><p>Disconnect removes only manager-owned host configuration. Instruction removal is separate. A future installer uninstall removes package artifacts according to its scope; account logout/revocation is also separate. None of these operations implicitly deletes a vault.</p>
 <h2>Delete a vault</h2><p>Vault deletion is a separate preview-and-confirm operation tied to one exact resolved root. Logical memory deletion and physical vault deletion are different operations. A broad path, unresolved variable, or ambiguous target must be refused.</p>
 <h2>Update and rollback</h2><p>DX-10A locally exercised clean install, update, exact rollback, and uninstall under an explicitly marked staging root using the final local manager and engine candidate. It verified only a TEST-ONLY Ed25519 trust root and reused the same binaries for the simulated update. This is not a production installer, notarization result, or supported update channel. The separate vault canary remained byte-identical.</p>
-<h2>Package shapes</h2><p>Local macOS arm64 staging produced full TypeScript/Python SDK facades and exact npm/wheel native companions. Both facades expose <code>kaleidoscope</code> and <code>kscope</code>; both companions carry the manager and proprietary object-code engine. Nothing was published, and the other five platform entries remain refusal-only scaffolds.</p>
+<h2>Package shapes</h2><p>Local macOS arm64 staging produced full TypeScript/Python SDK facades and exact npm/wheel native companions. Both facades expose <code>kaleidoscope</code> and <code>kscope</code>; both companions carry the manager and proprietary object-code engine. Cross-target type-checks cover the other supported source targets, but no foreign native package or runtime acceptance exists. Nothing was published.</p>
 """,
     ),
     Page(
@@ -688,15 +736,15 @@ kaleidoscope profile account unbind [NAME]</code></pre>
 <p class="lede">A platform or harness is supported only after the packaged artifact passes the canonical end-to-end proof on the named native runner and pinned host version.</p>
 <table><thead><tr><th>Surface</th><th>Verified local evidence</th><th>Held before support</th></tr></thead><tbody>
 <tr><td>macOS arm64</td><td>Full npm/Python SDK facades, exact native companions, auth-enabled manager and engine candidate, real stdio MCP, account refusal, clean install/update/rollback/uninstall, vault canary, and real Codex CLI configuration.</td><td>Production signature/notarization, approved terms, live OIDC/keychain, model/TUI/IDE acceptance, and protected publication.</td></tr>
-<tr><td>macOS x64</td><td>Target metadata/refusal only.</td><td>Native binaries, package, runner, signing/notarization.</td></tr>
-<tr><td>Linux x86_64/arm64</td><td>Source implementation and target metadata only; libc policy not frozen.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
-<tr><td>Windows x86_64/arm64</td><td>Source implementation and target metadata only.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
+<tr><td>macOS x64</td><td>Cross-target <code>cargo check</code> passed for <code>x86_64-apple-darwin</code> on the pinned source.</td><td>Native binary/package, runner, signing/notarization, and runtime evidence.</td></tr>
+<tr><td>Linux x86_64/arm64</td><td>Cross-target <code>cargo check</code> passed for <code>x86_64-unknown-linux-gnu</code> and <code>aarch64-unknown-linux-gnu</code> on the pinned source.</td><td>Native binaries, libc policy, credential store, packages, runners, installer, and runtime evidence.</td></tr>
+<tr><td>Windows x86_64/arm64</td><td>Cross-target <code>cargo check</code> passed for <code>x86_64-pc-windows-gnu</code>; arm64 remains metadata-only.</td><td>Native Windows runner, MSVC/arm64 binaries, credential store, packages, installer, and runtime evidence.</td></tr>
 <tr><td>Codex</td><td>Config transforms plus real pinned CLI add/list/get/remove and exact isolated rollback.</td><td>Model/TUI acceptance and a protected published install.</td></tr>
 <tr><td>Claude Code / OpenCode</td><td>Pinned local CLI wiring and MCP discovery on macOS arm64 against a model-absent development binary; config render, dry run, idempotence, and exact rollback.</td><td>Released package, credentialed model, GUI/IDE, and production support acceptance.</td></tr>
 <tr><td>Cursor</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Host run, installed package, and pinned live-host acceptance.</td></tr>
 <tr><td>Framework clients</td><td>Generic MCP and adapter lifecycle suites passed with pinned versions and final-candidate non-auth conformance.</td><td>Live-provider lanes where required and protected published packages.</td></tr>
 </tbody></table>
-<p>Cross-compiling, extracting a foreign package, parsing configuration, or running a fake provider is useful evidence but not native support. Nothing in this table is a public availability claim.</p>
+<p>Cross-target type-checking is useful evidence but not native support: it does not execute a foreign binary or validate installers, credential stores, package binding, GUI/IDE behavior, or live providers. Nothing in this table is a public availability claim. The exact record is <a href="/cross-target-checks.json">cross-target-checks.json</a>.</p>
 """,
     ),
     Page(
@@ -720,14 +768,15 @@ kaleidoscope profile account unbind [NAME]</code></pre>
 <p class="lede">Evidence is split into local functional proof, package/signature proof, native platform support, and protected production promotion. Passing one does not imply the others.</p>
 <div class="callout"><strong>Machine-readable record.</strong> <a href="/staging-evidence.json">staging-evidence.json</a> carries the same public, source-free status. It contains no local paths, credentials, vault coordinates, or private engine source.</div>
 <h2>Exact local candidate</h2>
-<table><tbody><tr><th>SDK facade commit</th><td><code>{SDK_FACADE_COMMIT}</code></td></tr><tr><th>Distribution assembler commit</th><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code></td></tr><tr><th>Final evidence commit</th><td><code>{FINAL_EVIDENCE_COMMIT}</code></td></tr><tr><th>Final package evidence SHA-256</th><td><code>{FINAL_PACKAGE_EVIDENCE_SHA256}</code></td></tr><tr><th>Manager source commit</th><td><code>{MANAGER_SOURCE_COMMIT}</code></td></tr><tr><th>Manager candidate SHA-256</th><td><code>{MANAGER_SHA256}</code></td></tr><tr><th>Engine source commit</th><td><code>{ENGINE_SOURCE_COMMIT}</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>{ENGINE_CANDIDATE_SHA256}</code></td></tr><tr><th>Public contract SHA-256</th><td><code>{PUBLIC_CONTRACT_SHA256}</code></td></tr><tr><th>RC package version</th><td><code>0.1.0-rc.1</code> / Python <code>0.1.0rc1</code></td></tr><tr><th>Native target tested</th><td>macOS arm64 only</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
+<table><tbody><tr><th>SDK facade commit</th><td><code>{SDK_FACADE_COMMIT}</code></td></tr><tr><th>Distribution assembler commit</th><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code></td></tr><tr><th>Final evidence commit</th><td><code>{FINAL_EVIDENCE_COMMIT}</code></td></tr><tr><th>Final package evidence SHA-256</th><td><code>{FINAL_PACKAGE_EVIDENCE_SHA256}</code></td></tr><tr><th>Platform harness commit</th><td><code>{PLATFORM_HARNESS_COMMIT}</code></td></tr><tr><th>Cross-target checks SHA-256</th><td><code>{CROSS_TARGET_COMPILE_EVIDENCE_SHA256}</code></td></tr><tr><th>Manager source commit</th><td><code>{MANAGER_SOURCE_COMMIT}</code></td></tr><tr><th>Manager candidate SHA-256</th><td><code>{MANAGER_SHA256}</code></td></tr><tr><th>Engine source commit</th><td><code>{ENGINE_SOURCE_COMMIT}</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>{ENGINE_CANDIDATE_SHA256}</code></td></tr><tr><th>Public contract SHA-256</th><td><code>{PUBLIC_CONTRACT_SHA256}</code></td></tr><tr><th>RC package version</th><td><code>0.1.0-rc.1</code> / Python <code>0.1.0rc1</code></td></tr><tr><th>Native runtime target tested</th><td>macOS arm64 only</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
+<div class="callout"><strong>Cross-target type-check evidence.</strong> On the pinned source, <code>cargo check --locked -p kaleidoscope-service --bin kscope</code> passed for Linux x86_64/arm64, Windows x86_64 GNU, and macOS x64. This is type-check evidence from a macOS arm64 host; it does not establish foreign runtime, installer, package, credential-store, GUI/IDE, or live-provider support.</div>
 <h2>Milestones</h2>
 <table><thead><tr><th>Slice</th><th>Exact evidence</th><th>What is true now</th></tr></thead><tbody>
 <tr><td>DX-04 / DX-05B</td><td><code>{MANAGER_SOURCE_COMMIT}</code>, manager <code>{MANAGER_SHA256}</code></td><td>Consolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.</td></tr>
 <tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, proof <code>{PACKAGE_PROOF_SHA256}</code></td><td>The licensed source-bound archive and package set was reassembled with a test-only signature; no publication occurred.</td></tr>
 <tr><td>DX-07</td><td><code>{SDK_FACADE_COMMIT}</code></td><td>Full Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; Apache-2.0 licensing is source-staged and no public remote is configured.</td></tr>
 <tr><td>DX-09</td><td><code>{BENCHMARK_COMMIT}</code>, merged PRs 5/6; evidence <code>{DX09_FIXTURE_EVIDENCE_SHA256}</code></td><td>Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.</td></tr>
-<tr><td>DX-10A</td><td><code>{DX10A_EVIDENCE_SHA256}</code></td><td>Final local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.</td></tr>
+<tr><td>DX-10A</td><td><code>{DX10A_EVIDENCE_SHA256}</code></td><td>Final local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native runtime/package cells remain held despite type-check evidence.</td></tr>
 <tr><td>DX-10B</td><td><code>{FINAL_EVIDENCE_COMMIT}</code>, package evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256}</code>, host harness <code>{PLATFORM_HARNESS_COMMIT}</code></td><td>Fresh npm/Python facade <code>init</code>, <code>doctor</code>, Codex dry-run configuration, MCP discovery, and pinned local Codex/Claude Code/OpenCode CLI wiring passed on macOS arm64 against a model-absent development binary. No credentialed model, GUI/IDE, Cursor, released-package, or production acceptance claim.</td></tr>
 </tbody></table>
 <h2>Converged RC package proof</h2><p>The local archive <code>{LOCAL_ARCHIVE_SHA256}</code>, manifest <code>{LOCAL_MANIFEST_SHA256}</code>, build proof <code>{FINAL_BUILD_PROOF_SHA256}</code>, and combined package proof <code>{PACKAGE_PROOF_SHA256}</code> bind the full npm/Python SDK facades to their exact macOS arm64 native companions. The facades carry public client code, installed-payload resolution and both launchers; the companions carry manager <code>{MANAGER_SHA256}</code> and engine <code>{ENGINE_CANDIDATE_SHA256}</code> plus contract <code>{PUBLIC_CONTRACT_SHA256}</code>. The SBOM <code>{LOCAL_SBOM_SHA256}</code>, provenance <code>{LOCAL_PROVENANCE_SHA256}</code>, and signature envelope <code>{LOCAL_TEST_SIGNATURE_SHA256}</code> are all test-only local evidence. This closes local package-shape convergence, not protected production gates.</p>
@@ -1379,10 +1428,11 @@ Policy: {DOMAIN}/docs/security/
 - [Public agent skill]({DOMAIN}/SKILL.md): bounded retrieval and verified durable writes
 - [Agent instructions]({DOMAIN}/agent-instructions.md): safe manager-installed AGENTS, CLAUDE, and Cursor pointers
 - [Machine-readable staging evidence]({DOMAIN}/staging-evidence.json): source-free milestone and gate record
+- [Cross-target checks]({DOMAIN}/cross-target-checks.json): type-checks for non-macOS-arm64 source targets
 - [Candidate CLI help]({DOMAIN}/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference]({DOMAIN}/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {SDK_FACADE_COMMIT} puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit {DISTRIBUTION_ASSEMBLER_COMMIT} pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit {FINAL_EVIDENCE_COMMIT} freezes the result. Exact hashes: release archive {LOCAL_ARCHIVE_SHA256}; manifest {LOCAL_MANIFEST_SHA256}; build proof {FINAL_BUILD_PROOF_SHA256}; package proof {PACKAGE_PROOF_SHA256}; npm facade {NPM_FACADE_SHA256}; npm native companion {NPM_NATIVE_SHA256}; Python facade {PYTHON_FACADE_SHA256}; Python native companion {PYTHON_NATIVE_SHA256}; SBOM {LOCAL_SBOM_SHA256}; provenance {LOCAL_PROVENANCE_SHA256}; test-only signature envelope {LOCAL_TEST_SIGNATURE_SHA256}. The engine source is not in any public surface. Manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; DX-09 fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; historic DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; historic pre-final Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}; local host-wiring harness commit {PLATFORM_HARNESS_COMMIT}. Final package evidence proves fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery. The host harness additionally proves pinned local Codex, Claude Code, and OpenCode CLI wiring and MCP discovery against a model-absent development binary; it does not prove a credentialed model turn, GUI/IDE, Cursor, released package, or production support. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Apache-2.0 and CC BY 4.0 source licensing and review-draft product terms are staged; production signing, final legal review, registry publication, and login remain separately gated.
+The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {SDK_FACADE_COMMIT} puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit {DISTRIBUTION_ASSEMBLER_COMMIT} pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit {FINAL_EVIDENCE_COMMIT} freezes the result. Exact hashes: release archive {LOCAL_ARCHIVE_SHA256}; manifest {LOCAL_MANIFEST_SHA256}; build proof {FINAL_BUILD_PROOF_SHA256}; package proof {PACKAGE_PROOF_SHA256}; npm facade {NPM_FACADE_SHA256}; npm native companion {NPM_NATIVE_SHA256}; Python facade {PYTHON_FACADE_SHA256}; Python native companion {PYTHON_NATIVE_SHA256}; SBOM {LOCAL_SBOM_SHA256}; provenance {LOCAL_PROVENANCE_SHA256}; test-only signature envelope {LOCAL_TEST_SIGNATURE_SHA256}. The engine source is not in any public surface. Manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; DX-09 fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; historic DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; historic pre-final Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}; local host-wiring harness commit {PLATFORM_HARNESS_COMMIT}; cross-target check evidence SHA-256 {CROSS_TARGET_COMPILE_EVIDENCE_SHA256}. Final package evidence proves fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery. The host harness additionally proves pinned local Codex, Claude Code, and OpenCode CLI wiring and MCP discovery against a model-absent development binary. Cross-target checks pass for Linux x86_64/arm64, Windows x86_64 GNU, and macOS x64, but they are type-checks from macOS arm64 and do not prove foreign runtime, package, installer, credential-store, GUI/IDE, Cursor, or live-provider support. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Apache-2.0 and CC BY 4.0 source licensing and review-draft product terms are staged; production signing, final legal review, registry publication, and login remain separately gated.
 """
     write_text(output / "llms.txt", llms)
 
@@ -1399,6 +1449,7 @@ The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {
             f"# Candidate CLI help\n\nURL: {DOMAIN}/reference/kaleidoscope-cli.candidate.txt\nSource: consolidated manager commit {MANAGER_SOURCE_COMMIT}\nSHA-256: {MANAGER_SHA256}\n\n{MANAGER_HELP.strip()}",
             f"# Candidate MCP reference\n\nURL: {DOMAIN}/reference/kaleidoscope-mcp.candidate.json\n\n{json.dumps(MCP_REFERENCE, indent=2, sort_keys=True)}",
             f"# Machine-readable staging evidence\n\nURL: {DOMAIN}/staging-evidence.json\n\n{json.dumps(STAGING_EVIDENCE, indent=2, sort_keys=True)}",
+            f"# Cross-target checks\n\nURL: {DOMAIN}/cross-target-checks.json\n\n{json.dumps({**CROSS_TARGET_COMPILE_EVIDENCE, 'evidence_sha256': CROSS_TARGET_COMPILE_EVIDENCE_SHA256}, indent=2, sort_keys=True)}",
         ]
     )
     write_text(output / "llms-full.txt", "\n\n---\n\n".join(chunks))
@@ -1406,6 +1457,14 @@ The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {
     write_text(
         output / "staging-evidence.json",
         json.dumps(STAGING_EVIDENCE, indent=2, sort_keys=True),
+    )
+    write_text(
+        output / "cross-target-checks.json",
+        json.dumps(
+            {**CROSS_TARGET_COMPILE_EVIDENCE, "evidence_sha256": CROSS_TARGET_COMPILE_EVIDENCE_SHA256},
+            indent=2,
+            sort_keys=True,
+        ),
     )
     write_text(
         output / "reference" / "kaleidoscope-cli.candidate.txt", MANAGER_HELP

@@ -83,6 +83,19 @@ class DocumentationArtifactTest(unittest.TestCase):
             build_site.STAGING_EVIDENCE["local_host_cli_conformance"]["mcp_tools"],
             ["remember", "search"],
         )
+        self.assertEqual(
+            build_site.STAGING_EVIDENCE["cross_target_compile"]["evidence_sha256"],
+            build_site.CROSS_TARGET_COMPILE_EVIDENCE_SHA256,
+        )
+        self.assertEqual(
+            {target["triple"] for target in build_site.CROSS_TARGET_COMPILE_EVIDENCE["targets"]},
+            {
+                "x86_64-unknown-linux-gnu",
+                "aarch64-unknown-linux-gnu",
+                "x86_64-pc-windows-gnu",
+                "x86_64-apple-darwin",
+            },
+        )
 
     def test_public_machine_records_have_no_private_coordinates(self) -> None:
         values = "\n".join(
