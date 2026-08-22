@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Security policy | Kaleidoscope</title>
+  <meta name="description" content="Review draft of supported-version, vulnerability reporting, safe-harbor, and incident communication terms.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/legal/security-policy/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Security policy | Kaleidoscope">
+  <meta property="og:description" content="Review draft of supported-version, vulnerability reporting, safe-harbor, and incident communication terms.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/legal/security-policy/">
+  <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Security policy | Kaleidoscope">
+  <meta name="twitter:description" content="Review draft of supported-version, vulnerability reporting, safe-harbor, and incident communication terms.">
+  <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
+  <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Security policy","description":"Review draft of supported-version, vulnerability reporting, safe-harbor, and incident communication terms.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/legal/security-policy/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Security policy","item":"https://memory.kleosresearch.xyz/docs/legal/security-policy/"}]}]}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
+  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Security policy</h1><p class="lede">A proposed coordinated-disclosure policy; no production intake exists until a monitored private channel and supported-version table are published.</p><div class="callout"><strong>Review status.</strong> This is a source-controlled review draft, not a production legal notice, support commitment, or claim of external legal approval.</div><p><a href="/legal/SECURITY-POLICY.txt">Download the plain-text source</a>.</p><pre class="legal-document"><code>KALEIDOSCOPE SECURITY POLICY
+REVIEW DRAFT - NOT FOR PRODUCTION USE
+
+Last updated: August 22, 2026
+
+This draft defines a proposed vulnerability-reporting and support boundary. No
+production security intake or supported version exists until an exact staffed
+contact and supported-version table are published.
+
+1. SUPPORTED VERSIONS
+
+Only versions explicitly listed on the production security page are supported.
+Release candidates, local staging builds, test-signed packages, source
+snapshots, refusal-only platform scaffolds, and unlisted host versions are not
+production-supported.
+
+Proposed default after general availability: support the current release and
+the immediately preceding minor release for 90 days after replacement, subject
+to platform and host versions in the compatibility table. Security fixes may
+require upgrading to the current release. This lifecycle needs staffing and
+product-owner confirmation before release.
+
+2. REPORTING A VULNERABILITY
+
+Do not report vulnerabilities, credentials, private keys, exploit details, or
+sensitive user data in a public issue.
+
+Before production, publish a monitored security email or secure submission
+portal and an encryption key if encrypted reports are accepted. A complete
+report should include:
+
+- affected product, version, platform, package digest, and host version;
+- a concise impact statement and prerequisite conditions;
+- reproducible steps or a minimal proof of concept;
+- whether sensitive data or another person&#x27;s account was accessed;
+- mitigations already attempted; and
+- a safe way to contact the reporter.
+
+Do not send raw vaults, memory content, prompts, tokens, account credentials, or
+unredacted local paths unless a responder specifically requests them through
+an approved secure channel.
+
+3. PROPOSED RESPONSE TARGETS
+
+After production staffing is confirmed, the proposed non-binding targets are:
+
+- acknowledge a complete report within 3 business days;
+- provide initial triage within 10 business days;
+- provide a status update at least every 30 days while remediation is active;
+  and
+- coordinate disclosure after a fix or mitigation is broadly available.
+
+These are targets, not an SLA or promise of a bounty. Paid support or a separate
+written agreement may provide different commitments.
+
+4. COORDINATED DISCLOSURE
+
+Give Kaleidoscope a reasonable opportunity to investigate and remediate before
+public disclosure. The parties should agree on a disclosure date based on
+severity, exploitability, affected users, and fix availability. Kaleidoscope
+will not ask a reporter to conceal an unresolved risk indefinitely and will
+credit a reporter who requests credit and whose report materially helps,
+subject to law and privacy.
+
+5. GOOD-FAITH RESEARCH
+
+Kaleidoscope intends not to initiate legal action against research that:
+
+- is performed in good faith on systems and accounts the researcher owns or is
+  authorized to test;
+- avoids privacy violations, persistence, service disruption, social
+  engineering, physical attacks, extortion, and unnecessary data access;
+- accesses only the minimum data needed to demonstrate the issue and securely
+  deletes any retained data;
+- does not exploit a vulnerability beyond what is needed to confirm impact;
+- complies with applicable law and this policy; and
+- reports promptly through the designated private channel.
+
+This statement cannot authorize testing of third-party infrastructure or waive
+rights belonging to others. If uncertain whether planned testing is covered,
+ask through the security channel before proceeding.
+
+6. OUT OF SCOPE
+
+Ordinarily out of scope unless a concrete security impact is shown:
+
+- automated scanner output without validation;
+- denial-of-service or resource-exhaustion testing;
+- social engineering, phishing, spam, or physical attacks;
+- vulnerabilities only in unsupported versions or unmodified third-party
+  software;
+- missing headers or best-practice observations with no exploitable impact;
+- reports requiring a compromised operating-system administrator or physical
+  device access where that is the stated trust boundary; and
+- claims that object code is impossible to inspect or reverse engineer.
+
+7. PACKAGE AND LOCAL-DATA BOUNDARY
+
+Verify package digests and signatures only against a production trust root.
+Test fixture signatures and ad hoc platform signatures are not production
+proof.
+
+The local engine is designed for a local vault and stdio protocol. Account
+traffic is a separate manager surface and must exclude memory content, queries,
+results, vault coordinates, provider secrets, and absolute local paths. A
+security report should identify any observed violation of that boundary.
+
+8. INCIDENT COMMUNICATIONS
+
+For a confirmed incident, Kaleidoscope should publish the affected versions,
+impact, mitigations, fixed version, package checksums, and required migration or
+credential actions without exposing exploit details that would create
+unnecessary harm. Applicable breach-notification obligations and contractual
+notice periods control.
+
+9. REQUIRED PRODUCTION COMPLETION
+
+Before this policy becomes effective, confirm:
+
+- the exact legal entity and monitored security channel;
+- staffed business hours and emergency escalation;
+- supported versions, platforms, and host pins;
+- encryption and evidence-handling procedures;
+- response targets and any bounty terms;
+- incident severity and notification procedures; and
+- applicable jurisdiction and safe-harbor review.
+
+END OF REVIEW DRAFT
+
+</code></pre></article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+</div></footer></body></html>

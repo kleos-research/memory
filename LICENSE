@@ -1,0 +1,37 @@
+Kaleidoscope Documentation License
+
+Except for the exclusions below, original documentation content in this
+repository is licensed under the Creative Commons Attribution 4.0 International
+Public License (CC BY 4.0). The full license text is in
+legal/CC-BY-4.0.txt and at https://creativecommons.org/licenses/by/4.0/.
+
+Attribution
+
+When sharing or adapting the licensed documentation, provide attribution to
+"Kleos Research, Kaleidoscope documentation", link to the source material when
+reasonably practicable, link to CC BY 4.0, and indicate whether changes were
+made.
+
+Scope and exclusions
+
+This grant covers original explanatory text, diagrams, and documentation pages
+authored for Kaleidoscope and distributed from this repository.
+
+It does not license:
+
+- Kaleidoscope software, SDKs, wrappers, integrations, engine object code,
+  model weights, or package payloads;
+- third-party material, which remains under its own license;
+- names, logos, trademarks, trade dress, domains, or brand assets except as
+  needed for attribution;
+- personal data, credentials, release keys, or confidential material; or
+- repository build tooling and test code unless another file expressly applies
+  a software license to them.
+
+Generated copies of licensed documentation carry the same CC BY 4.0 terms.
+The proprietary engine EULA and the privacy, security, and support policies are
+legal/product terms, not documentation content offered for adaptation; they
+may be quoted or reproduced only as needed to present or accept those terms.
+
+No endorsement is implied by reuse.
+

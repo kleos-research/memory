@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Proprietary engine EULA | Kaleidoscope</title>
+  <meta name="description" content="Review draft of the Kaleidoscope proprietary native engine object-code end user license agreement.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/legal/engine-eula/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Proprietary engine EULA | Kaleidoscope">
+  <meta property="og:description" content="Review draft of the Kaleidoscope proprietary native engine object-code end user license agreement.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/legal/engine-eula/">
+  <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Proprietary engine EULA | Kaleidoscope">
+  <meta name="twitter:description" content="Review draft of the Kaleidoscope proprietary native engine object-code end user license agreement.">
+  <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
+  <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Proprietary engine EULA","description":"Review draft of the Kaleidoscope proprietary native engine object-code end user license agreement.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/legal/engine-eula/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Proprietary engine EULA","item":"https://memory.kleosresearch.xyz/docs/legal/engine-eula/"}]}]}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
+  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Proprietary engine EULA</h1><p class="lede">Terms proposed for proprietary Kaleidoscope engine object code; public Apache-2.0 components and CC BY 4.0 documentation remain separate.</p><div class="callout"><strong>Review status.</strong> This is a source-controlled review draft, not a production legal notice, support commitment, or claim of external legal approval.</div><p><a href="/legal/ENGINE-EULA.txt">Download the plain-text source</a>.</p><pre class="legal-document"><code>KALEIDOSCOPE ENGINE END USER LICENSE AGREEMENT
+REVIEW DRAFT - NOT FOR PRODUCTION DISTRIBUTION
+
+Last updated: August 22, 2026
+
+IMPORTANT: This review draft is included only in a private, dry-run release
+candidate. It does not authorize publication or distribution. Before any
+production release, the Licensor&#x27;s exact legal name, notice address, governing
+law, venue, consumer-law treatment, liability cap, and acceptance flow must be
+approved and inserted.
+
+This End User License Agreement (&quot;Agreement&quot;) governs the proprietary
+Kaleidoscope native engine object code distributed with a Kaleidoscope product
+(the &quot;Engine&quot;). The person or entity that supplies the Engine under an order,
+receipt, download page, or other release record is the &quot;Licensor.&quot; &quot;You&quot; means
+the individual or entity accepting this Agreement.
+
+By installing, copying, or using a production copy of the Engine after being
+presented with this Agreement, You agree to it. If You accept for an
+organization, You represent that You have authority to bind that organization.
+If You do not agree, do not install or use the Engine and remove any copies
+provided to You. This acceptance paragraph does not activate this review draft.
+
+1. SCOPE AND SEPARATE MATERIALS
+
+1.1 Engine. The Engine includes proprietary executable code, embedded
+components and model assets supplied with it, and updates the Licensor
+designates as governed by this Agreement.
+
+1.2 Public components. The Kaleidoscope public manager, SDKs, wrappers,
+integrations, examples, snippets, and agent skill are separate works licensed
+under the Apache License 2.0 when their distribution says so. Original
+Kaleidoscope documentation may be licensed under Creative Commons Attribution
+4.0 International when marked accordingly. Those public licenses are not
+restricted by this Agreement.
+
+1.3 Third-party material. Third-party components are governed by their
+applicable notices and license terms. Those terms control if they conflict with
+this Agreement for that component. The Engine&#x27;s command-line notice report and
+the package&#x27;s third-party notice file identify applicable components.
+
+1.4 Services. Hosted services, accounts, billing, support plans, and
+professional services may have separate terms. This Agreement does not create a
+hosted-memory service or authorize upload of local memory data.
+
+2. LICENSE GRANT
+
+Subject to Your compliance with this Agreement and any applicable order or
+entitlement, the Licensor grants You a limited, non-exclusive,
+non-transferable, non-sublicensable, revocable license to:
+
+(a) install and run the Engine in object-code form on devices You own or
+control, solely for Your personal or internal business use with Kaleidoscope
+products;
+
+(b) make one reasonable backup copy for disaster recovery; and
+
+(c) permit Your employees and contractors to use the Engine for Your benefit,
+provided they are bound by obligations at least as protective as this
+Agreement and You remain responsible for their compliance.
+
+The license is limited by the devices, users, term, plan, and other entitlement
+terms stated in Your order or release record. If no such limit is stated, the
+license is for one user on devices that user owns or controls.
+
+3. RESTRICTIONS
+
+Except to the extent a restriction is prohibited by applicable law, You must
+not, and must not enable another person to:
+
+(a) copy the Engine except as expressly permitted;
+
+(b) sell, resell, rent, lease, sublicense, distribute, publish, transfer, or
+make the Engine available to a third party;
+
+(c) use the Engine to provide a hosted, service-bureau, time-sharing, or
+managed service for third parties;
+
+(d) modify, translate, adapt, or create derivative works of the Engine;
+
+(e) reverse engineer, decompile, disassemble, or otherwise attempt to derive
+source code, non-public algorithms, models, keys, or protocols from the Engine;
+
+(f) bypass or defeat license, entitlement, signature, integrity, access, or
+usage controls;
+
+(g) remove, obscure, or alter proprietary notices; or
+
+(h) use the Engine unlawfully or in a way that infringes another person&#x27;s
+rights.
+
+Where applicable law permits interoperability research or reverse engineering
+despite this section, You may exercise only the non-waivable right, after first
+requesting reasonably necessary interoperability information from the
+Licensor, and only to the minimum extent the law permits.
+
+4. OWNERSHIP AND FEEDBACK
+
+The Engine is licensed, not sold. The Licensor and its licensors retain all
+right, title, and interest in the Engine and all intellectual-property rights
+not expressly granted. No implied license is granted. Kaleidoscope names,
+logos, and marks are not licensed except for truthful identification of the
+product.
+
+If You voluntarily provide product feedback, You grant the Licensor a
+worldwide, perpetual, irrevocable, royalty-free right to use and incorporate
+that feedback without identifying You. This does not grant rights in Your
+memory content, prompts, queries, results, or other local data.
+
+5. LOCAL DATA, ACCOUNTS, AND NETWORK USE
+
+5.1 Local engine data. Under the documented local configuration, memory
+content, queries, selected results, graph data, and vault files remain on
+devices You control. You own Your content. You are responsible for lawful
+collection, use, backups, access control, and deletion of that content.
+
+5.2 No implied upload. Installing or using the Engine does not authorize the
+Licensor to upload, sync, train on, sell, or delete Your local memory data.
+A hosted or sync feature requires a separate, express agreement and user
+action.
+
+5.3 Optional account features. If You choose to use account or device
+features, the public manager may communicate the bounded account fields
+described in the then-current privacy notice. Account traffic is separate from
+the Engine&#x27;s local memory protocol.
+
+5.4 Diagnostics. Do not send secrets, raw memory content, credentials, or
+private paths in a support request. Review and redact diagnostic output before
+sharing it.
+
+6. UPDATES AND CHANGES
+
+The Licensor may provide updates, patches, or replacements. An update may be
+required for security, compatibility, or continued service access. Updates are
+governed by this Agreement unless supplied with different terms. The Licensor
+does not promise any update, feature, compatibility, or maintenance period
+except in a separate written support plan.
+
+7. SECURITY AND RESPONSIBLE USE
+
+You must use reasonable safeguards for devices, credentials, profiles, and
+vaults; install security updates within a reasonable time; and notify the
+Licensor through the published security channel if You discover a suspected
+vulnerability. You must not publicly disclose exploit details before a
+reasonable coordinated-disclosure period unless applicable law requires it.
+
+8. CONFIDENTIALITY
+
+Non-public Engine internals, private release materials, keys, and technical
+information identified as confidential or reasonably understood to be
+confidential are the Licensor&#x27;s confidential information. You must protect them
+with at least reasonable care and use them only as this Agreement permits.
+This section does not cover information You can document was lawfully public,
+already known without restriction, independently developed, or received
+lawfully from another source.
+
+9. COMPLIANCE
+
+You must comply with applicable export-control, sanctions, anti-corruption, and
+other laws. You represent that You are not prohibited from receiving the
+Engine. You are responsible for obtaining permissions needed for Your data and
+use case. The Engine is not designed or warranted for emergency, life-support,
+nuclear, weapons, or other use where failure could reasonably cause death,
+personal injury, or severe environmental or property damage.
+
+10. TERM AND TERMINATION
+
+This Agreement starts when validly accepted and continues while You possess or
+use the Engine, unless an order states a shorter term. Your license terminates
+automatically if You materially breach this Agreement and do not cure a
+curable breach within 30 days after notice. It may terminate immediately for a
+breach of Sections 3, 8, or 9, or where continued performance would violate
+law.
+
+When the license ends, stop using the Engine and delete all copies, except one
+archival copy retained solely if law requires it. Sections concerning
+ownership, confidentiality, disclaimers, liability, and general terms survive.
+
+11. WARRANTY DISCLAIMER
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE ENGINE IS PROVIDED &quot;AS IS&quot; AND &quot;AS
+AVAILABLE.&quot; THE LICENSOR AND ITS SUPPLIERS DISCLAIM ALL EXPRESS, IMPLIED, AND
+STATUTORY WARRANTIES, INCLUDING TITLE, NON-INFRINGEMENT, MERCHANTABILITY,
+SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, QUIET
+ENJOYMENT, AND THAT THE ENGINE WILL BE ERROR-FREE, SECURE, OR UNINTERRUPTED.
+
+THIS DISCLAIMER DOES NOT EXCLUDE WARRANTIES OR REMEDIES THAT CANNOT LAWFULLY BE
+EXCLUDED. ANY EXPRESS LIMITED WARRANTY IN AN ORDER CONTROLS OVER THIS SECTION
+ONLY TO THE EXTENT OF THE CONFLICT.
+
+12. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, NEITHER THE LICENSOR NOR ITS SUPPLIERS
+WILL BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE, OR
+CONSEQUENTIAL DAMAGES, OR FOR LOST PROFITS, REVENUE, GOODWILL, BUSINESS,
+OPPORTUNITY, OR DATA, ARISING FROM THE ENGINE OR THIS AGREEMENT, EVEN IF ADVISED
+THAT SUCH DAMAGES WERE POSSIBLE.
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE AGGREGATE LIABILITY OF THE LICENSOR
+AND ITS SUPPLIERS ARISING FROM THE ENGINE OR THIS AGREEMENT WILL NOT EXCEED THE
+GREATER OF (A) THE AMOUNT YOU PAID FOR THE ENGINE DURING THE 12 MONTHS BEFORE
+THE EVENT GIVING RISE TO LIABILITY OR (B) USD 100.
+
+THE LIMITATIONS DO NOT APPLY TO LIABILITY THAT CANNOT LAWFULLY BE LIMITED. Some
+jurisdictions do not allow particular exclusions or limits, so parts of this
+section may not apply to You. The parties intend the limitations to allocate
+risk and apply even if a limited remedy fails of its essential purpose.
+
+13. GENERAL TERMS
+
+13.1 Governing law and venue. The production Agreement must identify the
+Licensor&#x27;s jurisdiction and an appropriate exclusive venue before release.
+Mandatory consumer protections and non-waivable statutory rights continue to
+apply.
+
+13.2 Assignment. You may not assign this Agreement without the Licensor&#x27;s prior
+written consent, except in connection with a merger or sale of substantially
+all assets where the assignee accepts this Agreement. The Licensor may assign
+this Agreement as part of a reorganization, financing, or sale of the relevant
+business.
+
+13.3 Notices. Legal notices must be sent to the address identified in the
+production download page or order. A production release must provide an exact
+legal entity, postal or electronic notice address, and security contact.
+
+13.4 Entire agreement; order of precedence. This Agreement, applicable orders,
+and incorporated third-party notices are the entire agreement about the
+Engine. An executed order controls over this Agreement for its subject matter.
+A purchase order does not modify these terms unless expressly accepted in
+writing.
+
+13.5 Severability and waiver. If a provision is unenforceable, it will be
+reformed only to the minimum extent necessary, and the remainder stays in
+effect. A failure to enforce a provision is not a waiver.
+
+13.6 Force majeure. Neither party is responsible for delay caused by events
+beyond its reasonable control, except payment obligations.
+
+13.7 Language. The English version controls unless applicable law requires
+otherwise.
+
+END OF REVIEW DRAFT
+
+</code></pre></article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+</div></footer></body></html>

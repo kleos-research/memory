@@ -1,0 +1,335 @@
+{
+  "files": [
+    {
+      "path": ".nojekyll",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": ".well-known/security.txt",
+      "sha256": "d64611139647f1bb72bd05911f59df681d1bc6fc01c98c229e11cafc7a1a39f8",
+      "size_bytes": 308
+    },
+    {
+      "path": "404.html",
+      "sha256": "ed045bb9b3fbdf03278142a63c7c98abefe0a5720e8e8a99e87174e12a843c9e",
+      "size_bytes": 3880
+    },
+    {
+      "path": "CNAME",
+      "sha256": "e44249353df343fa685fbe8b2a6a2c36c86303eeb32417f4074a06073bd54289",
+      "size_bytes": 25
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad",
+      "size_bytes": 4136
+    },
+    {
+      "path": "agent-instructions.md",
+      "sha256": "36c9afd78057c054d345b78df351dd41f5a2b6f5fb47d7d0fd178a94822ecc3c",
+      "size_bytes": 1424
+    },
+    {
+      "path": "apple-touch-icon.png",
+      "sha256": "320828c176d880ebb0f2e80e050e3f403c2e33848302f7cac665d11ef979b73e",
+      "size_bytes": 2333
+    },
+    {
+      "path": "assets/kaleidoscope-og.png",
+      "sha256": "6baf3f1b5dc459aabfd8df5fcd1d9abddd486146aedc1acbbeb32e811d8af85b",
+      "size_bytes": 991370
+    },
+    {
+      "path": "assets/site.css",
+      "sha256": "00a1407b232b51b65c381db26d91d5b0fc18c1f717db2022a5de741f41a8961f",
+      "size_bytes": 5860
+    },
+    {
+      "path": "docs/account/index.html",
+      "sha256": "c93ae08ffd1ba5a208f6b9aea87cc8530a4bec91c93eb3708eae4de10e8ba184",
+      "size_bytes": 7460
+    },
+    {
+      "path": "docs/benchmarks/index.html",
+      "sha256": "f742fe1784f437d1845ed8ad96a8671fccfd2291c0b5ddb22d3f22f0dfb982f1",
+      "size_bytes": 6753
+    },
+    {
+      "path": "docs/cli/index.html",
+      "sha256": "01f977a29d723e8bff0e6a6b7441bf13f3812d558bad91f86a51af9b1e4ec407",
+      "size_bytes": 7763
+    },
+    {
+      "path": "docs/compatibility/index.html",
+      "sha256": "b71f357a471e5d40ac5bd6c263113bfc154e26fe1de77d71f99adcbcc5fdbca0",
+      "size_bytes": 7034
+    },
+    {
+      "path": "docs/concepts/index.html",
+      "sha256": "dacf35dbaa324ae56fc050ab2577e9776414fb0bbdebda9dc3029388905956e1",
+      "size_bytes": 7072
+    },
+    {
+      "path": "docs/evidence/index.html",
+      "sha256": "8ae1796fc4afa8c5a5c147144ca76efae033f2a49a58bb1ed11cf2a87cb5d9da",
+      "size_bytes": 10843
+    },
+    {
+      "path": "docs/getting-started/index.html",
+      "sha256": "1aa636919025ea4e8eaba20959680a1463a5a567abfff7301d2d1bf58990a190",
+      "size_bytes": 7999
+    },
+    {
+      "path": "docs/hosted/index.html",
+      "sha256": "bbc46f6a9e5c7c207ee8042e95472c3557208c8e0af34c20adf09069f03b27fc",
+      "size_bytes": 5731
+    },
+    {
+      "path": "docs/index.html",
+      "sha256": "d7f2e6ee8202a3f26302e10376f20251c808385e96d1da6407f9ade72e73920f",
+      "size_bytes": 6936
+    },
+    {
+      "path": "docs/integrations/claude-agent-sdk/index.html",
+      "sha256": "ded6a7105485d2ce0eda0c6c2b17a5359243625c871921bfbd5e3c5485658294",
+      "size_bytes": 5709
+    },
+    {
+      "path": "docs/integrations/claude-code/index.html",
+      "sha256": "26c70aad974beaf80a85f60a67f3af02cd88e8a50dbeb52a3a2f9b291db2f1c9",
+      "size_bytes": 5875
+    },
+    {
+      "path": "docs/integrations/codex/index.html",
+      "sha256": "ce487ca96f123a98503f1b7605121ba7504d9dc17d8c8e3f3f4c37e8585a57bf",
+      "size_bytes": 5924
+    },
+    {
+      "path": "docs/integrations/crewai/index.html",
+      "sha256": "ccfd31e5e52834a3be0772d8e454f1ee9845569137b0c8cf4db384c67682e901",
+      "size_bytes": 5730
+    },
+    {
+      "path": "docs/integrations/cursor/index.html",
+      "sha256": "df764c3b006c95d15669734d2e594c4ab8b3fe6db5bb2a9208c5c1c20e6d6eb3",
+      "size_bytes": 5778
+    },
+    {
+      "path": "docs/integrations/generic-mcp/index.html",
+      "sha256": "6d3005e3153858ee32acc7395afc3cc74394b5a31e587bfa06dccc869db40e31",
+      "size_bytes": 5996
+    },
+    {
+      "path": "docs/integrations/index.html",
+      "sha256": "525442eed6e281c6cdb29b28ec8b7672d996cc5ab2ae71afea7b9a1f5c730f92",
+      "size_bytes": 8709
+    },
+    {
+      "path": "docs/integrations/langchain/index.html",
+      "sha256": "30a41bf60c4306ee852d089ba645230f25f75b268e7028081fe05a32cbfe1f14",
+      "size_bytes": 5772
+    },
+    {
+      "path": "docs/integrations/langgraph/index.html",
+      "sha256": "54c53545a6c73f9493e733cc861fe6c54da9df0a6a6b495529a44579834f3300",
+      "size_bytes": 5724
+    },
+    {
+      "path": "docs/integrations/openai-agents-sdk/index.html",
+      "sha256": "4231c28f6ec1dec9f288a71d350f1dd598fef108cfddcbadc8de42f8a307792f",
+      "size_bytes": 5993
+    },
+    {
+      "path": "docs/integrations/opencode/index.html",
+      "sha256": "36b47076dae0bfb5349092ad8a03c494c678a46924cbbf6ab55a460256b5d1fd",
+      "size_bytes": 5790
+    },
+    {
+      "path": "docs/legal/engine-eula/index.html",
+      "sha256": "9a3e7ff5bb240d046cdeb05c0c5ecc9070846ddbb7e80860ef51f4dc3885730b",
+      "size_bytes": 17052
+    },
+    {
+      "path": "docs/legal/index.html",
+      "sha256": "535cdca6dbcbba5c3296e301a3b3a9c85aaaccf69b78db235f40d18d04bc2fac",
+      "size_bytes": 6229
+    },
+    {
+      "path": "docs/legal/privacy-notice/index.html",
+      "sha256": "464926a9bb2d84f66faaa58813c745e74865d9a47ec580e5f273e398177b16d0",
+      "size_bytes": 13717
+    },
+    {
+      "path": "docs/legal/security-policy/index.html",
+      "sha256": "22bd1b4749ae91188688b6c19e21084e0f7ebc938ecf4be61ab1beb33de9ce40",
+      "size_bytes": 10926
+    },
+    {
+      "path": "docs/legal/support-policy/index.html",
+      "sha256": "a81b7e731bd39c44824a1ea3bf00c098e9a308a52a3ab3697c9adb5664314aef",
+      "size_bytes": 11587
+    },
+    {
+      "path": "docs/mcp/index.html",
+      "sha256": "cc1005a3868c46a54bd84acc92e6ad05165a297165f05a578f10cf368d7aeb4e",
+      "size_bytes": 7351
+    },
+    {
+      "path": "docs/migration/index.html",
+      "sha256": "1d779bf7e1a3a8ffc0bea65f6595a77e798017fcbd8ad14a48a1b20c672ad029",
+      "size_bytes": 6360
+    },
+    {
+      "path": "docs/operations/index.html",
+      "sha256": "36d934387b8718ecb4e332998d23af0f47f0336cb304ab86f9566d6c888e4f0c",
+      "size_bytes": 7001
+    },
+    {
+      "path": "docs/packages/index.html",
+      "sha256": "947a8d2140c2a89bbd436ee0c4168751012221e921da4f77e12866101c2adf18",
+      "size_bytes": 9160
+    },
+    {
+      "path": "docs/privacy/index.html",
+      "sha256": "3170c5f5c5dec6530cfa3d4fc12d7e09a873a6b645426528358e97f4a7485691",
+      "size_bytes": 6848
+    },
+    {
+      "path": "docs/release-notes/index.html",
+      "sha256": "1ce0d147950138b9721944ed98403fd084b90b6f1e6580163c5b5d9aeb454e29",
+      "size_bytes": 6502
+    },
+    {
+      "path": "docs/security/index.html",
+      "sha256": "9a5da0d715d7e10e5af05eb3a548818df94dbea3cb8fe144ee16bd6f21ef5253",
+      "size_bytes": 7343
+    },
+    {
+      "path": "docs/troubleshooting/index.html",
+      "sha256": "b3d558ea811635fc711249d0c4415055b3a3584539c3554a9396e508656e94f2",
+      "size_bytes": 6824
+    },
+    {
+      "path": "documentation-license.txt",
+      "sha256": "9990924724715776775d1f5c4147fae3efa70f7d409cdfbf5eadf498a8376eb4",
+      "size_bytes": 1563
+    },
+    {
+      "path": "favicon-32.png",
+      "sha256": "ecd861db7d63d8cb1111f0baa534ba6ccc4b2d811ed968aab64fd98826622752",
+      "size_bytes": 553
+    },
+    {
+      "path": "favicon.ico",
+      "sha256": "6ec9d6c20ff9df75a8cf0975ee27159d72768b6cff32a88876312f033e4a89fb",
+      "size_bytes": 5430
+    },
+    {
+      "path": "favicon.svg",
+      "sha256": "0d346d7b00661036e366e417484263a24eb46750e9be6696a4af06c4083a460f",
+      "size_bytes": 682
+    },
+    {
+      "path": "index.html",
+      "sha256": "1339c36f733fbc5430ac1c5705543c91e448d9294190d83a109dcf502d37b1b6",
+      "size_bytes": 5222
+    },
+    {
+      "path": "legal/CC-BY-4.0.txt",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "size_bytes": 18657
+    },
+    {
+      "path": "legal/ENGINE-EULA.txt",
+      "sha256": "5cb1b04370f9cb154c304d711078446beeab7819febdf06e57ab0791dd636ef2",
+      "size_bytes": 11525
+    },
+    {
+      "path": "legal/PRIVACY-NOTICE.txt",
+      "sha256": "6de3e8f560cb9a764c92b7513bd8e7cc2dec3b1e006ec26254a901f3dea4e6e0",
+      "size_bytes": 8300
+    },
+    {
+      "path": "legal/SECURITY-POLICY.txt",
+      "sha256": "73f5ece11d3f0fa5f87850b094fbe13be803d042f8190dced9c40a401d796a7d",
+      "size_bytes": 5481
+    },
+    {
+      "path": "legal/SUPPORT-POLICY.txt",
+      "sha256": "ebc1a89e7aee3b91fda4fee209f9d84fbfad078fa25c39552959bc7ca69f014e",
+      "size_bytes": 6132
+    },
+    {
+      "path": "llms-full.txt",
+      "sha256": "7152e01e8dda39b7ff759d2d67649891c5e966fd7c2b86a250ea0527f9743bc8",
+      "size_bytes": 102472
+    },
+    {
+      "path": "llms.txt",
+      "sha256": "38f5bfd2f15ea46b7a42d13e8c756c99fbf1d25c599d507d365520627a21c2c9",
+      "size_bytes": 5694
+    },
+    {
+      "path": "reference/kaleidoscope-cli.candidate.txt",
+      "sha256": "2d1b21ab01bc3bd2f3013b694648027c3ed635ce34a3a74d8c49d6656bffd583",
+      "size_bytes": 1796
+    },
+    {
+      "path": "reference/kaleidoscope-mcp.candidate.json",
+      "sha256": "e01d8d1dc746aa155bbd89188d1f0a4b9bce3c74fc1d82173f1dc40b87963fd1",
+      "size_bytes": 2284
+    },
+    {
+      "path": "robots.txt",
+      "sha256": "0b52334231a31adb76446e4fa4b5cf212c2b5d0b5a0e1eb94b0697b5f1da3927",
+      "size_bytes": 77
+    },
+    {
+      "path": "sitemap.xml",
+      "sha256": "577fd24cf30e2883c018ddf2c431d529c67cca15aa2bc85fe96aa64120a25e44",
+      "size_bytes": 3632
+    },
+    {
+      "path": "snippets/AGENTS.md",
+      "sha256": "86134dc05ebbcf60b4cafb9f884daa1b75d18e7ff67d1060ed8b1856052e9814",
+      "size_bytes": 610
+    },
+    {
+      "path": "snippets/CLAUDE.md",
+      "sha256": "1200d1fa27bf830a26c7115ef135514badc4bd040963e1e30684699dc3ed1207",
+      "size_bytes": 610
+    },
+    {
+      "path": "snippets/cursor-kaleidoscope.mdc",
+      "sha256": "26a965c079a6183628f70a06c350f6f24f101376ced8876bd8cb2081e6c5c645",
+      "size_bytes": 675
+    },
+    {
+      "path": "staging-evidence.json",
+      "sha256": "027d3667f951d28146e5523c184cf75865fc00bcfd569ee1898fe7e479ce4490",
+      "size_bytes": 6594
+    }
+  ],
+  "mode": "public_docs",
+  "public_source_sha256": {
+    "SKILL.md": "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad",
+    "agent-instructions.md": "36c9afd78057c054d345b78df351dd41f5a2b6f5fb47d7d0fd178a94822ecc3c",
+    "documentation-license.txt": "9990924724715776775d1f5c4147fae3efa70f7d409cdfbf5eadf498a8376eb4",
+    "legal/CC-BY-4.0.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "legal/ENGINE-EULA.txt": "5cb1b04370f9cb154c304d711078446beeab7819febdf06e57ab0791dd636ef2",
+    "legal/PRIVACY-NOTICE.txt": "6de3e8f560cb9a764c92b7513bd8e7cc2dec3b1e006ec26254a901f3dea4e6e0",
+    "legal/SECURITY-POLICY.txt": "73f5ece11d3f0fa5f87850b094fbe13be803d042f8190dced9c40a401d796a7d",
+    "legal/SUPPORT-POLICY.txt": "ebc1a89e7aee3b91fda4fee209f9d84fbfad078fa25c39552959bc7ca69f014e",
+    "snippets/AGENTS.md": "86134dc05ebbcf60b4cafb9f884daa1b75d18e7ff67d1060ed8b1856052e9814",
+    "snippets/CLAUDE.md": "1200d1fa27bf830a26c7115ef135514badc4bd040963e1e30684699dc3ed1207",
+    "snippets/cursor-kaleidoscope.mdc": "26a965c079a6183628f70a06c350f6f24f101376ced8876bd8cb2081e6c5c645"
+  },
+  "release": {
+    "availability": "documentation_preview",
+    "public_contract_sha256": "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e",
+    "release_version": "0.1.0-rc.1",
+    "updated_at": "2026-08-22"
+  },
+  "schema_version": "kaleidoscope.docs-artifact.v1"
+}

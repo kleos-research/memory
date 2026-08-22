@@ -1,0 +1,36 @@
+Kaleidoscope public local manager
+
+Usage:
+  kaleidoscope [--engine PATH] init [--root PATH] [--profile NAME]
+                                      [--durability process-local|durable-local]
+  kaleidoscope [--engine PATH] profile list
+  kaleidoscope [--engine PATH] profile show NAME
+  kaleidoscope [--engine PATH] profile use NAME
+  kaleidoscope [--engine PATH] profile remove NAME
+  kaleidoscope profile account show [NAME]
+  kaleidoscope profile account bind ACCOUNT_UUID [NAME]
+  kaleidoscope profile account unbind [NAME]
+  kaleidoscope [--engine PATH] config [--profile NAME] [--json]
+  kaleidoscope [--engine PATH] connect HOST [--scope user|project]
+                                      [--profile NAME] [--project PATH]
+                                      [--opencode-version stable-v1|beta-v2]
+                                      [--dry-run] [--yes]
+  kaleidoscope [--engine PATH] disconnect HOST [--scope user|project]
+                                      [--project PATH] [--dry-run] [--yes]
+  kaleidoscope instructions install TARGET [--project PATH] [--dry-run] [--yes]
+  kaleidoscope instructions remove TARGET [--project PATH] [--dry-run] [--yes]
+  kaleidoscope [--engine PATH] doctor [--project PATH]
+  kaleidoscope login [--device]
+  kaleidoscope status [--json]
+  kaleidoscope logout [--all-devices] [--local-only]
+  kaleidoscope account link PROVIDER
+  kaleidoscope account identities
+  kaleidoscope account unlink EXTERNAL_IDENTITY_UUID
+  kaleidoscope account revoke-session
+  kaleidoscope devices list
+  kaleidoscope devices revoke DEVICE_UUID
+  kaleidoscope --version
+
+Instruction TARGET is skill, agents, claude, or cursor.
+The manager edits host configuration only after preview and confirmation.
+Project scope is the default. Use --dry-run for an effect-free plan.

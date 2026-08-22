@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Benchmarks and evidence | Kaleidoscope</title>
+  <meta name="description" content="How Kaleidoscope publishes clean, reproducible memory benchmarks without private-source dependencies or stale tool contracts.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/benchmarks/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kaleidoscope">
+  <meta property="og:title" content="Benchmarks and evidence | Kaleidoscope">
+  <meta property="og:description" content="How Kaleidoscope publishes clean, reproducible memory benchmarks without private-source dependencies or stale tool contracts.">
+  <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/benchmarks/">
+  <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Benchmarks and evidence | Kaleidoscope">
+  <meta name="twitter:description" content="How Kaleidoscope publishes clean, reproducible memory benchmarks without private-source dependencies or stale tool contracts.">
+  <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
+  <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Benchmarks and evidence","description":"How Kaleidoscope publishes clean, reproducible memory benchmarks without private-source dependencies or stale tool contracts.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/benchmarks/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Benchmarks and evidence","item":"https://memory.kleosresearch.xyz/docs/benchmarks/"}]}]}</script>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell">
+  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/docs/">Docs</a>
+    <a href="/docs/integrations/">Integrations</a>
+    <a href="/docs/security/">Security</a>
+    <a href="https://github.com/kleos-research">GitHub</a>
+  </nav>
+</div></header>
+<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
+<main id="main" class="shell layout">
+  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/" aria-current="page">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
+  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Benchmarks and evidence</h1>
+<p class="lede">Benchmark results are meaningful only when the candidate, public contract, dataset, evaluator, and retrieval path are immutable and auditable.</p>
+<div class="callout"><strong>Current result: functional smoke, no score.</strong> Benchmark PRs 3 and 4 are merged. The ordinary suite passed 20 tests with the live lane skipped; the opt-in macOS arm64 lane then passed against engine <code>988192ac9677…</code> and contract <code>a2357ed6c00e…</code>. It deliberately records <code>signature_verified: false</code>.</div>
+<h2>What the live smoke proves</h2><p>Before vault work it checks both digests, loads the bundled model contract, creates a fresh isolated profile and vault, discovers runtime memory types, writes one explicit semantic delta, performs ranked and addressed search, and validates the closed launch descriptor.</p>
+<h2>What it does not prove</h2><p>It records no BEAM score, runs no LLM evaluator, verifies no production signature, and makes no release-readiness claim. Full ingest, answer, judge, and report phases still require the dataset, evaluator credentials, preregistered procedure, and a signed packaged candidate.</p>
+<h2>Protocol rules</h2><p>The harness performs one model-facing <code>search</code>, records explicit <code>top_k</code> and <code>maximum_context_bytes</code>, obtains vocabulary from the runtime, isolates conversations and candidate-bound caches, and refuses stale cross-candidate phase artifacts.</p>
+<h2>Public repository</h2><p>The benchmark harness is the only milestone here already merged into its public repository. That does not make the private engine, unpublished clients, staged packages, or these docs public.</p>
+</article>
+</main><footer class="site-footer"><div class="shell">
+  <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+</div></footer></body></html>

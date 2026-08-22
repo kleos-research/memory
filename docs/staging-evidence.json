@@ -1,0 +1,129 @@
+{
+  "as_of": "2026-08-22",
+  "engine": {
+    "candidate_sha256": "988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825",
+    "production_signature_verified": false,
+    "public_contract_sha256": "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e",
+    "source_commit": "d96355632cc52816472106d0776ce63d73631fef"
+  },
+  "historical_host_conformance": {
+    "commit": "9cd4b5837e887a0bb3dcc13209134c002aad08f5",
+    "evidence_sha256": "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840",
+    "scope": "isolated real Codex CLI configuration and generic stdio MCP",
+    "status": "pre-final manager candidate only; not final package acceptance"
+  },
+  "local_distribution": {
+    "archive_sha256": "2342d12e0010e983db9cfd9c32079bddcc96e8045299c97d878f94200ef6ac8a",
+    "assembler_commit": "af892d180fe01729450e03917f33ac56698e90e1",
+    "build_proof_sha256": "ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053",
+    "commit": "0c42ff35b789a0406aaabf6634bdb2988db36b0a",
+    "facades": {
+      "contains": "full public SDK plus kaleidoscope and kscope launchers",
+      "npm": {
+        "name": "@kleos-research/kaleidoscope",
+        "sha256": "0980c1aef2d94960e7b3384bdc932da024a9534d123d3521f05c66a1b600b4bd"
+      },
+      "python": {
+        "name": "kaleidoscope-memory",
+        "sha256": "72099296676ef38b146018ae4ffac6cfb082bc8a537f178443acd351cf7bf6d7"
+      }
+    },
+    "final_facade_happy_path_evidence_sha256": "7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c",
+    "manifest_sha256": "efc41f32bea0deb4180cca85d2996c39d4793cdea78888fc6216a2dcd8ba22f8",
+    "native_companions": {
+      "contains": "manager plus proprietary object-code engine",
+      "npm": {
+        "name": "@kleos-research/kaleidoscope-darwin-arm64",
+        "sha256": "ec38717398a623fcca6043b37438ab3f6e2bcfa5790e391bb8747b63ab3f340b"
+      },
+      "python": {
+        "name": "kaleidoscope-memory-native-darwin-arm64",
+        "sha256": "d265493d6ca583f2ecd9e69257c8ed604174636e1c5f3b29dc08eafe01c51d8b"
+      }
+    },
+    "native_target": "darwin-arm64",
+    "package_proof_sha256": "62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7",
+    "production_release": false,
+    "provenance_sha256": "498c60561520e57834a807c2e17443b0a7eefe1c3901c67450e0506135babfb8",
+    "sbom_sha256": "5058f2170630cb70ac14252162245f3ae94cc9d02f9b58c74d36694355094f4c",
+    "sdk_facade_commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
+    "signature_envelope_sha256": "9bce859379b24683cff7e6069835aa9f8d8ac4f1d07ff353f050ea1b9df60e0c",
+    "test_signature_only": true,
+    "version": "0.1.0-rc.1"
+  },
+  "manager": {
+    "candidate_sha256": "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1",
+    "production_signature_verified": false,
+    "source_commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
+    "version": "0.1.0"
+  },
+  "milestones": [
+    {
+      "commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
+      "id": "DX-04",
+      "scope": "consolidated manager init, profiles, reversible host configuration, doctor, instructions",
+      "status": "verified_local",
+      "verification": "deterministic candidate manager SHA-256 a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1"
+    },
+    {
+      "commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
+      "id": "DX-05B",
+      "scope": "consolidated manager OIDC, device login, credential storage, account and device commands",
+      "status": "verified_local_provider_unconfigured",
+      "verification": "12 account/device commands passed the offline provider-not-configured and no-engine-resolution lane"
+    },
+    {
+      "commit": "af892d180fe01729450e03917f33ac56698e90e1",
+      "id": "DX-06A/B",
+      "scope": "source-only distribution tooling, full SDK facades, native object-code companions and lifecycle rehearsal",
+      "status": "verified_local_test_signature_only",
+      "verification": "reassembled source-bound archive and package proof SHA-256 62afa5714352615f6c2303ed6427842a70168cbfb0bb6bea0ca2753ba0d551b7; build proof SHA-256 ff363dc752e19979e44b71cc2fdfe6b7f0bf136ba3c29b5cd1bc8b08aa24d053"
+    },
+    {
+      "commit": "9ed39bddd7bf14e68e1c363074f6921288b9e94b",
+      "id": "DX-07",
+      "scope": "full Python and TypeScript SDK facades, agent/framework integrations, installed-payload resolvers and both launchers",
+      "status": "verified_local",
+      "verification": "37 TypeScript tests and the Python suite passed with one intentional native-profile skip each, plus installed-payload resolver checks"
+    },
+    {
+      "commit": "ef89d05f09435afc9790fcdf5df3e01d34c7115b",
+      "id": "DX-09",
+      "scope": "candidate-bound native smoke and credential-free deterministic fixture pipeline; no benchmark score",
+      "status": "merged_deterministic_fixture_only",
+      "verification": "24 tests passed with 1 live skip; stable fixture evidence SHA-256 f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
+    },
+    {
+      "commit": "0c42ff35b789a0406aaabf6634bdb2988db36b0a",
+      "id": "DX-10B",
+      "scope": "fresh npm and Python facade invocation: init, doctor, Codex dry-run configuration, and stdio MCP discovery",
+      "status": "verified_local_package_facades",
+      "verification": "final package evidence SHA-256 7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c; no real host acceptance claim"
+    },
+    {
+      "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
+      "id": "DX-10A",
+      "scope": "clean install, package binding, friendly profile MCP, account refusal, update, rollback, uninstall and vault canary",
+      "status": "verified_local_macos_arm64",
+      "verification": "DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
+    }
+  ],
+  "production_release": false,
+  "public_availability": false,
+  "release_holds": {
+    "claude_cursor_opencode_live_host_verified": false,
+    "engine_eula_product_authorized": true,
+    "external_legal_review_complete": false,
+    "live_model_or_ide_acceptance_verified": false,
+    "non_macos_arm64_native_support_verified": false,
+    "original_documentation_license_product_authorized": true,
+    "pages_promotion_authorized": false,
+    "production_engine_eula_finalized": false,
+    "production_oidc_issuer": null,
+    "production_signing_identity": null,
+    "public_software_license_product_authorized": true,
+    "registry_publication_authorized": false
+  },
+  "schema_version": "kaleidoscope.docs-staging-evidence.v1",
+  "status": "local_staging_only"
+}
