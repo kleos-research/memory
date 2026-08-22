@@ -51,6 +51,43 @@
     "test_signature_only": true,
     "version": "0.1.0-rc.1"
   },
+  "local_host_cli_conformance": {
+    "candidate": "model-absent development binary",
+    "claim_boundary": [
+      "configuration, connection, and local stdio discovery only",
+      "no credentialed model turn",
+      "no GUI or IDE acceptance",
+      "no Cursor host run",
+      "no published package or production OIDC"
+    ],
+    "commit": "52ad4d243966c5a5c9f65b35909d8f029ae74afd",
+    "hosts": [
+      {
+        "name": "Codex",
+        "scope": "isolated add/list/get/remove and exact rollback; native connection is not exposed by the management CLI",
+        "status": "configuration_verified",
+        "version": "0.149.0"
+      },
+      {
+        "name": "Claude Code",
+        "scope": "local host wiring and MCP discovery",
+        "status": "connected",
+        "version": "2.1.239"
+      },
+      {
+        "name": "OpenCode",
+        "scope": "local host wiring and MCP discovery",
+        "status": "connected",
+        "version": "1.18.21"
+      }
+    ],
+    "mcp_tools": [
+      "remember",
+      "search"
+    ],
+    "platform": "macOS arm64",
+    "status": "verified_local_development_binary"
+  },
   "manager": {
     "candidate_sha256": "a1eb37ab61f8f5681b654f7e25f06c3e3188720ad4cf61aaecc1ecf265e8f6c1",
     "production_signature_verified": false,
@@ -96,9 +133,9 @@
     {
       "commit": "0c42ff35b789a0406aaabf6634bdb2988db36b0a",
       "id": "DX-10B",
-      "scope": "fresh npm and Python facade invocation: init, doctor, Codex dry-run configuration, and stdio MCP discovery",
-      "status": "verified_local_package_facades",
-      "verification": "final package evidence SHA-256 7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c; no real host acceptance claim"
+      "scope": "fresh npm and Python facade invocation plus pinned Codex, Claude Code, and OpenCode CLI wiring on macOS arm64",
+      "status": "verified_local_package_facades_and_host_wiring",
+      "verification": "final package evidence SHA-256 7d4b49919d9d7607542e27979b64a5f071c58418096ec2a8c74b3c211738307c; host-wiring harness commit 52ad4d243966c5a5c9f65b35909d8f029ae74afd; model-absent development binary only"
     },
     {
       "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
@@ -115,6 +152,7 @@
     "engine_eula_product_authorized": true,
     "external_legal_review_complete": false,
     "live_model_or_ide_acceptance_verified": false,
+    "local_host_cli_configuration_verified": true,
     "non_macos_arm64_native_support_verified": false,
     "original_documentation_license_product_authorized": true,
     "pages_promotion_authorized": false,

@@ -66,6 +66,7 @@ DX10A_EVIDENCE_SHA256 = (
     "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
 )
 SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
+PLATFORM_HARNESS_COMMIT = "52ad4d243966c5a5c9f65b35909d8f029ae74afd"
 DX10B_HOST_EVIDENCE_SHA256 = (
     "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
 )
@@ -357,7 +358,31 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                 failures.append("staging evidence must not claim production release")
             if evidence.get("public_availability") is not False:
                 failures.append("staging evidence must not claim public availability")
+            host_conformance = evidence.get("local_host_cli_conformance", {})
+            if host_conformance.get("commit") != PLATFORM_HARNESS_COMMIT:
+                failures.append("staging evidence has wrong platform harness commit")
+            if host_conformance.get("status") != "verified_local_development_binary":
+                failures.append("staging evidence has wrong local host status")
+            if host_conformance.get("platform") != "macOS arm64":
+                failures.append("staging evidence has wrong local host platform")
+            if host_conformance.get("candidate") != "model-absent development binary":
+                failures.append("staging evidence has wrong local host candidate")
+            if host_conformance.get("mcp_tools") != ["remember", "search"]:
+                failures.append("staging evidence has wrong local host MCP tools")
+            hosts = {
+                (host.get("name"), host.get("version"), host.get("status"))
+                for host in host_conformance.get("hosts", [])
+            }
+            expected_hosts = {
+                ("Codex", "0.149.0", "configuration_verified"),
+                ("Claude Code", "2.1.239", "connected"),
+                ("OpenCode", "1.18.21", "connected"),
+            }
+            if hosts != expected_hosts:
+                failures.append("staging evidence has wrong local host inventory")
             holds = evidence.get("release_holds", {})
+            if holds.get("local_host_cli_configuration_verified") is not True:
+                failures.append("staging evidence must record local host wiring")
             for field in ("production_oidc_issuer", "production_signing_identity"):
                 if holds.get(field, "missing") is not None:
                     failures.append(f"staging evidence must leave {field} unresolved")
@@ -466,6 +491,13 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                 != FINAL_PACKAGE_EVIDENCE_SHA256
             ):
                 failures.append("candidate MCP reference has wrong final DX-10B digest")
+            if conformance.get("platform_harness_commit") != PLATFORM_HARNESS_COMMIT:
+                failures.append("candidate MCP reference has wrong platform harness commit")
+            host_conformance = conformance.get("local_host_cli_conformance", {})
+            if host_conformance.get("commit") != PLATFORM_HARNESS_COMMIT:
+                failures.append("candidate MCP reference has wrong local host commit")
+            if host_conformance.get("mcp_tools") != ["remember", "search"]:
+                failures.append("candidate MCP reference has wrong local host MCP tools")
             historical = conformance.get("historical_codex_host_evidence", {})
             if historical.get("commit") != SDK_HOST_CONFORMANCE_COMMIT:
                 failures.append("candidate MCP reference has wrong historic host commit")
@@ -497,6 +529,9 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         for marker in PRIVATE_MARKERS:
             if marker in text:
                 failures.append(f"private marker {marker!r} in {relative}")
+        for placeholder in ("{FINAL_PACKAGE_EVIDENCE_SHA256", "{PLATFORM_HARNESS_COMMIT"):
+            if placeholder in text:
+                failures.append(f"unexpanded placeholder {placeholder!r} in {relative}")
         if expected_mode == "production":
             lowered = text.lower()
             for blocker in PRODUCTION_BLOCKERS:
@@ -637,6 +672,7 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         DX09_FIXTURE_EVIDENCE_SHA256,
         DX10A_EVIDENCE_SHA256,
         DX10B_HOST_EVIDENCE_SHA256,
+        PLATFORM_HARNESS_COMMIT,
         SDK_FACADE_COMMIT,
         DISTRIBUTION_ASSEMBLER_COMMIT,
         FINAL_EVIDENCE_COMMIT,
