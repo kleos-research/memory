@@ -54,8 +54,24 @@ class DocumentationArtifactTest(unittest.TestCase):
         for marker in verify_site.PRIVATE_MARKERS:
             self.assertNotIn(marker, values)
         holds = build_site.STAGING_EVIDENCE["release_holds"]
-        self.assertIsNone(holds["final_auth_merged_manager_sha256"])
-        self.assertIsNone(holds["final_auth_merged_distribution_sha256"])
+        self.assertEqual(
+            build_site.STAGING_EVIDENCE["manager"]["candidate_sha256"],
+            build_site.MANAGER_SHA256,
+        )
+        self.assertEqual(
+            build_site.STAGING_EVIDENCE["local_distribution"][
+                "verification_summary_sha256"
+            ],
+            build_site.DX06_VERIFICATION_SHA256,
+        )
+        self.assertTrue(
+            build_site.STAGING_EVIDENCE["local_distribution"][
+                "test_signature_only"
+            ]
+        )
+        self.assertFalse(holds["production_engine_eula_approved"])
+        self.assertFalse(holds["non_macos_arm64_native_support_verified"])
+        self.assertFalse(holds["claude_cursor_opencode_live_host_verified"])
         self.assertFalse(build_site.STAGING_EVIDENCE["production_release"])
         self.assertFalse(build_site.STAGING_EVIDENCE["public_availability"])
 

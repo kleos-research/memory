@@ -22,6 +22,21 @@ PUBLIC_CONTRACT_SHA256 = (
 PUBLIC_SKILL_SHA256 = (
     "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad"
 )
+MANAGER_SOURCE_COMMIT = "05948a3acfbf0a325f06ecfe6057db484f02e5a1"
+MANAGER_SHA256 = (
+    "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e"
+)
+DISTRIBUTION_COMMIT = "42ffba4e3976810f91f2adcf53bd4393e5330d72"
+DX06_VERIFICATION_SHA256 = (
+    "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
+)
+DX10A_EVIDENCE_SHA256 = (
+    "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
+)
+SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
+DX10B_HOST_EVIDENCE_SHA256 = (
+    "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
+)
 PRIVATE_MARKERS = (
     "/Users/",
     "\\Users\\",
@@ -78,12 +93,13 @@ EXPECTED_HTML = {
     "docs/migration/index.html",
 }
 EXPECTED_MILESTONES = {
-    "DX-04": "3b1ec66d4fc96ff2e77bf7c382b107502ccc7b8d",
-    "DX-05B": "048bf90854a1e38a1b88d14de88b681a206e5790",
-    "DX-06A/B": "4a195d548036aa5bccd61d1bc0025d126a4d71ad",
+    "DX-04": MANAGER_SOURCE_COMMIT,
+    "DX-05B": MANAGER_SOURCE_COMMIT,
+    "DX-06A/B": DISTRIBUTION_COMMIT,
     "DX-07": "fd0b1877f70b1bb57e1b67c4c559e8b2e1d44290",
     "DX-09": "ceac8311f819437ace54813d2b4ba0731a5981a1",
-    "DX-10B": "ee01e26baaa0df28331795b918c7f1633dafc6f8",
+    "DX-10A": DISTRIBUTION_COMMIT,
+    "DX-10B": SDK_HOST_CONFORMANCE_COMMIT,
 }
 
 
@@ -211,24 +227,42 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                 failures.append("staging evidence has wrong public contract")
             if engine.get("production_signature_verified") is not False:
                 failures.append("staging evidence must not claim a production signature")
+            manager = evidence.get("manager", {})
+            if manager.get("source_commit") != MANAGER_SOURCE_COMMIT:
+                failures.append("staging evidence has wrong manager source commit")
+            if manager.get("candidate_sha256") != MANAGER_SHA256:
+                failures.append("staging evidence has wrong manager digest")
+            if manager.get("production_signature_verified") is not False:
+                failures.append("staging evidence must not claim a signed manager")
+            distribution = evidence.get("local_distribution", {})
+            if distribution.get("commit") != DISTRIBUTION_COMMIT:
+                failures.append("staging evidence has wrong distribution commit")
+            if (
+                distribution.get("verification_summary_sha256")
+                != DX06_VERIFICATION_SHA256
+            ):
+                failures.append("staging evidence has wrong DX-06 evidence digest")
+            if distribution.get("test_signature_only") is not True:
+                failures.append("staging evidence must mark its signature test-only")
+            if distribution.get("production_release") is not False:
+                failures.append("staging distribution must not claim production release")
             if evidence.get("production_release") is not False:
                 failures.append("staging evidence must not claim production release")
             if evidence.get("public_availability") is not False:
                 failures.append("staging evidence must not claim public availability")
             holds = evidence.get("release_holds", {})
-            for field in (
-                "final_auth_merged_manager_sha256",
-                "final_auth_merged_distribution_sha256",
-                "production_oidc_issuer",
-                "production_signing_identity",
-            ):
+            for field in ("production_oidc_issuer", "production_signing_identity"):
                 if holds.get(field, "missing") is not None:
                     failures.append(f"staging evidence must leave {field} unresolved")
             for field in (
+                "production_engine_eula_approved",
                 "public_manager_license_approved",
                 "original_documentation_license_approved",
                 "registry_publication_authorized",
                 "pages_promotion_authorized",
+                "non_macos_arm64_native_support_verified",
+                "claude_cursor_opencode_live_host_verified",
+                "live_model_or_ide_acceptance_verified",
             ):
                 if holds.get(field) is not False:
                     failures.append(f"staging evidence must leave {field} false")
@@ -241,6 +275,14 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                         failures.append(
                             f"staging evidence has wrong commit for {milestone}"
                         )
+                if DX10A_EVIDENCE_SHA256 not in milestones["DX-10A"].get(
+                    "verification", ""
+                ):
+                    failures.append("staging evidence has wrong DX-10A digest")
+                if DX10B_HOST_EVIDENCE_SHA256 not in milestones["DX-10B"].get(
+                    "verification", ""
+                ):
+                    failures.append("staging evidence has wrong DX-10B digest")
 
     cli_reference = actual.get("reference/kaleidoscope-cli.candidate.txt")
     if cli_reference is None:
@@ -270,6 +312,10 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         else:
             if mcp.get("schema_version") != "kaleidoscope.docs-mcp-reference.v1":
                 failures.append("wrong candidate MCP reference schema")
+            if mcp.get("manager", {}).get("source_commit") != MANAGER_SOURCE_COMMIT:
+                failures.append("candidate MCP reference has wrong manager source")
+            if mcp.get("manager", {}).get("sha256") != MANAGER_SHA256:
+                failures.append("candidate MCP reference has wrong manager digest")
             if mcp.get("engine", {}).get("sha256") != ENGINE_CANDIDATE_SHA256:
                 failures.append("candidate MCP reference has wrong engine digest")
             if mcp.get("public_contract_sha256") != PUBLIC_CONTRACT_SHA256:
@@ -285,6 +331,14 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                 failures.append("candidate MCP reference must keep ranked search ledgered")
             if mcp.get("operator_commands_are_model_tools") is not False:
                 failures.append("candidate MCP reference exposes operator commands")
+            conformance = mcp.get("local_conformance", {})
+            if conformance.get("dx10a_evidence_sha256") != DX10A_EVIDENCE_SHA256:
+                failures.append("candidate MCP reference has wrong DX-10A digest")
+            if (
+                conformance.get("dx10b_host_evidence_sha256")
+                != DX10B_HOST_EVIDENCE_SHA256
+            ):
+                failures.append("candidate MCP reference has wrong DX-10B digest")
             if mcp.get("release_readiness_claimed") is not False:
                 failures.append("candidate MCP reference claims release readiness")
 
@@ -406,6 +460,10 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         "/reference/kaleidoscope-mcp.candidate.json",
         ENGINE_CANDIDATE_SHA256,
         PUBLIC_CONTRACT_SHA256,
+        MANAGER_SHA256,
+        DX06_VERIFICATION_SHA256,
+        DX10A_EVIDENCE_SHA256,
+        DX10B_HOST_EVIDENCE_SHA256,
     ):
         if required.lower() not in llms_lower:
             failures.append(f"llms.txt missing {required!r}")

@@ -38,7 +38,7 @@
 <h2>Local engine</h2>
 <p>The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Its source is not part of the public manager, client, integration, or skill surfaces.</p>
 <h2>Manager and profile</h2>
-<p>The manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, and installs agent guidance. The separate DX-05B candidate adds account commands and native credential storage, but it has not yet been rebound into a final distribution.</p>
+<p>The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes the account/device commands. The local distribution is bound to manager source commit <code>05948a3…</code> and binary SHA-256 <code>4fecd84584ed…</code>.</p>
 <h2>Harness identity</h2>
 <p>Codex, Claude, Cursor, OpenCode, framework clients, and generic MCP clients are consumers of the same profile. They do not become separate memory stores merely because their configuration formats differ.</p>
 <h2>Account identity</h2>

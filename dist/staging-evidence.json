@@ -6,27 +6,44 @@
     "public_contract_sha256": "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e",
     "source_commit": "d96355632cc52816472106d0776ce63d73631fef"
   },
+  "local_distribution": {
+    "archive_sha256": "48e34b1126d4b29b103cb913ddd71ffe2fd39ad141228346afccb8eaa504c658",
+    "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
+    "manifest_sha256": "e1f19abbfcf088e0121c135a623f2aa86fd68ba412b640084324bdf125a0eb6c",
+    "production_release": false,
+    "provenance_sha256": "7b08171edaf1aac81f81c78d5bd704674db3f2a8c3e44f122cccf456ee3ff82e",
+    "sbom_sha256": "50444804bb2d29561b9b3f9f85afdb5133d06afb92886683ab9e4f7339ec2a15",
+    "signature_envelope_sha256": "6dd03a82e4688413c438a8ca8682b20e3a8886895ba2059a22881458127f843e",
+    "test_signature_only": true,
+    "verification_summary_sha256": "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
+  },
+  "manager": {
+    "candidate_sha256": "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e",
+    "production_signature_verified": false,
+    "source_commit": "05948a3acfbf0a325f06ecfe6057db484f02e5a1",
+    "version": "0.1.0"
+  },
   "milestones": [
     {
-      "commit": "3b1ec66d4fc96ff2e77bf7c382b107502ccc7b8d",
+      "commit": "05948a3acfbf0a325f06ecfe6057db484f02e5a1",
       "id": "DX-04",
-      "scope": "manager init, profiles, reversible host configuration, doctor, instructions",
+      "scope": "consolidated manager init, profiles, reversible host configuration, doctor, instructions",
       "status": "verified_local",
-      "verification": "27 ordinary tests plus exact-candidate live contract passed"
+      "verification": "deterministic candidate manager SHA-256 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e"
     },
     {
-      "commit": "048bf90854a1e38a1b88d14de88b681a206e5790",
+      "commit": "05948a3acfbf0a325f06ecfe6057db484f02e5a1",
       "id": "DX-05B",
-      "scope": "manager OIDC, device login, credential storage, account and device commands",
+      "scope": "consolidated manager OIDC, device login, credential storage, account and device commands",
       "status": "verified_local_provider_unconfigured",
-      "verification": "40 library tests, 5 CLI tests, and exact-candidate live contract passed on macOS arm64"
+      "verification": "11 account commands passed the offline provider-not-configured and no-engine-resolution lane"
     },
     {
-      "commit": "4a195d548036aa5bccd61d1bc0025d126a4d71ad",
+      "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
       "id": "DX-06A/B",
       "scope": "source-only distribution tooling, object-code bundle, npm and wheel shapes, lifecycle rehearsal",
       "status": "verified_local_test_signature_only",
-      "verification": "14 local distribution and lifecycle tests passed"
+      "verification": "18 tests passed; verification summary SHA-256 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
     },
     {
       "commit": "fd0b1877f70b1bb57e1b67c4c559e8b2e1d44290",
@@ -43,20 +60,29 @@
       "verification": "20 ordinary tests passed with 1 live skip; opt-in exact-candidate smoke passed 1 of 1"
     },
     {
-      "commit": "ee01e26baaa0df28331795b918c7f1633dafc6f8",
+      "commit": "9cd4b5837e887a0bb3dcc13209134c002aad08f5",
       "id": "DX-10B",
-      "scope": "macOS arm64 manager, host transforms, Python and TypeScript persistent MCP conformance",
-      "status": "verified_local_non_auth",
-      "verification": "source-free conformance evidence SHA-256 052e898fafdc129f8865dd51ebd615cdcba253edbe417cde83bed1628d32b694"
+      "scope": "isolated real Codex CLI configuration plus generic persistent stdio MCP conformance",
+      "status": "verified_local_codex_cli",
+      "verification": "host evidence SHA-256 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
+    },
+    {
+      "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
+      "id": "DX-10A",
+      "scope": "clean install, package binding, friendly profile MCP, account refusal, update, rollback, uninstall and vault canary",
+      "status": "verified_local_macos_arm64",
+      "verification": "DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
     }
   ],
   "production_release": false,
   "public_availability": false,
   "release_holds": {
-    "final_auth_merged_distribution_sha256": null,
-    "final_auth_merged_manager_sha256": null,
+    "claude_cursor_opencode_live_host_verified": false,
+    "live_model_or_ide_acceptance_verified": false,
+    "non_macos_arm64_native_support_verified": false,
     "original_documentation_license_approved": false,
     "pages_promotion_authorized": false,
+    "production_engine_eula_approved": false,
     "production_oidc_issuer": null,
     "production_signing_identity": null,
     "public_manager_license_approved": false,

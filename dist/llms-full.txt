@@ -17,10 +17,10 @@
 - [Public agent skill](https://memory.kleosresearch.xyz/SKILL.md): bounded retrieval and verified durable writes
 - [Agent instructions](https://memory.kleosresearch.xyz/agent-instructions.md): safe manager-installed AGENTS, CLAUDE, and Cursor pointers
 - [Machine-readable staging evidence](https://memory.kleosresearch.xyz/staging-evidence.json): source-free milestone and gate record
-- [Candidate CLI help](https://memory.kleosresearch.xyz/reference/kaleidoscope-cli.candidate.txt): exact DX-05B manager help snapshot
+- [Candidate CLI help](https://memory.kleosresearch.xyz/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference](https://memory.kleosresearch.xyz/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. The locally verified engine candidate SHA-256 is 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825; its public-contract SHA-256 is a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e. The final auth-merged manager and regenerated distribution digests do not exist yet. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
+The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. Exact locally verified bindings: manager SHA-256 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e; engine SHA-256 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825; public contract SHA-256 a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e; DX-06 summary SHA-256 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed; DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e; DX-10B Codex-host evidence SHA-256 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840. The local distribution is test-signed only and supports no production-release claim. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
 
 ---
 
@@ -68,7 +68,7 @@ Updated: 2026-08-22
 
 The verified manager creates or imports one local profile, previews an owner-marked host change, applies it with confirmation, and can remove exactly what it owns.
 
-Interface preview, not an install command. No package is public. The local DX-06 archive uses a test-only signature and a pre-auth manager, so it must be regenerated and reverified after the final auth-merged manager hash exists.
+Interface preview, not an install command. No package is public. The final local DX-06 archive is bound to the auth-enabled manager but still uses a test-only signature; it is evidence, not a downloadable release.
 
 1. Install after protected promotion
 
@@ -116,7 +116,7 @@ The proprietary native engine owns the memory algorithm, canonical vault, graph,
 
 Manager and profile
 
-The manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, and installs agent guidance. The separate DX-05B candidate adds account commands and native credential storage, but it has not yet been rebound into a final distribution.
+The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes the account/device commands. The local distribution is bound to manager source commit 05948a3… and binary SHA-256 4fecd84584ed….
 
 Harness identity
 
@@ -140,7 +140,7 @@ Updated: 2026-08-22
 
 The developer-facing CLI is kaleidoscope. The engine executable kscope remains a native runtime/operator surface and is not the manager quickstart.
 
-Candidate-generated reference. The exact help snapshot comes from local auth-manager commit 048bf908…. It is not a public-installation claim and will be regenerated from the final packaged manager before promotion.
+Candidate-generated reference. The exact help snapshot comes from consolidated manager source commit 05948a3… and candidate SHA-256 4fecd84584ed…. It is not a public-installation claim.
 
 Download the exact candidate help text (/reference/kaleidoscope-cli.candidate.txt).
 
@@ -223,7 +223,7 @@ Every integration consumes the same closed profile-first launch descriptor and p
 
 IntegrationPinned local evidencePublic status
 
-CodexManager render, dry run, idempotence, exact rollback, and two-tool allowlist passed.Not live-host accepted
+CodexReal codex-cli 0.149.0-alpha.4 add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.Verified local CLI configuration; model/TUI acceptance held
 
 Claude CodeManaged .mcp.json render, dry run, idempotence, and exact rollback passed.Not live-host accepted
 
@@ -243,7 +243,7 @@ OpenAI Agents SDKPython 0.22.0 and TypeScript 0.17.0; scripted-model routing pas
 
 CrewAIcrewai==1.15.17; long-lived MCP adapter passed.Verified with fake server
 
-What DX-07 proves. Local commit fd0b1877… passed the Python dependency matrices, TypeScript typecheck/build/tests, real-profile lanes, and source poison scan. It has no remote, license, package publication, or live provider claim. The final package must rebind these clients to the final auth-merged manager and exact release contract.
+What DX-07 and DX-10B prove. The Python/TypeScript matrices and real-profile lanes passed, and host conformance commit 9cd4b58… bound the final manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.
 
 Agent guidance
 
@@ -277,7 +277,7 @@ Vault deletion is a separate preview-and-confirm operation tied to one exact res
 
 Update and rollback
 
-DX-06 locally rehearsed install, update, rollback, and uninstall under an explicitly marked staging root. It verified a test-only Ed25519 signature and a simulated update that reused the same binaries. This is not a production installer, notarization result, or supported update channel. The external vault canary remained byte-identical.
+DX-10A locally exercised clean install, update, exact rollback, and uninstall under an explicitly marked staging root using the final local manager and engine candidate. It verified only a TEST-ONLY Ed25519 trust root and reused the same binaries for the simulated update. This is not a production installer, notarization result, or supported update channel. The separate vault canary remained byte-identical.
 
 Package shapes
 
@@ -299,7 +299,7 @@ The generated candidate contract declares a local vault, stdio MCP, no required 
 
 Account boundary
 
-The DX-05B manager constructs only 11 declared account routes. Its request privacy guard rejects memory/profile field families and absolute local paths before transport. The provider remains unconfigured and no production account endpoint is available.
+The consolidated manager constructs only 11 declared account routes. Its request privacy guard rejects memory/profile field families and absolute local paths before transport. DX-10A exercised all 11 without an engine argument against a deliberately missing engine and observed provider-not-configured refusals before engine resolution. No production account endpoint is available.
 
 Package integrity
 
@@ -307,7 +307,7 @@ DX-06 binds object-code digests, source commits, bundled model, CycloneDX SBOM, 
 
 Verified privacy checks
 
-The candidate contains no bounded private builder-path hits and no Mach-O debug sections. Local conformance used canary values for environment, outputs, profiles, host configuration, and MCP traffic. These are scoped test results, not a universal absence claim.
+The manager and engine candidates contain no bounded private builder-path hits and no Mach-O debug sections. Local conformance used canary values for environment, outputs, profiles, host configuration, and MCP traffic. The Codex lane used isolated HOME, CODEX_HOME, XDG, project, profile, and vault roots and restored its non-empty baseline byte-for-byte. These are scoped test results, not a universal absence claim.
 
 Report a vulnerability
 
@@ -355,7 +355,7 @@ Login is intended for product-account and device workflows. It is not a hosted-m
 
 Locally verified manager flows
 
-DX-05B commit 048bf908… implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse.
+Consolidated manager commit 05948a3… implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse. The final packaged candidate exposes all 11 closed account/device commands, but only the offline provider-not-configured lane has run against that package.
 
 Commands
 
@@ -393,7 +393,7 @@ A platform or harness is supported only after the packaged artifact passes the c
 
 SurfaceVerified local evidenceHeld before support
 
-macOS arm64Engine candidate, manager, object-code packaging, Python/TypeScript MCP, lifecycle rehearsal.Final auth-merged package, production signature/notarization, clean native release runner.
+macOS arm64Final auth-enabled manager and engine candidate, object-code packaging, real stdio MCP, account refusal, clean install/update/rollback/uninstall, vault canary, and real Codex CLI configuration.Production signature/notarization, approved terms, live OIDC/keychain, model/TUI/IDE acceptance, and protected publication.
 
 macOS x64Target metadata/refusal only.Native binaries, package, runner, signing/notarization.
 
@@ -401,9 +401,11 @@ Linux x86_64/arm64Source implementation and target metadata only; libc policy no
 
 Windows x86_64/arm64Source implementation and target metadata only.Native credential store, binaries, packages, runners, installer evidence.
 
-Codex / Claude Code / Cursor / OpenCodeConfig render, dry run, idempotence, and exact rollback.Pinned live-host acceptance after packaged installation.
+CodexConfig transforms plus real pinned CLI add/list/get/remove and exact isolated rollback.Model/TUI acceptance and a protected published install.
 
-Framework clientsGeneric MCP and adapter lifecycle suites passed with pinned versions.Live-provider lanes where required and final packaged-client rebind.
+Claude Code / Cursor / OpenCodeConfig render, dry run, idempotence, and exact rollback.Installed CLIs/IDE and pinned live-host acceptance.
+
+Framework clientsGeneric MCP and adapter lifecycle suites passed with pinned versions and final-candidate non-auth conformance.Live-provider lanes where required and protected published packages.
 
 Cross-compiling, extracting a foreign package, parsing configuration, or running a fake provider is useful evidence but not native support. Nothing in this table is a public availability claim.
 
@@ -449,6 +451,10 @@ Machine-readable record. staging-evidence.json (/staging-evidence.json) carries 
 
 Exact local candidate
 
+Manager source commit05948a3acfbf0a325f06ecfe6057db484f02e5a1
+
+Manager candidate SHA-2564fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e
+
 Engine source commitd96355632cc52816472106d0776ce63d73631fef
 
 Engine candidate SHA-256988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825
@@ -463,21 +469,21 @@ Milestones
 
 SliceExact evidenceWhat is true now
 
-DX-043b1ec66…Friendly manager, profiles, safe config, doctor, skill and instruction installation passed locally.
+DX-04 / DX-05B05948a3acfbf0a325f06ecfe6057db484f02e5a1, manager 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3eConsolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.
 
-DX-05B048bf908…Auth/device manager passed local tests; production provider is unconfigured.
-
-DX-06A/B4a195d5, 14 testsSource-only tooling built object-code package shapes with a test-only signature; no publication.
+DX-06A/B42ffba4e3976810f91f2adcf53bd4393e5330d72, summary 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed18 tests passed over source-only tooling and final object-code package shapes with a test-only signature; no publication.
 
 DX-07fd0b187…Pinned Python/TypeScript client and integration matrices passed locally; no license or remote.
 
 DX-09ceac831…, merged PRs 3/4Clean contract tests and native smoke passed; no score or signed release evidence.
 
-DX-10Bee01e26…Local macOS arm64 non-auth conformance passed; cross-platform/live-host/auth cells held.
+DX-10Acfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12eFinal local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.
 
-Required rebind
+DX-10B9cd4b5837e887a0bb3dcc13209134c002aad08f5, evidence 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840Real isolated Codex CLI configuration and generic MCP passed; model/TUI/IDE and absent-host cells held.
 
-The current DX-06 archive packages the pre-auth DX-04 manager. The DX-07 and DX-10B reference artifacts also predate the final release rebind. Before any release candidate is promotable, the auth-merged manager needs an immutable binary hash; DX-06 must rebuild packages, signatures, SBOM/provenance, and lifecycle evidence; DX-10 must rerun against those exact artifacts; every public quickstart must then be replayed.
+Local rebind complete, production promotion held
+
+The local DX-06 archive, manifest, SBOM, provenance, package shapes, and DX-10A lane are now bound to manager 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e, engine 988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825, and contract a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e. The archive digest is 48e34b1126d4b29b103cb913ddd71ffe2fd39ad141228346afccb8eaa504c658. Its signature envelope 6dd03a82e4688413c438a8ca8682b20e3a8886895ba2059a22881458127f843e uses only a checked-in TEST-ONLY trust root. These bindings close the local rebind; they do not satisfy licenses, EULA, production OIDC, production signing/notarization, other native platforms, live model/IDE acceptance, registry publication, or Pages promotion.
 
 Approval and credential gates
 
@@ -503,17 +509,17 @@ Release notes become authoritative only when they name the exact signed package,
 
 Unreleased local staging — 2026-08-22
 
-- DX-04 manager interface is locally verified.
+- The consolidated auth-enabled manager is deterministically bound at 4fecd84584ed….
 
-- DX-05B account/device client is locally verified without a configured production provider.
-
-- DX-06 object-code archive, npm/wheel shapes, SBOM/provenance, and lifecycle rehearsal passed with a test-only signature and pre-auth manager.
+- DX-06 object-code archive, npm/wheel shapes, SBOM/provenance, and lifecycle rehearsal passed with a test-only signature and final local manager.
 
 - DX-07 Python/TypeScript and harness integration matrices passed locally.
 
 - DX-09 candidate-bound benchmark cleanup and native smoke merged; no benchmark score was produced.
 
-- DX-10B local macOS arm64 non-auth conformance passed.
+- DX-10A final local macOS arm64 clean install, MCP, offline account refusal, update/rollback/uninstall, and vault-canary lane passed.
+
+- DX-10B isolated real Codex CLI configuration and generic stdio MCP passed; other hosts and model/IDE acceptance remain held.
 
 Promotion rule
 
@@ -660,7 +666,8 @@ Before handing off, make one final delta check. Persist only newly verified dura
 # Candidate CLI help
 
 URL: https://memory.kleosresearch.xyz/reference/kaleidoscope-cli.candidate.txt
-Source: local auth-manager commit 048bf90854a1e38a1b88d14de88b681a206e5790
+Source: consolidated manager commit 05948a3acfbf0a325f06ecfe6057db484f02e5a1
+SHA-256: 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e
 
 Kaleidoscope public local manager
 
@@ -707,6 +714,15 @@ URL: https://memory.kleosresearch.xyz/reference/kaleidoscope-mcp.candidate.json
     "source_commit": "d96355632cc52816472106d0776ce63d73631fef",
     "target": "aarch64-apple-darwin",
     "version": "0.0.0-proposal"
+  },
+  "local_conformance": {
+    "dx10a_evidence_sha256": "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e",
+    "dx10b_host_evidence_sha256": "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
+  },
+  "manager": {
+    "sha256": "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e",
+    "source_commit": "05948a3acfbf0a325f06ecfe6057db484f02e5a1",
+    "version": "0.1.0"
   },
   "model_tools": [
     {
@@ -773,27 +789,44 @@ URL: https://memory.kleosresearch.xyz/staging-evidence.json
     "public_contract_sha256": "a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e",
     "source_commit": "d96355632cc52816472106d0776ce63d73631fef"
   },
+  "local_distribution": {
+    "archive_sha256": "48e34b1126d4b29b103cb913ddd71ffe2fd39ad141228346afccb8eaa504c658",
+    "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
+    "manifest_sha256": "e1f19abbfcf088e0121c135a623f2aa86fd68ba412b640084324bdf125a0eb6c",
+    "production_release": false,
+    "provenance_sha256": "7b08171edaf1aac81f81c78d5bd704674db3f2a8c3e44f122cccf456ee3ff82e",
+    "sbom_sha256": "50444804bb2d29561b9b3f9f85afdb5133d06afb92886683ab9e4f7339ec2a15",
+    "signature_envelope_sha256": "6dd03a82e4688413c438a8ca8682b20e3a8886895ba2059a22881458127f843e",
+    "test_signature_only": true,
+    "verification_summary_sha256": "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
+  },
+  "manager": {
+    "candidate_sha256": "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e",
+    "production_signature_verified": false,
+    "source_commit": "05948a3acfbf0a325f06ecfe6057db484f02e5a1",
+    "version": "0.1.0"
+  },
   "milestones": [
     {
-      "commit": "3b1ec66d4fc96ff2e77bf7c382b107502ccc7b8d",
+      "commit": "05948a3acfbf0a325f06ecfe6057db484f02e5a1",
       "id": "DX-04",
-      "scope": "manager init, profiles, reversible host configuration, doctor, instructions",
+      "scope": "consolidated manager init, profiles, reversible host configuration, doctor, instructions",
       "status": "verified_local",
-      "verification": "27 ordinary tests plus exact-candidate live contract passed"
+      "verification": "deterministic candidate manager SHA-256 4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e"
     },
     {
-      "commit": "048bf90854a1e38a1b88d14de88b681a206e5790",
+      "commit": "05948a3acfbf0a325f06ecfe6057db484f02e5a1",
       "id": "DX-05B",
-      "scope": "manager OIDC, device login, credential storage, account and device commands",
+      "scope": "consolidated manager OIDC, device login, credential storage, account and device commands",
       "status": "verified_local_provider_unconfigured",
-      "verification": "40 library tests, 5 CLI tests, and exact-candidate live contract passed on macOS arm64"
+      "verification": "11 account commands passed the offline provider-not-configured and no-engine-resolution lane"
     },
     {
-      "commit": "4a195d548036aa5bccd61d1bc0025d126a4d71ad",
+      "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
       "id": "DX-06A/B",
       "scope": "source-only distribution tooling, object-code bundle, npm and wheel shapes, lifecycle rehearsal",
       "status": "verified_local_test_signature_only",
-      "verification": "14 local distribution and lifecycle tests passed"
+      "verification": "18 tests passed; verification summary SHA-256 98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
     },
     {
       "commit": "fd0b1877f70b1bb57e1b67c4c559e8b2e1d44290",
@@ -810,20 +843,29 @@ URL: https://memory.kleosresearch.xyz/staging-evidence.json
       "verification": "20 ordinary tests passed with 1 live skip; opt-in exact-candidate smoke passed 1 of 1"
     },
     {
-      "commit": "ee01e26baaa0df28331795b918c7f1633dafc6f8",
+      "commit": "9cd4b5837e887a0bb3dcc13209134c002aad08f5",
       "id": "DX-10B",
-      "scope": "macOS arm64 manager, host transforms, Python and TypeScript persistent MCP conformance",
-      "status": "verified_local_non_auth",
-      "verification": "source-free conformance evidence SHA-256 052e898fafdc129f8865dd51ebd615cdcba253edbe417cde83bed1628d32b694"
+      "scope": "isolated real Codex CLI configuration plus generic persistent stdio MCP conformance",
+      "status": "verified_local_codex_cli",
+      "verification": "host evidence SHA-256 74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
+    },
+    {
+      "commit": "42ffba4e3976810f91f2adcf53bd4393e5330d72",
+      "id": "DX-10A",
+      "scope": "clean install, package binding, friendly profile MCP, account refusal, update, rollback, uninstall and vault canary",
+      "status": "verified_local_macos_arm64",
+      "verification": "DX-10A evidence SHA-256 cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
     }
   ],
   "production_release": false,
   "public_availability": false,
   "release_holds": {
-    "final_auth_merged_distribution_sha256": null,
-    "final_auth_merged_manager_sha256": null,
+    "claude_cursor_opencode_live_host_verified": false,
+    "live_model_or_ide_acceptance_verified": false,
+    "non_macos_arm64_native_support_verified": false,
     "original_documentation_license_approved": false,
     "pages_promotion_authorized": false,
+    "production_engine_eula_approved": false,
     "production_oidc_issuer": null,
     "production_signing_identity": null,
     "public_manager_license_approved": false,

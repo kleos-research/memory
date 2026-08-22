@@ -44,6 +44,36 @@ PUBLIC_CONTRACT_SHA256 = (
 PUBLIC_SKILL_SHA256 = (
     "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad"
 )
+MANAGER_SOURCE_COMMIT = "05948a3acfbf0a325f06ecfe6057db484f02e5a1"
+MANAGER_SHA256 = (
+    "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e"
+)
+DISTRIBUTION_COMMIT = "42ffba4e3976810f91f2adcf53bd4393e5330d72"
+DX06_VERIFICATION_SHA256 = (
+    "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
+)
+DX10A_EVIDENCE_SHA256 = (
+    "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
+)
+SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
+DX10B_HOST_EVIDENCE_SHA256 = (
+    "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
+)
+LOCAL_ARCHIVE_SHA256 = (
+    "48e34b1126d4b29b103cb913ddd71ffe2fd39ad141228346afccb8eaa504c658"
+)
+LOCAL_MANIFEST_SHA256 = (
+    "e1f19abbfcf088e0121c135a623f2aa86fd68ba412b640084324bdf125a0eb6c"
+)
+LOCAL_SBOM_SHA256 = (
+    "50444804bb2d29561b9b3f9f85afdb5133d06afb92886683ab9e4f7339ec2a15"
+)
+LOCAL_PROVENANCE_SHA256 = (
+    "7b08171edaf1aac81f81c78d5bd704674db3f2a8c3e44f122cccf456ee3ff82e"
+)
+LOCAL_TEST_SIGNATURE_SHA256 = (
+    "6dd03a82e4688413c438a8ca8682b20e3a8886895ba2059a22881458127f843e"
+)
 
 MANAGER_HELP = """Kaleidoscope public local manager
 
@@ -82,6 +112,11 @@ Project scope is the default. Use --dry-run for an effect-free plan.
 MCP_REFERENCE = {
     "schema_version": "kaleidoscope.docs-mcp-reference.v1",
     "status": "verified_local_candidate_only",
+    "manager": {
+        "source_commit": MANAGER_SOURCE_COMMIT,
+        "sha256": MANAGER_SHA256,
+        "version": "0.1.0",
+    },
     "engine": {
         "source_commit": ENGINE_SOURCE_COMMIT,
         "sha256": ENGINE_CANDIDATE_SHA256,
@@ -126,6 +161,10 @@ MCP_REFERENCE = {
         },
     ],
     "operator_commands_are_model_tools": False,
+    "local_conformance": {
+        "dx10a_evidence_sha256": DX10A_EVIDENCE_SHA256,
+        "dx10b_host_evidence_sha256": DX10B_HOST_EVIDENCE_SHA256,
+    },
     "release_readiness_claimed": False,
 }
 
@@ -139,27 +178,44 @@ STAGING_EVIDENCE = {
         "public_contract_sha256": PUBLIC_CONTRACT_SHA256,
         "production_signature_verified": False,
     },
+    "manager": {
+        "source_commit": MANAGER_SOURCE_COMMIT,
+        "candidate_sha256": MANAGER_SHA256,
+        "version": "0.1.0",
+        "production_signature_verified": False,
+    },
+    "local_distribution": {
+        "commit": DISTRIBUTION_COMMIT,
+        "archive_sha256": LOCAL_ARCHIVE_SHA256,
+        "manifest_sha256": LOCAL_MANIFEST_SHA256,
+        "sbom_sha256": LOCAL_SBOM_SHA256,
+        "provenance_sha256": LOCAL_PROVENANCE_SHA256,
+        "signature_envelope_sha256": LOCAL_TEST_SIGNATURE_SHA256,
+        "verification_summary_sha256": DX06_VERIFICATION_SHA256,
+        "test_signature_only": True,
+        "production_release": False,
+    },
     "milestones": [
         {
             "id": "DX-04",
-            "commit": "3b1ec66d4fc96ff2e77bf7c382b107502ccc7b8d",
+            "commit": MANAGER_SOURCE_COMMIT,
             "status": "verified_local",
-            "scope": "manager init, profiles, reversible host configuration, doctor, instructions",
-            "verification": "27 ordinary tests plus exact-candidate live contract passed",
+            "scope": "consolidated manager init, profiles, reversible host configuration, doctor, instructions",
+            "verification": f"deterministic candidate manager SHA-256 {MANAGER_SHA256}",
         },
         {
             "id": "DX-05B",
-            "commit": "048bf90854a1e38a1b88d14de88b681a206e5790",
+            "commit": MANAGER_SOURCE_COMMIT,
             "status": "verified_local_provider_unconfigured",
-            "scope": "manager OIDC, device login, credential storage, account and device commands",
-            "verification": "40 library tests, 5 CLI tests, and exact-candidate live contract passed on macOS arm64",
+            "scope": "consolidated manager OIDC, device login, credential storage, account and device commands",
+            "verification": "11 account commands passed the offline provider-not-configured and no-engine-resolution lane",
         },
         {
             "id": "DX-06A/B",
-            "commit": "4a195d548036aa5bccd61d1bc0025d126a4d71ad",
+            "commit": DISTRIBUTION_COMMIT,
             "status": "verified_local_test_signature_only",
             "scope": "source-only distribution tooling, object-code bundle, npm and wheel shapes, lifecycle rehearsal",
-            "verification": "14 local distribution and lifecycle tests passed",
+            "verification": f"18 tests passed; verification summary SHA-256 {DX06_VERIFICATION_SHA256}",
         },
         {
             "id": "DX-07",
@@ -177,21 +233,30 @@ STAGING_EVIDENCE = {
         },
         {
             "id": "DX-10B",
-            "commit": "ee01e26baaa0df28331795b918c7f1633dafc6f8",
-            "status": "verified_local_non_auth",
-            "scope": "macOS arm64 manager, host transforms, Python and TypeScript persistent MCP conformance",
-            "verification": "source-free conformance evidence SHA-256 052e898fafdc129f8865dd51ebd615cdcba253edbe417cde83bed1628d32b694",
+            "commit": SDK_HOST_CONFORMANCE_COMMIT,
+            "status": "verified_local_codex_cli",
+            "scope": "isolated real Codex CLI configuration plus generic persistent stdio MCP conformance",
+            "verification": f"host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}",
+        },
+        {
+            "id": "DX-10A",
+            "commit": DISTRIBUTION_COMMIT,
+            "status": "verified_local_macos_arm64",
+            "scope": "clean install, package binding, friendly profile MCP, account refusal, update, rollback, uninstall and vault canary",
+            "verification": f"DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}",
         },
     ],
     "release_holds": {
-        "final_auth_merged_manager_sha256": None,
-        "final_auth_merged_distribution_sha256": None,
         "production_oidc_issuer": None,
         "production_signing_identity": None,
+        "production_engine_eula_approved": False,
         "public_manager_license_approved": False,
         "original_documentation_license_approved": False,
         "registry_publication_authorized": False,
         "pages_promotion_authorized": False,
+        "non_macos_arm64_native_support_verified": False,
+        "claude_cursor_opencode_live_host_verified": False,
+        "live_model_or_ide_acceptance_verified": False,
     },
     "production_release": False,
     "public_availability": False,
@@ -250,7 +315,7 @@ PAGES = (
         description="The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.",
         body="""
 <p class="lede">The verified manager creates or imports one local profile, previews an owner-marked host change, applies it with confirmation, and can remove exactly what it owns.</p>
-<div class="callout"><strong>Interface preview, not an install command.</strong> No package is public. The local DX-06 archive uses a test-only signature and a pre-auth manager, so it must be regenerated and reverified after the final auth-merged manager hash exists.</div>
+<div class="callout"><strong>Interface preview, not an install command.</strong> No package is public. The final local DX-06 archive is bound to the auth-enabled manager but still uses a test-only signature; it is evidence, not a downloadable release.</div>
 <h2>1. Install after protected promotion</h2>
 <p>The intended package contains the public manager and proprietary engine object code without engine source. License grants, an engine EULA, production signing, registry credentials, supported-target evidence, and a separate publication approval are still required.</p>
 <h2>2. Initialize a profile</h2>
@@ -281,7 +346,7 @@ kaleidoscope disconnect codex --project "$PWD"</code></pre>
 <h2>Local engine</h2>
 <p>The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Its source is not part of the public manager, client, integration, or skill surfaces.</p>
 <h2>Manager and profile</h2>
-<p>The manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, and installs agent guidance. The separate DX-05B candidate adds account commands and native credential storage, but it has not yet been rebound into a final distribution.</p>
+<p>The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes the account/device commands. The local distribution is bound to manager source commit <code>05948a3…</code> and binary SHA-256 <code>4fecd84584ed…</code>.</p>
 <h2>Harness identity</h2>
 <p>Codex, Claude, Cursor, OpenCode, framework clients, and generic MCP clients are consumers of the same profile. They do not become separate memory stores merely because their configuration formats differ.</p>
 <h2>Account identity</h2>
@@ -296,7 +361,7 @@ kaleidoscope disconnect codex --project "$PWD"</code></pre>
         description="Candidate-generated reference for the Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.",
         body="""
 <p class="lede">The developer-facing CLI is <code>kaleidoscope</code>. The engine executable <code>kscope</code> remains a native runtime/operator surface and is not the manager quickstart.</p>
-<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from local auth-manager commit <code>048bf908…</code>. It is not a public-installation claim and will be regenerated from the final packaged manager before promotion.</div>
+<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from consolidated manager source commit <code>05948a3…</code> and candidate SHA-256 <code>4fecd84584ed…</code>. It is not a public-installation claim.</div>
 <p><a href="/reference/kaleidoscope-cli.candidate.txt">Download the exact candidate help text</a>.</p>
 <h2>Local memory and host commands</h2>
 <pre><code>kaleidoscope [--engine PATH] init [--root PATH] [--profile NAME] [--durability process-local|durable-local]
@@ -346,7 +411,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         body="""
 <p class="lede">Every integration consumes the same closed profile-first launch descriptor and persistent stdio MCP contract. The wrapper candidates do not contain or reimplement the proprietary memory algorithm.</p>
 <table><thead><tr><th>Integration</th><th>Pinned local evidence</th><th>Public status</th></tr></thead><tbody>
-<tr><td>Codex</td><td>Manager render, dry run, idempotence, exact rollback, and two-tool allowlist passed.</td><td>Not live-host accepted</td></tr>
+<tr><td>Codex</td><td>Real <code>codex-cli 0.149.0-alpha.4</code> add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.</td><td>Verified local CLI configuration; model/TUI acceptance held</td></tr>
 <tr><td>Claude Code</td><td>Managed <code>.mcp.json</code> render, dry run, idempotence, and exact rollback passed.</td><td>Not live-host accepted</td></tr>
 <tr><td>Cursor</td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Not live-host accepted</td></tr>
 <tr><td>OpenCode</td><td>Stable v1 direct entry is default; beta v2 is explicit and never silently selected.</td><td>Not live-host accepted</td></tr>
@@ -357,7 +422,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <tr><td>OpenAI Agents SDK</td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
 <tr><td>CrewAI</td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
-<div class="callout"><strong>What DX-07 proves.</strong> Local commit <code>fd0b1877…</code> passed the Python dependency matrices, TypeScript typecheck/build/tests, real-profile lanes, and source poison scan. It has no remote, license, package publication, or live provider claim. The final package must rebind these clients to the final auth-merged manager and exact release contract.</div>
+<div class="callout"><strong>What DX-07 and DX-10B prove.</strong> The Python/TypeScript matrices and real-profile lanes passed, and host conformance commit <code>9cd4b58…</code> bound the final manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
 <h2>Agent guidance</h2>
 <p>Install the <a href="/SKILL.md">public skill</a>, then add only the compact owner-marked pointer appropriate to <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or <a href="/snippets/cursor-kaleidoscope.mdc">Cursor</a>. Use the manager so dry runs, backups, receipts, tamper checks, and exact removal remain intact.</p>
 """,
@@ -372,7 +437,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <h2>Back up and restore</h2><p>Back up the canonical vault from the main checkout or another explicit data location, not a disposable worktree. Restore only through the verified export/import path for the same supported vault format.</p>
 <h2>Disconnect and uninstall</h2><p>Disconnect removes only manager-owned host configuration. Instruction removal is separate. A future installer uninstall removes package artifacts according to its scope; account logout/revocation is also separate. None of these operations implicitly deletes a vault.</p>
 <h2>Delete a vault</h2><p>Vault deletion is a separate preview-and-confirm operation tied to one exact resolved root. Logical memory deletion and physical vault deletion are different operations. A broad path, unresolved variable, or ambiguous target must be refused.</p>
-<h2>Update and rollback</h2><p>DX-06 locally rehearsed install, update, rollback, and uninstall under an explicitly marked staging root. It verified a test-only Ed25519 signature and a simulated update that reused the same binaries. This is not a production installer, notarization result, or supported update channel. The external vault canary remained byte-identical.</p>
+<h2>Update and rollback</h2><p>DX-10A locally exercised clean install, update, exact rollback, and uninstall under an explicitly marked staging root using the final local manager and engine candidate. It verified only a TEST-ONLY Ed25519 trust root and reused the same binaries for the simulated update. This is not a production installer, notarization result, or supported update channel. The separate vault canary remained byte-identical.</p>
 <h2>Package shapes</h2><p>Local macOS arm64 staging produced an object-code archive, npm meta/platform tarballs, and Python facade/native wheels, plus aggregate SBOM and provenance. Nothing was published; other platform entries are refusal-only scaffolds.</p>
 """,
     ),
@@ -383,9 +448,9 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         body="""
 <p class="lede">Kaleidoscope protects source distribution and establishes verifiable boundaries. A native binary remains inspectable and may be reverse engineered; object-code distribution is not a claim of impossibility.</p>
 <h2>Local engine boundary</h2><p>The generated candidate contract declares a local vault, stdio MCP, no required network, and no external model calls. The manager launches the engine with a closed non-secret environment instead of inheriting provider keys, account tokens, cloud credentials, or direct vault-coordinate variables.</p>
-<h2>Account boundary</h2><p>The DX-05B manager constructs only 11 declared account routes. Its request privacy guard rejects memory/profile field families and absolute local paths before transport. The provider remains unconfigured and no production account endpoint is available.</p>
+<h2>Account boundary</h2><p>The consolidated manager constructs only 11 declared account routes. Its request privacy guard rejects memory/profile field families and absolute local paths before transport. DX-10A exercised all 11 without an engine argument against a deliberately missing engine and observed provider-not-configured refusals before engine resolution. No production account endpoint is available.</p>
 <h2>Package integrity</h2><p>DX-06 binds object-code digests, source commits, bundled model, CycloneDX SBOM, provenance, candidate public contract, target, and prior-manifest rollback identity. Its signature is from a checked-in test fixture and the native code is only ad hoc/linker signed. Production trust roots, role keys, Apple signing/notarization, EULA, notices, and approved licenses are absent.</p>
-<h2>Verified privacy checks</h2><p>The candidate contains no bounded private builder-path hits and no Mach-O debug sections. Local conformance used canary values for environment, outputs, profiles, host configuration, and MCP traffic. These are scoped test results, not a universal absence claim.</p>
+<h2>Verified privacy checks</h2><p>The manager and engine candidates contain no bounded private builder-path hits and no Mach-O debug sections. Local conformance used canary values for environment, outputs, profiles, host configuration, and MCP traffic. The Codex lane used isolated HOME, CODEX_HOME, XDG, project, profile, and vault roots and restored its non-empty baseline byte-for-byte. These are scoped test results, not a universal absence claim.</p>
 <h2>Report a vulnerability</h2><p>Do not publish an exploit or sensitive report in a public issue. The production security contact and supported-version policy are release blockers and will be published here and in <code>/.well-known/security.txt</code> before promotion.</p>
 """,
     ),
@@ -408,7 +473,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         description="What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.",
         body="""
 <p class="lede">Login is intended for product-account and device workflows. It is not a hosted-memory connection and is not usable against a production issuer today.</p>
-<h2>Locally verified manager flows</h2><p>DX-05B commit <code>048bf908…</code> implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse.</p>
+<h2>Locally verified manager flows</h2><p>Consolidated manager commit <code>05948a3…</code> implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse. The final packaged candidate exposes all 11 closed account/device commands, but only the offline provider-not-configured lane has run against that package.</p>
 <h2>Commands</h2><pre><code>kaleidoscope login
 kaleidoscope login --device
 kaleidoscope status --json
@@ -432,12 +497,13 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         body="""
 <p class="lede">A platform or harness is supported only after the packaged artifact passes the canonical end-to-end proof on the named native runner and pinned host version.</p>
 <table><thead><tr><th>Surface</th><th>Verified local evidence</th><th>Held before support</th></tr></thead><tbody>
-<tr><td>macOS arm64</td><td>Engine candidate, manager, object-code packaging, Python/TypeScript MCP, lifecycle rehearsal.</td><td>Final auth-merged package, production signature/notarization, clean native release runner.</td></tr>
+<tr><td>macOS arm64</td><td>Final auth-enabled manager and engine candidate, object-code packaging, real stdio MCP, account refusal, clean install/update/rollback/uninstall, vault canary, and real Codex CLI configuration.</td><td>Production signature/notarization, approved terms, live OIDC/keychain, model/TUI/IDE acceptance, and protected publication.</td></tr>
 <tr><td>macOS x64</td><td>Target metadata/refusal only.</td><td>Native binaries, package, runner, signing/notarization.</td></tr>
 <tr><td>Linux x86_64/arm64</td><td>Source implementation and target metadata only; libc policy not frozen.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
 <tr><td>Windows x86_64/arm64</td><td>Source implementation and target metadata only.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
-<tr><td>Codex / Claude Code / Cursor / OpenCode</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Pinned live-host acceptance after packaged installation.</td></tr>
-<tr><td>Framework clients</td><td>Generic MCP and adapter lifecycle suites passed with pinned versions.</td><td>Live-provider lanes where required and final packaged-client rebind.</td></tr>
+<tr><td>Codex</td><td>Config transforms plus real pinned CLI add/list/get/remove and exact isolated rollback.</td><td>Model/TUI acceptance and a protected published install.</td></tr>
+<tr><td>Claude Code / Cursor / OpenCode</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Installed CLIs/IDE and pinned live-host acceptance.</td></tr>
+<tr><td>Framework clients</td><td>Generic MCP and adapter lifecycle suites passed with pinned versions and final-candidate non-auth conformance.</td><td>Live-provider lanes where required and protected published packages.</td></tr>
 </tbody></table>
 <p>Cross-compiling, extracting a foreign package, parsing configuration, or running a fake provider is useful evidence but not native support. Nothing in this table is a public availability claim.</p>
 """,
@@ -463,17 +529,17 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <p class="lede">Evidence is split into local functional proof, package/signature proof, native platform support, and protected production promotion. Passing one does not imply the others.</p>
 <div class="callout"><strong>Machine-readable record.</strong> <a href="/staging-evidence.json">staging-evidence.json</a> carries the same public, source-free status. It contains no local paths, credentials, vault coordinates, or private engine source.</div>
 <h2>Exact local candidate</h2>
-<table><tbody><tr><th>Engine source commit</th><td><code>{ENGINE_SOURCE_COMMIT}</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>{ENGINE_CANDIDATE_SHA256}</code></td></tr><tr><th>Public contract SHA-256</th><td><code>{PUBLIC_CONTRACT_SHA256}</code></td></tr><tr><th>Native target tested</th><td>macOS arm64</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
+<table><tbody><tr><th>Manager source commit</th><td><code>{MANAGER_SOURCE_COMMIT}</code></td></tr><tr><th>Manager candidate SHA-256</th><td><code>{MANAGER_SHA256}</code></td></tr><tr><th>Engine source commit</th><td><code>{ENGINE_SOURCE_COMMIT}</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>{ENGINE_CANDIDATE_SHA256}</code></td></tr><tr><th>Public contract SHA-256</th><td><code>{PUBLIC_CONTRACT_SHA256}</code></td></tr><tr><th>Native target tested</th><td>macOS arm64</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
 <h2>Milestones</h2>
 <table><thead><tr><th>Slice</th><th>Exact evidence</th><th>What is true now</th></tr></thead><tbody>
-<tr><td>DX-04</td><td><code>3b1ec66…</code></td><td>Friendly manager, profiles, safe config, doctor, skill and instruction installation passed locally.</td></tr>
-<tr><td>DX-05B</td><td><code>048bf908…</code></td><td>Auth/device manager passed local tests; production provider is unconfigured.</td></tr>
-<tr><td>DX-06A/B</td><td><code>4a195d5</code>, 14 tests</td><td>Source-only tooling built object-code package shapes with a test-only signature; no publication.</td></tr>
+<tr><td>DX-04 / DX-05B</td><td><code>{MANAGER_SOURCE_COMMIT}</code>, manager <code>{MANAGER_SHA256}</code></td><td>Consolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.</td></tr>
+<tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_COMMIT}</code>, summary <code>{DX06_VERIFICATION_SHA256}</code></td><td>18 tests passed over source-only tooling and final object-code package shapes with a test-only signature; no publication.</td></tr>
 <tr><td>DX-07</td><td><code>fd0b187…</code></td><td>Pinned Python/TypeScript client and integration matrices passed locally; no license or remote.</td></tr>
 <tr><td>DX-09</td><td><code>ceac831…</code>, merged PRs 3/4</td><td>Clean contract tests and native smoke passed; no score or signed release evidence.</td></tr>
-<tr><td>DX-10B</td><td><code>ee01e26…</code></td><td>Local macOS arm64 non-auth conformance passed; cross-platform/live-host/auth cells held.</td></tr>
+<tr><td>DX-10A</td><td><code>{DX10A_EVIDENCE_SHA256}</code></td><td>Final local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.</td></tr>
+<tr><td>DX-10B</td><td><code>{SDK_HOST_CONFORMANCE_COMMIT}</code>, evidence <code>{DX10B_HOST_EVIDENCE_SHA256}</code></td><td>Real isolated Codex CLI configuration and generic MCP passed; model/TUI/IDE and absent-host cells held.</td></tr>
 </tbody></table>
-<h2>Required rebind</h2><p>The current DX-06 archive packages the pre-auth DX-04 manager. The DX-07 and DX-10B reference artifacts also predate the final release rebind. Before any release candidate is promotable, the auth-merged manager needs an immutable binary hash; DX-06 must rebuild packages, signatures, SBOM/provenance, and lifecycle evidence; DX-10 must rerun against those exact artifacts; every public quickstart must then be replayed.</p>
+<h2>Local rebind complete, production promotion held</h2><p>The local DX-06 archive, manifest, SBOM, provenance, package shapes, and DX-10A lane are now bound to manager <code>{MANAGER_SHA256}</code>, engine <code>{ENGINE_CANDIDATE_SHA256}</code>, and contract <code>{PUBLIC_CONTRACT_SHA256}</code>. The archive digest is <code>{LOCAL_ARCHIVE_SHA256}</code>. Its signature envelope <code>{LOCAL_TEST_SIGNATURE_SHA256}</code> uses only a checked-in TEST-ONLY trust root. These bindings close the local rebind; they do not satisfy licenses, EULA, production OIDC, production signing/notarization, other native platforms, live model/IDE acceptance, registry publication, or Pages promotion.</p>
 <h2>Approval and credential gates</h2><ul><li>Approval of a license for the public manager, wrappers, integrations, and skill.</li><li>Approval of terms for original documentation and an engine object-code EULA.</li><li>Staging/production OIDC configuration and private control-plane deployment evidence.</li><li>Production signing/notarization identities, registry/CDN credentials, and native platform runners.</li><li>A separate final approval for package publication, production login, and Pages promotion.</li></ul>
 """,
     ),
@@ -483,7 +549,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         description="Versioned Kaleidoscope release notes bound to immutable package and public-contract digests.",
         body="""
 <p class="lede">Release notes become authoritative only when they name the exact signed package, final manager, engine, and public-contract digests.</p>
-<h2>Unreleased local staging — 2026-08-22</h2><ul><li>DX-04 manager interface is locally verified.</li><li>DX-05B account/device client is locally verified without a configured production provider.</li><li>DX-06 object-code archive, npm/wheel shapes, SBOM/provenance, and lifecycle rehearsal passed with a test-only signature and pre-auth manager.</li><li>DX-07 Python/TypeScript and harness integration matrices passed locally.</li><li>DX-09 candidate-bound benchmark cleanup and native smoke merged; no benchmark score was produced.</li><li>DX-10B local macOS arm64 non-auth conformance passed.</li></ul>
+<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>4fecd84584ed…</code>.</li><li>DX-06 object-code archive, npm/wheel shapes, SBOM/provenance, and lifecycle rehearsal passed with a test-only signature and final local manager.</li><li>DX-07 Python/TypeScript and harness integration matrices passed locally.</li><li>DX-09 candidate-bound benchmark cleanup and native smoke merged; no benchmark score was produced.</li><li>DX-10A final local macOS arm64 clean install, MCP, offline account refusal, update/rollback/uninstall, and vault-canary lane passed.</li><li>DX-10B isolated real Codex CLI configuration and generic stdio MCP passed; other hosts and model/IDE acceptance remain held.</li></ul>
 <h2>Promotion rule</h2><p>A release entry must record public availability, supported targets and pinned host versions, known limitations, migration requirements, security fixes, all package checksums, SBOM/provenance, exact rollback identity, license/EULA links, and production account/privacy terms. Publication and documentation promotion are separate protected actions.</p>
 """,
     ),
@@ -841,10 +907,10 @@ Policy: {DOMAIN}/docs/security/
 - [Public agent skill]({DOMAIN}/SKILL.md): bounded retrieval and verified durable writes
 - [Agent instructions]({DOMAIN}/agent-instructions.md): safe manager-installed AGENTS, CLAUDE, and Cursor pointers
 - [Machine-readable staging evidence]({DOMAIN}/staging-evidence.json): source-free milestone and gate record
-- [Candidate CLI help]({DOMAIN}/reference/kaleidoscope-cli.candidate.txt): exact DX-05B manager help snapshot
+- [Candidate CLI help]({DOMAIN}/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference]({DOMAIN}/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. The locally verified engine candidate SHA-256 is {ENGINE_CANDIDATE_SHA256}; its public-contract SHA-256 is {PUBLIC_CONTRACT_SHA256}. The final auth-merged manager and regenerated distribution digests do not exist yet. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
+The engine remains proprietary object code and its source is not in the public surfaces. The manager, wrappers, integrations, skill, and original documentation have no approved public license grant yet. Exact locally verified bindings: manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; DX-06 summary SHA-256 {DX06_VERIFICATION_SHA256}; DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; DX-10B Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. The local distribution is test-signed only and supports no production-release claim. Hosted memory is planned, not available. Production publication, login, and Pages promotion require separate approval.
 """
     write_text(output / "llms.txt", llms)
 
@@ -856,7 +922,7 @@ The engine remains proprietary object code and its source is not in the public s
     chunks.extend(
         [
             f"# Public agent skill\n\nURL: {DOMAIN}/SKILL.md\nSHA-256: {PUBLIC_SKILL_SHA256}\n\n{PUBLIC_FILES['SKILL.md'].read_text(encoding='utf-8').strip()}",
-            f"# Candidate CLI help\n\nURL: {DOMAIN}/reference/kaleidoscope-cli.candidate.txt\nSource: local auth-manager commit 048bf90854a1e38a1b88d14de88b681a206e5790\n\n{MANAGER_HELP.strip()}",
+            f"# Candidate CLI help\n\nURL: {DOMAIN}/reference/kaleidoscope-cli.candidate.txt\nSource: consolidated manager commit {MANAGER_SOURCE_COMMIT}\nSHA-256: {MANAGER_SHA256}\n\n{MANAGER_HELP.strip()}",
             f"# Candidate MCP reference\n\nURL: {DOMAIN}/reference/kaleidoscope-mcp.candidate.json\n\n{json.dumps(MCP_REFERENCE, indent=2, sort_keys=True)}",
             f"# Machine-readable staging evidence\n\nURL: {DOMAIN}/staging-evidence.json\n\n{json.dumps(STAGING_EVIDENCE, indent=2, sort_keys=True)}",
         ]

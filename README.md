@@ -5,9 +5,10 @@ This repository builds the public, source-free documentation surface for
 staging build and performs no network, login, publication, or deployment.
 
 The canonical skill and three harness snippets under `public/` are
-byte-for-byte mirrors of the frozen SDK-BOOT manager sources at commit
-`3b1ec66d4fc96ff2e77bf7c382b107502ccc7b8d` and remain byte-identical in the
-local DX-05B auth-manager candidate `048bf90854a1e38a1b88d14de88b681a206e5790`.
+byte-for-byte mirrors of the consolidated SDK manager at source commit
+`05948a3acfbf0a325f06ecfe6057db484f02e5a1`. The deterministic local manager
+candidate SHA-256 is
+`4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e`.
 The canonical skill SHA-256 is
 `c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad`.
 `public/agent-instructions.md` is the docs index for those exact files. The
@@ -21,16 +22,23 @@ candidate reference snapshots:
   `988192ac9677d5dd55a3642b2da493a0806bb860b5b3c0f509b37ddadee08825`;
 - public-contract SHA-256
   `a2357ed6c00e3e143d08581590571447e31d24fd0e7d2466d28a211a0515c75e`;
-- the exact local DX-05B manager help under
+- the exact consolidated local manager help under
   `reference/kaleidoscope-cli.candidate.txt`;
 - a bounded MCP schema projection under
   `reference/kaleidoscope-mcp.candidate.json`; and
 - all verified-local milestones and protected gates under
   `staging-evidence.json`.
 
-These bindings do not provide a final auth-merged manager hash. The current
-DX-06 package evidence uses the pre-auth manager, so distribution and
-conformance must be regenerated before promotion.
+The final local rebind uses distribution commit
+`42ffba4e3976810f91f2adcf53bd4393e5330d72`, DX-06 verification-summary
+SHA-256 `98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed`,
+DX-10A evidence SHA-256
+`cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e`,
+and DX-10B real-Codex host evidence SHA-256
+`74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840`.
+All remain local and unpublished. Production signing, live OIDC, additional
+native platforms and hosts, licenses/EULA, registry publication, and Pages
+promotion remain held.
 
 ```sh
 python3 build_site.py --output dist

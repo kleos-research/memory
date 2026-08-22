@@ -5,6 +5,15 @@
     "target": "aarch64-apple-darwin",
     "version": "0.0.0-proposal"
   },
+  "local_conformance": {
+    "dx10a_evidence_sha256": "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e",
+    "dx10b_host_evidence_sha256": "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
+  },
+  "manager": {
+    "sha256": "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e",
+    "source_commit": "05948a3acfbf0a325f06ecfe6057db484f02e5a1",
+    "version": "0.1.0"
+  },
   "model_tools": [
     {
       "fields": [

@@ -36,12 +36,13 @@
   <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Compatibility</h1>
 <p class="lede">A platform or harness is supported only after the packaged artifact passes the canonical end-to-end proof on the named native runner and pinned host version.</p>
 <table><thead><tr><th>Surface</th><th>Verified local evidence</th><th>Held before support</th></tr></thead><tbody>
-<tr><td>macOS arm64</td><td>Engine candidate, manager, object-code packaging, Python/TypeScript MCP, lifecycle rehearsal.</td><td>Final auth-merged package, production signature/notarization, clean native release runner.</td></tr>
+<tr><td>macOS arm64</td><td>Final auth-enabled manager and engine candidate, object-code packaging, real stdio MCP, account refusal, clean install/update/rollback/uninstall, vault canary, and real Codex CLI configuration.</td><td>Production signature/notarization, approved terms, live OIDC/keychain, model/TUI/IDE acceptance, and protected publication.</td></tr>
 <tr><td>macOS x64</td><td>Target metadata/refusal only.</td><td>Native binaries, package, runner, signing/notarization.</td></tr>
 <tr><td>Linux x86_64/arm64</td><td>Source implementation and target metadata only; libc policy not frozen.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
 <tr><td>Windows x86_64/arm64</td><td>Source implementation and target metadata only.</td><td>Native credential store, binaries, packages, runners, installer evidence.</td></tr>
-<tr><td>Codex / Claude Code / Cursor / OpenCode</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Pinned live-host acceptance after packaged installation.</td></tr>
-<tr><td>Framework clients</td><td>Generic MCP and adapter lifecycle suites passed with pinned versions.</td><td>Live-provider lanes where required and final packaged-client rebind.</td></tr>
+<tr><td>Codex</td><td>Config transforms plus real pinned CLI add/list/get/remove and exact isolated rollback.</td><td>Model/TUI acceptance and a protected published install.</td></tr>
+<tr><td>Claude Code / Cursor / OpenCode</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Installed CLIs/IDE and pinned live-host acceptance.</td></tr>
+<tr><td>Framework clients</td><td>Generic MCP and adapter lifecycle suites passed with pinned versions and final-candidate non-auth conformance.</td><td>Live-provider lanes where required and protected published packages.</td></tr>
 </tbody></table>
 <p>Cross-compiling, extracting a foreign package, parsing configuration, or running a fake provider is useful evidence but not native support. Nothing in this table is a public availability claim.</p>
 </article>

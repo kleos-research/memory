@@ -36,7 +36,7 @@
   <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>Agent and framework integrations</h1>
 <p class="lede">Every integration consumes the same closed profile-first launch descriptor and persistent stdio MCP contract. The wrapper candidates do not contain or reimplement the proprietary memory algorithm.</p>
 <table><thead><tr><th>Integration</th><th>Pinned local evidence</th><th>Public status</th></tr></thead><tbody>
-<tr><td>Codex</td><td>Manager render, dry run, idempotence, exact rollback, and two-tool allowlist passed.</td><td>Not live-host accepted</td></tr>
+<tr><td>Codex</td><td>Real <code>codex-cli 0.149.0-alpha.4</code> add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.</td><td>Verified local CLI configuration; model/TUI acceptance held</td></tr>
 <tr><td>Claude Code</td><td>Managed <code>.mcp.json</code> render, dry run, idempotence, and exact rollback passed.</td><td>Not live-host accepted</td></tr>
 <tr><td>Cursor</td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Not live-host accepted</td></tr>
 <tr><td>OpenCode</td><td>Stable v1 direct entry is default; beta v2 is explicit and never silently selected.</td><td>Not live-host accepted</td></tr>
@@ -47,7 +47,7 @@
 <tr><td>OpenAI Agents SDK</td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
 <tr><td>CrewAI</td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
-<div class="callout"><strong>What DX-07 proves.</strong> Local commit <code>fd0b1877…</code> passed the Python dependency matrices, TypeScript typecheck/build/tests, real-profile lanes, and source poison scan. It has no remote, license, package publication, or live provider claim. The final package must rebind these clients to the final auth-merged manager and exact release contract.</div>
+<div class="callout"><strong>What DX-07 and DX-10B prove.</strong> The Python/TypeScript matrices and real-profile lanes passed, and host conformance commit <code>9cd4b58…</code> bound the final manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
 <h2>Agent guidance</h2>
 <p>Install the <a href="/SKILL.md">public skill</a>, then add only the compact owner-marked pointer appropriate to <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or <a href="/snippets/cursor-kaleidoscope.mdc">Cursor</a>. Use the manager so dry runs, backups, receipts, tamper checks, and exact removal remain intact.</p>
 </article>

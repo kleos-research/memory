@@ -37,8 +37,8 @@
     },
     {
       "path": "docs/account/index.html",
-      "sha256": "926d2114bfa7de128f29bcbad1803111148db38ca9602b6e9cf0835c20261bd8",
-      "size_bytes": 5293
+      "sha256": "1c2f2712f6ffa688f06c14bbe642f3cdf141f421f027a6a5f68ff949af6bdd5a",
+      "size_bytes": 5462
     },
     {
       "path": "docs/benchmarks/index.html",
@@ -47,28 +47,28 @@
     },
     {
       "path": "docs/cli/index.html",
-      "sha256": "eb08b3f55fee801abbf72762b4c73121735f3219675890f4bd85264b232de1a9",
-      "size_bytes": 6076
+      "sha256": "30447ee0479880f0de81bfaaa7823aec0b67e62f5b382ba5460c0ee4cfebbcbc",
+      "size_bytes": 6062
     },
     {
       "path": "docs/compatibility/index.html",
-      "sha256": "27b5c0e5bdff07e77a22fbc974736ccee2dd8c38be72c79c528b1afcaf050905",
-      "size_bytes": 5352
+      "sha256": "a76eedf001284ac7f60bd57a9770c20ebabd723d1354b10b96ab28cacf40594e",
+      "size_bytes": 5697
     },
     {
       "path": "docs/concepts/index.html",
-      "sha256": "fca03c1090dca0a3aeb8f8550f5c315aa127c3fe8593363cbf7b70b64d9e9815",
-      "size_bytes": 5173
+      "sha256": "6e51ea5ec31854e5c20384405d6c33d89108434dff0e41380a2fe1450b24d589",
+      "size_bytes": 5211
     },
     {
       "path": "docs/evidence/index.html",
-      "sha256": "ceb78fbd983b795dd565179c16e52b42924c60bb664902979dbb86bb5fbb3791",
-      "size_bytes": 6831
+      "sha256": "2a803e7d4d8f528ffdf82c4f4730460b36c4bd4bf7e4c4b0f9cd02007ec95258",
+      "size_bytes": 8037
     },
     {
       "path": "docs/getting-started/index.html",
-      "sha256": "51d53262f337f4d833f6e5bad16b8c8b6b08f1da429dbfb839af4d290fdf3078",
-      "size_bytes": 6332
+      "sha256": "b340adb4c31073ef58ebb0119d525c2a45ddbcdf4fa88023b6e3147527310d87",
+      "size_bytes": 6316
     },
     {
       "path": "docs/index.html",
@@ -77,8 +77,8 @@
     },
     {
       "path": "docs/integrations/index.html",
-      "sha256": "664aefbb271f80f41c8442391c048553382d0611fc95ddaf410f766d8924bfab",
-      "size_bytes": 6580
+      "sha256": "df92f965d9d30083c5cfca05201da92a2a5041b0df69c3420d0dae681209cb14",
+      "size_bytes": 6719
     },
     {
       "path": "docs/mcp/index.html",
@@ -92,8 +92,8 @@
     },
     {
       "path": "docs/operations/index.html",
-      "sha256": "b603b20729dd110f353e8c9be8143b4b62d38a9938f9427f8520fe176e41ebde",
-      "size_bytes": 5517
+      "sha256": "0b1c6ed89ab7082f53f512aa4969c1ccd181058aac272a35a06b3350f0b34fff",
+      "size_bytes": 5588
     },
     {
       "path": "docs/privacy/index.html",
@@ -102,13 +102,13 @@
     },
     {
       "path": "docs/release-notes/index.html",
-      "sha256": "24d0d41070d6a8e5422a92369665de08117d1202653ab921768cf2aa60b41707",
-      "size_bytes": 4747
+      "sha256": "596115de80a26b5fefc7ea6489a43f4344e0e3e3009ce7a9e522ba3c27b52814",
+      "size_bytes": 4916
     },
     {
       "path": "docs/security/index.html",
-      "sha256": "4a8138568a0a02020b858b99d36dc0f120bef646003e5f3e09f8b7732e1b89f9",
-      "size_bytes": 5498
+      "sha256": "0608dc8a555ea65ed9c0ba108fb705e4c3fe11edd651a27eb7e317456968df20",
+      "size_bytes": 5783
     },
     {
       "path": "docs/troubleshooting/index.html",
@@ -137,13 +137,13 @@
     },
     {
       "path": "llms-full.txt",
-      "sha256": "e29d808245e54d482ba0e62c943e77e9d4d468c89c7113173b8bd7911c7a8683",
-      "size_bytes": 42049
+      "sha256": "a8166710ad7d71066e8a75ac62552e3f11aa849466d8cf4c9977c51ea8faad4b",
+      "size_bytes": 46594
     },
     {
       "path": "llms.txt",
-      "sha256": "c12454600522543600d426d2b89d49ce5e88aff7fb18abeb20ce26530bf720c3",
-      "size_bytes": 2985
+      "sha256": "664d27e5b7a58685f704a4da769e1c34c1135c927a78d5f9ac2223f7653a994c",
+      "size_bytes": 3344
     },
     {
       "path": "reference/kaleidoscope-cli.candidate.txt",
@@ -152,8 +152,8 @@
     },
     {
       "path": "reference/kaleidoscope-mcp.candidate.json",
-      "sha256": "b4527817606fd192a9bad4ed21e3749cadf380f81b7392ec1cb992b30da0eba8",
-      "size_bytes": 1351
+      "sha256": "680383528533facd9e49fe9624d46c80de74f567a03350aa6df60fdab8c3bfa6",
+      "size_bytes": 1769
     },
     {
       "path": "robots.txt",
@@ -182,8 +182,8 @@
     },
     {
       "path": "staging-evidence.json",
-      "sha256": "90cf89c10174f4fd649624f0dc8c62ece3347490d798a0b74996798c4c625dc6",
-      "size_bytes": 2981
+      "sha256": "e1743b42ae5a995c7169f29b103393ad4276029cc2f4dc34ec8e8a5b6c22fdbb",
+      "size_bytes": 4561
     }
   ],
   "mode": "staging",
