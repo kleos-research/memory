@@ -67,6 +67,10 @@ DX10A_EVIDENCE_SHA256 = (
 )
 SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
 PLATFORM_HARNESS_COMMIT = "52ad4d243966c5a5c9f65b35909d8f029ae74afd"
+CROSS_TARGET_COMPILE_SOURCE_COMMIT = "be5112911125a31bcf2efa766791d044cadab5ed"
+CROSS_TARGET_COMPILE_EVIDENCE_SHA256 = (
+    "67ec1ad295ce912799c883b661e3f2f0ad6e19139a887ea190613ef4a806c55f"
+)
 DX10B_HOST_EVIDENCE_SHA256 = (
     "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
 )
@@ -380,6 +384,31 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             }
             if hosts != expected_hosts:
                 failures.append("staging evidence has wrong local host inventory")
+            compile_evidence = evidence.get("cross_target_compile", {})
+            if compile_evidence.get("schema_version") != "kaleidoscope.docs-cross-target-compile.v1":
+                failures.append("staging evidence has wrong cross-target compile schema")
+            if compile_evidence.get("status") != "compile_only":
+                failures.append("staging evidence must mark cross-target checks compile-only")
+            if compile_evidence.get("source_commit") != CROSS_TARGET_COMPILE_SOURCE_COMMIT:
+                failures.append("staging evidence has wrong cross-target source commit")
+            if compile_evidence.get("rust_toolchain") != "1.97.1":
+                failures.append("staging evidence has wrong cross-target toolchain")
+            if compile_evidence.get("host_environment") != "macOS arm64":
+                failures.append("staging evidence has wrong cross-target host environment")
+            if compile_evidence.get("evidence_sha256") != CROSS_TARGET_COMPILE_EVIDENCE_SHA256:
+                failures.append("staging evidence has wrong cross-target evidence digest")
+            compile_targets = {
+                (target.get("triple"), target.get("platform"), target.get("architecture"), target.get("status"))
+                for target in compile_evidence.get("targets", [])
+            }
+            expected_compile_targets = {
+                ("x86_64-unknown-linux-gnu", "Linux", "x86_64", "passed"),
+                ("aarch64-unknown-linux-gnu", "Linux", "arm64", "passed"),
+                ("x86_64-pc-windows-gnu", "Windows", "x86_64", "passed"),
+                ("x86_64-apple-darwin", "macOS", "x86_64", "passed"),
+            }
+            if compile_targets != expected_compile_targets:
+                failures.append("staging evidence has wrong cross-target inventory")
             holds = evidence.get("release_holds", {})
             if holds.get("local_host_cli_configuration_verified") is not True:
                 failures.append("staging evidence must record local host wiring")
@@ -432,6 +461,22 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                 failures.append("staging evidence has wrong historic host digest")
             if "pre-final manager candidate" not in historical.get("status", ""):
                 failures.append("staging evidence must qualify historic host evidence")
+
+    compile_path = actual.get("cross-target-checks.json")
+    if compile_path is None:
+        failures.append("missing cross-target-checks.json")
+    else:
+        try:
+            compile_record = json.loads(compile_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            failures.append("cross-target-checks.json is not valid JSON")
+        else:
+            if compile_record.get("schema_version") != "kaleidoscope.docs-cross-target-compile.v1":
+                failures.append("wrong cross-target compile evidence schema")
+            if compile_record.get("source_commit") != CROSS_TARGET_COMPILE_SOURCE_COMMIT:
+                failures.append("cross-target compile evidence has wrong source commit")
+            if compile_record.get("evidence_sha256") != CROSS_TARGET_COMPILE_EVIDENCE_SHA256:
+                failures.append("cross-target compile evidence has wrong digest")
 
     cli_reference = actual.get("reference/kaleidoscope-cli.candidate.txt")
     if cli_reference is None:
@@ -662,6 +707,7 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         "/docs/evidence/",
         "/skill.md",
         "/staging-evidence.json",
+        "/cross-target-checks.json",
         "/reference/kaleidoscope-cli.candidate.txt",
         "/reference/kaleidoscope-mcp.candidate.json",
         ENGINE_CANDIDATE_SHA256,
@@ -673,6 +719,7 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         DX10A_EVIDENCE_SHA256,
         DX10B_HOST_EVIDENCE_SHA256,
         PLATFORM_HARNESS_COMMIT,
+        CROSS_TARGET_COMPILE_EVIDENCE_SHA256,
         SDK_FACADE_COMMIT,
         DISTRIBUTION_ASSEMBLER_COMMIT,
         FINAL_EVIDENCE_COMMIT,
