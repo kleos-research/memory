@@ -1,0 +1,46 @@
+{
+  "compiler checked only": {
+    "checked from": "macOS, Apple Silicon",
+    "covers": "the memory engine only, not the command-line tool you would run and not the client libraries",
+    "meaning": "The compiler accepts the memory engine's source for this platform when it is asked from a Mac. Nothing was ever assembled into a program for it, nothing was linked, and nothing has been run there.",
+    "platforms": [
+      {
+        "architecture": "x86_64",
+        "platform": "macOS",
+        "result": "passed"
+      },
+      {
+        "architecture": "x86_64",
+        "platform": "Linux",
+        "result": "passed"
+      },
+      {
+        "architecture": "arm64",
+        "platform": "Linux",
+        "result": "passed"
+      },
+      {
+        "architecture": "x86_64",
+        "platform": "Windows",
+        "result": "passed"
+      }
+    ]
+  },
+  "does not establish": [
+    "that a program was ever built for these platforms",
+    "that anything runs there",
+    "that an installer, a credential store or an editor works there",
+    "that any build is available for them"
+  ],
+  "not checked at all": [
+    {
+      "architecture": "arm64",
+      "platform": "Windows"
+    }
+  ],
+  "run on": [
+    "macOS, Apple Silicon"
+  ],
+  "schema_version": "kaleidoscope.docs-platform-support.v1",
+  "what this is": "Which machines Kaleidoscope has been run on, and which ones have only had a compiler check."
+}

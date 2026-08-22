@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Getting started | Kaleidoscope</title>
-  <meta name="description" content="The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.">
+  <meta name="description" content="Create a local Kaleidoscope profile, connect your editor or agent, check that search and remember appear, and disconnect cleanly — plus why you cannot install it yet.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/getting-started/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
   <meta property="og:title" content="Getting started | Kaleidoscope">
-  <meta property="og:description" content="The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.">
+  <meta property="og:description" content="Create a local Kaleidoscope profile, connect your editor or agent, check that search and remember appear, and disconnect cleanly — plus why you cannot install it yet.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/getting-started/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
@@ -23,55 +27,54 @@
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Getting started | Kaleidoscope">
-  <meta name="twitter:description" content="The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.">
+  <meta name="twitter:description" content="Create a local Kaleidoscope profile, connect your editor or agent, check that search and remember appear, and disconnect cleanly — plus why you cannot install it yet.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Getting started","description":"The release-gated Kaleidoscope quickstart: initialize a local profile, safely connect an agent harness, and verify search and remember.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/getting-started/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Getting started","item":"https://memory.kleosresearch.xyz/docs/getting-started/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Getting started","description":"Create a local Kaleidoscope profile, connect your editor or agent, check that search and remember appear, and disconnect cleanly — plus why you cannot install it yet.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/getting-started/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Getting started","item":"https://memory.kleosresearch.xyz/docs/getting-started/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/" aria-current="page">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Getting started</h1>
-<p class="lede">The verified manager creates or imports one local profile, previews an owner-marked host change, applies it with confirmation, and can remove exactly what it owns.</p>
-<div class="callout"><strong>Release-candidate quickstart, not a live registry command.</strong> The converged <code>0.1.0-rc.1</code> package contract passed locally for macOS arm64, but the packages remain private, test-signed, unpublished, and unavailable from public registries.</div>
-<h2>1. Install after protected promotion</h2>
-<p>Choose one public SDK facade after publication. Each facade installs its exact macOS arm64 native companion; do not install both and do not omit the native dependency.</p>
-<pre><code># npm / Node.js 22+
-npm install -g @kleos-research/kaleidoscope@0.1.0-rc.1
-
-# or Python 3.11+
-python -m pip install kaleidoscope-memory==0.1.0rc1
-
-kaleidoscope --version
-kscope --version</code></pre>
-<p>The facade contains the full public SDK, installed-payload resolver, and both launchers. Its native companion contains the manager and proprietary object-code engine without engine source. There is no install hook, runtime download, compiler, or source-build fallback.</p>
-<h2>2. Initialize a profile</h2>
-<pre><code>kaleidoscope init   --profile default   --root /absolute/path/to/user-owned/kaleidoscope-memory
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/" aria-current="page">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><span aria-current="page">Getting started</span></nav><h1>Getting started</h1><ul class="toc" aria-label="On this page"><li><a href="#1-install-not-possible-yet">1. Install — not possible yet</a></li><li><a href="#2-create-a-profile">2. Create a profile</a></li><li><a href="#3-preview-the-change-then-connect">3. Preview the change, then connect</a></li><li><a href="#4-check-that-both-tools-appeared">4. Check that both tools appeared</a></li><li><a href="#5-disconnect-safely">5. Disconnect safely</a></li></ul>
+<p class="lede">These are the five commands you will run, in order. You cannot run the first one, because nothing installs from a registry yet; the four below it are real, and they are the ones we run.</p>
+<div class="callout"><strong>You cannot install Kaleidoscope yet.</strong> Neither package has been published, so step 1 is blocked for everyone. Steps 2 to 5 have each been run on a Mac with Apple Silicon, which is the only kind of machine anything has ever been run on.</div>
+<h2 id="1-install-not-possible-yet">1. Install — not possible yet</h2>
+<p>There is no way to install Kaleidoscope today. Neither package exists in a registry, and both names return 404. When they publish, the npm package will be <code>@kleos-research/kaleidoscope</code> and will need Node.js 22 or newer; the Python package will be <code>kaleidoscope-memory</code> and will need Python 3.11 or newer. You install one of them, not both. Either one gives you the <code>kaleidoscope</code> and <code>kscope</code> commands and brings in a second package built for your platform, which carries the engine.</p>
+<h2 id="2-create-a-profile">2. Create a profile</h2>
+<pre tabindex="0"><code>kaleidoscope init --profile default --root /absolute/path/to/your/kaleidoscope-memory
 kaleidoscope config --profile default --json</code></pre>
-<p>The launcher resolves the manager and engine from the installed native companion. A profile is selected through the manager and native profile registry; agent configuration receives <code>mcp --profile NAME</code>, not credentials or raw vault coordinates.</p>
-<h2>3. Preview and connect a host</h2>
-<pre><code>kaleidoscope connect codex --profile default --project "$PWD" --dry-run
+<p>A profile is one memory store on your machine, at a path you choose and own. A missing or invalid root is refused rather than created for you. What gets written into your editor's configuration later is <code>mcp --profile NAME</code> — never a credential, never the raw location of your vault.</p>
+<h2 id="3-preview-the-change-then-connect">3. Preview the change, then connect</h2>
+<pre tabindex="0"><code>kaleidoscope connect codex --profile default --project "$PWD" --dry-run
 kaleidoscope connect codex --profile default --project "$PWD"
 kaleidoscope doctor --project "$PWD"</code></pre>
-<p>Local tests cover <code>codex</code>, <code>claude</code>, <code>cursor</code>, and <code>opencode</code> transforms. In addition, platform-harness commit <code>52ad4d2…</code> exercised pinned Codex <code>0.149.0</code>, Claude Code <code>2.1.239</code>, and OpenCode <code>1.18.21</code> CLI wiring on macOS arm64 against a private verified bundled engine candidate; it verified local connection and stdio discovery of exactly <code>search</code> and <code>remember</code>. This is not released-package, credentialed-model, GUI/IDE, Cursor, or production acceptance. Existing unrelated configuration is preserved; ambiguous, symlinked, tampered, or concurrently edited files are refused.</p>
-<h2>4. Verify the contract</h2>
-<p>The local candidate contract is bound to engine SHA-256 <code>988192ac9677…</code> and public-contract SHA-256 <code>a2357ed6c00e…</code>. It publishes exactly <code>remember</code> and <code>search</code>; the launch descriptor presents the agent-facing order <code>search</code>, <code>remember</code>. Ranked search returns <code>selected_hits</code>; addressed search returns the memory at top level.</p>
-<h2>5. Disconnect safely</h2>
-<pre><code>kaleidoscope disconnect codex --project "$PWD" --dry-run
+<p>The first command shows you the exact change and writes nothing. Applying it touches only the block Kaleidoscope owns, so your existing settings survive; an ambiguous, symlinked, tampered, or concurrently edited file is refused rather than overwritten. The hosts the command knows are <code>codex</code>, <code>claude</code>, <code>cursor</code>, and <code>opencode</code>.</p>
+<p>Codex, Claude Code, and OpenCode have each been connected this way for real, on a Mac with Apple Silicon. Cursor's configuration is written and removed correctly, but nobody has ever launched Cursor against it.</p>
+<h2 id="4-check-that-both-tools-appeared">4. Check that both tools appeared</h2>
+<p>Restart your editor after connecting, then look at the tools it lists for Kaleidoscope. You should see exactly two, <code>search</code> and <code>remember</code>. If you see none, or more than two, go to <a href="/docs/troubleshooting/">Troubleshooting</a>. Operator commands are never offered to a model, so two is the correct number in every host.</p>
+<h2 id="5-disconnect-safely">5. Disconnect safely</h2>
+<pre tabindex="0"><code>kaleidoscope disconnect codex --project "$PWD" --dry-run
 kaleidoscope disconnect codex --project "$PWD"</code></pre>
-<p>Disconnect removes only Kaleidoscope-owned material and leaves other host settings and vault bytes unchanged.</p>
+<p>Disconnect removes only what Kaleidoscope wrote and leaves the rest of the host's settings, and every byte of your vault, alone. Disconnecting, uninstalling, signing out, and deleting a vault are four separate operations, and the first three never delete memory. <a href="/docs/operations/">Operations</a> covers the other three.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -57,99 +58,79 @@ class DocumentationArtifactTest(unittest.TestCase):
             next(page for page in build_site.PAGES if page.route == "/docs/hosted/").noindex
         )
 
-    def test_public_skill_and_candidate_bindings_are_exact(self) -> None:
+    def test_public_skill_and_tool_contract_are_exact(self) -> None:
         skill = build_site.PUBLIC_FILES["SKILL.md"]
         self.assertEqual(
             hashlib.sha256(skill.read_bytes()).hexdigest(),
             build_site.PUBLIC_SKILL_SHA256,
         )
         self.assertEqual(
-            build_site.MCP_REFERENCE["engine"]["sha256"],
-            build_site.ENGINE_CANDIDATE_SHA256,
-        )
-        self.assertEqual(
-            build_site.MCP_REFERENCE["public_contract_sha256"],
-            build_site.PUBLIC_CONTRACT_SHA256,
-        )
-        self.assertEqual(
             {tool["name"] for tool in build_site.MCP_REFERENCE["model_tools"]},
             {"search", "remember"},
         )
+        self.assertFalse(build_site.MCP_REFERENCE["operator_commands_are_model_tools"])
         self.assertEqual(
-            build_site.MCP_REFERENCE["local_conformance"]["platform_harness_commit"],
-            build_site.PLATFORM_HARNESS_COMMIT,
-        )
-        self.assertEqual(
-            build_site.STAGING_EVIDENCE["local_host_cli_conformance"]["mcp_tools"],
+            build_site.STATUS_RECORD["hosts"]["tools_a_model_sees"],
             ["remember", "search"],
         )
-        host_conformance = build_site.STAGING_EVIDENCE["local_host_cli_conformance"]
-        self.assertEqual(host_conformance["status"], "verified_local_bundled_candidate")
-        self.assertEqual(host_conformance["candidate_model_status"], "bundled")
-        self.assertEqual(host_conformance["candidate_sha256"], build_site.ENGINE_CANDIDATE_SHA256)
         self.assertEqual(
-            build_site.STAGING_EVIDENCE["cross_target_compile"]["evidence_sha256"],
-            build_site.CROSS_TARGET_COMPILE_EVIDENCE_SHA256,
-        )
-        self.assertEqual(
-            {target["triple"] for target in build_site.CROSS_TARGET_COMPILE_EVIDENCE["targets"]},
             {
-                "x86_64-unknown-linux-gnu",
-                "aarch64-unknown-linux-gnu",
-                "x86_64-pc-windows-gnu",
-                "x86_64-apple-darwin",
+                (row["platform"], row["architecture"])
+                for row in build_site.PLATFORM_SUPPORT["compiler checked only"][
+                    "platforms"
+                ]
+            },
+            {
+                ("macOS", "x86_64"),
+                ("Linux", "x86_64"),
+                ("Linux", "arm64"),
+                ("Windows", "x86_64"),
             },
         )
+
+    def test_every_partly_tested_host_says_which_part(self) -> None:
+        for host in build_site.HOST_SUPPORT["hosts"]:
+            if host["status"] == "partly tested":
+                self.assertTrue(
+                    host["not confirmed"],
+                    f"{host['name']} is partly tested without saying which part",
+                )
+
+    def test_the_compiler_check_is_never_described_as_a_build(self) -> None:
+        # Published once as "the code builds for this target", four platforms
+        # nothing has ever been built for read as working builds.
+        meaning = build_site.PLATFORM_SUPPORT["compiler checked only"]["meaning"]
+        self.assertIn("The compiler accepts", meaning)
+        self.assertIn("Nothing was ever assembled", meaning)
+        self.assertIn("nothing has been run there", meaning)
+        for page in build_site.PAGES:
+            if page.route in {"/docs/compatibility/", "/docs/status/"}:
+                self.assertNotIn("Builds only", page.body)
 
     def test_public_machine_records_have_no_private_coordinates(self) -> None:
         values = "\n".join(
             (
                 build_site.MANAGER_HELP,
                 json.dumps(build_site.MCP_REFERENCE, sort_keys=True),
-                json.dumps(build_site.STAGING_EVIDENCE, sort_keys=True),
+                json.dumps(build_site.STATUS_RECORD, sort_keys=True),
+                json.dumps(build_site.PLATFORM_SUPPORT, sort_keys=True),
             )
         )
         for marker in verify_site.PRIVATE_MARKERS:
             self.assertNotIn(marker, values)
-        holds = build_site.STAGING_EVIDENCE["release_holds"]
-        self.assertEqual(
-            build_site.STAGING_EVIDENCE["manager"]["candidate_sha256"],
-            build_site.MANAGER_SHA256,
-        )
-        self.assertEqual(
-            build_site.STAGING_EVIDENCE["local_distribution"][
-                "package_proof_sha256"
-            ],
-            build_site.PACKAGE_PROOF_SHA256,
-        )
-        distribution = build_site.STAGING_EVIDENCE["local_distribution"]
-        self.assertEqual(distribution["sdk_facade_commit"], build_site.SDK_FACADE_COMMIT)
-        self.assertEqual(distribution["native_target"], "darwin-arm64")
-        self.assertEqual(
-            distribution["facades"]["contains"],
-            "full public SDK plus kaleidoscope and kscope launchers",
-        )
-        self.assertEqual(
-            distribution["native_companions"]["contains"],
-            "manager plus proprietary object-code engine",
-        )
-        self.assertTrue(
-            build_site.STAGING_EVIDENCE["local_distribution"][
-                "test_signature_only"
-            ]
-        )
-        self.assertTrue(holds["engine_eula_product_authorized"])
-        self.assertTrue(holds["public_software_license_product_authorized"])
-        self.assertTrue(
-            holds["original_documentation_license_product_authorized"]
-        )
-        self.assertFalse(holds["production_engine_eula_finalized"])
-        self.assertFalse(holds["external_legal_review_complete"])
-        self.assertFalse(holds["non_macos_arm64_native_support_verified"])
-        self.assertFalse(holds["claude_cursor_opencode_live_host_verified"])
-        self.assertTrue(holds["local_host_cli_configuration_verified"])
-        self.assertFalse(build_site.STAGING_EVIDENCE["production_release"])
-        self.assertFalse(build_site.STAGING_EVIDENCE["public_availability"])
+        for pattern in verify_site.BANNED_VOCABULARY:
+            self.assertIsNone(
+                re.search(pattern, values.lower()),
+                f"internal vocabulary matching {pattern} in a public machine record",
+            )
+        status = build_site.STATUS_RECORD
+        self.assertFalse(status["released"])
+        self.assertFalse(status["publicly available"])
+        self.assertFalse(status["packages"]["published to a registry"])
+        self.assertFalse(status["packages"]["signed for release"])
+        self.assertIn("not in force", status["licences"]["the product terms"])
+        for value in status["still true before any release"].values():
+            self.assertFalse(value)
 
 
 if __name__ == "__main__":

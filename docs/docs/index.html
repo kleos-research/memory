@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Kaleidoscope documentation | Kaleidoscope</title>
-  <meta name="description" content="Developer documentation for the local Kaleidoscope CLI, stdio MCP server, profiles, integrations, security, and account boundary.">
+  <meta name="description" content="Documentation for Kaleidoscope: the local CLI, the two MCP tools, profiles, integrations, security and privacy boundaries, and what works today.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
   <meta property="og:title" content="Kaleidoscope documentation | Kaleidoscope">
-  <meta property="og:description" content="Developer documentation for the local Kaleidoscope CLI, stdio MCP server, profiles, integrations, security, and account boundary.">
+  <meta property="og:description" content="Documentation for Kaleidoscope: the local CLI, the two MCP tools, profiles, integrations, security and privacy boundaries, and what works today.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
@@ -23,37 +27,60 @@
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kaleidoscope documentation | Kaleidoscope">
-  <meta name="twitter:description" content="Developer documentation for the local Kaleidoscope CLI, stdio MCP server, profiles, integrations, security, and account boundary.">
+  <meta name="twitter:description" content="Documentation for Kaleidoscope: the local CLI, the two MCP tools, profiles, integrations, security and privacy boundaries, and what works today.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Kaleidoscope documentation","description":"Developer documentation for the local Kaleidoscope CLI, stdio MCP server, profiles, integrations, security, and account boundary.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Kaleidoscope documentation","description":"Documentation for Kaleidoscope: the local CLI, the two MCP tools, profiles, integrations, security and privacy boundaries, and what works today.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/" aria-current="page">Docs</a>
     <a href="/docs/integrations/">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/" aria-current="page">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Kaleidoscope documentation</h1>
-<p class="lede">Kaleidoscope is local memory for agents: a native CLI and persistent stdio MCP server with one profile shared across configured harnesses.</p>
-<div class="callout"><strong>Release status.</strong> This documentation is not a product release. Local implementation and conformance evidence exists, but no package, registry, production login, or public SDK repository is available.</div>
-<div class="grid">
-  <article class="card"><h2><a href="/docs/getting-started/">Preview the workflow</a></h2><p>Inspect the verified manager interface for one profile, reversible host setup, and local diagnostics.</p></article>
-  <article class="card"><h2><a href="/docs/packages/">Prepare a package install</a></h2><p>See the final npm and Python names, platform rules, and source-free release gates.</p></article>
-  <article class="card"><h2><a href="/docs/mcp/">Build against MCP</a></h2><p>Use the candidate-bound two-tool contract over one long-lived stdio process.</p></article>
-  <article class="card"><h2><a href="/docs/evidence/">Check what passed</a></h2><p>Separate locally verified milestones from platform holds and protected production gates.</p></article>
-</div>
-<h2>Choose a path</h2>
-<ul><li>Agent user: read <a href="/docs/getting-started/">Getting started</a>; the commands are an interface preview until a protected release is approved.</li><li>Application developer: begin with <a href="/docs/integrations/">Integrations</a>, then use the persistent <a href="/docs/mcp/">MCP contract</a>.</li><li>Operator: use <a href="/docs/operations/">Operations</a> for separate configuration, credential, package, and vault lifecycles.</li><li>Security or privacy reviewer: read <a href="/docs/security/">Security</a>, <a href="/docs/privacy/">Privacy</a>, and the machine-readable <a href="/staging-evidence.json">staging evidence</a>.</li><li>Agent crawler: start at <a href="/llms.txt">llms.txt</a> or the expanded <a href="/llms-full.txt">llms-full.txt</a>.</li></ul>
-</article>
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main" class="shell docs-index">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><span aria-current="page">Docs</span></nav>
+  <div class="masthead">
+    <p class="eyebrow mono">Documentation</p>
+    <h1>Kaleidoscope documentation</h1>
+    <p class="sub">Local memory for agents · CLI and stdio MCP · macOS on Apple Silicon</p>
+  </div>
+<p class="lede">Kaleidoscope is local memory for agents. Your memory lives in a vault on your machine, and every editor or agent you connect shares one profile through a CLI and a long-lived MCP server.</p>
+<div class="callout"><strong>Kaleidoscope is not released.</strong> You cannot install it from npm or PyPI, you cannot sign in, and there is no public source repository for the clients yet. <a href="/docs/status/">What works today</a> lists what has actually been run, and on what.</div>
+<section>
+  <h2>Start here</h2>
+  <div class="cards">
+    <article><h3><a href="/docs/getting-started/">Getting started</a></h3><p>The five commands you will run, in order, from creating a profile to disconnecting cleanly.</p><p class="s">Five commands</p></article>
+    <article><h3><a href="/docs/packages/">Install</a></h3><p>What the two packages will be called, what is inside them, and why you cannot get them yet.</p><p class="s">Not available</p></article>
+    <article><h3><a href="/docs/mcp/">MCP</a></h3><p>Write a correct <code>search</code> or <code>remember</code> call against the two-tool contract.</p><p class="s">Two tools</p></article>
+  </div>
+</section>
+<section>
+  <h2>By area</h2>
+  <ul class="rows"><li><span class="k">Start</span><span class="v"><span class="entry"><a href="/docs/">Overview</a> — what Kaleidoscope is, and which page you need</span><span class="entry"><a href="/docs/getting-started/">Getting started</a> — the five commands you will run, in order</span><span class="entry"><a href="/docs/packages/">Install</a> — the two package names, what is inside them, and why you cannot get them yet</span><span class="entry"><a href="/docs/concepts/">Concepts</a> — what a profile, a vault, and an account are</span></span></li><li><span class="k">Reference</span><span class="v"><span class="entry"><a href="/docs/cli/">CLI</a> — every kaleidoscope command and flag</span><span class="entry"><a href="/docs/mcp/">MCP</a> — how to write a correct search or remember call</span><span class="entry"><a href="/docs/integrations/">Integrations</a> — find your editor, agent, or framework and connect it</span></span></li><li><span class="k">Operate</span><span class="v"><span class="entry"><a href="/docs/operations/">Operations</a> — back up your memory, move it, uninstall, delete a vault</span><span class="entry"><a href="/docs/account/">Account</a> — what signing in would do, and what it never touches</span><span class="entry"><a href="/docs/troubleshooting/">Troubleshooting</a> — the six things that go wrong, and what causes each</span></span></li><li><span class="k">Boundaries</span><span class="v"><span class="entry"><a href="/docs/security/">Security</a> — what is isolated from what, and how to report a vulnerability</span><span class="entry"><a href="/docs/privacy/">Privacy</a> — what stays on your machine, and what this website itself does</span><span class="entry"><a href="/docs/legal/">Legal (drafts)</a> — which licences are in force, and which terms are unreviewed drafts</span></span></li><li><span class="k">Status</span><span class="v"><span class="entry"><a href="/docs/status/">What works today</a> — the platforms and editors that have actually been run</span><span class="entry"><a href="/docs/compatibility/">Platform support</a> — does this run on my machine</span><span class="entry"><a href="/docs/benchmarks/">Benchmarks</a> — why there is no published score yet</span><span class="entry"><a href="/docs/release-notes/">Release notes</a> — there have been no releases; this is where they will appear</span></span></li></ul>
+</section>
+<section>
+  <h2>Choose a path</h2>
+  <ul class="rows">
+    <li><span class="k">Using an agent</span><span class="v">Start at <a href="/docs/getting-started/">Getting started</a>, then <a href="/docs/concepts/">Concepts</a> for what a profile and a vault actually are.</span></li>
+    <li><span class="k">Building on it</span><span class="v">Find your editor or framework in <a href="/docs/integrations/">Integrations</a>, then write calls against the <a href="/docs/mcp/">MCP</a> contract.</span></li>
+    <li><span class="k">Running it day to day</span><span class="v">Use <a href="/docs/operations/">Operations</a> to back up, move, or delete a vault, and <a href="/docs/troubleshooting/">Troubleshooting</a> when a host cannot see the tools.</span></li>
+    <li><span class="k">Reviewing it</span><span class="v">Read <a href="/docs/security/">Security</a> for what is isolated from what, and <a href="/docs/privacy/">Privacy</a> for what leaves your machine and what this website itself does.</span></li>
+    <li><span class="k">An agent or crawler</span><span class="v">Read <a href="/llms.txt">llms.txt</a>, or the expanded <a href="/llms-full.txt">llms-full.txt</a>.</span></li>
+  </ul>
+</section>
+
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

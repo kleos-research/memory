@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Privacy and data boundary | Kaleidoscope</title>
-  <meta name="description" content="What Kaleidoscope keeps local, what the account manager may send, credential storage, telemetry status, and hosted-memory separation.">
+  <meta name="description" content="What stays on your machine, what signing in can send, how credentials are stored, what is not yet approved, and what this website itself does.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/privacy/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
   <meta property="og:title" content="Privacy and data boundary | Kaleidoscope">
-  <meta property="og:description" content="What Kaleidoscope keeps local, what the account manager may send, credential storage, telemetry status, and hosted-memory separation.">
+  <meta property="og:description" content="What stays on your machine, what signing in can send, how credentials are stored, what is not yet approved, and what this website itself does.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/privacy/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
@@ -23,33 +27,41 @@
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Privacy and data boundary | Kaleidoscope">
-  <meta name="twitter:description" content="What Kaleidoscope keeps local, what the account manager may send, credential storage, telemetry status, and hosted-memory separation.">
+  <meta name="twitter:description" content="What stays on your machine, what signing in can send, how credentials are stored, what is not yet approved, and what this website itself does.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Privacy and data boundary","description":"What Kaleidoscope keeps local, what the account manager may send, credential storage, telemetry status, and hosted-memory separation.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/privacy/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Privacy and data boundary","item":"https://memory.kleosresearch.xyz/docs/privacy/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Privacy and data boundary","description":"What stays on your machine, what signing in can send, how credentials are stored, what is not yet approved, and what this website itself does.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/privacy/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Privacy and data boundary","item":"https://memory.kleosresearch.xyz/docs/privacy/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/" aria-current="page">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Privacy and data boundary</h1>
-<p class="lede">Local memory and account identity are separate systems. Logging in does not authorize memory upload, sync, analysis, training, or deletion.</p>
-<h2>Local memory data</h2><p>Memory content, queries, selected results, memory IDs, graph data, local paths, vault coordinates, workspace/principal/journal identity, and local provider credentials remain engine-side fields. They are excluded from the account protocol.</p>
-<h2>Account data</h2><p>The local auth candidate sends bounded account and device fields needed for OIDC login, refresh, account status, external-identity linking, logout/revocation, and device management. Device display fields reject absolute-path forms. The exact production provider, policy, retention, recovery, and account-deletion terms are not configured.</p>
-<h2>Credential storage</h2><p>The native implementation uses macOS Keychain on the only natively tested platform. Windows Credential Manager and Linux Secret Service implementations exist but still need native runners. There is no plaintext credential fallback. Agent configuration and profiles do not contain refresh tokens.</p>
-<h2>Network and telemetry</h2><p>The local engine contract declares no required network and no external model calls. Non-auth manager operations are offline. Account commands are the only planned account-network surface. No production telemetry inventory, destination list, consent policy, or privacy terms have been approved, so production login remains disabled.</p>
-<h2>Hosted service</h2><p>Hosted memory is a future, separately authorized product. It requires explicit contracts for tenant isolation, retention, residency, deletion, sync, training use, billing, and incidents. It is not implied by these local docs.</p>
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/" aria-current="page">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><span class="group">Boundaries</span><span aria-hidden="true">/</span><span aria-current="page">Privacy and data boundary</span></nav><h1>Privacy and data boundary</h1><ul class="toc" aria-label="On this page"><li><a href="#your-memory-stays-local">Your memory stays local</a></li><li><a href="#what-signing-in-would-send">What signing in would send</a></li><li><a href="#where-credentials-would-be-kept">Where credentials would be kept</a></li><li><a href="#network-use">Network use</a></li><li><a href="#this-documentation-site">This documentation site</a></li><li><a href="#hosted-memory">Hosted memory</a></li></ul>
+<p class="lede">Your memory and your account identity are separate systems. Signing in does not authorize upload, sync, analysis, training on, or deletion of your memory.</p>
+<h2 id="your-memory-stays-local">Your memory stays local</h2><p>Signing in never carries your memory with it. Memory content, the queries you ran, the results you got back, memory IDs, graph data, local paths, vault locations, the internal identifiers Kaleidoscope uses to organise a vault, and any credentials you have stored locally are all excluded from the account protocol. The account client rejects those fields — and any absolute local path — before anything would leave your machine.</p>
+<h2 id="what-signing-in-would-send">What signing in would send</h2><p>Signing in would send a narrow set of account and device fields — enough to log in, keep you logged in, show your account status, link or unlink another sign-in provider, log out, and manage the devices attached to your account. Nothing else. You cannot sign in today, and the terms that would govern it — who runs the sign-in service, how long anything is kept, how you recover an account, and how you delete one — are not settled. That is one of the reasons sign-in is switched off.</p>
+<h2 id="where-credentials-would-be-kept">Where credentials would be kept</h2><p>On a Mac — the only platform Kaleidoscope has been run on — credentials go into the macOS Keychain. Code for the Windows and Linux equivalents exists, but neither has ever been run on those platforms, so treat both as untested. There is no fallback that writes a credential to a plain file, and no sign-in token is ever written into an editor’s configuration or into a profile.</p>
+<h2 id="network-use">Network use</h2><p>The engine needs no network access and makes no calls to any model provider. Everything except the account commands works with your machine offline, and the account commands are the only part of Kaleidoscope that is ever meant to talk to a server at all. Nothing has been settled about what a released version would report back, where that would go, or what you would be asked to agree to — and until it is settled and written into terms someone has actually reviewed, sign-in stays switched off.</p>
+<h2 id="this-documentation-site">This documentation site</h2><p>These pages are static files served by GitHub Pages. They set no cookies, use no local storage, and run no analytics or behavioural script; the only script on any page is an inline JSON-LD block, which does not execute. They do make one third-party request: the three typefaces are fetched from Google Fonts (<code>fonts.googleapis.com</code> and <code>fonts.gstatic.com</code>), so Google receives the request metadata a font fetch carries, including your IP address. Blocking it costs only the typefaces. Nothing on this site reads a vault, a profile, or any local memory.</p>
+<h2 id="hosted-memory">Hosted memory</h2><p>There is no hosted service. Kaleidoscope does not sync your memory anywhere, there is no endpoint or API to send it to, and there is no waitlist for one. If that ever changes it will be a separate product with its own terms, and it will not be something a local profile or a sign-in quietly opts you into.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

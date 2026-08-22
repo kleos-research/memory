@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Claude Agent SDK integration | Kaleidoscope</title>
-  <meta name="description" content="Use one Claude Agent SDK client and a strict Kaleidoscope MCP allowlist for an agent run.">
+  <meta name="description" content="Give a Claude Agent SDK run one Kaleidoscope MCP client and a strict two-name tool allowlist.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/integrations/claude-agent-sdk/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
   <meta property="og:title" content="Claude Agent SDK integration | Kaleidoscope">
-  <meta property="og:description" content="Use one Claude Agent SDK client and a strict Kaleidoscope MCP allowlist for an agent run.">
+  <meta property="og:description" content="Give a Claude Agent SDK run one Kaleidoscope MCP client and a strict two-name tool allowlist.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/integrations/claude-agent-sdk/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
@@ -23,32 +27,39 @@
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Claude Agent SDK integration | Kaleidoscope">
-  <meta name="twitter:description" content="Use one Claude Agent SDK client and a strict Kaleidoscope MCP allowlist for an agent run.">
+  <meta name="twitter:description" content="Give a Claude Agent SDK run one Kaleidoscope MCP client and a strict two-name tool allowlist.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Claude Agent SDK integration","description":"Use one Claude Agent SDK client and a strict Kaleidoscope MCP allowlist for an agent run.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/integrations/claude-agent-sdk/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Claude Agent SDK integration","item":"https://memory.kleosresearch.xyz/docs/integrations/claude-agent-sdk/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Claude Agent SDK integration","description":"Give a Claude Agent SDK run one Kaleidoscope MCP client and a strict two-name tool allowlist.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/integrations/claude-agent-sdk/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Integrations","item":"https://memory.kleosresearch.xyz/docs/integrations/"},{"@type":"ListItem","position":4,"name":"Claude Agent SDK integration","item":"https://memory.kleosresearch.xyz/docs/integrations/claude-agent-sdk/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/" aria-current="page">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/" aria-current="page">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Claude Agent SDK integration</h1>
-<p class="lede">The Python recipe creates one Claude Agent SDK client for the intended run and passes a strict stdio MCP configuration with explicit Kaleidoscope tool names.</p>
-<h2>Allowed tools</h2><pre><code>mcp__kaleidoscope__search
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/" aria-current="page">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><a href="/docs/integrations/">Integrations</a><span aria-hidden="true">/</span><span aria-current="page">Claude Agent SDK integration</span></nav><h1>Claude Agent SDK integration</h1>
+<p class="lede">Create one Claude Agent SDK client for the run you intend, and hand it a stdio MCP configuration that names the Kaleidoscope tools explicitly. One client, one process, for the whole run.</p>
+<h2 id="allowed-tools">Allowed tools</h2><pre tabindex="0"><code>mcp__kaleidoscope__search
 mcp__kaleidoscope__remember</code></pre>
-<p>Provider credentials remain the application’s concern. The descriptor has an empty override environment, so account tokens, vault coordinates, and provider keys do not enter the MCP child process.</p>
-<h2>Evidence boundary</h2><p>The local lifecycle test uses a deterministic client double to prove one client and the exact allowlist. It is not a live-provider acceptance claim.</p>
+<p>Your model-provider credentials stay yours. The descriptor sets an empty environment for the child process, so account tokens, vault locations, and provider keys never reach it.</p>
+<h2 id="what-is-tested">What is tested</h2><p>This has been run against a stand-in model, never against a live provider. The test confirms one client and exactly the two tool names above.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

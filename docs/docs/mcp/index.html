@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>MCP reference | Kaleidoscope</title>
-  <meta name="description" content="The Kaleidoscope stdio MCP contract: exactly search and remember for agents, with persistent sessions and operator-tool exclusion.">
+  <meta name="description" content="Write a correct search or remember call: the two tools Kaleidoscope gives an agent, their fields, worked examples, and how the session works.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/mcp/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
   <meta property="og:title" content="MCP reference | Kaleidoscope">
-  <meta property="og:description" content="The Kaleidoscope stdio MCP contract: exactly search and remember for agents, with persistent sessions and operator-tool exclusion.">
+  <meta property="og:description" content="Write a correct search or remember call: the two tools Kaleidoscope gives an agent, their fields, worked examples, and how the session works.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/mcp/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
@@ -23,39 +27,58 @@
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MCP reference | Kaleidoscope">
-  <meta name="twitter:description" content="The Kaleidoscope stdio MCP contract: exactly search and remember for agents, with persistent sessions and operator-tool exclusion.">
+  <meta name="twitter:description" content="Write a correct search or remember call: the two tools Kaleidoscope gives an agent, their fields, worked examples, and how the session works.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"MCP reference","description":"The Kaleidoscope stdio MCP contract: exactly search and remember for agents, with persistent sessions and operator-tool exclusion.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/mcp/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"MCP reference","item":"https://memory.kleosresearch.xyz/docs/mcp/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"MCP reference","description":"Write a correct search or remember call: the two tools Kaleidoscope gives an agent, their fields, worked examples, and how the session works.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/mcp/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"MCP reference","item":"https://memory.kleosresearch.xyz/docs/mcp/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/" aria-current="page">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>MCP reference</h1>
-<p class="lede">The candidate public contract publishes exactly two model-callable MCP tools over stdio revision <code>2025-11-25</code>. Everything else remains outside the agent tool list.</p>
-<div class="callout"><strong>Exact local binding.</strong> Engine <code>988192ac9677…</code>, public contract <code>a2357ed6c00e…</code>, macOS arm64 only. This is contract and functional evidence, not a production signature or availability claim.</div>
-<p><a href="/reference/kaleidoscope-mcp.candidate.json">Download the machine-readable candidate MCP reference</a>.</p>
-<h2><code>search</code></h2>
-<p>Supply exactly one of <code>query</code> or <code>memory_id</code>. A query performs ranked retrieval and records an exposure; <code>ledger</code> accepts only <code>true</code>. Use a small protocol-defining <code>top_k</code> (normally about 5) and a bounded <code>maximum_context_bytes</code>. Ranked results appear under <code>selected_hits</code>. An addressed read returns the memory at top level and refuses ranking controls.</p>
-<pre><code>{"query":"What constraints govern the release?","top_k":5,"ledger":true}</code></pre>
-<h2><code>remember</code></h2>
-<p><code>mode</code> is required and is <code>create</code>, <code>update</code>, or <code>delete</code>. Create/update content begins with an H1 and carries a semantic delta with a required title and at least one fact. Every fact endpoint is declared with <code>n</code>, <code>kind</code>, and the required <code>is</code> gloss. Predicates are snake_case. Update/delete use <code>memory_id</code> and <code>expected_version_id</code>. Batching accepts at most 20 creates and does not share semantic fields between items.</p>
-<h2>Lifecycle</h2>
-<p>Clients keep one stdio process alive across calls, negotiate MCP once, enforce a startup deadline, cancel cleanly, bound stderr, and tear down without an orphan. DX-07 locally verifies persistent Python and TypeScript sessions; framework integrations do not run a second hidden retrieval.</p>
-<h2>Not agent tools</h2>
-<p>Feedback, lifecycle/import, maintenance, ontology, and diagnostics are controller/operator operations. Public search does not return the handle required for feedback, so there is no supported public agent-attribution path. Historical names are documented only on the <a href="/docs/migration/">migration page</a>.</p>
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/" aria-current="page">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><span class="group">Reference</span><span aria-hidden="true">/</span><span aria-current="page">MCP reference</span></nav><h1>MCP reference</h1><ul class="toc" aria-label="On this page"><li><a href="#search">search</a></li><li><a href="#remember">remember</a></li><li><a href="#lifecycle">Lifecycle</a></li><li><a href="#what-a-model-never-sees">What a model never sees</a></li></ul>
+<p class="lede">Your editor or agent sees exactly two tools from Kaleidoscope: <code>search</code> and <code>remember</code>. Nothing else is callable by a model. This page is what you need to write a correct call to either one.</p>
+<p>There is no way to install Kaleidoscope yet, so you cannot connect a host of your own today — see <a href="/docs/packages/">Install</a>. The contract below is the one that runs locally.</p>
+<p><a href="/reference/kaleidoscope-mcp.json">Read the machine-readable tool reference</a>.</p>
+<h2 id="search"><code>search</code></h2>
+<p>Send exactly one of <code>query</code> or <code>memory_id</code>. A <code>query</code> ranks your memories and returns them under <code>selected_hits</code>. A <code>memory_id</code> is an addressed read: it returns that one memory at the top level and refuses ranking controls. Keep <code>top_k</code> small — about 5 is normal — and set a bounded <code>maximum_context_bytes</code>. <code>ledger</code> accepts only <code>true</code>.</p>
+<pre tabindex="0"><code>{"query":"how do we handle database migrations","top_k":5,"ledger":true}</code></pre>
+<p>A query also writes down what it returned. That record goes into your vault on your machine, next to the memories themselves, and it stays there — it is what a later authenticated tool would use to tell which memories actually helped.</p>
+<h2 id="remember"><code>remember</code></h2>
+<p><code>mode</code> is required and is <code>create</code>, <code>update</code>, or <code>delete</code>. For a create or an update, <code>content_md</code> is the memory as you want to read it back and must begin with an H1, and <code>semantic_delta</code> carries the structure: a title and at least one fact. Every endpoint a fact names is declared with <code>n</code>, the surface the fact refers to it by; <code>kind</code>; and <code>is</code>, a short gloss. Predicates are snake_case. An update or a delete needs <code>memory_id</code> and <code>expected_version_id</code>. Batching through <code>items</code> accepts at most 20 creates, and items do not share structure with each other.</p>
+<pre tabindex="0"><code>{"mode":"create",
+ "content_md":"# Ana owns the billing service\n\nAna took it over after the payments team split.",
+ "semantic_delta":{
+   "memory_type":"decision",
+   "title":"Ana owns the billing service",
+   "entities":[
+     {"n":"Ana","kind":"person","is":"backend engineer on my team"},
+     {"n":"billing service","kind":"service","is":"the service that issues invoices"}],
+   "facts":[{"subject":"Ana","predicate":"owns","object":"billing service"}]}}</code></pre>
+<p>Write the <code>is</code> gloss properly. It is not documentation — it is what the engine matches on when it decides whether two mentions of a name are the same thing, so <code>Ana | person | backend engineer on my team</code> finds far more than <code>Ana</code> alone does.</p>
+<p><code>remember</code> infers nothing from what you wrote. The entities, facts, relationships, and dates it stores are the ones you state explicitly. Treat the tool schema your host discovered as the authority for which memory types and fields a build accepts, rather than copying a vocabulary out of prose.</p>
+<h2 id="lifecycle">Lifecycle</h2>
+<p>Your host keeps one long-lived process alive across calls and talks to it over stdio at MCP protocol revision <code>2025-11-25</code>. It negotiates once, enforces a startup deadline, cancels cleanly, bounds what it reads from stderr, and shuts the process down without leaving an orphan behind. A framework integration will not run a second retrieval behind your back.</p>
+<h2 id="what-a-model-never-sees">What a model never sees</h2>
+<p>Feedback, lifecycle and import, maintenance, ontology, and diagnostics are operator commands, not tools. They are absent from the list your agent discovers. Search results do not carry the handle those commands need either, so there is no path from a model to them and nothing to reconstruct.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

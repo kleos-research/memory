@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Agent and framework integrations | Kaleidoscope</title>
-  <meta name="description" content="How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.">
+  <meta name="description" content="Find your editor, agent, or framework, see how far it has been tested, and get the exact command that connects it.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/integrations/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
   <meta property="og:title" content="Agent and framework integrations | Kaleidoscope">
-  <meta property="og:description" content="How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.">
+  <meta property="og:description" content="Find your editor, agent, or framework, see how far it has been tested, and get the exact command that connects it.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/integrations/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
@@ -23,42 +27,56 @@
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Agent and framework integrations | Kaleidoscope">
-  <meta name="twitter:description" content="How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.">
+  <meta name="twitter:description" content="Find your editor, agent, or framework, see how far it has been tested, and get the exact command that connects it.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Agent and framework integrations","description":"How Kaleidoscope integrates with Codex, Claude, Cursor, OpenCode, LangChain, LangGraph, OpenAI Agents SDK, CrewAI, and generic MCP.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/integrations/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Agent and framework integrations","item":"https://memory.kleosresearch.xyz/docs/integrations/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Agent and framework integrations","description":"Find your editor, agent, or framework, see how far it has been tested, and get the exact command that connects it.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/integrations/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Agent and framework integrations","item":"https://memory.kleosresearch.xyz/docs/integrations/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/" aria-current="page">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/" aria-current="page">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Agent and framework integrations</h1>
-<p class="lede">Every integration consumes the same closed profile-first launch descriptor and persistent stdio MCP contract. The wrapper candidates do not contain or reimplement the proprietary memory algorithm.</p>
-<table><thead><tr><th>Integration</th><th>Pinned local evidence</th><th>Public status</th></tr></thead><tbody>
-<tr><td><a href="/docs/integrations/codex/">Codex</a></td><td>Real pinned <code>codex 0.149.0</code> add/list/get/remove passed in isolated config with byte-exact rollback; generic stdio MCP exposed exactly two tools.</td><td>Verified local CLI wiring; model/TUI acceptance held</td></tr>
-<tr><td><a href="/docs/integrations/claude-code/">Claude Code</a></td><td>Pinned <code>2.1.239</code> local host wiring and MCP discovery passed against a private verified bundled engine candidate; managed <code>.mcp.json</code> render, idempotence, and rollback also passed.</td><td>Local wiring verified; released package/provider held</td></tr>
-<tr><td><a href="/docs/integrations/cursor/">Cursor</a></td><td>Managed <code>mcp.json</code> plus owner-marked rule passed local configuration tests.</td><td>Host run not exercised</td></tr>
-<tr><td><a href="/docs/integrations/opencode/">OpenCode</a></td><td>Pinned <code>1.18.21</code> local host wiring and MCP discovery passed against a private verified bundled engine candidate; stable v1 is default and beta v2 is explicit.</td><td>Local wiring verified; released package/provider held</td></tr>
-<tr><td><a href="/docs/integrations/generic-mcp/">Python and TypeScript generic MCP</a></td><td><code>mcp==1.29.0</code>, <code>mcp==2.0.0</code>, and <code>@modelcontextprotocol/client==2.0.0</code>; persistent and real-profile lanes passed.</td><td>Verified local, unpublished</td></tr>
-<tr><td><a href="/docs/integrations/langchain/">LangChain</a> / <a href="/docs/integrations/langgraph/">LangGraph</a></td><td><code>langchain==1.3.16</code>, <code>langgraph==1.2.11</code>; one persistent session and no shadow store.</td><td>Verified with fake provider</td></tr>
-<tr><td><a href="/docs/integrations/claude-agent-sdk/">Claude Agent SDK</a></td><td><code>claude-agent-sdk==0.2.143</code>; strict MCP names and lifecycle passed.</td><td>Verified without live provider</td></tr>
-<tr><td><a href="/docs/integrations/openai-agents-sdk/">OpenAI Agents SDK</a></td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
-<tr><td><a href="/docs/integrations/crewai/">CrewAI</a></td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
-</tbody></table>
-<div class="callout"><strong>What DX-07, DX-10B, and the host harness prove.</strong> SDK commit <code>9ed39bd…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Final package evidence <code>7d4b49919d…</code> proves fresh npm/Python facade <code>init</code>, <code>doctor</code>, <code>connect codex --dry-run</code>, and stdio MCP discovery. Platform-harness commit <code>52ad4d2…</code> additionally exercised pinned Codex <code>0.149.0</code>, Claude Code <code>2.1.239</code>, and OpenCode <code>1.18.21</code> CLI wiring on macOS arm64 against a private verified bundled engine candidate. That proves local configuration/connection and MCP discovery only; Cursor, credentialed model turns, GUI/IDE, released-package, publication, production OIDC, and support acceptance remain unverified.</div>
-<h2>Agent guidance</h2>
-<p>Install the <a href="/SKILL.md">public skill</a>, then add only the compact owner-marked pointer appropriate to <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or <a href="/snippets/cursor-kaleidoscope.mdc">Cursor</a>. Use the manager so dry runs, backups, receipts, tamper checks, and exact removal remain intact.</p>
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/" aria-current="page">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><span class="group">Reference</span><span aria-hidden="true">/</span><span aria-current="page">Agent and framework integrations</span></nav><h1>Agent and framework integrations</h1>
+<p class="lede">Find your editor or framework below, then follow its page for the exact commands. Whatever you connect, it talks to the one engine on your machine and sees exactly two tools, <code>search</code> and <code>remember</code> — so every tool you connect shares the same memory instead of starting a store of its own.</p>
+<p>“Tested” means we have run it ourselves on a Mac with Apple Silicon and it worked. “Partly tested” means part of it has been run and part has not; the limitation column says which part. Neither word means released or supported — the full definitions are on <a href="/docs/compatibility/">Platform support</a>.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Integration</th><th>Status</th><th>Limitation</th><th>How you connect</th></tr></thead><tbody>
+<tr><td><a href="/docs/integrations/codex/">Codex</a></td><td>Partly tested</td><td>Its configuration is written and removed exactly, but Codex gives no way to confirm it then started the server</td><td><code>kaleidoscope connect codex</code></td></tr>
+<tr><td><a href="/docs/integrations/claude-code/">Claude Code</a></td><td>Tested</td><td>—</td><td><code>kaleidoscope connect claude</code></td></tr>
+<tr><td><a href="/docs/integrations/opencode/">OpenCode</a></td><td>Tested</td><td>Stable v1 by default; beta v2 only if you ask for it</td><td><code>kaleidoscope connect opencode</code></td></tr>
+<tr><td><a href="/docs/integrations/cursor/">Cursor</a></td><td>Partly tested</td><td>Its configuration is written and removed correctly, but Cursor has never been launched against it</td><td><code>kaleidoscope connect cursor</code></td></tr>
+<tr><td><a href="/docs/integrations/generic-mcp/">Generic MCP, Python and TypeScript</a></td><td>Tested</td><td>—</td><td>Read the descriptor with <code>kaleidoscope config --profile default --json</code></td></tr>
+<tr><td><a href="/docs/integrations/langchain/">LangChain</a> and <a href="/docs/integrations/langgraph/">LangGraph</a></td><td>Partly tested</td><td>Run against a stand-in model, never against a live provider</td><td>The LangChain MCP adapter</td></tr>
+<tr><td><a href="/docs/integrations/claude-agent-sdk/">Claude Agent SDK</a></td><td>Partly tested</td><td>Run against a stand-in model, never against a live provider</td><td>The SDK’s own stdio MCP configuration</td></tr>
+<tr><td><a href="/docs/integrations/openai-agents-sdk/">OpenAI Agents SDK</a></td><td>Partly tested</td><td>Run against a scripted model, never against a live provider</td><td>The SDK’s stdio MCP server lifecycle</td></tr>
+<tr><td><a href="/docs/integrations/crewai/">CrewAI</a></td><td>Partly tested</td><td>Run against a local test server, never against a live provider</td><td>The CrewAI MCP adapter context</td></tr>
+</tbody></table></div>
+<p>The editor versions we tested against were Codex 0.149.0, Claude Code 2.1.239, and OpenCode 1.18.21. None of this installs from a registry yet, so connecting an editor means pointing it at a build you already have on your machine.</p>
+<h2 id="integration-pages">Integration pages</h2>
+<ul class="rows">
+<li><span class="k">Editors and CLIs</span><span class="v"><a href="/docs/integrations/codex/">Codex</a> — one entry in Codex’s own configuration, removable byte for byte; <a href="/docs/integrations/claude-code/">Claude Code</a> — one entry in <code>.mcp.json</code>; <a href="/docs/integrations/cursor/">Cursor</a> — one entry in <code>mcp.json</code> plus an optional project rule; <a href="/docs/integrations/opencode/">OpenCode</a> — stable v1 by default, beta v2 only when you ask.</span></li>
+<li><span class="k">Direct MCP</span><span class="v"><a href="/docs/integrations/generic-mcp/">Python and TypeScript generic MCP</a> — the launch descriptor any standard MCP client can read, over one long-lived process.</span></li>
+<li><span class="k">Agent frameworks</span><span class="v"><a href="/docs/integrations/claude-agent-sdk/">Claude Agent SDK</a> — one client, two allowed tool names; <a href="/docs/integrations/langchain/">LangChain</a> and <a href="/docs/integrations/langgraph/">LangGraph</a> — one session, no second memory store; <a href="/docs/integrations/openai-agents-sdk/">OpenAI Agents SDK</a> — Python and TypeScript; <a href="/docs/integrations/crewai/">CrewAI</a> — one adapter context for the crew run.</span></li>
+</ul>
+<h2 id="telling-your-agent-about-it">Telling your agent about it</h2>
+<p>Install the <a href="/SKILL.md">public skill</a>, then add the short pointer that fits your project — <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or the <a href="/snippets/cursor-kaleidoscope.mdc">Cursor rule</a>. Make the change with <code>kaleidoscope</code> rather than by hand, so you keep the dry run, the backup, and exact removal.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

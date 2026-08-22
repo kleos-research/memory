@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>CLI reference | Kaleidoscope</title>
-  <meta name="description" content="Candidate-generated reference for the Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.">
+  <meta name="description" content="Every kaleidoscope command and flag: set up a local profile, connect your editor or agent, run diagnostics, and manage an account.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/cli/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
   <meta property="og:title" content="CLI reference | Kaleidoscope">
-  <meta property="og:description" content="Candidate-generated reference for the Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.">
+  <meta property="og:description" content="Every kaleidoscope command and flag: set up a local profile, connect your editor or agent, run diagnostics, and manage an account.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/cli/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
@@ -23,30 +27,36 @@
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CLI reference | Kaleidoscope">
-  <meta name="twitter:description" content="Candidate-generated reference for the Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.">
+  <meta name="twitter:description" content="Every kaleidoscope command and flag: set up a local profile, connect your editor or agent, run diagnostics, and manage an account.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"CLI reference","description":"Candidate-generated reference for the Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/cli/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"CLI reference","item":"https://memory.kleosresearch.xyz/docs/cli/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"CLI reference","description":"Every kaleidoscope command and flag: set up a local profile, connect your editor or agent, run diagnostics, and manage an account.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/cli/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"CLI reference","item":"https://memory.kleosresearch.xyz/docs/cli/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/" aria-current="page">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>CLI reference</h1>
-<p class="lede">The developer-facing CLI is <code>kaleidoscope</code>. The engine executable <code>kscope</code> remains a native runtime/operator surface and is not the manager quickstart.</p>
-<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from consolidated manager source commit <code>9ed39bd…</code> and the bound candidate SHA-256. It is not a public-installation claim.</div>
-<p><a href="/reference/kaleidoscope-cli.candidate.txt">Download the exact candidate help text</a>.</p>
-<h2>Local memory and host commands</h2>
-<pre><code>kaleidoscope [--engine PATH] init [--root PATH] [--profile NAME] [--durability process-local|durable-local]
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/" aria-current="page">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><span aria-current="page">CLI reference</span></nav><h1>CLI reference</h1><ul class="toc" aria-label="On this page"><li><a href="#local-memory-and-host-commands">Local memory and host commands</a></li><li><a href="#account-and-device-commands">Account and device commands</a></li><li><a href="#safety-invariants">Safety invariants</a></li></ul>
+<p class="lede">The command you will run is <code>kaleidoscope</code>. It sets up your local memory, connects your editor or agent to it, and tells you what is wrong when something does not work. You cannot install it yet, so read this as the reference for the command surface rather than a set of steps to follow now.</p>
+<p><code>kscope</code> is the engine executable. It is installed alongside <code>kaleidoscope</code> and you do not normally run it yourself.</p>
+<p><a href="/reference/kaleidoscope-cli.txt">Read the full <code>kaleidoscope</code> help text</a>.</p>
+<h2 id="local-memory-and-host-commands">Local memory and host commands</h2>
+<pre tabindex="0"><code>kaleidoscope [--engine PATH] init [--root PATH] [--profile NAME] [--durability process-local|durable-local]
 kaleidoscope [--engine PATH] profile list|show|use|remove
 kaleidoscope profile account show [NAME]
 kaleidoscope profile account bind ACCOUNT_UUID [NAME]
@@ -56,8 +66,9 @@ kaleidoscope [--engine PATH] connect HOST [--scope user|project] [--profile NAME
 kaleidoscope [--engine PATH] disconnect HOST [--scope user|project] [--project PATH] [--dry-run] [--yes]
 kaleidoscope instructions install|remove skill|agents|claude|cursor [--project PATH] [--dry-run] [--yes]
 kaleidoscope [--engine PATH] doctor [--project PATH]</code></pre>
-<h2>Account and device commands</h2>
-<pre><code>kaleidoscope login [--device]
+<p><code>init</code> creates a profile and a vault. <code>connect</code> writes the entry your editor or agent needs and <code>disconnect</code> takes it back out; both touch only what Kaleidoscope owns. <code>instructions</code> installs or removes the agent guidance files for a project. <code>doctor</code> reports on your profile, engine, and host configuration without printing memory content or credentials.</p>
+<h2 id="account-and-device-commands">Account and device commands</h2>
+<pre tabindex="0"><code>kaleidoscope login [--device]
 kaleidoscope status [--json]
 kaleidoscope logout [--all-devices] [--local-only]
 kaleidoscope account link PROVIDER
@@ -66,11 +77,13 @@ kaleidoscope account unlink EXTERNAL_IDENTITY_UUID
 kaleidoscope account revoke-session
 kaleidoscope devices list
 kaleidoscope devices revoke DEVICE_UUID</code></pre>
-<p><code>account identities</code> lists only opaque IDs usable by <code>account unlink</code>. <code>account revoke-session</code> revokes the current token family; it is not an account-deactivation command. The local profile-account commands hold a non-secret UUID reference only. All remote account commands intentionally fail with <code>provider not configured</code> without approved issuer, audience, client, and account-origin configuration. No production issuer is published.</p>
-<h2>Safety invariants</h2>
-<ul><li>Mutating host and instruction commands support an effect-free dry run and explicit confirmation.</li><li>Unknown, conflicting, symlinked, tampered, or concurrently changed targets fail closed.</li><li>Backups are bounded and owner receipts make removal idempotent.</li><li>Agent launch configuration contains no tokens, provider keys, or raw vault coordinates.</li><li>Account traffic is closed to an exact account-only route inventory; it is separate from engine MCP traffic.</li></ul>
+<p>None of these work today. All remote account commands intentionally fail with <code>provider not configured</code>, because no production sign-in service is published. You do not need an account to use your local memory.</p>
+<p>When they do work: <code>account identities</code> lists the opaque IDs that <code>account unlink</code> takes, and nothing else. <code>account revoke-session</code> revokes the session you are in — it does not deactivate an account. The <code>profile account</code> commands write a non-secret account ID into your local profile and nothing more: they do not start the engine, contact any service, touch a vault, or store a credential.</p>
+<h2 id="safety-invariants">Safety invariants</h2>
+<ul><li>Any command that changes a host file can be previewed with <code>--dry-run</code>, which changes nothing, and asks you to confirm before it writes.</li><li>An unknown, conflicting, symlinked, tampered, or concurrently edited target is refused rather than overwritten.</li><li>Changes are backed up, and removal is recorded so that running it twice is safe.</li><li>The configuration written for your editor or agent contains no tokens, no provider keys, and no vault location.</li><li>Account traffic goes to a closed list of account-only routes. It is separate from the local memory connection.</li></ul>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

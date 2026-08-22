@@ -4,18 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Account and devices | Kaleidoscope</title>
-  <meta name="description" content="What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.">
+  <meta name="description" content="Why you do not need an account, what signing in would manage, and why it never touches your local memory.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/account/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
   <meta property="og:title" content="Account and devices | Kaleidoscope">
-  <meta property="og:description" content="What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.">
+  <meta property="og:description" content="Why you do not need an account, what signing in would manage, and why it never touches your local memory.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/account/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
@@ -23,28 +27,35 @@
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Account and devices | Kaleidoscope">
-  <meta name="twitter:description" content="What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.">
+  <meta name="twitter:description" content="Why you do not need an account, what signing in would manage, and why it never touches your local memory.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Account and devices","description":"What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/account/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Account and devices","item":"https://memory.kleosresearch.xyz/docs/account/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Account and devices","description":"Why you do not need an account, what signing in would manage, and why it never touches your local memory.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/account/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Account and devices","item":"https://memory.kleosresearch.xyz/docs/account/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/" aria-current="page">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Account and devices</h1>
-<p class="lede">Login is intended for product-account and device workflows. It is not a hosted-memory connection and is not usable against a production issuer today.</p>
-<h2>Locally verified manager flows</h2><p>Consolidated manager commit <code>9ed39bd…</code> implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse. The local control plane also completes a one-time external-identity link after fresh provider authentication, returning only opaque identity IDs for unlinking. The package candidate has only credential-free account-provider refusal evidence until an approved OIDC deployment exists.</p>
-<h2>Commands</h2><pre><code>kaleidoscope login
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/" aria-current="page">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><span class="group">Operate</span><span aria-hidden="true">/</span><span aria-current="page">Account and devices</span></nav><h1>Account and devices</h1><ul class="toc" aria-label="On this page"><li><a href="#what-signing-in-would-be-for">What signing in would be for</a></li><li><a href="#what-it-never-does-to-your-memory">What it never does to your memory</a></li><li><a href="#commands">Commands</a></li><li><a href="#what-logging-out-changes">What logging out changes</a></li></ul>
+<p class="lede">You do not need an account to use Kaleidoscope — your memory lives on your machine and works without one. You also could not sign in today if you wanted to: every command here that reaches the account service answers <code>provider not configured</code>, because no production sign-in service is configured or published.</p>
+<h2 id="what-signing-in-would-be-for">What signing in would be for</h2><p>Signing in is designed as an ordinary browser sign-in, with a code-based path for machines that have no browser. It manages your product account and the devices attached to it. It is not a connection to hosted memory: no hosted service, endpoint, API, waitlist, or sync path exists, and signing in would not opt you into one.</p>
+<h2 id="what-it-never-does-to-your-memory">What it never does to your memory</h2><p>Signing in never uploads, syncs, analyses, trains on, or deletes your memory. Memory content, your queries, the results you got back, memory IDs, graph data, local paths, and vault locations are all excluded from the account protocol, and the account client rejects those fields — and any absolute local path — before anything would leave your machine. Credentials go into the macOS Keychain, the only platform this has been run on; there is no plaintext fallback, and no refresh token is ever written into an editor’s configuration or into a profile.</p>
+<h2 id="commands">Commands</h2><p>None of these work yet. They are listed so you can see the shape of what signing in will and will not do.</p><pre tabindex="0"><code>kaleidoscope login
 kaleidoscope login --device
 kaleidoscope status --json
 kaleidoscope logout
@@ -59,11 +70,11 @@ kaleidoscope devices revoke DEVICE_UUID
 kaleidoscope profile account show [NAME]
 kaleidoscope profile account bind ACCOUNT_UUID [NAME]
 kaleidoscope profile account unbind [NAME]</code></pre>
-<p><code>account identities</code> supplies the opaque UUID required by <code>account unlink</code>. <code>account revoke-session</code> has the deliberately narrow meaning of revoking the current session family. <code>--local-only</code> warns that it does not revoke a remote session. The profile-account commands write a local, non-secret account UUID reference only; they do not resolve the engine, contact the account service, alter a vault, or store a credential. Without approved provider configuration, remote account commands return <code>provider not configured</code>; the docs do not provide substitute endpoints.</p>
-<h2>What logout changes</h2><p>Logout removes or revokes account credentials according to scope. It does not change local profile identity or vault bytes. Vault deletion is a separate explicit local operation.</p>
-<h2>Control plane status</h2><p>The client contract is closed and account-only, but production identity-provider metadata, service deployment, credentials, domains, privacy terms, recovery, and deletion procedures remain gated. No production-login claim is made.</p>
+<p><code>account identities</code> is where you get the opaque UUID that <code>account unlink</code> needs. <code>account revoke-session</code> has the deliberately narrow meaning of revoking the session you are currently using; <code>--local-only</code> warns you that it does not revoke a remote one. The <code>profile account</code> commands write a local, non-secret account reference and nothing else — they do not start the engine, contact any service, change a vault, or store a credential.</p>
+<h2 id="what-logging-out-changes">What logging out changes</h2><p>Logging out removes or revokes your credentials, according to the scope you chose. It does not change which profile you are on and it does not alter a single byte of your vault. Deleting a vault is a separate, explicit operation with its own confirmation — see <a href="/docs/operations/">Operations</a>.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>

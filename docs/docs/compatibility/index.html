@@ -3,59 +3,90 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Compatibility | Kaleidoscope</title>
-  <meta name="description" content="Kaleidoscope platform and harness compatibility policy, including the difference between build evidence and native release support.">
+  <title>Platform support | Kaleidoscope</title>
+  <meta name="description" content="Which machines Kaleidoscope has actually been run on, which ones have only had a compiler check, and what you need installed.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://memory.kleosresearch.xyz/docs/compatibility/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css">
-  <meta name="theme-color" content="#0b0b0c">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kaleidoscope">
-  <meta property="og:title" content="Compatibility | Kaleidoscope">
-  <meta property="og:description" content="Kaleidoscope platform and harness compatibility policy, including the difference between build evidence and native release support.">
+  <meta property="og:title" content="Platform support | Kaleidoscope">
+  <meta property="og:description" content="Which machines Kaleidoscope has actually been run on, which ones have only had a compiler check, and what you need installed.">
   <meta property="og:url" content="https://memory.kleosresearch.xyz/docs/compatibility/">
   <meta property="og:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Kaleidoscope — local memory for agents">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Compatibility | Kaleidoscope">
-  <meta name="twitter:description" content="Kaleidoscope platform and harness compatibility policy, including the difference between build evidence and native release support.">
+  <meta name="twitter:title" content="Platform support | Kaleidoscope">
+  <meta name="twitter:description" content="Which machines Kaleidoscope has actually been run on, which ones have only had a compiler check, and what you need installed.">
   <meta name="twitter:image" content="https://memory.kleosresearch.xyz/assets/kaleidoscope-og.png">
   <meta name="twitter:image:alt" content="Kaleidoscope — local memory for agents">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Compatibility","description":"Kaleidoscope platform and harness compatibility policy, including the difference between build evidence and native release support.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/compatibility/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Compatibility","item":"https://memory.kleosresearch.xyz/docs/compatibility/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Platform support","description":"Which machines Kaleidoscope has actually been run on, which ones have only had a compiler check, and what you need installed.","dateModified":"2026-08-22","mainEntityOfPage":"https://memory.kleosresearch.xyz/docs/compatibility/","publisher":{"@id":"https://memory.kleosresearch.xyz/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Kaleidoscope","item":"https://memory.kleosresearch.xyz/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://memory.kleosresearch.xyz/docs/"},{"@type":"ListItem","position":3,"name":"Platform support","item":"https://memory.kleosresearch.xyz/docs/compatibility/"}]}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="shell">
-  <a class="brand" href="/"><span>K</span> Kaleidoscope</a>
+  <a class="brand" href="/"><svg viewBox="0 0 64 64" width="18" height="18" aria-hidden="true"><g fill="currentColor"><rect x="4" y="16" width="28" height="7"/><rect x="4" y="16" width="28" height="7" transform="rotate(90 32 32)" opacity="0.78"/><rect x="4" y="16" width="28" height="7" transform="rotate(180 32 32)" opacity="0.56"/><rect x="4" y="16" width="28" height="7" transform="rotate(270 32 32)" opacity="0.34"/><rect x="28.5" y="28.5" width="7" height="7"/></g></svg><span class="wordmark">Kaleidoscope</span></a>
   <nav class="site-nav" aria-label="Primary">
     <a href="/docs/">Docs</a>
     <a href="/docs/integrations/">Integrations</a>
     <a href="/docs/security/">Security</a>
+    <a href="/docs/status/">Status</a>
     <a href="https://github.com/kleos-research">GitHub</a>
   </nav>
 </div></header>
-<div class="status"><div class="shell"><span class="status-dot" aria-hidden="true"></span><strong>documentation_preview</strong><span>Release 0.1.0-rc.1 · contract a2357ed6c00e</span></div></div>
-<main id="main" class="shell layout">
-  <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/" aria-current="page">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li><li><a href="/docs/legal/">Legal</a></li></ul></nav>
-  <article class="content"><span class="release-tag">0.1.0-rc.1 · a2357ed6c00e</span><h1>Compatibility</h1>
-<p class="lede">A platform or harness is supported only after the packaged artifact passes the canonical end-to-end proof on the named native runner and pinned host version.</p>
-<table><thead><tr><th>Surface</th><th>Verified local evidence</th><th>Held before support</th></tr></thead><tbody>
-<tr><td>macOS arm64</td><td>Full npm/Python SDK facades, exact native companions, auth-enabled manager and engine candidate, real stdio MCP, account refusal, clean install/update/rollback/uninstall, vault canary, and real Codex CLI configuration.</td><td>Production signature/notarization, approved terms, live OIDC/keychain, model/TUI/IDE acceptance, and protected publication.</td></tr>
-<tr><td>macOS x64</td><td>Cross-target <code>cargo check</code> passed for <code>x86_64-apple-darwin</code> on the pinned source.</td><td>Native binary/package, runner, signing/notarization, and runtime evidence.</td></tr>
-<tr><td>Linux x86_64/arm64</td><td>Cross-target <code>cargo check</code> passed for <code>x86_64-unknown-linux-gnu</code> and <code>aarch64-unknown-linux-gnu</code> on the pinned source.</td><td>Native binaries, libc policy, credential store, packages, runners, installer, and runtime evidence.</td></tr>
-<tr><td>Windows x86_64/arm64</td><td>Cross-target <code>cargo check</code> passed for <code>x86_64-pc-windows-gnu</code>; arm64 remains metadata-only.</td><td>Native Windows runner, MSVC/arm64 binaries, credential store, packages, installer, and runtime evidence.</td></tr>
-<tr><td>Codex</td><td>Config transforms plus real pinned CLI add/list/get/remove and exact isolated rollback.</td><td>Model/TUI acceptance and a protected published install.</td></tr>
-<tr><td>Claude Code / OpenCode</td><td>Pinned local CLI wiring and MCP discovery on macOS arm64 against a private verified bundled engine candidate; config render, dry run, idempotence, and exact rollback.</td><td>Released package, credentialed model, GUI/IDE, and production support acceptance.</td></tr>
-<tr><td>Cursor</td><td>Config render, dry run, idempotence, and exact rollback.</td><td>Host run, installed package, and pinned live-host acceptance.</td></tr>
-<tr><td>Framework clients</td><td>Generic MCP and adapter lifecycle suites passed with pinned versions and final-candidate non-auth conformance.</td><td>Live-provider lanes where required and protected published packages.</td></tr>
-</tbody></table>
-<p>Cross-target type-checking is useful evidence but not native support: it does not execute a foreign binary or validate installers, credential stores, package binding, GUI/IDE behavior, or live providers. Nothing in this table is a public availability claim. The exact record is <a href="/cross-target-checks.json">cross-target-checks.json</a>.</p>
+<div class="strip"><div class="shell">
+  <span class="dot" aria-hidden="true"></span>
+  <span class="t">In development</span>
+  <span class="d">Kaleidoscope is not publicly released. Nothing here installs from a registry yet — <a href="/docs/status/">see what has been verified locally</a>.</span>
+</div></div>
+<main id="main">
+  <div class="shell layout">
+    <nav class="sidebar" aria-label="Documentation"><div class="group"><strong class="mono">Start</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Install</a></li><li><a href="/docs/concepts/">Concepts</a></li></ul></div><div class="group"><strong class="mono">Reference</strong><ul><li><a href="/docs/cli/">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li></ul></div><div class="group"><strong class="mono">Operate</strong><ul><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li></ul></div><div class="group"><strong class="mono">Boundaries</strong><ul><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/legal/">Legal (drafts)</a></li></ul></div><div class="group"><strong class="mono">Status</strong><ul><li><a href="/docs/status/">What works today</a></li><li><a href="/docs/compatibility/" aria-current="page">Platform support</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/release-notes/">Release notes</a></li></ul></div></nav>
+    <article class="content"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Kaleidoscope</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a><span aria-hidden="true">/</span><span class="group">Status</span><span aria-hidden="true">/</span><span aria-current="page">Platform support</span></nav><h1>Platform support</h1><ul class="toc" aria-label="On this page"><li><a href="#what-the-status-words-mean">What the status words mean</a></li><li><a href="#platforms">Platforms</a></li><li><a href="#hosts-and-frameworks">Hosts and frameworks</a></li><li><a href="#a-compiler-check-is-not-a-working-build">A compiler check is not a working build</a></li></ul>
+<p class="lede">Kaleidoscope has only ever been run on a Mac with Apple Silicon. If you are on an Intel Mac, on Linux, or on Windows, it will not run for you today — and there is nothing to download on any platform, including that Mac.</p>
+<h2 id="what-the-status-words-mean">What the status words mean</h2>
+<p>The same five words are used on every page of this site. They describe what you can obtain, not what a test did.</p>
+<ul class="rows">
+<li><span class="k">Tested</span><span class="v">We have run this ourselves and it worked. It is not released, supported, or signed — but it is not theoretical.</span></li>
+<li><span class="k">Partly tested</span><span class="v">Some of this has been run and some has not. Every “Partly tested” row says which part.</span></li>
+<li><span class="k">Compiler-checked only</span><span class="v">The compiler accepts the source for this target when it is checked from a Mac. It has never been built into a program for that platform, and nobody has ever run it there. It may or may not work, and there is nothing available for it.</span></li>
+<li><span class="k">Untested</span><span class="v">Nobody has run this and nothing has been built for it. Assume it does not work.</span></li>
+<li><span class="k">Not available</span><span class="v">This does not exist yet. There is nothing to install, sign up for, or try.</span></li>
+</ul>
+<h2 id="platforms">Platforms</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Platforms table"><table><thead><tr><th>Platform</th><th>Status</th><th>What you need</th></tr></thead><tbody>
+<tr><td>macOS, Apple Silicon</td><td>Tested</td><td>macOS; Node.js 22 or newer, or Python 3.11 or newer</td></tr>
+<tr><td>macOS, Intel</td><td>Compiler-checked only</td><td>—</td></tr>
+<tr><td>Linux, x86_64</td><td>Compiler-checked only</td><td>—</td></tr>
+<tr><td>Linux, arm64</td><td>Compiler-checked only</td><td>—</td></tr>
+<tr><td>Windows, x86_64</td><td>Compiler-checked only</td><td>—</td></tr>
+<tr><td>Windows, arm64</td><td>Untested</td><td>—</td></tr>
+</tbody></table></div>
+<h2 id="hosts-and-frameworks">Hosts and frameworks</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Hosts and frameworks table"><table><thead><tr><th>Host</th><th>Status</th><th>Limitation</th></tr></thead><tbody>
+<tr><td>Codex</td><td>Partly tested</td><td>Its configuration is written and removed exactly, but Codex gives no way to confirm it then started the server</td></tr>
+<tr><td>Claude Code</td><td>Tested</td><td>—</td></tr>
+<tr><td>OpenCode</td><td>Tested</td><td>Stable v1 by default; beta v2 only if you ask for it</td></tr>
+<tr><td>Cursor</td><td>Partly tested</td><td>Its configuration is written and removed correctly, but Cursor has never been launched against it</td></tr>
+<tr><td>Generic MCP clients, Python and TypeScript</td><td>Tested</td><td>—</td></tr>
+<tr><td>Agent frameworks — LangChain, LangGraph, Claude Agent SDK, OpenAI Agents SDK, CrewAI</td><td>Partly tested</td><td>Run against a stand-in model, never against a live model provider</td></tr>
+</tbody></table></div>
+<h2 id="a-compiler-check-is-not-a-working-build">A compiler check is not a working build</h2>
+<p>Every row above marked “Compiler-checked only” means one narrow thing, and it is narrower than it sounds. From a Mac, we asked the compiler whether it accepts the source of one part of Kaleidoscope — the memory engine — for that platform, and it said yes. Nothing was ever assembled into a program for that platform, and the step where a program is stitched together from its parts and its system libraries is exactly the step where building for another platform usually fails first. That step has not happened, on any of these rows. The rest of Kaleidoscope — the command-line tool you would actually run, and the client libraries — was not part of the check at all.</p>
+<p>So nobody has executed a program, run an installer, touched a credential store, or driven an editor on any platform except a Mac with Apple Silicon. Windows on arm64 is weaker still — it has not even had the compiler check, so do not read it as a quieter version of Windows on x86_64.</p>
+<p>Nothing in these tables is an availability claim. There is no build you can download for any platform, and no package in any registry.</p>
 </article>
+  </div>
 </main><footer class="site-footer"><div class="shell">
   <span>Kaleidoscope by <a href="https://kleosresearch.xyz/">Kleos Research</a></span>
-  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice</a><a href="/docs/legal/security-policy/">Security policy</a><a href="/docs/legal/support-policy/">Support</a><a href="/llms.txt">llms.txt</a></nav>
+  <nav aria-label="Footer"><a href="/docs/legal/">Licenses &amp; terms</a><a href="/docs/legal/privacy-notice/">Privacy notice (draft)</a><a href="/docs/legal/security-policy/">Security policy (draft)</a><a href="/docs/legal/support-policy/">Support (draft)</a><a href="/docs/status/">What works today</a><a href="/llms.txt">llms.txt</a></nav>
 </div></footer></body></html>
