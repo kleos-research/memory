@@ -7,11 +7,16 @@
   },
   "local_conformance": {
     "dx10a_evidence_sha256": "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e",
-    "dx10b_host_evidence_sha256": "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
+    "final_package_evidence_sha256": "f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0",
+    "historical_codex_host_evidence": {
+      "applies_to": "pre-final manager candidate only",
+      "commit": "9cd4b5837e887a0bb3dcc13209134c002aad08f5",
+      "sha256": "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
+    }
   },
   "manager": {
-    "sha256": "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e",
-    "source_commit": "05948a3acfbf0a325f06ecfe6057db484f02e5a1",
+    "sha256": "fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b",
+    "source_commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
     "version": "0.1.0"
   },
   "model_tools": [
@@ -65,7 +70,7 @@
     ],
     "native_target": "darwin-arm64",
     "publicly_available": false,
-    "sdk_facade_commit": "67e351d9210756153338825b1d2aab7bb8f1dcb7",
+    "sdk_facade_commit": "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317",
     "version": "0.1.0-rc.1"
   },
   "protocol_revision": "2025-11-25",

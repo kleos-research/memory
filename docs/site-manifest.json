@@ -47,8 +47,8 @@
     },
     {
       "path": "docs/account/index.html",
-      "sha256": "04ccb284d58a3c7bb55f6a6a1bc96bb0d155a1859d4c667ef161e5fa2c68d166",
-      "size_bytes": 6606
+      "sha256": "c8154031fbb96e5bc114adc9c5006fa2e29390c74a832997516f501ee5945947",
+      "size_bytes": 7296
     },
     {
       "path": "docs/benchmarks/index.html",
@@ -57,8 +57,8 @@
     },
     {
       "path": "docs/cli/index.html",
-      "sha256": "473892239f016cf01bd4bdc6b87ed9539e3fc0fefa4aca9c5fe2b7bba69c7564",
-      "size_bytes": 7194
+      "sha256": "d3c73e22da1144813540a1dc7ec7ea4f4ecdb42ef2bdde9c84e759d147ed8291",
+      "size_bytes": 7599
     },
     {
       "path": "docs/compatibility/index.html",
@@ -67,13 +67,13 @@
     },
     {
       "path": "docs/concepts/index.html",
-      "sha256": "c5a55f4d9ccf0c794b4bd206c7175cfac715518753f8471e8f8e40c17f91fd1e",
-      "size_bytes": 6795
+      "sha256": "1741eb51183a302df549d9f317339758ffa20507bf279faf98222429154406d6",
+      "size_bytes": 6908
     },
     {
       "path": "docs/evidence/index.html",
-      "sha256": "ca79f11d0f47c278bfc894ce441971be6911f247f2734d62f029a7839bf3c3e6",
-      "size_bytes": 10005
+      "sha256": "a384c9670a1970f3686424b1cda5556523f98d9c75c1476eee4411b624685709",
+      "size_bytes": 10446
     },
     {
       "path": "docs/getting-started/index.html",
@@ -122,8 +122,8 @@
     },
     {
       "path": "docs/integrations/index.html",
-      "sha256": "8c0f011f828ff6b9accbc815638be6af5fd34896a66cd177f45849afb794d264",
-      "size_bytes": 8344
+      "sha256": "52f6c5439820bbb81ac07bbd83bd95885266f6cc1333e51fc9aa591e7d54a742",
+      "size_bytes": 8545
     },
     {
       "path": "docs/integrations/langchain/index.html",
@@ -162,8 +162,8 @@
     },
     {
       "path": "docs/packages/index.html",
-      "sha256": "0532ea2e51e6f4e4859d882cf51b25c64c3918319487b293fc9c876dc11759dd",
-      "size_bytes": 8854
+      "sha256": "16342fae1f0de0945121b71fc43aba20a02cfb41c9d58d3cb7a22dad6ce39311",
+      "size_bytes": 8931
     },
     {
       "path": "docs/privacy/index.html",
@@ -172,8 +172,8 @@
     },
     {
       "path": "docs/release-notes/index.html",
-      "sha256": "6e33139b6f0f475c88b3ab064ee230afe2028a717ce49d8921f92bd2dd7a7876",
-      "size_bytes": 6218
+      "sha256": "74f518a4796e7e4576c8256fefcdcfcf0692dcff184e1f3d753282bfcbdfcaa2",
+      "size_bytes": 6297
     },
     {
       "path": "docs/security/index.html",
@@ -207,23 +207,23 @@
     },
     {
       "path": "llms-full.txt",
-      "sha256": "3b8174bb7fc03d5d6b5586c024769612a925c064f4c92ce29e6a36ed5aa8dd1f",
-      "size_bytes": 63504
+      "sha256": "1bdb7956f15351564e236d9834893077762f402be5c402ea71bc1c04052f4e91",
+      "size_bytes": 66857
     },
     {
       "path": "llms.txt",
-      "sha256": "12a7d4f8a031eb9da790a654ce8c582f3c737ca2f7c1de4045338abec4b4d21e",
-      "size_bytes": 4534
+      "sha256": "1417d5f5c326282d4d9aba8802968888f487a240ab881b36934e931fe68f47bf",
+      "size_bytes": 5027
     },
     {
       "path": "reference/kaleidoscope-cli.candidate.txt",
-      "sha256": "b5c5a4aca952407b88edd83c1b089b4dab5fef485af302837564974951537326",
-      "size_bytes": 1610
+      "sha256": "2d1b21ab01bc3bd2f3013b694648027c3ed635ce34a3a74d8c49d6656bffd583",
+      "size_bytes": 1796
     },
     {
       "path": "reference/kaleidoscope-mcp.candidate.json",
-      "sha256": "2cf27f43e80f5905bd68d711d4c1ea16b021f6b0b47443ba59aee69c6da16b5d",
-      "size_bytes": 2035
+      "sha256": "a4d9719cacf6fc287a7bdebee8c653fc4120e3dcd260dc28b47934a1179702cd",
+      "size_bytes": 2284
     },
     {
       "path": "robots.txt",
@@ -252,8 +252,8 @@
     },
     {
       "path": "staging-evidence.json",
-      "sha256": "82524a3114713b917aabc42a0bb86b94a1c11623148249d5e6ecba33277f0816",
-      "size_bytes": 5859
+      "sha256": "75bd922c2cadc43f02d3d38fcff87572544cdbc040bc165ddc8e92d0c53f3dd5",
+      "size_bytes": 6485
     }
   ],
   "mode": "staging",

@@ -45,29 +45,32 @@ PUBLIC_CONTRACT_SHA256 = (
 PUBLIC_SKILL_SHA256 = (
     "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad"
 )
-MANAGER_SOURCE_COMMIT = "05948a3acfbf0a325f06ecfe6057db484f02e5a1"
+MANAGER_SOURCE_COMMIT = "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317"
 MANAGER_SHA256 = (
-    "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e"
+    "fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b"
 )
 DISTRIBUTION_COMMIT = "42ffba4e3976810f91f2adcf53bd4393e5330d72"
-SDK_FACADE_COMMIT = "67e351d9210756153338825b1d2aab7bb8f1dcb7"
+SDK_FACADE_COMMIT = "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317"
 DISTRIBUTION_ASSEMBLER_COMMIT = "af892d180fe01729450e03917f33ac56698e90e1"
-FINAL_EVIDENCE_COMMIT = "53ff63960e660becba3624bd83a17dff5b1caf6b"
-DX06_VERIFICATION_SHA256 = (
-    "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
+FINAL_EVIDENCE_COMMIT = "d9409ebacf63bcf2b32fde56a31a6350cfdfd491"
+FINAL_PACKAGE_EVIDENCE_SHA256 = (
+    "f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0"
+)
+FINAL_BUILD_PROOF_SHA256 = (
+    "eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94"
 )
 DX10A_EVIDENCE_SHA256 = (
     "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
 )
 SDK_HOST_CONFORMANCE_COMMIT = "9cd4b5837e887a0bb3dcc13209134c002aad08f5"
-PACKAGE_PROOF_SHA256 = "9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa"
-NPM_FACADE_SHA256 = "24774b0c455136aff861b643121feec755d03d5d01bf7a9f318082083ec2b8f5"
-NPM_NATIVE_SHA256 = "d60be804252af0d1abe8207a00816cfce33903afae1770f0674a1c7deb1d9d81"
+PACKAGE_PROOF_SHA256 = "095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c"
+NPM_FACADE_SHA256 = "c30d45d9ccc61b36ede7b6df87f6728aa9307445a08446a7de5de5bafe9c0605"
+NPM_NATIVE_SHA256 = "a2cd8924c89a74204fcb9ee8790daf6a53d4ce4bec6fdf6329e127ff9b5b5d12"
 PYTHON_FACADE_SHA256 = (
-    "596dcff8043a94d19ff47f60db27f7d183b4dda3fc084274e7e79ea06e5f1ccf"
+    "7208468413a44412959e0426cf7fb508ca7f32861fcd0ee79ec0f6bedb88e68c"
 )
 PYTHON_NATIVE_SHA256 = (
-    "f9d9ad0ec7b3d2ecb99e06a92e68c1c3ba24026c78d460741597d0b32bcf7920"
+    "24eb29ac7ec70a2a9d36832994d5a17cba2b42f6a12fd6557f541bd2890f89d3"
 )
 DX10B_HOST_EVIDENCE_SHA256 = (
     "74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840"
@@ -77,19 +80,19 @@ DX09_FIXTURE_EVIDENCE_SHA256 = (
     "f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504"
 )
 LOCAL_ARCHIVE_SHA256 = (
-    "dc7d54bf894966b935c8e2d44868c5caa4571b3fdfabd6765672486a95eb9d9a"
+    "fc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf"
 )
 LOCAL_MANIFEST_SHA256 = (
-    "a997d4679f54125bc618c412bca5b877afc83273730cca5a0c9553a29da88e04"
+    "39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f"
 )
 LOCAL_SBOM_SHA256 = (
-    "50444804bb2d29561b9b3f9f85afdb5133d06afb92886683ab9e4f7339ec2a15"
+    "a236f913fa83bf02e99605ba573203ba7cb48f7798ad8728c2aa4d590fd191f3"
 )
 LOCAL_PROVENANCE_SHA256 = (
-    "7b08171edaf1aac81f81c78d5bd704674db3f2a8c3e44f122cccf456ee3ff82e"
+    "a177d3537d87bfba08e77fe4171e41dff69a757499a742c8a5501ed5777b1d56"
 )
 LOCAL_TEST_SIGNATURE_SHA256 = (
-    "6dd03a82e4688413c438a8ca8682b20e3a8886895ba2059a22881458127f843e"
+    "7fc485f638bcf3327804009bf2890afb96b106fd3171e6f8a013dadac90510d2"
 )
 
 MANAGER_HELP = """Kaleidoscope public local manager
@@ -101,6 +104,9 @@ Usage:
   kaleidoscope [--engine PATH] profile show NAME
   kaleidoscope [--engine PATH] profile use NAME
   kaleidoscope [--engine PATH] profile remove NAME
+  kaleidoscope profile account show [NAME]
+  kaleidoscope profile account bind ACCOUNT_UUID [NAME]
+  kaleidoscope profile account unbind [NAME]
   kaleidoscope [--engine PATH] config [--profile NAME] [--json]
   kaleidoscope [--engine PATH] connect HOST [--scope user|project]
                                       [--profile NAME] [--project PATH]
@@ -115,8 +121,9 @@ Usage:
   kaleidoscope status [--json]
   kaleidoscope logout [--all-devices] [--local-only]
   kaleidoscope account link PROVIDER
+  kaleidoscope account identities
   kaleidoscope account unlink EXTERNAL_IDENTITY_UUID
-  kaleidoscope account revoke
+  kaleidoscope account revoke-session
   kaleidoscope devices list
   kaleidoscope devices revoke DEVICE_UUID
   kaleidoscope --version
@@ -180,7 +187,12 @@ MCP_REFERENCE = {
     "operator_commands_are_model_tools": False,
     "local_conformance": {
         "dx10a_evidence_sha256": DX10A_EVIDENCE_SHA256,
-        "dx10b_host_evidence_sha256": DX10B_HOST_EVIDENCE_SHA256,
+        "final_package_evidence_sha256": FINAL_PACKAGE_EVIDENCE_SHA256,
+        "historical_codex_host_evidence": {
+            "commit": SDK_HOST_CONFORMANCE_COMMIT,
+            "sha256": DX10B_HOST_EVIDENCE_SHA256,
+            "applies_to": "pre-final manager candidate only",
+        },
     },
     "package_contract": {
         "version": "0.1.0-rc.1",
@@ -219,8 +231,9 @@ STAGING_EVIDENCE = {
         "sbom_sha256": LOCAL_SBOM_SHA256,
         "provenance_sha256": LOCAL_PROVENANCE_SHA256,
         "signature_envelope_sha256": LOCAL_TEST_SIGNATURE_SHA256,
-        "base_verification_summary_sha256": DX06_VERIFICATION_SHA256,
+        "build_proof_sha256": FINAL_BUILD_PROOF_SHA256,
         "package_proof_sha256": PACKAGE_PROOF_SHA256,
+        "final_facade_happy_path_evidence_sha256": FINAL_PACKAGE_EVIDENCE_SHA256,
         "facades": {
             "contains": "full public SDK plus kaleidoscope and kscope launchers",
             "npm": {
@@ -259,21 +272,21 @@ STAGING_EVIDENCE = {
             "commit": MANAGER_SOURCE_COMMIT,
             "status": "verified_local_provider_unconfigured",
             "scope": "consolidated manager OIDC, device login, credential storage, account and device commands",
-            "verification": "11 account commands passed the offline provider-not-configured and no-engine-resolution lane",
+            "verification": "12 account/device commands passed the offline provider-not-configured and no-engine-resolution lane",
         },
         {
             "id": "DX-06A/B",
             "commit": DISTRIBUTION_ASSEMBLER_COMMIT,
             "status": "verified_local_test_signature_only",
             "scope": "source-only distribution tooling, full SDK facades, native object-code companions and lifecycle rehearsal",
-            "verification": f"20 distribution/native tests passed; package proof SHA-256 {PACKAGE_PROOF_SHA256}",
+            "verification": f"reassembled source-bound archive and package proof SHA-256 {PACKAGE_PROOF_SHA256}; build proof SHA-256 {FINAL_BUILD_PROOF_SHA256}",
         },
         {
             "id": "DX-07",
             "commit": SDK_FACADE_COMMIT,
             "status": "verified_local",
             "scope": "full Python and TypeScript SDK facades, agent/framework integrations, installed-payload resolvers and both launchers",
-            "verification": "37 TypeScript tests and Python suite passed with one intentional native-profile skip each, plus source poison scan",
+            "verification": "37 TypeScript tests and the Python suite passed with one intentional native-profile skip each, plus installed-payload resolver checks",
         },
         {
             "id": "DX-09",
@@ -284,10 +297,10 @@ STAGING_EVIDENCE = {
         },
         {
             "id": "DX-10B",
-            "commit": SDK_HOST_CONFORMANCE_COMMIT,
-            "status": "verified_local_codex_cli",
-            "scope": "isolated real Codex CLI configuration plus generic persistent stdio MCP conformance",
-            "verification": f"host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}",
+            "commit": FINAL_EVIDENCE_COMMIT,
+            "status": "verified_local_package_facades",
+            "scope": "fresh npm and Python facade invocation: init, doctor, Codex dry-run configuration, and stdio MCP discovery",
+            "verification": f"final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; no real host acceptance claim",
         },
         {
             "id": "DX-10A",
@@ -297,6 +310,12 @@ STAGING_EVIDENCE = {
             "verification": f"DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}",
         },
     ],
+    "historical_host_conformance": {
+        "commit": SDK_HOST_CONFORMANCE_COMMIT,
+        "evidence_sha256": DX10B_HOST_EVIDENCE_SHA256,
+        "scope": "isolated real Codex CLI configuration and generic stdio MCP",
+        "status": "pre-final manager candidate only; not final package acceptance",
+    },
     "release_holds": {
         "production_oidc_issuer": None,
         "production_signing_identity": None,
@@ -432,7 +451,7 @@ kscope --version</code></pre>
 <h2>What the package checks</h2>
 <ul><li>Exact SDK commit, manager, engine, public-contract, manifest, package, SBOM, provenance, and signature bindings.</li><li>Facade names, versions, native dependency pins, required client modules, resolvers, both launchers, and allowlisted archive inventories.</li><li>Private-source and build-path scans plus isolated npm/Python installs and both version commands.</li><li>Unsupported targets fail clearly; the five non-macOS-arm64 entries remain refusal-only scaffolds.</li></ul>
 <h2>Current availability</h2>
-<p>SDK commit <code>{SDK_FACADE_COMMIT}</code>, assembler commit <code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, and evidence commit <code>{FINAL_EVIDENCE_COMMIT}</code> define this local RC contract. The package proof records <code>facade_mode: sdk_artifacts</code>. Production EULA/license text, trusted signing identities, registry credentials, other native platforms, protected publication approval, and Pages promotion remain required.</p>
+<p>SDK commit <code>{SDK_FACADE_COMMIT}</code>, assembler commit <code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, and final evidence commit <code>{FINAL_EVIDENCE_COMMIT}</code> define this local RC contract. The package proof records <code>facade_mode: sdk_artifacts</code>; the final package evidence records fresh npm/Python facade invocation. Production EULA/license text, trusted signing identities, registry credentials, other native platforms, protected publication approval, and Pages promotion remain required.</p>
 """,
     ),
     Page(
@@ -444,9 +463,9 @@ kscope --version</code></pre>
 <h2>Local engine</h2>
 <p>The proprietary native engine owns the memory algorithm, canonical vault, graph, ranking, and stdio MCP behavior. Its source is not part of the public manager, client, integration, or skill surfaces.</p>
 <h2>Manager and profile</h2>
-<p>The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes the account/device commands. The local distribution is bound to manager source commit <code>05948a3…</code> and binary SHA-256 <code>4fecd84584ed…</code>.</p>
+<p>The consolidated manager initializes profiles, validates the engine launch descriptor, edits harness configuration safely, runs offline diagnostics, installs agent guidance, and exposes account/device commands. A profile may carry one explicit, manager-local account UUID reference; this changes neither its vault identity nor its credentials. The local distribution is bound to manager source commit <code>fc15e1e…</code> and its candidate binary digest.</p>
 <h2>SDK facade and native companion</h2>
-<p>The npm and Python facades at SDK commit <code>67e351d…</code> contain the full public clients, typed installed-payload resolvers, and <code>kaleidoscope</code>/<code>kscope</code> launchers. Their exact macOS arm64 native companions contain the manager and proprietary engine object code. This keeps the public developer API in the facade without placing engine source in either layer.</p>
+<p>The npm and Python facades at SDK commit <code>fc15e1e…</code> contain the full public clients, typed installed-payload resolvers, and <code>kaleidoscope</code>/<code>kscope</code> launchers. Their exact macOS arm64 native companions contain the manager and proprietary engine object code. This keeps the public developer API in the facade without placing engine source in either layer.</p>
 <h2>Harness identity</h2>
 <p>Codex, Claude, Cursor, OpenCode, framework clients, and generic MCP clients are consumers of the same profile. They do not become separate memory stores merely because their configuration formats differ.</p>
 <h2>Account identity</h2>
@@ -461,11 +480,14 @@ kscope --version</code></pre>
         description="Candidate-generated reference for the Kaleidoscope manager CLI, profiles, host connection, diagnostics, and account commands.",
         body="""
 <p class="lede">The developer-facing CLI is <code>kaleidoscope</code>. The engine executable <code>kscope</code> remains a native runtime/operator surface and is not the manager quickstart.</p>
-<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from consolidated manager source commit <code>05948a3…</code> and candidate SHA-256 <code>4fecd84584ed…</code>. It is not a public-installation claim.</div>
+<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from consolidated manager source commit <code>fc15e1e…</code> and the bound candidate SHA-256. It is not a public-installation claim.</div>
 <p><a href="/reference/kaleidoscope-cli.candidate.txt">Download the exact candidate help text</a>.</p>
 <h2>Local memory and host commands</h2>
 <pre><code>kaleidoscope [--engine PATH] init [--root PATH] [--profile NAME] [--durability process-local|durable-local]
 kaleidoscope [--engine PATH] profile list|show|use|remove
+kaleidoscope profile account show [NAME]
+kaleidoscope profile account bind ACCOUNT_UUID [NAME]
+kaleidoscope profile account unbind [NAME]
 kaleidoscope [--engine PATH] config [--profile NAME] [--json]
 kaleidoscope [--engine PATH] connect HOST [--scope user|project] [--profile NAME] [--project PATH] [--opencode-version stable-v1|beta-v2] [--dry-run] [--yes]
 kaleidoscope [--engine PATH] disconnect HOST [--scope user|project] [--project PATH] [--dry-run] [--yes]
@@ -476,11 +498,12 @@ kaleidoscope [--engine PATH] doctor [--project PATH]</code></pre>
 kaleidoscope status [--json]
 kaleidoscope logout [--all-devices] [--local-only]
 kaleidoscope account link PROVIDER
+kaleidoscope account identities
 kaleidoscope account unlink EXTERNAL_IDENTITY_UUID
-kaleidoscope account revoke
+kaleidoscope account revoke-session
 kaleidoscope devices list
 kaleidoscope devices revoke DEVICE_UUID</code></pre>
-<p>These account commands are locally implemented and tested but intentionally fail with <code>provider not configured</code> without approved issuer, audience, client, and account-origin configuration. No production issuer is published.</p>
+<p><code>account identities</code> lists only opaque IDs usable by <code>account unlink</code>. <code>account revoke-session</code> revokes the current token family; it is not an account-deactivation command. The local profile-account commands hold a non-secret UUID reference only. All remote account commands intentionally fail with <code>provider not configured</code> without approved issuer, audience, client, and account-origin configuration. No production issuer is published.</p>
 <h2>Safety invariants</h2>
 <ul><li>Mutating host and instruction commands support an effect-free dry run and explicit confirmation.</li><li>Unknown, conflicting, symlinked, tampered, or concurrently changed targets fail closed.</li><li>Backups are bounded and owner receipts make removal idempotent.</li><li>Agent launch configuration contains no tokens, provider keys, or raw vault coordinates.</li><li>Account traffic is closed to an exact account-only route inventory; it is separate from engine MCP traffic.</li></ul>
 """,
@@ -521,7 +544,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <tr><td><a href="/docs/integrations/openai-agents-sdk/">OpenAI Agents SDK</a></td><td>Python <code>0.22.0</code> and TypeScript <code>0.17.0</code>; scripted-model routing passed.</td><td>Verified with adapter caveat</td></tr>
 <tr><td><a href="/docs/integrations/crewai/">CrewAI</a></td><td><code>crewai==1.15.17</code>; long-lived MCP adapter passed.</td><td>Verified with fake server</td></tr>
 </tbody></table>
-<div class="callout"><strong>What DX-07 and DX-10B prove.</strong> SDK commit <code>67e351d…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Host conformance commit <code>9cd4b58…</code> bound the manager and engine to isolated real Codex CLI configuration plus dependency-free generic MCP. Claude Code, Cursor, and OpenCode CLIs were absent; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
+<div class="callout"><strong>What DX-07 and final package evidence prove.</strong> SDK commit <code>fc15e1e…</code> converges the tested Python/TypeScript clients and both command launchers into the registry facades; the local suites and installed-payload resolvers passed. Final evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256[:10]}…</code> proves fresh npm/Python facade <code>init</code>, <code>doctor</code>, <code>connect codex --dry-run</code>, and stdio MCP discovery. Historic commit <code>9cd4b58…</code> covered real Codex CLI configuration for a pre-final manager candidate only. Claude Code, Cursor, and OpenCode live acceptance remains unverified; no live provider, model/TUI/IDE, publication, or support claim follows.</div>
 <h2>Agent guidance</h2>
 <p>Install the <a href="/SKILL.md">public skill</a>, then add only the compact owner-marked pointer appropriate to <a href="/snippets/AGENTS.md">AGENTS.md</a>, <a href="/snippets/CLAUDE.md">CLAUDE.md</a>, or <a href="/snippets/cursor-kaleidoscope.mdc">Cursor</a>. Use the manager so dry runs, backups, receipts, tamper checks, and exact removal remain intact.</p>
 """,
@@ -572,7 +595,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         description="What Kaleidoscope login does, how credentials are stored, and why account operations never upload or delete local memory.",
         body="""
 <p class="lede">Login is intended for product-account and device workflows. It is not a hosted-memory connection and is not usable against a production issuer today.</p>
-<h2>Locally verified manager flows</h2><p>Consolidated manager commit <code>05948a3…</code> implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse. The final packaged candidate exposes all 11 closed account/device commands, but only the offline provider-not-configured lane has run against that package.</p>
+<h2>Locally verified manager flows</h2><p>Consolidated manager commit <code>fc15e1e…</code> implements authorization code with PKCE and a loopback callback plus device authorization for headless environments. It validates OIDC discovery, JWKS and RSA ID tokens; rotates refresh-token families; and fails closed on reuse. The local control plane also completes a one-time external-identity link after fresh provider authentication, returning only opaque identity IDs for unlinking. The package candidate has only credential-free account-provider refusal evidence until an approved OIDC deployment exists.</p>
 <h2>Commands</h2><pre><code>kaleidoscope login
 kaleidoscope login --device
 kaleidoscope status --json
@@ -580,11 +603,15 @@ kaleidoscope logout
 kaleidoscope logout --all-devices
 kaleidoscope logout --local-only
 kaleidoscope account link PROVIDER
+kaleidoscope account identities
 kaleidoscope account unlink EXTERNAL_IDENTITY_UUID
-kaleidoscope account revoke
+kaleidoscope account revoke-session
 kaleidoscope devices list
-kaleidoscope devices revoke DEVICE_UUID</code></pre>
-<p><code>--local-only</code> deliberately warns that it does not revoke the remote session. Without approved provider configuration, account commands return <code>provider not configured</code>; the docs do not provide substitute endpoints.</p>
+kaleidoscope devices revoke DEVICE_UUID
+kaleidoscope profile account show [NAME]
+kaleidoscope profile account bind ACCOUNT_UUID [NAME]
+kaleidoscope profile account unbind [NAME]</code></pre>
+<p><code>account identities</code> supplies the opaque UUID required by <code>account unlink</code>. <code>account revoke-session</code> has the deliberately narrow meaning of revoking the current session family. <code>--local-only</code> warns that it does not revoke a remote session. The profile-account commands write a local, non-secret account UUID reference only; they do not resolve the engine, contact the account service, alter a vault, or store a credential. Without approved provider configuration, remote account commands return <code>provider not configured</code>; the docs do not provide substitute endpoints.</p>
 <h2>What logout changes</h2><p>Logout removes or revokes account credentials according to scope. It does not change local profile identity or vault bytes. Vault deletion is a separate explicit local operation.</p>
 <h2>Control plane status</h2><p>The client contract is closed and account-only, but production identity-provider metadata, service deployment, credentials, domains, privacy terms, recovery, and deletion procedures remain gated. No production-login claim is made.</p>
 """,
@@ -628,17 +655,17 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
 <p class="lede">Evidence is split into local functional proof, package/signature proof, native platform support, and protected production promotion. Passing one does not imply the others.</p>
 <div class="callout"><strong>Machine-readable record.</strong> <a href="/staging-evidence.json">staging-evidence.json</a> carries the same public, source-free status. It contains no local paths, credentials, vault coordinates, or private engine source.</div>
 <h2>Exact local candidate</h2>
-<table><tbody><tr><th>SDK facade commit</th><td><code>{SDK_FACADE_COMMIT}</code></td></tr><tr><th>Distribution assembler commit</th><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code></td></tr><tr><th>Final evidence commit</th><td><code>{FINAL_EVIDENCE_COMMIT}</code></td></tr><tr><th>Manager source commit</th><td><code>{MANAGER_SOURCE_COMMIT}</code></td></tr><tr><th>Manager candidate SHA-256</th><td><code>{MANAGER_SHA256}</code></td></tr><tr><th>Engine source commit</th><td><code>{ENGINE_SOURCE_COMMIT}</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>{ENGINE_CANDIDATE_SHA256}</code></td></tr><tr><th>Public contract SHA-256</th><td><code>{PUBLIC_CONTRACT_SHA256}</code></td></tr><tr><th>RC package version</th><td><code>0.1.0-rc.1</code> / Python <code>0.1.0rc1</code></td></tr><tr><th>Native target tested</th><td>macOS arm64 only</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
+<table><tbody><tr><th>SDK facade commit</th><td><code>{SDK_FACADE_COMMIT}</code></td></tr><tr><th>Distribution assembler commit</th><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code></td></tr><tr><th>Final evidence commit</th><td><code>{FINAL_EVIDENCE_COMMIT}</code></td></tr><tr><th>Final package evidence SHA-256</th><td><code>{FINAL_PACKAGE_EVIDENCE_SHA256}</code></td></tr><tr><th>Manager source commit</th><td><code>{MANAGER_SOURCE_COMMIT}</code></td></tr><tr><th>Manager candidate SHA-256</th><td><code>{MANAGER_SHA256}</code></td></tr><tr><th>Engine source commit</th><td><code>{ENGINE_SOURCE_COMMIT}</code></td></tr><tr><th>Engine candidate SHA-256</th><td><code>{ENGINE_CANDIDATE_SHA256}</code></td></tr><tr><th>Public contract SHA-256</th><td><code>{PUBLIC_CONTRACT_SHA256}</code></td></tr><tr><th>RC package version</th><td><code>0.1.0-rc.1</code> / Python <code>0.1.0rc1</code></td></tr><tr><th>Native target tested</th><td>macOS arm64 only</td></tr><tr><th>Production signature</th><td>Not verified</td></tr></tbody></table>
 <h2>Milestones</h2>
 <table><thead><tr><th>Slice</th><th>Exact evidence</th><th>What is true now</th></tr></thead><tbody>
 <tr><td>DX-04 / DX-05B</td><td><code>{MANAGER_SOURCE_COMMIT}</code>, manager <code>{MANAGER_SHA256}</code></td><td>Consolidated friendly and auth/device manager surfaces passed locally; production provider is unconfigured.</td></tr>
-<tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, proof <code>{PACKAGE_PROOF_SHA256}</code></td><td>20 distribution/native tests passed over full SDK facades and macOS arm64 native companions with a test-only signature; no publication.</td></tr>
+<tr><td>DX-06A/B</td><td><code>{DISTRIBUTION_ASSEMBLER_COMMIT}</code>, proof <code>{PACKAGE_PROOF_SHA256}</code></td><td>The final source-bound archive and package set was reassembled with a test-only signature; no publication.</td></tr>
 <tr><td>DX-07</td><td><code>{SDK_FACADE_COMMIT}</code></td><td>Full Python/TypeScript clients, installed-payload resolvers, integrations, and both launchers passed locally; no license or remote.</td></tr>
 <tr><td>DX-09</td><td><code>{BENCHMARK_COMMIT}</code>, merged PRs 5/6; evidence <code>{DX09_FIXTURE_EVIDENCE_SHA256}</code></td><td>Two clean exact-candidate fixture runs produced byte-identical artifacts; no score, signature, performance, or production-comparability claim.</td></tr>
 <tr><td>DX-10A</td><td><code>{DX10A_EVIDENCE_SHA256}</code></td><td>Final local package install, real MCP, account refusal, update, rollback, uninstall, and vault canary passed on macOS arm64; five non-native cells held.</td></tr>
-<tr><td>DX-10B</td><td><code>{SDK_HOST_CONFORMANCE_COMMIT}</code>, evidence <code>{DX10B_HOST_EVIDENCE_SHA256}</code></td><td>Real isolated Codex CLI configuration and generic MCP passed; model/TUI/IDE and absent-host cells held.</td></tr>
+<tr><td>DX-10B</td><td><code>{FINAL_EVIDENCE_COMMIT}</code>, evidence <code>{FINAL_PACKAGE_EVIDENCE_SHA256}</code></td><td>Fresh npm/Python facade <code>init</code>, <code>doctor</code>, Codex dry-run configuration, and MCP discovery passed. This is not real Codex/Claude/Cursor/OpenCode host acceptance.</td></tr>
 </tbody></table>
-<h2>Converged RC package proof</h2><p>The local archive <code>{LOCAL_ARCHIVE_SHA256}</code>, manifest <code>{LOCAL_MANIFEST_SHA256}</code>, and combined proof <code>{PACKAGE_PROOF_SHA256}</code> bind the full npm/Python SDK facades to their exact macOS arm64 native companions. The facades carry public client code, installed-payload resolution and both launchers; the companions carry manager <code>{MANAGER_SHA256}</code> and engine <code>{ENGINE_CANDIDATE_SHA256}</code> plus contract <code>{PUBLIC_CONTRACT_SHA256}</code>. The signature envelope <code>{LOCAL_TEST_SIGNATURE_SHA256}</code> uses only a checked-in TEST-ONLY trust root. This closes the local package-shape convergence, not the protected production gates.</p>
+<h2>Converged RC package proof</h2><p>The local archive <code>{LOCAL_ARCHIVE_SHA256}</code>, manifest <code>{LOCAL_MANIFEST_SHA256}</code>, build proof <code>{FINAL_BUILD_PROOF_SHA256}</code>, and combined package proof <code>{PACKAGE_PROOF_SHA256}</code> bind the full npm/Python SDK facades to their exact macOS arm64 native companions. The facades carry public client code, installed-payload resolution and both launchers; the companions carry manager <code>{MANAGER_SHA256}</code> and engine <code>{ENGINE_CANDIDATE_SHA256}</code> plus contract <code>{PUBLIC_CONTRACT_SHA256}</code>. The SBOM <code>{LOCAL_SBOM_SHA256}</code>, provenance <code>{LOCAL_PROVENANCE_SHA256}</code>, and signature envelope <code>{LOCAL_TEST_SIGNATURE_SHA256}</code> are all test-only local evidence. This closes local package-shape convergence, not protected production gates.</p>
 <h2>Approval and credential gates</h2><ul><li>Approval of a license for the public manager, wrappers, integrations, and skill.</li><li>Approval of terms for original documentation and an engine object-code EULA.</li><li>Staging/production OIDC configuration and private control-plane deployment evidence.</li><li>Production signing/notarization identities, registry/CDN credentials, and native platform runners.</li><li>A separate final approval for package publication, production login, and Pages promotion.</li></ul>
 """,
     ),
@@ -648,7 +675,7 @@ kaleidoscope devices revoke DEVICE_UUID</code></pre>
         description="Versioned Kaleidoscope release notes bound to immutable package and public-contract digests.",
         body="""
 <p class="lede">Release notes become authoritative only when they name the exact signed package, final manager, engine, and public-contract digests.</p>
-<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>4fecd84584ed…</code>.</li><li>SDK commit <code>67e351d…</code> places the full public TypeScript/Python clients, installed-payload resolvers, and both launchers in the facade packages.</li><li>Distribution assembler <code>af892d1…</code> pairs those facades with macOS arm64 native companions containing the manager and proprietary object-code engine; the exact package proof is <code>9f925898…</code>.</li><li>DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.</li><li>DX-10A final local macOS arm64 clean install, MCP, offline account refusal, update/rollback/uninstall, and vault-canary lane passed.</li><li>DX-10B isolated real Codex CLI configuration and generic stdio MCP passed; other platforms, hosts and model/IDE acceptance remain held.</li></ul>
+<h2>Unreleased local staging — 2026-08-22</h2><ul><li>The consolidated auth-enabled manager is deterministically bound at <code>fc6afb3606fc…</code>.</li><li>SDK commit <code>fc15e1e…</code> places the full public TypeScript/Python clients, installed-payload resolvers, account identity lifecycle, profile-account binding, and both launchers in the facade packages.</li><li>Distribution assembler <code>af892d1…</code> pairs those facades with macOS arm64 native companions containing the manager and proprietary object-code engine; the exact package proof is <code>095f91ca…</code>.</li><li>DX-09 native smoke plus the credential-free deterministic fixture pipeline merged in PRs 5/6; no benchmark score was produced.</li><li>DX-10A historic local macOS arm64 lifecycle evidence remains recorded for its then-current candidate.</li><li>Final DX-10B package evidence passed fresh npm/Python facade init, doctor, Codex dry-run configuration, and stdio MCP discovery; other platforms and live host/model/IDE acceptance remain held.</li></ul>
 <h2>Promotion rule</h2><p>A release entry must record public availability, supported targets and pinned host versions, known limitations, migration requirements, security fixes, all package checksums, SBOM/provenance, exact rollback identity, license/EULA links, and production account/privacy terms. Publication and documentation promotion are separate protected actions.</p>
 """,
     ),
@@ -1203,7 +1230,7 @@ Policy: {DOMAIN}/docs/security/
 - [Candidate CLI help]({DOMAIN}/reference/kaleidoscope-cli.candidate.txt): exact consolidated manager help snapshot
 - [Candidate MCP reference]({DOMAIN}/reference/kaleidoscope-mcp.candidate.json): exact engine and public-contract binding plus tool fields
 
-The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {SDK_FACADE_COMMIT} puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit {DISTRIBUTION_ASSEMBLER_COMMIT} pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit {FINAL_EVIDENCE_COMMIT} freezes the result. Exact hashes: release archive {LOCAL_ARCHIVE_SHA256}; manifest {LOCAL_MANIFEST_SHA256}; package proof {PACKAGE_PROOF_SHA256}; npm facade {NPM_FACADE_SHA256}; npm native companion {NPM_NATIVE_SHA256}; Python facade {PYTHON_FACADE_SHA256}; Python native companion {PYTHON_NATIVE_SHA256}. The engine source is not in any public surface. Manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; base DX-06 summary SHA-256 {DX06_VERIFICATION_SHA256}; DX-09 fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; DX-10B Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Production licensing/EULA, signing, registry publication, login and Pages promotion require separate approval.
+The `0.1.0-rc.1` package contract is verified only for macOS arm64. SDK commit {SDK_FACADE_COMMIT} puts the full public TypeScript/Python clients, installed-payload resolvers and both `kaleidoscope`/`kscope` launchers in the facade packages. Assembler commit {DISTRIBUTION_ASSEMBLER_COMMIT} pairs them with native companions containing manager object code and the proprietary object code engine; final evidence commit {FINAL_EVIDENCE_COMMIT} freezes the result. Exact hashes: release archive {LOCAL_ARCHIVE_SHA256}; manifest {LOCAL_MANIFEST_SHA256}; build proof {FINAL_BUILD_PROOF_SHA256}; package proof {PACKAGE_PROOF_SHA256}; npm facade {NPM_FACADE_SHA256}; npm native companion {NPM_NATIVE_SHA256}; Python facade {PYTHON_FACADE_SHA256}; Python native companion {PYTHON_NATIVE_SHA256}; SBOM {LOCAL_SBOM_SHA256}; provenance {LOCAL_PROVENANCE_SHA256}; test-only signature envelope {LOCAL_TEST_SIGNATURE_SHA256}. The engine source is not in any public surface. Manager SHA-256 {MANAGER_SHA256}; engine SHA-256 {ENGINE_CANDIDATE_SHA256}; public contract SHA-256 {PUBLIC_CONTRACT_SHA256}; final package evidence SHA-256 {FINAL_PACKAGE_EVIDENCE_SHA256}; DX-09 fixture evidence SHA-256 {DX09_FIXTURE_EVIDENCE_SHA256}; historic DX-10A evidence SHA-256 {DX10A_EVIDENCE_SHA256}; historic pre-final Codex-host evidence SHA-256 {DX10B_HOST_EVIDENCE_SHA256}. Final package evidence proves fresh npm/Python facade init, doctor, Codex dry-run configuration, and MCP discovery—not real host/IDE acceptance. All packages remain private, test-signed, unpublished and outside a support claim. Hosted memory is planned, not available. Production licensing/EULA, signing, registry publication, login and Pages promotion require separate approval.
 """
     write_text(output / "llms.txt", llms)
 

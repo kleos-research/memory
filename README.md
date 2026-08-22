@@ -7,9 +7,9 @@ staging build and performs no network, login, publication, or deployment.
 The canonical skill and three harness snippets under `public/` remain
 byte-for-byte mirrors of the consolidated manager sources. The converged SDK
 facades are bound to commit
-`67e351d9210756153338825b1d2aab7bb8f1dcb7`; the deterministic local manager
-candidate remains
-`4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e`.
+`fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317`; the deterministic local manager
+candidate is
+`fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b`.
 The canonical skill SHA-256 is
 `c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad`.
 `public/agent-instructions.md` is the docs index for those exact files. The
@@ -32,23 +32,28 @@ candidate reference snapshots:
 
 The converged local RC uses distribution assembler
 `af892d180fe01729450e03917f33ac56698e90e1` and final evidence commit
-`53ff63960e660becba3624bd83a17dff5b1caf6b`. The public npm and Python facades
+`d9409ebacf63bcf2b32fde56a31a6350cfdfd491`. The public npm and Python facades
 contain the full SDK and both `kaleidoscope`/`kscope` launchers; the macOS arm64
 native companions contain the manager and proprietary object-code engine.
 Exact RC evidence is:
 
-- release archive `dc7d54bf894966b935c8e2d44868c5caa4571b3fdfabd6765672486a95eb9d9a`;
-- manifest `a997d4679f54125bc618c412bca5b877afc83273730cca5a0c9553a29da88e04`;
-- package proof `9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa`;
-- npm facade/native `24774b0c455136aff861b643121feec755d03d5d01bf7a9f318082083ec2b8f5` / `d60be804252af0d1abe8207a00816cfce33903afae1770f0674a1c7deb1d9d81`;
-- Python facade/native `596dcff8043a94d19ff47f60db27f7d183b4dda3fc084274e7e79ea06e5f1ccf` / `f9d9ad0ec7b3d2ecb99e06a92e68c1c3ba24026c78d460741597d0b32bcf7920`;
+- release archive `fc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf`;
+- manifest `39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f`;
+- build proof `eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94`;
+- package proof `095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c`;
+- final facade evidence `f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0`;
+- npm facade/native `c30d45d9ccc61b36ede7b6df87f6728aa9307445a08446a7de5de5bafe9c0605` / `a2cd8924c89a74204fcb9ee8790daf6a53d4ce4bec6fdf6329e127ff9b5b5d12`;
+- Python facade/native `7208468413a44412959e0426cf7fb508ca7f32861fcd0ee79ec0f6bedb88e68c` / `24eb29ac7ec70a2a9d36832994d5a17cba2b42f6a12fd6557f541bd2890f89d3`;
+- SBOM/provenance/test-only signature `a236f913fa83bf02e99605ba573203ba7cb48f7798ad8728c2aa4d590fd191f3` / `a177d3537d87bfba08e77fe4171e41dff69a757499a742c8a5501ed5777b1d56` / `7fc485f638bcf3327804009bf2890afb96b106fd3171e6f8a013dadac90510d2`;
 - DX-10A evidence `cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e`;
 - DX-09 fixture evidence `f2d2a43bd8ee137f980c83398ec7197e26eedd2395d019926e38ea7531a2a504`;
-- DX-10B real-Codex host evidence `74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840`.
+- historic pre-final DX-10B real-Codex host evidence `74ab8ac26bbb0a3d6093c8d4db467de8d998882801a815495ada0ad0fc1ec840`.
 All remain local, test-signed and unpublished. The RC has native evidence only
-for macOS arm64. Production signing, live OIDC, additional
-native platforms and hosts, licenses/EULA, registry publication, and Pages
-promotion remain held.
+for macOS arm64. The final package evidence covers fresh npm/Python facade
+invocation, `connect codex --dry-run`, and MCP discovery; it does not establish
+real host/IDE acceptance. Production signing, live OIDC, additional native
+platforms and hosts, licenses/EULA, registry publication, and Pages promotion
+remain held.
 
 ```sh
 python3 build_site.py --output docs

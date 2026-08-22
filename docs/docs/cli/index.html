@@ -43,11 +43,14 @@
   <nav class="sidebar" aria-label="Documentation"><strong>Documentation</strong><ul><li><a href="/docs/">Overview</a></li><li><a href="/docs/getting-started/">Getting started</a></li><li><a href="/docs/packages/">Packages</a></li><li><a href="/docs/concepts/">Concepts</a></li><li><a href="/docs/cli/" aria-current="page">CLI</a></li><li><a href="/docs/mcp/">MCP</a></li><li><a href="/docs/integrations/">Integrations</a></li><li><a href="/docs/operations/">Operations</a></li><li><a href="/docs/security/">Security</a></li><li><a href="/docs/privacy/">Privacy</a></li><li><a href="/docs/account/">Account</a></li><li><a href="/docs/compatibility/">Compatibility</a></li><li><a href="/docs/benchmarks/">Benchmarks</a></li><li><a href="/docs/evidence/">Release evidence</a></li><li><a href="/docs/release-notes/">Release notes</a></li><li><a href="/docs/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/migration/">Migration</a></li></ul></nav>
   <article class="content"><span class="release-tag">unreleased · not-yet-boun</span><h1>CLI reference</h1>
 <p class="lede">The developer-facing CLI is <code>kaleidoscope</code>. The engine executable <code>kscope</code> remains a native runtime/operator surface and is not the manager quickstart.</p>
-<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from consolidated manager source commit <code>05948a3…</code> and candidate SHA-256 <code>4fecd84584ed…</code>. It is not a public-installation claim.</div>
+<div class="callout"><strong>Candidate-generated reference.</strong> The exact help snapshot comes from consolidated manager source commit <code>fc15e1e…</code> and the bound candidate SHA-256. It is not a public-installation claim.</div>
 <p><a href="/reference/kaleidoscope-cli.candidate.txt">Download the exact candidate help text</a>.</p>
 <h2>Local memory and host commands</h2>
 <pre><code>kaleidoscope [--engine PATH] init [--root PATH] [--profile NAME] [--durability process-local|durable-local]
 kaleidoscope [--engine PATH] profile list|show|use|remove
+kaleidoscope profile account show [NAME]
+kaleidoscope profile account bind ACCOUNT_UUID [NAME]
+kaleidoscope profile account unbind [NAME]
 kaleidoscope [--engine PATH] config [--profile NAME] [--json]
 kaleidoscope [--engine PATH] connect HOST [--scope user|project] [--profile NAME] [--project PATH] [--opencode-version stable-v1|beta-v2] [--dry-run] [--yes]
 kaleidoscope [--engine PATH] disconnect HOST [--scope user|project] [--project PATH] [--dry-run] [--yes]
@@ -58,11 +61,12 @@ kaleidoscope [--engine PATH] doctor [--project PATH]</code></pre>
 kaleidoscope status [--json]
 kaleidoscope logout [--all-devices] [--local-only]
 kaleidoscope account link PROVIDER
+kaleidoscope account identities
 kaleidoscope account unlink EXTERNAL_IDENTITY_UUID
-kaleidoscope account revoke
+kaleidoscope account revoke-session
 kaleidoscope devices list
 kaleidoscope devices revoke DEVICE_UUID</code></pre>
-<p>These account commands are locally implemented and tested but intentionally fail with <code>provider not configured</code> without approved issuer, audience, client, and account-origin configuration. No production issuer is published.</p>
+<p><code>account identities</code> lists only opaque IDs usable by <code>account unlink</code>. <code>account revoke-session</code> revokes the current token family; it is not an account-deactivation command. The local profile-account commands hold a non-secret UUID reference only. All remote account commands intentionally fail with <code>provider not configured</code> without approved issuer, audience, client, and account-origin configuration. No production issuer is published.</p>
 <h2>Safety invariants</h2>
 <ul><li>Mutating host and instruction commands support an effect-free dry run and explicit confirmation.</li><li>Unknown, conflicting, symlinked, tampered, or concurrently changed targets fail closed.</li><li>Backups are bounded and owner receipts make removal idempotent.</li><li>Agent launch configuration contains no tokens, provider keys, or raw vault coordinates.</li><li>Account traffic is closed to an exact account-only route inventory; it is separate from engine MCP traffic.</li></ul>
 </article>

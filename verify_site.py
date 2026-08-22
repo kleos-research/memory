@@ -24,31 +24,43 @@ PUBLIC_CONTRACT_SHA256 = (
 PUBLIC_SKILL_SHA256 = (
     "c688db1b84ee20b6786d6109c68fbf8a21fd87486b9fe37e525d85170b77c9ad"
 )
-MANAGER_SOURCE_COMMIT = "05948a3acfbf0a325f06ecfe6057db484f02e5a1"
+MANAGER_SOURCE_COMMIT = "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317"
 MANAGER_SHA256 = (
-    "4fecd84584ed50dacde0677a9aba18c8a44ce6a58ea499e701e2c6dcd1c05b3e"
+    "fc6afb3606fcd312a7a7188e6f9ec2e72c6885f3f4a87e11b5eeb9b291bf336b"
 )
 DISTRIBUTION_COMMIT = "42ffba4e3976810f91f2adcf53bd4393e5330d72"
-SDK_FACADE_COMMIT = "67e351d9210756153338825b1d2aab7bb8f1dcb7"
+SDK_FACADE_COMMIT = "fc15e1ec7d98a9d37983cea87ab23bfc0b7fd317"
 DISTRIBUTION_ASSEMBLER_COMMIT = "af892d180fe01729450e03917f33ac56698e90e1"
-FINAL_EVIDENCE_COMMIT = "53ff63960e660becba3624bd83a17dff5b1caf6b"
-DX06_VERIFICATION_SHA256 = (
-    "98d36d4ce6a7b99c273f6c216a0b351fced7860c76edfc1429f499c0ba63bbed"
+FINAL_EVIDENCE_COMMIT = "d9409ebacf63bcf2b32fde56a31a6350cfdfd491"
+FINAL_PACKAGE_EVIDENCE_SHA256 = (
+    "f23c4a0fea5aa260ec41f10f2da23c3bab5147a942aa3e3ea09a3d7473918be0"
+)
+FINAL_BUILD_PROOF_SHA256 = (
+    "eb23e9f490179e6d84f4933de5ea5b2ff390030798727ba1ddd90628106b4d94"
 )
 LOCAL_ARCHIVE_SHA256 = (
-    "dc7d54bf894966b935c8e2d44868c5caa4571b3fdfabd6765672486a95eb9d9a"
+    "fc37a2caa00f038bf7c260e53b62c9bee6d5e78df1cc3568a180816a3d9b2abf"
 )
 LOCAL_MANIFEST_SHA256 = (
-    "a997d4679f54125bc618c412bca5b877afc83273730cca5a0c9553a29da88e04"
+    "39c8738cd938e79b10a20d429ace1fb6a4eda73b1f25a99681a8104dd2e0ef2f"
 )
-PACKAGE_PROOF_SHA256 = "9f9258988e2f7dd5c1cf380405eee9081bc6de33f038a4bdb4d54600b7f6b1aa"
-NPM_FACADE_SHA256 = "24774b0c455136aff861b643121feec755d03d5d01bf7a9f318082083ec2b8f5"
-NPM_NATIVE_SHA256 = "d60be804252af0d1abe8207a00816cfce33903afae1770f0674a1c7deb1d9d81"
+PACKAGE_PROOF_SHA256 = "095f91ca73faf811a888771dc1298a200193458df63ae5cb890a16f632bc1d3c"
+NPM_FACADE_SHA256 = "c30d45d9ccc61b36ede7b6df87f6728aa9307445a08446a7de5de5bafe9c0605"
+NPM_NATIVE_SHA256 = "a2cd8924c89a74204fcb9ee8790daf6a53d4ce4bec6fdf6329e127ff9b5b5d12"
 PYTHON_FACADE_SHA256 = (
-    "596dcff8043a94d19ff47f60db27f7d183b4dda3fc084274e7e79ea06e5f1ccf"
+    "7208468413a44412959e0426cf7fb508ca7f32861fcd0ee79ec0f6bedb88e68c"
 )
 PYTHON_NATIVE_SHA256 = (
-    "f9d9ad0ec7b3d2ecb99e06a92e68c1c3ba24026c78d460741597d0b32bcf7920"
+    "24eb29ac7ec70a2a9d36832994d5a17cba2b42f6a12fd6557f541bd2890f89d3"
+)
+LOCAL_SBOM_SHA256 = (
+    "a236f913fa83bf02e99605ba573203ba7cb48f7798ad8728c2aa4d590fd191f3"
+)
+LOCAL_PROVENANCE_SHA256 = (
+    "a177d3537d87bfba08e77fe4171e41dff69a757499a742c8a5501ed5777b1d56"
+)
+LOCAL_TEST_SIGNATURE_SHA256 = (
+    "7fc485f638bcf3327804009bf2890afb96b106fd3171e6f8a013dadac90510d2"
 )
 DX10A_EVIDENCE_SHA256 = (
     "cfb0c09eccc2dffeca67fb324927b602f6f1158a9d6e85682cc3112fd696b12e"
@@ -136,7 +148,7 @@ EXPECTED_MILESTONES = {
     "DX-07": SDK_FACADE_COMMIT,
     "DX-09": BENCHMARK_COMMIT,
     "DX-10A": DISTRIBUTION_COMMIT,
-    "DX-10B": SDK_HOST_CONFORMANCE_COMMIT,
+    "DX-10B": FINAL_EVIDENCE_COMMIT,
 }
 
 
@@ -299,15 +311,18 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                 failures.append("staging evidence has wrong RC version")
             if distribution.get("native_target") != "darwin-arm64":
                 failures.append("staging evidence has wrong native RC target")
-            if (
-                distribution.get("base_verification_summary_sha256")
-                != DX06_VERIFICATION_SHA256
-            ):
-                failures.append("staging evidence has wrong base DX-06 digest")
             for field, expected in (
                 ("archive_sha256", LOCAL_ARCHIVE_SHA256),
                 ("manifest_sha256", LOCAL_MANIFEST_SHA256),
+                ("sbom_sha256", LOCAL_SBOM_SHA256),
+                ("provenance_sha256", LOCAL_PROVENANCE_SHA256),
+                ("signature_envelope_sha256", LOCAL_TEST_SIGNATURE_SHA256),
+                ("build_proof_sha256", FINAL_BUILD_PROOF_SHA256),
                 ("package_proof_sha256", PACKAGE_PROOF_SHA256),
+                (
+                    "final_facade_happy_path_evidence_sha256",
+                    FINAL_PACKAGE_EVIDENCE_SHA256,
+                ),
             ):
                 if distribution.get(field) != expected:
                     failures.append(f"staging evidence has wrong {field}")
@@ -368,10 +383,17 @@ def verify(root: Path, expected_mode: str) -> list[str]:
                     "verification", ""
                 ):
                     failures.append("staging evidence has wrong DX-09 digest")
-                if DX10B_HOST_EVIDENCE_SHA256 not in milestones["DX-10B"].get(
+                if FINAL_PACKAGE_EVIDENCE_SHA256 not in milestones["DX-10B"].get(
                     "verification", ""
                 ):
-                    failures.append("staging evidence has wrong DX-10B digest")
+                    failures.append("staging evidence has wrong final DX-10B digest")
+            historical = evidence.get("historical_host_conformance", {})
+            if historical.get("commit") != SDK_HOST_CONFORMANCE_COMMIT:
+                failures.append("staging evidence has wrong historic host commit")
+            if historical.get("evidence_sha256") != DX10B_HOST_EVIDENCE_SHA256:
+                failures.append("staging evidence has wrong historic host digest")
+            if "pre-final manager candidate" not in historical.get("status", ""):
+                failures.append("staging evidence must qualify historic host evidence")
 
     cli_reference = actual.get("reference/kaleidoscope-cli.candidate.txt")
     if cli_reference is None:
@@ -384,7 +406,10 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             "kaleidoscope instructions install TARGET",
             "kaleidoscope login [--device]",
             "kaleidoscope status [--json]",
+            "kaleidoscope profile account bind ACCOUNT_UUID [NAME]",
+            "kaleidoscope account identities",
             "kaleidoscope account unlink EXTERNAL_IDENTITY_UUID",
+            "kaleidoscope account revoke-session",
             "kaleidoscope devices revoke DEVICE_UUID",
         ):
             if command not in cli_text:
@@ -424,10 +449,17 @@ def verify(root: Path, expected_mode: str) -> list[str]:
             if conformance.get("dx10a_evidence_sha256") != DX10A_EVIDENCE_SHA256:
                 failures.append("candidate MCP reference has wrong DX-10A digest")
             if (
-                conformance.get("dx10b_host_evidence_sha256")
-                != DX10B_HOST_EVIDENCE_SHA256
+                conformance.get("final_package_evidence_sha256")
+                != FINAL_PACKAGE_EVIDENCE_SHA256
             ):
-                failures.append("candidate MCP reference has wrong DX-10B digest")
+                failures.append("candidate MCP reference has wrong final DX-10B digest")
+            historical = conformance.get("historical_codex_host_evidence", {})
+            if historical.get("commit") != SDK_HOST_CONFORMANCE_COMMIT:
+                failures.append("candidate MCP reference has wrong historic host commit")
+            if historical.get("sha256") != DX10B_HOST_EVIDENCE_SHA256:
+                failures.append("candidate MCP reference has wrong historic host digest")
+            if historical.get("applies_to") != "pre-final manager candidate only":
+                failures.append("candidate MCP reference must qualify historic host evidence")
             packages = mcp.get("package_contract", {})
             if packages.get("version") != "0.1.0-rc.1":
                 failures.append("candidate MCP reference has wrong RC version")
@@ -584,7 +616,8 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         ENGINE_CANDIDATE_SHA256,
         PUBLIC_CONTRACT_SHA256,
         MANAGER_SHA256,
-        DX06_VERIFICATION_SHA256,
+        FINAL_PACKAGE_EVIDENCE_SHA256,
+        FINAL_BUILD_PROOF_SHA256,
         DX09_FIXTURE_EVIDENCE_SHA256,
         DX10A_EVIDENCE_SHA256,
         DX10B_HOST_EVIDENCE_SHA256,
@@ -598,6 +631,9 @@ def verify(root: Path, expected_mode: str) -> list[str]:
         NPM_NATIVE_SHA256,
         PYTHON_FACADE_SHA256,
         PYTHON_NATIVE_SHA256,
+        LOCAL_SBOM_SHA256,
+        LOCAL_PROVENANCE_SHA256,
+        LOCAL_TEST_SIGNATURE_SHA256,
     ):
         if required.lower() not in llms_lower:
             failures.append(f"llms.txt missing {required!r}")
